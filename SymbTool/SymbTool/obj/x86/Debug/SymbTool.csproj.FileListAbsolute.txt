@@ -1,0 +1,4 @@
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\SymbTool\SymbTool\bin\Debug\SymbTool.exe
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\SymbTool\SymbTool\bin\Debug\SymbTool.pdb
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\SymbTool\SymbTool\obj\x86\Debug\SymbTool.exe
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\SymbTool\SymbTool\obj\x86\Debug\SymbTool.pdb

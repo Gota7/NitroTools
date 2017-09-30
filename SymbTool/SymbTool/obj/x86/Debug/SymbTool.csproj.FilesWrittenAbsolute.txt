@@ -1,0 +1,6 @@
+/home/gota/Documents/CS/SymbTool/SymbTool/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/gota/Documents/CS/SymbTool/SymbTool/bin/Debug/SymbTool.pdb
+/home/gota/Documents/CS/SymbTool/SymbTool/bin/Debug/SymbTool.exe
+/home/gota/Documents/CS/SymbTool/SymbTool/obj/x86/Debug/SymbTool.exe
+/home/gota/Documents/CS/SymbTool/SymbTool/obj/x86/Debug/SymbTool.pdb
+/home/gota/Documents/CS/SymbTool/SymbTool/bin/Debug/mscorlib.dll
