@@ -30,5 +30,5 @@ __Filenames in the SeqArc must always be in a subsection!__
 ## Example
 Here is a text file dumped from SM64DS's symb.bin:
 
-[Example](../exampleSymbText.txt)
+[Example](../NitroTools/exampleSymbText.txt)
 
