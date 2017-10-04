@@ -13,10 +13,10 @@ namespace InfoTool
         public static void Main(string[] args)
         {
 
-            //if (args.Length < 2) { Console.WriteLine("Usage: InfoTool.exe inputFile outputFile"); Environment.Exit(1); }
+            if (args.Length < 2) { Console.WriteLine("Usage: InfoTool.exe inputFile outputFile"); Environment.Exit(1); }
 
 
-            /*if (args[0].EndsWith(".txt"))
+            if (args[0].EndsWith(".txt"))
             {
                 TextToInfo(args[0], args[1]);
             }
@@ -27,9 +27,9 @@ namespace InfoTool
             else {
                 Console.WriteLine("Incompatible File!");
                 Environment.Exit(1);
-            }*/
+            }
 
-            TextToInfo("info.txt", "out.bin");
+            //TextToInfo("info.txt", "out.bin");
             //InfoToText("out.bin", "test.txt");
 
 
