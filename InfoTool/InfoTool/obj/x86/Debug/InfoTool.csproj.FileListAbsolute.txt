@@ -1,0 +1,5 @@
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\InfoTool\InfoTool\bin\Debug\InfoTool.exe
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\InfoTool\InfoTool\bin\Debug\InfoTool.pdb
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\InfoTool\InfoTool\obj\x86\Debug\InfoTool.exe
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\InfoTool\InfoTool\obj\x86\Debug\InfoTool.pdb
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\InfoTool\InfoTool\obj\x86\Debug\InfoTool.csprojResolveAssemblyReference.cache

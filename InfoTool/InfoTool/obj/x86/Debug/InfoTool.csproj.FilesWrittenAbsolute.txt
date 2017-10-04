@@ -1,0 +1,5 @@
+/home/gota/Documents/CS/InfoTool/InfoTool/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/gota/Documents/CS/InfoTool/InfoTool/bin/Debug/InfoTool.pdb
+/home/gota/Documents/CS/InfoTool/InfoTool/bin/Debug/InfoTool.exe
+/home/gota/Documents/CS/InfoTool/InfoTool/obj/x86/Debug/InfoTool.exe
+/home/gota/Documents/CS/InfoTool/InfoTool/obj/x86/Debug/InfoTool.pdb
