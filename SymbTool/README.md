@@ -16,9 +16,8 @@ outputFile - The name of the output file.
 
 ## Compatibility Notes
 * DO NOT use the characters ~ or : in your text file. Those are used as markers.
-* Exported SYMB files work with SM64DS, in theory should work with any SYMB bin.
-* Rebuilding the sdat with a compiled SYMB works with vgmTrans.
-* Rebuilding the sdat with a compiled SYMB does not seem to work with DS Sound Studio for whatever reason. 
+* Exported files should work with any ds game, tested with SM64DS.
+* SymbTool IGNORES placeholders, since they are not important, and decreases filesize, and are hard to write. BUT this also means that the sdat will not be compatible with Ds Sound Studio.
 
 ## Credits
 * Gota7 - Coder of everything.
