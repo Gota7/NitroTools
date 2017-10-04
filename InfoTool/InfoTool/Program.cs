@@ -13,10 +13,10 @@ namespace InfoTool
         public static void Main(string[] args)
         {
 
-            if (args.Length < 2) { Console.WriteLine("Usage: InfoTool.exe inputFile outputFile"); Environment.Exit(1); }
+            //if (args.Length < 2) { Console.WriteLine("Usage: InfoTool.exe inputFile outputFile"); Environment.Exit(1); }
 
 
-            if (args[0].EndsWith(".txt"))
+            /*if (args[0].EndsWith(".txt"))
             {
                 TextToInfo(args[0], args[1]);
             }
@@ -27,8 +27,11 @@ namespace InfoTool
             else {
                 Console.WriteLine("Incompatible File!");
                 Environment.Exit(1);
-            }
-            
+            }*/
+
+            TextToInfo("info.txt", "out.bin");
+            //InfoToText("out.bin", "test.txt");
+
 
         }
 
@@ -286,19 +289,24 @@ namespace InfoTool
             for (int i = 0; i < sseqInfo.Count; i++)
             {
 
-                string temp = "";
+                int[] zero = { 0, 255, 40, 0 };
+                if (Enumerable.SequenceEqual(sseqInfo[i], zero)) { output.Add("PLACEHOLDER"); } else {
 
-                temp += "FileID: " + sseqInfo[i][0].ToString() + "; ";
-                temp += "Unknown1: " + sseqInfo[i][1].ToString() + "; ";
-                temp += "BankID: " + sseqInfo[i][2].ToString() + "; ";
-                temp += "Volume: " + sseqInfo[i][3].ToString() + "; ";
-                temp += "ChannelPriority: " + sseqInfo[i][4].ToString() + "; ";
-                temp += "PlayerPriority: " + sseqInfo[i][5].ToString() + "; ";
-                temp += "PlayerNumber: " + sseqInfo[i][6].ToString() + "; ";
-                temp += "Unknown2: " + sseqInfo[i][7].ToString() + "; ";
-                temp += "Unknown3: " + sseqInfo[i][8].ToString() + ";";
+                    string temp = "";
 
-                output.Add(temp);
+                    temp += "FileID: " + sseqInfo[i][0].ToString() + "; ";
+                    temp += "Unknown1: " + sseqInfo[i][1].ToString() + "; ";
+                    temp += "BankID: " + sseqInfo[i][2].ToString() + "; ";
+                    temp += "Volume: " + sseqInfo[i][3].ToString() + "; ";
+                    temp += "ChannelPriority: " + sseqInfo[i][4].ToString() + "; ";
+                    temp += "PlayerPriority: " + sseqInfo[i][5].ToString() + "; ";
+                    temp += "PlayerNumber: " + sseqInfo[i][6].ToString() + "; ";
+                    temp += "Unknown2: " + sseqInfo[i][7].ToString() + "; ";
+                    temp += "Unknown3: " + sseqInfo[i][8].ToString() + ";";
+
+                    output.Add(temp);
+
+                }
 
             }
 
@@ -308,13 +316,18 @@ namespace InfoTool
             for (int i = 0; i < seqArcInfo.Count; i++)
             {
 
-                string temp = "";
+                int[] zero = { 0, 255, 40, 0 };
+                if (Enumerable.SequenceEqual(seqArcInfo[i], zero)) { output.Add("PLACEHOLDER"); }
+                else
+                {
 
-                temp += "FileID: " + seqArcInfo[i][0].ToString() + "; ";
-                temp += "Unknown: " + seqArcInfo[i][1].ToString() + ";";
+                    string temp = "";
 
-                output.Add(temp);
+                    temp += "FileID: " + seqArcInfo[i][0].ToString() + "; ";
+                    temp += "Unknown: " + seqArcInfo[i][1].ToString() + ";";
 
+                    output.Add(temp);
+                }
             }
 
 
@@ -323,17 +336,22 @@ namespace InfoTool
             for (int i = 0; i < bankInfo.Count; i++)
             {
 
-                string temp = "";
+                int[] zero = { 0, 255, 40, 0 };
+                if (Enumerable.SequenceEqual(bankInfo[i], zero)) { output.Add("PLACEHOLDER"); }
+                else
+                {
 
-                temp += "FileID: " + bankInfo[i][0].ToString() + "; ";
-                temp += "Unknown: " + bankInfo[i][1].ToString() + "; ";
-                temp += "Wave1: " + bankInfo[i][2].ToString() + "; ";
-                temp += "Wave2: " + bankInfo[i][3].ToString() + "; ";
-                temp += "Wave3: " + bankInfo[i][4].ToString() + "; ";
-                temp += "Wave4: " + bankInfo[i][5].ToString() + ";";
+                    string temp = "";
 
-                output.Add(temp);
+                    temp += "FileID: " + bankInfo[i][0].ToString() + "; ";
+                    temp += "Unknown: " + bankInfo[i][1].ToString() + "; ";
+                    temp += "Wave1: " + bankInfo[i][2].ToString() + "; ";
+                    temp += "Wave2: " + bankInfo[i][3].ToString() + "; ";
+                    temp += "Wave3: " + bankInfo[i][4].ToString() + "; ";
+                    temp += "Wave4: " + bankInfo[i][5].ToString() + ";";
 
+                    output.Add(temp);
+                }
             }
 
 
@@ -342,13 +360,19 @@ namespace InfoTool
             for (int i = 0; i < waveInfo.Count; i++)
             {
 
-                string temp = "";
+                int[] zero = { 0, 255, 40, 0 };
+                if (Enumerable.SequenceEqual(waveInfo[i], zero)) { output.Add("PLACEHOLDER"); }
+                else
+                {
 
-                temp += "FileID: " + waveInfo[i][0].ToString() + "; ";
-                temp += "Flag: " + waveInfo[i][1].ToString() + ";";
+                    string temp = "";
 
-                output.Add(temp);
+                    temp += "FileID: " + waveInfo[i][0].ToString() + "; ";
+                    temp += "Flag: " + waveInfo[i][1].ToString() + ";";
 
+                    output.Add(temp);
+
+                }
             }
 
 
@@ -356,13 +380,18 @@ namespace InfoTool
             output.Add("*PLAYER");
             for (int i = 0; i < playerInfo.Count; i++)
             {
+                int[] zero = { 0, 255, 40, 0 };
+                if (Enumerable.SequenceEqual(playerInfo[i], zero)) { output.Add("PLACEHOLDER"); }
+                else
+                {
 
-                string temp = "";
+                    string temp = "";
 
-                temp += "Unknown: " + playerInfo[i][0].ToString() + "; ";
-                temp += "Unknown2: " + playerInfo[i][1].ToString() + ";";
+                    temp += "Unknown: " + playerInfo[i][0].ToString() + "; ";
+                    temp += "Unknown2: " + playerInfo[i][1].ToString() + ";";
 
-                output.Add(temp);
+                    output.Add(temp);
+                }
 
             }
 
@@ -394,28 +423,35 @@ namespace InfoTool
             for (int i = 0; i < player2Info.Count; i++)
             {
 
-                string temp = "";
+                int[] zero = { 0, 255, 40, 0 };
+                if (Enumerable.SequenceEqual(player2Info[i], zero)) { output.Add("PLACEHOLDER"); }
+                else
+                {
 
-                temp += "NCount: " + player2Info[i][0].ToString() + "; ";
-                temp += "V1: " + player2Info[i][0].ToString() + "; ";
-                temp += "V2: " + player2Info[i][0].ToString() + "; ";
-                temp += "V3: " + player2Info[i][0].ToString() + "; ";
-                temp += "V4: " + player2Info[i][0].ToString() + "; ";
-                temp += "V5: " + player2Info[i][0].ToString() + "; ";
-                temp += "V6: " + player2Info[i][0].ToString() + "; ";
-                temp += "V7: " + player2Info[i][0].ToString() + "; ";
-                temp += "V8: " + player2Info[i][0].ToString() + "; ";
-                temp += "V9: " + player2Info[i][0].ToString() + "; ";
-                temp += "V10: " + player2Info[i][0].ToString() + "; ";
-                temp += "V11: " + player2Info[i][0].ToString() + "; ";
-                temp += "V12: " + player2Info[i][0].ToString() + "; ";
-                temp += "V13: " + player2Info[i][0].ToString() + "; ";
-                temp += "V14: " + player2Info[i][0].ToString() + "; ";
-                temp += "V15: " + player2Info[i][0].ToString() + "; ";
-                temp += "V16: " + player2Info[i][1].ToString() + ";";
+                    string temp = "";
 
-                output.Add(temp);
+                    temp += "NCount: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V1: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V2: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V3: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V4: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V5: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V6: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V7: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V8: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V9: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V10: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V11: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V12: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V13: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V14: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V15: " + player2Info[i][0].ToString() + "; ";
+                    temp += "V16: " + player2Info[i][1].ToString() + ";";
 
+                    output.Add(temp);
+
+
+                }
             }
 
 
@@ -425,15 +461,21 @@ namespace InfoTool
             for (int i = 0; i < strmInfo.Count; i++)
             {
 
-                string temp = "";
+                int[] zero = { 0, 255, 40, 0 };
+                if (Enumerable.SequenceEqual(strmInfo[i], zero)) { output.Add("PLACEHOLDER"); }
+                else
+                {
 
-                temp += "FileID: " + strmInfo[i][0].ToString() + "; ";
-                temp += "Unknown: " + strmInfo[i][1].ToString() + "; ";
-                temp += "Volume: " + strmInfo[i][0].ToString() + "; ";
-                temp += "Priority: " + strmInfo[i][0].ToString() + "; ";
-                temp += "Player2ID: " + strmInfo[i][0].ToString() + ";";
+                    string temp = "";
 
-                output.Add(temp);
+                    temp += "FileID: " + strmInfo[i][0].ToString() + "; ";
+                    temp += "Unknown: " + strmInfo[i][1].ToString() + "; ";
+                    temp += "Volume: " + strmInfo[i][0].ToString() + "; ";
+                    temp += "Priority: " + strmInfo[i][0].ToString() + "; ";
+                    temp += "Player2ID: " + strmInfo[i][0].ToString() + ";";
+
+                    output.Add(temp);
+                }
 
             }
 
@@ -619,6 +661,8 @@ namespace InfoTool
                 sseqInfoBytes[8] = (int)infoFile[sseqAddresses[i] + 11];
 
                 if (sseqAddresses[i] != 0) data.Add(sseqInfoBytes);
+                int[] zero = { 0, 255, 40, 0 };
+                if (sseqAddresses[i] == 0) data.Add(zero);
 
             }
 
@@ -647,7 +691,10 @@ namespace InfoTool
                 seqArcInfoBytes[0] = BitConverter.ToInt16(infoFile, seqArcAddresses[i]);
                 seqArcInfoBytes[1] = BitConverter.ToInt16(infoFile, seqArcAddresses[i] + 2);
 
+                
                 if (seqArcAddresses[i] != 0) data.Add(seqArcInfoBytes);
+                int[] zero = { 0, 255, 40, 0 };
+                if (seqArcAddresses[i] == 0) data.Add(zero);
 
             }
 
@@ -684,6 +731,8 @@ namespace InfoTool
                 bankInfoBytes[5] = BitConverter.ToInt16(infoFile, bankAddresses[i] + 10);
 
                 if (bankAddresses[i] != 0) data.Add(bankInfoBytes);
+                int[] zero = { 0, 255, 40, 0 };
+                if (bankAddresses[i] == 0) data.Add(zero);
 
             }
 
@@ -714,6 +763,8 @@ namespace InfoTool
                 playerInfoBytes[1] = BitConverter.ToInt32(infoFile, playerAddresses[i] + 4);
 
                 if (playerAddresses[i] != 0) data.Add(playerInfoBytes);
+                int[] zero = { 0, 255, 40, 0 };
+                if (playerAddresses[i] == 0) data.Add(zero);
 
             }
 
@@ -758,6 +809,8 @@ namespace InfoTool
                 player2InfoBytes[16] = (int)infoFile[player2Addresses[i] + 16];
 
                 if (player2Addresses[i] != 0) data.Add(player2InfoBytes);
+                int[] zero = { 0, 255, 40, 0 };
+                if (player2Addresses[i] == 0) data.Add(zero);
 
             }
 
@@ -792,6 +845,8 @@ namespace InfoTool
                 strmInfoBytes[4] = (int)infoFile[strmAddresses[i] + 6];
 
                 if (strmAddresses[i] != 0) data.Add(strmInfoBytes);
+                int[] zero = { 0, 255, 40, 0 };
+                if (strmAddresses[i] == 0) data.Add(zero);
 
             }
 
@@ -935,40 +990,47 @@ namespace InfoTool
             for (int i = 0; i < strings.Length; i++)
             {
 
-
-                bool writing = false;
-                List<char> temp2 = new List<char>();
-                for (int j = 0; j < strings[i].Length; j++)
+                int placeHolderCount = 0;
+                if (strings[i] != "PLACEHOLDER")
                 {
-                    if (strings[i][j] == ';') { writing = false; temp2.Add(';'); }
-                    if (writing && strings[i][j] != ' ') { temp2.Add(strings[i][j]); }
-                    if (strings[i][j] == ':') { writing = true; }
 
-                }
-                temp.Add(string.Join(",", temp2.ToArray()));
+                    bool writing = false;
+                    List<char> temp2 = new List<char>();
+                    for (int j = 0; j < strings[i].Length; j++)
+                    {
+                        if (strings[i][j] == ';') { writing = false; temp2.Add(';'); }
+                        if (writing && strings[i][j] != ' ') { temp2.Add(strings[i][j]); }
+                        if (strings[i][j] == ':') { writing = true; }
 
-                temp[i] = temp[i].Replace(",", "");
+                    }
+                    string[] temp3 = ((string.Join(",", temp2.ToArray())).Replace(",", "")).Split(';');
 
-                string[] temp3 = temp[i].Split(';');
+                    //temp[i - placeHolderCount] = temp[i - placeHolderCount].Replace(",", "");
 
-                List<byte[]> bytes = new List<byte[]>();
+                    //string[] temp3 = temp[i].Split(';');
 
-                //For padding zeroes
-                int paddedZeroes = 0;
-                for (int j = 0; j < dataStructure.Length; j++) {
-                    byte[] temp4 = new byte[dataStructure[j]];
-                    temp4 = BitConverter.GetBytes(int.Parse(temp3[j - paddedZeroes]));
+                    List<byte[]> bytes = new List<byte[]>();
 
-                    List<byte> temp5 = temp4.ToList();
-                    for (int k = 4; k > dataStructure[j]; k--) {
-                        temp5.RemoveAt(k-1);
+                    //For padding zeroes
+                    int paddedZeroes = 0;
+                    for (int j = 0; j < dataStructure.Length; j++)
+                    {
+                        byte[] temp4 = new byte[dataStructure[j]];
+                        temp4 = BitConverter.GetBytes(int.Parse(temp3[j - paddedZeroes]));
+
+                        List<byte> temp5 = temp4.ToList();
+                        for (int k = 4; k > dataStructure[j]; k--)
+                        {
+                            temp5.RemoveAt(k - 1);
+                        }
+
+                        byte[] blank = { 0 };
+                        if (dataStructure[j] != 0) { bytes.Add(temp5.ToArray()); } else { bytes.Add(blank); paddedZeroes++; }
                     }
 
-                    byte[] blank = { 0 };
-                    if (dataStructure[j] != 0) { bytes.Add(temp5.ToArray()); } else { bytes.Add(blank); paddedZeroes++; }
-                }
+                    data.Add(Combine(bytes.ToArray()));
 
-                data.Add(Combine(bytes.ToArray()));
+                } else { placeHolderCount++; }
 
             }
 
@@ -1041,9 +1103,13 @@ namespace InfoTool
 			int temp = 0;
 			for (int i = 0; i < strings.Length; i++) {
 
-				data.Add(BitConverter.GetBytes(lengthOfDataAbove + offsetSize + temp));
+                
+                if (strings[i] != "PLACEHOLDER")
+                {
+                    data.Add(BitConverter.GetBytes(lengthOfDataAbove + offsetSize + temp));
+                    temp += byteSizeOfEachRecord;
+                } else { data.Add(BitConverter.GetBytes(0)); }
 
-				temp += byteSizeOfEachRecord;
 			}
 
 
