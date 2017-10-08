@@ -10,7 +10,7 @@ Some tools for Nitro Sound Data (SDAT)
 * Add File Data - A quick way to append new songs to the info and symb.
 
 ## Known Bugs
-* SymbTool will always ignore placeholders, as they are not important. However, this removes DS Sound Studio compatibility.
+* SymbTool should work assuming there are no SeqArc placeholders. There usually is not.
 * InfoTool CAN'T read placeholders in the groups, so pray your info.bin doesn't have them, which usually is the case.
 
 ## Credits
