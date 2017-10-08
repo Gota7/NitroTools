@@ -19,6 +19,7 @@ outputFile - The name of the output file.
 * DO NOT use the characters ~ or : in your text file. Those are used as markers.
 * Exported files should work with any ds game, tested with SM64DS.
 * If there is a placeholder in the list of seqArcs, then this will garble the filenames.
+* Garbles up filenames in NSMB?
 
 ## Credits
 * Gota7 - Coder of everything.
