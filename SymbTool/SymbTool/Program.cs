@@ -16,9 +16,11 @@ namespace SymbTool
 
             //Txt2Symb("out.txt", "newSymb.bin");
 
+            //string[] args = { "symb.txt", "Nsymb.bin"};
+            //string[] args = { "Nsymb.bin", "extraThicc.txt" };
 
-		
-			if (args.Length < 2) {
+
+            if (args.Length < 2) {
 				Console.WriteLine ("Usage: inputFile outputFile");
                 System.Environment.Exit(1);
             } else {
@@ -35,6 +37,9 @@ namespace SymbTool
                     System.Environment.Exit(1);
                 }
 			}
+
+
+            //Symb2Txt("Nsymb.bin", "extraThicc.txt");
             
 
 		}
@@ -201,8 +206,6 @@ namespace SymbTool
 			//Magic
 			byte[] magic = stringToBytes("SYMB");
 
-			//Size
-			byte[] size = BitConverter.GetBytes(fileSize);
 
 
 
@@ -241,9 +244,12 @@ namespace SymbTool
 			byte[][] hexdataTemp = { allSseq, allSeqArc, allBank, allWave, allPlayer, allGroup, allPlayer2, allStrm };
 			byte[] hexData = Combine (hexdataTemp);
 
+            //Size
+            int newFileSize = magic.Length + 4 + offsets.Length + padding.Length + sseqOffssetTable.Length + seqArcOffsetTable.Length + bankOffssetTable.Length + waveOffssetTable.Length + playerOffssetTable.Length + groupOffssetTable.Length + player2OffssetTable.Length + strmOffssetTable.Length + hexData.Length; 
+            byte[] size = BitConverter.GetBytes(newFileSize);
 
-			//Final file
-			byte[][] finalFileTemp = {magic, size, offsets, padding, sseqOffssetTable, seqArcOffsetTable, bankOffssetTable, waveOffssetTable, playerOffssetTable, groupOffssetTable, player2OffssetTable, strmOffssetTable, hexData};
+            //Final file
+            byte[][] finalFileTemp = {magic, size, offsets, padding, sseqOffssetTable, seqArcOffsetTable, bankOffssetTable, waveOffssetTable, playerOffssetTable, groupOffssetTable, player2OffssetTable, strmOffssetTable, hexData};
 			byte[] finalFile = Combine (finalFileTemp);
 
 			File.WriteAllBytes (outputS, finalFile);
@@ -427,7 +433,7 @@ namespace SymbTool
 
 
 			//Search for symb bytes, and remove them.
-			output.RemoveAll(DoDelete);
+			//output.RemoveAll(DoDelete);
 			output.RemoveAll (DeleteBlank);
 
 
@@ -536,7 +542,7 @@ namespace SymbTool
 
 					//Cleanup if address is bad.
 					if (addresses [j] == 0) {
-						newString [j] = "DELETE_ME";
+						newString [j] = "PLACEHOLDER";
 					}
 
 				}
@@ -590,7 +596,8 @@ namespace SymbTool
             {
 
 				if (txt[i].StartsWith(magicSymbol.ToString())) { writing = false; }
-                if (writing) qList.Add(txt[i]);
+                if (writing && txt[i]!="PLACEHOLDER") qList.Add(txt[i]);
+                if (writing && txt[i] == "PLACEHOLDER") qList.Add("");
                 if (txt[i].Equals(magicSymbol + fileType)) { writing = true; }
             }
 
@@ -598,7 +605,7 @@ namespace SymbTool
 
 			for (int i = 0; i < qList.Count; i ++) {
 
-				bytes.Add(stringToBytes(qList[i]));
+                if (qList[i] != "") { bytes.Add(stringToBytes(qList[i])); } else { bytes.Add(null); }
 
 			}
 
@@ -644,8 +651,13 @@ namespace SymbTool
 					if (txt [i].StartsWith ("~") || txt[i].StartsWith(":")) {
 						writing = false;
 					}
-					if (writing)
-						records.Add (txt [i]);
+                    if (writing && txt[i] != "PLACEHOLDER")
+                    {
+                        records.Add(txt[i]);
+                    }
+                    if (writing && txt[i] == "PLACEHOLDER") {
+                        records.Add("");
+                    }
 					if (txt [i].StartsWith ("~" + record1groups[j])) {
 						writing = true;
 					}
@@ -690,7 +702,8 @@ namespace SymbTool
                 byte[][] tempArc = new byte[dataArray[j].Length][];
 
                 for (int i = 0; i < dataArray[j].Length; i++) {
-                    tempArc[i] = stringToBytes(dataArray[j][i]);
+                    if (dataArray[j][i] != "") { tempArc[i] = stringToBytes(dataArray[j][i]); }
+                    else { tempArc[i] = null; }
                 }
 
                 arc[j] = tempArc;
@@ -764,11 +777,14 @@ namespace SymbTool
             List<byte> allList = new List<byte>();
             for (int i = 0; i < b.Length; i++)
             {
-                for (int j = 0; j < b[i].Length; j++)
+                if (b[i] != null)
                 {
-                    allList.Add(b[i][j]);
+                    for (int j = 0; j < b[i].Length; j++)
+                    {
+                        allList.Add(b[i][j]);
+                    }
+                    allList.Add(seperator);
                 }
-                allList.Add(seperator);
             }
 
             byte[] all = allList.ToArray();
@@ -814,8 +830,17 @@ namespace SymbTool
 			int temp = 0;
 			for (int i=0; i < addresses.Length; i++) {
 
-				addresses [i] = headerSize + offsetAreaLength + temp + lengthOfStringsAbove + i;
-				temp += hexData [i].Length;
+                if (hexData[i] != null)
+                {
+
+                    addresses[i] = headerSize + offsetAreaLength + temp + lengthOfStringsAbove + i;
+                    temp += hexData[i].Length;
+
+                }
+                else {
+                    addresses[i] = 0;
+                    temp -= 1;
+                }
 
 			}
 
@@ -901,7 +926,7 @@ namespace SymbTool
 				int addValue = 0;
 				for (int j = 0; j < seqArcHex [1] [i].Length; j++) {
 				
-					addValue += seqArcHex [1] [i] [j].Length + 1;
+					if (seqArcHex[1][i][j] != null) addValue += seqArcHex [1] [i] [j].Length + 1;
 
 				}
 
@@ -940,12 +965,19 @@ namespace SymbTool
 				int aboveData = headerSize + offsetAreaLength + lengthOfStringsAbove;
 				for (int j = 0; j < seqArcHex [1][i].Length; j++) {
 
-					//Add addresses for each record.
-					seqArcAddressesTemp.Add(aboveData + temp3);
+                    if (seqArcHex[1][i][j] != null)
+                    {
 
-					//Add temp.
-					temp3 += seqArcHex[1][i][j].Length + 1;
+                        //Add addresses for each record.
+                        seqArcAddressesTemp.Add(aboveData + temp3);
 
+                        //Add temp.
+                        temp3 += seqArcHex[1][i][j].Length + 1;
+
+                    }
+                    else {
+                        seqArcAddressesTemp.Add(0);
+                    }
 				}
 			}
 
