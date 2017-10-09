@@ -21,11 +21,12 @@ These mark the beginnings of a table of the filenames per the section.
 Each subsection is marked by a ~SUBSECTIONNAME
 
 SUBSECTIONNAME will be the name of the subsection.
-
 The ONLY section with subsections is SEQARC.
-
-
 __Filenames in the SeqArc must always be in a subsection!__
+
+## Place Holders
+Place holders can be used anywhere, except in the subgroup names.
+they are marked by PLACEHOLDER.
 
 ## Example
 Here is a text file dumped from SM64DS's symb.bin:
