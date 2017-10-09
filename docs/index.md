@@ -8,6 +8,9 @@ Here you can find some useful tools for editing sdat.
 
 # Documentation
 [SymbTool]() - Docs on how to use symb tool.
+
 [SymbFiles]() - Docs on the symb format itself.
+
 [InfoTool]() - Docs on how to info tool.
+
 [InfoFiles]() - Docs on the info format itself.
