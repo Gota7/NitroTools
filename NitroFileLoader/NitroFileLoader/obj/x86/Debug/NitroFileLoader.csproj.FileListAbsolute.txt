@@ -1,0 +1,6 @@
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\bin\Debug\NitroFileLoader.exe
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\bin\Debug\NitroFileLoader.pdb
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\bin\Debug\Syroot.BinaryData.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.csprojResolveAssemblyReference.cache
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.exe
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.pdb

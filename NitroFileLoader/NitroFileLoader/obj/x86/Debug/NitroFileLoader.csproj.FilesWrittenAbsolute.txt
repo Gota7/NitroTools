@@ -1,0 +1,7 @@
+/home/gota/Documents/CS/NitroFileLoader/NitroFileLoader/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/gota/Documents/CS/NitroFileLoader/NitroFileLoader/bin/Debug/NitroFileLoader.exe.mdb
+/home/gota/Documents/CS/NitroFileLoader/NitroFileLoader/bin/Debug/NitroFileLoader.exe
+/home/gota/Documents/CS/NitroFileLoader/NitroFileLoader/obj/x86/Debug/NitroFileLoader.exe
+/home/gota/Documents/CS/NitroFileLoader/NitroFileLoader/obj/x86/Debug/NitroFileLoader.exe.mdb
+/home/gota/Documents/CS/NitroFileLoader/NitroFileLoader/bin/Debug/mscorlib.dll
+/home/gota/Documents/CS/NitroFileLoader/NitroFileLoader/bin/Debug/Syroot.BinaryData.dll
