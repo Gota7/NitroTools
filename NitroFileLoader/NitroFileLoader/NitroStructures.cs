@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Syroot.BinaryData;
 
 namespace NitroFileLoader
 {
@@ -758,7 +760,7 @@ namespace NitroFileLoader
 
 
 
-
+	#region infoAndSymbStructures
 
 
 
@@ -1364,5 +1366,429 @@ namespace NitroFileLoader
 		public bool isPlaceHolder; //If placeholder.
 
 	}
+
+	#endregion
+
+
+
+	/// <summary>
+	/// Seq arc.
+	/// </summary>
+	public class seqArc {
+
+		public char[] magic; //SSAR magic.
+		public UInt32 identifier; //Identifier - FFFE0001
+		public UInt32 fileSize; //Filesize.
+		public UInt16 headerSize; //Should be 16.
+		public UInt16 nBlocks; //Mostly 1?
+		public seqArcData[] data; // Data.
+
+		/// <summary>
+		/// Data of seqArc.
+		/// </summary>
+		public struct seqArcData {
+
+			public char[] magic; //DATA.
+			public UInt32 size; //Data size.
+			public UInt32 sseqDataStart; //Offset of where raw sseq data stars.
+			public UInt32 nCount; //Count of entries.
+			public seqArcSseqInfo[] sseqInfo; //Info.
+			public byte[][] rawSseq; //Sseq data.
+
+		}
+
+		/// <summary>
+		/// Seq arc sseq info.
+		/// </summary>
+		public struct seqArcSseqInfo {
+
+			public UInt32 nOffset;	//Relative offset of the archived SEQ file, absolute offset = nOffset + SSAR::nDataOffset
+			public UInt16 bank; //Bank
+			public byte volume; //Volume
+			public byte cpr; //Channel Priority.
+			public byte ppr; //Player Priority
+			public byte ply; //Player
+			public byte[] reserved; //[2] zeroes.
+
+		}
+
+
+		/// <summary>
+		/// Load the specified bytes.
+		/// </summary>
+		/// <param name="b">The bytes..</param>
+		public void load(byte[] b) {
+
+			//Make reader.
+			MemoryStream src = new MemoryStream(b);
+			BinaryDataReader br = new BinaryDataReader (src);
+
+			//Read the data.
+			magic = br.ReadChars(4);
+			identifier = br.ReadUInt32 ();
+			fileSize = br.ReadUInt32 ();
+			headerSize = br.ReadUInt16 ();
+			nBlocks = br.ReadUInt16 ();
+
+			//Read the blocks.
+			data = new seqArcData[(int)nBlocks];
+			for (int i = 0; i < (int)nBlocks; i++) {
+
+				data [i].magic = br.ReadChars (4);
+				data [i].size = br.ReadUInt32 ();
+				data [i].sseqDataStart = br.ReadUInt32 ();
+				data [i].nCount = br.ReadUInt32 ();
+
+				//Read the sseq data.
+				data[i].sseqInfo = new seqArcSseqInfo[(int)data[i].nCount];
+				for (int j = 0; j < (int)data [i].nCount; j++) {
+				
+					data [i].sseqInfo [j].nOffset = br.ReadUInt32 ();
+					data [i].sseqInfo [j].bank = br.ReadUInt16 ();
+					data [i].sseqInfo [j].volume = br.ReadByte ();
+					data [i].sseqInfo [j].cpr = br.ReadByte ();
+					data [i].sseqInfo [j].ppr = br.ReadByte ();
+					data [i].sseqInfo [j].ply = br.ReadByte ();
+					data [i].sseqInfo [j].reserved = br.ReadBytes (2);
+				
+				}
+
+				//Read the raw sseq data.
+				int totalSseq = 0;
+				data[i].rawSseq = new byte[(int)data[i].nCount][];
+				for (int j = 0; j < (int)data [i].nCount; j++) {
+				
+					int length = 0;
+
+					//Set position.
+					br.Position = (int)(data[i].sseqInfo[j].nOffset + data[i].sseqDataStart);
+
+					//Get length.
+					if (j == (int)(data [i].nCount - 1)) {length = (int)(fileSize - (totalSseq + data[i].sseqInfo[j].nOffset + data[i].sseqDataStart)); } else {
+						length = (int)(data[i].sseqInfo[j+1].nOffset - data[i].sseqInfo[j].nOffset);
+					}
+
+					//Read raw sseq.
+					data[i].rawSseq[j] = br.ReadBytes(length);
+					totalSseq += data[i].rawSseq[j].Length;
+				
+				}
+
+			
+			}
+
+		}
+
+
+
+	}
+
+
+
+
+	/// <summary>
+	/// Swav file.
+	/// </summary>
+	public class swarFile {
+
+		public char[] magic; //SWAR.
+		public UInt32 identifier; //0xFFFE0001
+		public UInt32 fileSize; //File size.
+		public UInt16 headerSize; //Usually 16.
+		public UInt16 nBlocks; //Usually 1.
+		public swarData[] data; //Data.
+
+		public struct swarData {
+
+			public char[] magic; //DATA.
+			public UInt32 size; //Size of DATA.
+			public UInt32[] reserved; //[8] for runtime.
+			public UInt32 nCount; //Amount of songs.
+			public UInt32[] offsets; //Data offsets.
+			public byte[][] files; //Files.
+
+		}
+
+
+		/// <summary>
+		/// Load a swar file.
+		/// </summary>
+		public void load(byte[] b) {
+
+			//New reader.
+			MemoryStream src = new MemoryStream(b);
+			BinaryDataReader br = new BinaryDataReader(src);
+
+			//Read data.
+			magic = br.ReadChars(4);
+			identifier = br.ReadUInt32 ();
+			fileSize = br.ReadUInt32 ();
+			headerSize = br.ReadUInt16 ();
+			nBlocks = br.ReadUInt16 ();
+
+			//Read each block.
+			data = new swarData[(int)nBlocks];
+			for (int i = 0; i < (int)nBlocks; i++) {
+			
+				data [i].magic = br.ReadChars (4);
+				data [i].size = br.ReadUInt32 ();
+				data [i].reserved = br.ReadUInt32s (8);
+				data [i].nCount = br.ReadUInt32 ();
+				data [i].offsets = br.ReadUInt32s ((int)data [i].nCount);
+
+				//Get the files.
+				data[i].files = new byte[(int)data[i].nCount][];
+				for (int j = 0; j < (int)data [i].nCount; j++) {
+				
+					int length = 0;
+
+					if (j == (int)(data [i].nCount - 1)) {
+						length = (int)(data [i].size + 16 - data[i].offsets[j]);
+					} else {
+						length = (int)(data [i].offsets [j + 1] - data [i].offsets [j]);
+					}
+
+					br.Position = (int)data [i].offsets [j];
+					data [i].files [j] = br.ReadBytes (length);
+				
+				}
+			
+			}
+
+			fixSwavFiles ();
+
+		}
+
+
+		/// <summary>
+		/// Fixes the swav files.
+		/// </summary>
+		public void fixSwavFiles() {
+
+			foreach (swarData s in data) {
+			
+				for (int i = 0; i < s.files.Length; i++) {
+				
+					//Make new header byte.
+					MemoryStream o = new MemoryStream();
+					BinaryWriter bw = new BinaryWriter (o);
+
+					//Write lame info.
+					bw.Write("SWAV".ToCharArray());
+					bw.Write ((UInt32)0x0100feff);
+					bw.Write ((UInt32)(s.files[i].Length + 24));
+					bw.Write ((UInt16)16);
+					bw.Write ((UInt16)1);
+					bw.Write ("DATA".ToArray());
+					bw.Write ((UInt32)(s.files[i].Length + 8));
+					byte[][] bs = { o.ToArray(), s.files[i]};
+					s.files[i] = Combine (bs);
+				
+				}
+			
+			}
+
+		}
+
+
+		/// <summary>
+		/// Unfixes the swav files.
+		/// </summary>
+		public void unfixSwavFiles() {
+		
+			foreach (swarData s in data) {
+
+				for (int i = 0; i < s.files.Length; i++) {
+
+					//Get the byte.
+					List<byte> newBytes = new List<byte>();
+					for (int j = 24; j < s.files [i].Length; j++) {
+					
+						newBytes.Add (s.files[i][j]);
+					
+					}
+					s.files [i] = newBytes.ToArray ();
+
+				}
+
+			}
+		
+		}
+
+
+		/// <summary>
+		/// Extract the specified path.
+		/// </summary>
+		/// <param name="path">Path.</param>
+		public void extract(string path) {
+		
+			//Make dir if not existing.
+			Directory.CreateDirectory(path);
+
+			//Write each file.
+			for (int i = 0; i < data.Length; i++) {
+
+				Directory.CreateDirectory (path + "/Entry_" + i.ToString("D3"));
+				for (int j = 0; j < data [i].files.Length; j++) {
+				
+					File.WriteAllBytes(path + "/Entry_" + i.ToString("D3") + "/Sound_" + j.ToString("D4") + ".swav", data[i].files[j]);
+				
+				}
+
+			}
+		
+		}
+
+
+		/// <summary>
+		/// Compress the specified path into a SWAR.
+		/// </summary>
+		/// <param name="path">Path.</param>
+		public void compress(string path) {
+		
+			string[] directoryNames = Directory.EnumerateDirectories (path).ToArray();
+
+			data = new swarData[directoryNames.Length];
+			for (int i = 0; i < directoryNames.Length; i++) {
+			
+				string[] fileNames = Directory.EnumerateFiles (directoryNames [i]).ToArray();
+				List<byte[]> files = new List<byte[]> ();
+				for (int j = 0; j < fileNames.Length; j++) {
+				
+					files.Add (File.ReadAllBytes (fileNames[j]));
+				
+				}
+				data [i].files = files.ToArray ();
+			
+			}
+
+			unfixSwavFiles ();
+			fixOffsets ();
+		
+		}
+
+
+		/// <summary>
+		/// Fixes the offsets.
+		/// </summary>
+		public void fixOffsets() {
+
+			//General info.
+			magic = "SWAR".ToCharArray();
+			identifier = (UInt32)0x0100feff;
+		
+			//Fix data.
+			nBlocks = (UInt16)data.Length;
+			for (int s = 0; s < data.Length; s++) {
+			
+				UInt32[] reserved = { (UInt32)0x0000, (UInt32)0x0000, (UInt32)0x0000, (UInt32)0x0000, (UInt32)0x0000, (UInt32)0x0000, (UInt32)0x0000, (UInt32)0x0000};
+				data[s].reserved = reserved;
+				data[s].magic = "DATA".ToCharArray ();
+				data[s].nCount = (UInt32)data[s].files.Length;
+				data[s].offsets = new UInt32[(int)data[s].nCount];
+			
+			}
+
+			//Get the offsets.
+			UInt32 offset = 16;
+			headerSize = (UInt16)offset;
+			for (int s = 0; s < data.Length; s++) {
+				
+				UInt32 dataSize = 0;
+
+				//Basic header stuff.
+				offset += (UInt32)8;
+				dataSize += (UInt32)8;
+
+				//Reserved.
+				offset+= (UInt32)(4*data[s].reserved.Length);
+				dataSize+= (UInt32)(4*data[s].reserved.Length);
+
+				//Add the offsets.
+				offset += (UInt32)(data[s].offsets.Length*4 + 4);
+				dataSize += (UInt32)(data[s].offsets.Length*4 + 4);
+
+				//Set the data offsets.
+				for (int i = 0; i < data[s].offsets.Length; i++) {
+
+					data[s].offsets [i] = offset;
+
+					offset += (UInt32)data[s].files [i].Length;
+					dataSize += (UInt32)data[s].files [i].Length;
+
+				}
+
+
+				data[s].size = dataSize;
+			
+			}
+			fileSize = offset;
+		
+		}
+
+
+		/// <summary>
+		/// Convert to byte array.
+		/// </summary>
+		public byte[] toBytes() {
+
+			//Fix offsets.
+			fixOffsets();
+
+			//Make writer.
+			MemoryStream o = new MemoryStream ();
+			BinaryWriter bw = new BinaryWriter (o);
+
+			//General info.
+			bw.Write (magic);
+			bw.Write (identifier);
+			bw.Write (fileSize);
+			bw.Write (headerSize);
+			bw.Write (nBlocks);
+
+			//Write the blocks.
+			foreach (swarData d in data) {
+
+				bw.Write (d.magic);
+				bw.Write (d.size);
+				foreach (UInt32 r in d.reserved) {
+					bw.Write (r);
+				}
+				bw.Write (d.nCount);
+				foreach (UInt32 offset in d.offsets) {
+					bw.Write (offset);
+				}
+				foreach (byte[] file in d.files) {
+					bw.Write (file);
+				}
+
+			}
+
+			//Export output.
+			return o.ToArray();
+
+		}
+
+
+		/// <summary>
+		/// Combine the specified arrays.
+		/// </summary>
+		/// <param name="arrays">Arrays.</param>
+		private byte[] Combine(params byte[][] arrays)
+		{
+			byte[] rv = new byte[arrays.Sum(a => a.Length)];
+			int offset = 0;
+			foreach (byte[] array in arrays) {
+				System.Buffer.BlockCopy(array, 0, rv, offset, array.Length);
+				offset += array.Length;
+			}
+			return rv;
+		}
+
+	}
+
+
+
+
 
 }

@@ -37,7 +37,32 @@ namespace NitroFileLoader
 			sData.load (s);
 
 			File.WriteAllBytes ("test2.bin", NitroFileLoader.symbToBytes(sData.toSymb()));
-*/
+
+
+			//Test seqArc loading.
+			byte[] seqArcNintendo = File.ReadAllBytes("sound_data/Sequence Archive/05NCS_SEQARC_NINTENDO.ssar");
+			byte[] seqArcVoice = File.ReadAllBytes("sound_data/Sequence Archive/02NCS_SEQARC_VOICE.ssar");
+			seqArc sN = new seqArc ();
+			sN.load (seqArcNintendo);
+			seqArc vN = new seqArc ();
+			vN.load (seqArcVoice);
+
+			//Wave arcs.
+			byte[] waveArcNintendo = File.ReadAllBytes("sound_data/Wave Archive/01NCS_WAVE_SE_NINTENDO.swar");
+			swarFile sW = new swarFile ();
+			sW.load (waveArcNintendo);
+			byte[] waveArcResident = File.ReadAllBytes ("sound_data/Wave Archive/04NCS_WAVE_RESIDENT.swar");
+			swarFile sR = new swarFile ();
+			sR.load (waveArcResident);
+
+			sW.extract ("NINTENDO_WAVE");
+			sR.extract ("RESIDENT_WAVE");
+
+			sR.compress ("RESIDENT_WAVE");
+			sW.compress ("NINTENDO_WAVE");
+			File.WriteAllBytes ("WWAVE.swar", sW.toBytes ());
+			File.WriteAllBytes ("RWAVE.swar", sR.toBytes ());
+			*/
 
         }
 	}
