@@ -12,8 +12,8 @@ namespace NitroFileLoader
 		{
             
 			//Some dummy code for messing around with SYMB and INFO files.
-			/*
 
+			/*
 			NitroStructures.infoFile f = NitroFileLoader.loadInfoFile (File.ReadAllBytes ("infoNSMB.bin"));
 
 			NitroStructures.infoFile h = f;
@@ -37,16 +37,18 @@ namespace NitroFileLoader
 			sData.load (s);
 
 			File.WriteAllBytes ("test2.bin", NitroFileLoader.symbToBytes(sData.toSymb()));
-
+*/
 
 			//Test seqArc loading.
+			/*
 			byte[] seqArcNintendo = File.ReadAllBytes("sound_data/Sequence Archive/05NCS_SEQARC_NINTENDO.ssar");
 			byte[] seqArcVoice = File.ReadAllBytes("sound_data/Sequence Archive/02NCS_SEQARC_VOICE.ssar");
 			seqArc sN = new seqArc ();
 			sN.load (seqArcNintendo);
 			seqArc vN = new seqArc ();
 			vN.load (seqArcVoice);
-
+			*/
+			/*
 			//Wave arcs.
 			byte[] waveArcNintendo = File.ReadAllBytes("sound_data/Wave Archive/01NCS_WAVE_SE_NINTENDO.swar");
 			swarFile sW = new swarFile ();
@@ -62,8 +64,29 @@ namespace NitroFileLoader
 			sW.compress ("NINTENDO_WAVE");
 			File.WriteAllBytes ("WWAVE.swar", sW.toBytes ());
 			File.WriteAllBytes ("RWAVE.swar", sR.toBytes ());
-			*/
 
+
+			//SBNK
+			byte[] bankWater = File.ReadAllBytes("sound_data/Bank/070NCS_BANK_BGM_WATER.sbnk");
+			sbnkFile water = new sbnkFile ();
+			water.load (bankWater);
+
+
+			//SDAT
+			byte[] dataSdatB = File.ReadAllBytes("data.sdat");
+			sdatFile dataSdat = new sdatFile ();
+			//dataSdat.load (dataSdatB);
+			//dataSdat.extract ("extract");
+			dataSdat.compress ("extract");
+			byte[] newSdat = dataSdat.toBytes ();
+			File.WriteAllBytes ("test.sdat", newSdat);
+
+			//Extract other sdat.
+			byte[] otherSdatB = File.ReadAllBytes("test.sdat");
+			sdatFile otherSdat = new sdatFile ();
+			otherSdat.load (otherSdatB);
+			otherSdat.extract ("extract2");
+			*/
         }
 	}
 }

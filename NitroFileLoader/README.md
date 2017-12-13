@@ -9,6 +9,7 @@ NitroFileLoader includes the tools to read an symb or info file to the structure
 * Accurate output.
 * Should work with any DS game. (Tested fully with SM64DS and NSMBDS)
 * Great for program makers.
+* Loading SDAT compatibility.
 
 ## Usage
 First, you must load a file to a byte array. You can then declare a NitroStructure.infoFile or NitroStructures.symbFile.
@@ -16,9 +17,14 @@ You could also convert that to the class with only data using symbData.load(Nitr
 Then when converted, you could edit as you please and use File.Write("newSymb.bin", NitroFileLoader.symbToBytes(symbData.toSymbFile())); to convert back everything for you!
 
 This tool can also be used to load SWARs, extract them to a folder, compress those folders, and convert back to a SWAR.
+Can also be used to support SDAT files.
+
+To load an SDAT, you would make a new sdatFile, and load the file. You can also extract it to a folder, compile a folder, or write the SDAT back to bytes.
+This same method is also for SWARs.
 
 ## Credits
 * Gota7 - Coder of everything.
+* RoadRunnerWMC - SDAT Research.
 * Mibts - SDAT Research.
 * Crystal - SDAT Research.
 * loveemu - SDAT Research.

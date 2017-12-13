@@ -1661,8 +1661,7 @@ namespace NitroFileLoader
 				data [i].files = files.ToArray ();
 			
 			}
-
-			unfixSwavFiles ();
+				
 			fixOffsets ();
 		
 		}
@@ -1735,6 +1734,9 @@ namespace NitroFileLoader
 			//Fix offsets.
 			fixOffsets();
 
+			//Unfix Swavs.
+			unfixSwavFiles();
+
 			//Make writer.
 			MemoryStream o = new MemoryStream ();
 			BinaryWriter bw = new BinaryWriter (o);
@@ -1764,6 +1766,9 @@ namespace NitroFileLoader
 
 			}
 
+			//Fix swavs.
+			fixSwavFiles();
+
 			//Export output.
 			return o.ToArray();
 
@@ -1790,5 +1795,664 @@ namespace NitroFileLoader
 
 
 
+
+	/// <summary>
+	/// Bank file.
+	/// </summary>
+	public class sbnkFile {
+
+		public char[] magic; //SBNK.
+		public UInt32 identifier; //Identifier.
+		public UInt32 fileSize; //File size.
+		public UInt16 headerSize; //Header size.
+		public UInt16 nBlocks; //Amount of nBlocks.
+		public sbnkData[] data; //Data.
+
+		public struct sbnkData {
+
+			public char[] magic; //DATA.
+			public UInt32 size; //Size of data.
+			public UInt32[] reserved; //[8] reserved.
+			public UInt32 nCount; //nCount.
+			public sbnkInstrumentRecord[] records; //Records.
+
+		}
+
+		public struct sbnkInstrumentRecord {
+
+			public byte fRecord; //Type???
+			public UInt16 instrumentOffset; //Offset.
+			public byte reserved; //Reserved.
+			public bool isPlaceholder; //Is placeholder.
+
+		}
+
+		public struct sbnkInstrumentLessThan16
+		{
+			public UInt16 swavNumber; //Swav number.
+			public UInt16 swarNumber; //Swar number, relative to info block.
+			public byte noteNumber; //Note number.
+			public byte attackRate; //Attack rate.
+			public byte decayRate; //Decay rate.
+			public byte sustainLevel; //Sustain rate.
+			public byte releaseRate; //Release rate.
+			public byte pan; //Pan.
+
+		}
+
+
+		/// <summary>
+		/// Load the file.
+		/// </summary>
+		public void load(byte[] b) {
+
+			//New reader.
+			MemoryStream src = new MemoryStream(b);
+			BinaryDataReader br = new BinaryDataReader (src);
+
+			//Read basic stuff.
+			magic = br.ReadChars(4);
+			identifier = br.ReadUInt32 ();
+			fileSize = br.ReadUInt32 ();
+			headerSize = br.ReadUInt16 ();
+			nBlocks = br.ReadUInt16 ();
+			data = new sbnkData[(int)nBlocks];
+
+			//Read the data.
+			for (int i = 0; i < data.Length; i++) {
+
+				data [i].magic = br.ReadChars (4);
+				data [i].size = br.ReadUInt32 ();
+				data [i].reserved = br.ReadUInt32s (8);
+				data [i].nCount = br.ReadUInt32 ();
+
+				//Read the records.
+				data[i].records = new sbnkInstrumentRecord[(int)data[i].nCount];
+				for (int j = 0; j < data [i].records.Length; j++) {
+				
+					data [i].records [j].fRecord = br.ReadByte ();
+					data [i].records [j].instrumentOffset = br.ReadUInt16 ();
+					data [i].records [j].reserved = br.ReadByte ();
+					data [i].records [j].isPlaceholder = false;
+
+					if (data [i].records [j].instrumentOffset == (UInt16)0) {
+						data [i].records [j].isPlaceholder = true;
+					}
+				
+				}
+
+			}
+
+		}
+
+	}
+
+
+
+
+	/// <summary>
+	/// Sdat file.
+	/// </summary>
+	public class sdatFile {
+
+		//Header
+		public char[] magic; //SDAT
+		public UInt32 identifier; //FFFE0001
+		public UInt32 fileSize; //File size
+		public UInt16 headerSize; //Size of header.
+		public UInt16 nBlock; //Amount of blocks.
+
+		//Offsets
+		public UInt32 symbOffset; //Symb offset.
+		public UInt32 symbSize; //Size of symb.
+		public UInt32 infoOffset; //Info offset.
+		public UInt32 infoSize; //Size of info.
+		public UInt32 fatOffset; //Offset of fat block.
+		public UInt32 fatSize; //Fat size.
+		public UInt32 filesOffset; //Files offset.
+		public UInt32 filesSize; //Files size.
+		public byte[] reserved; //[16] reserved.
+
+		//Blocks
+		public symbData symbFile; //Symb file.
+		public infoData infoFile; //Info file.
+		public fatBlock fat; //Fat.
+		public fileBlock files; //Files.
+
+
+		/// <summary>
+		/// Fat block.
+		/// </summary>
+		public struct fatBlock {
+
+			public char[] magic; //'FAT '
+			public UInt32 size; //Size of FAT.
+			public UInt32 nCount; //Amount of records.
+			public List<fatRecords> records; //Records.
+
+		}
+
+
+		/// <summary>
+		/// Fat records.
+		/// </summary>
+		public struct fatRecords {
+
+			public UInt32 offset; //Offset.
+			public UInt32 nSize; //Size of file.
+			public UInt32[] reserved; //[2] Reserved.
+
+		}
+
+
+		/// <summary>
+		/// File block.
+		/// </summary>
+		public struct fileBlock {
+
+			public char[] magic; //FILE
+			public UInt32 nSize; //Size of this block.
+			public UInt32 nCount; //Amount of sound files.
+			public UInt32 reserved; //Reserved.
+			public List<byte[]> files; //Plain files.
+			public List<byte[]> sseqFiles; //Files.
+			public List<byte[]> seqArcFiles; //Files.
+			public List<byte[]> bankFiles; //Files.
+			public List<byte[]> waveFiles; //Files.
+			public List<byte[]> strmFiles; //Files.
+
+		}
+
+
+
+		public void load(byte[] b) {
+
+			//Make reader.
+			MemoryStream src = new MemoryStream(b);
+			BinaryDataReader br = new BinaryDataReader(src);
+
+			//Start reading.
+			magic = br.ReadChars(4);
+			identifier = br.ReadUInt32 ();
+			fileSize = br.ReadUInt32 ();
+			headerSize = br.ReadUInt16 ();
+			nBlock = br.ReadUInt16 ();
+
+			//Read offsets and sizes.
+			symbOffset = br.ReadUInt32();
+			symbSize = br.ReadUInt32 ();
+			infoOffset = br.ReadUInt32 ();
+			infoSize = br.ReadUInt32 ();
+			fatOffset = br.ReadUInt32 ();
+			fatSize = br.ReadUInt32 ();
+			filesOffset = br.ReadUInt32 ();
+			filesSize = br.ReadUInt32 ();
+			reserved = br.ReadBytes (16);
+
+			//Get info file.
+			br.Position = (int)infoOffset;
+			NitroStructures.infoFile info = NitroFileLoader.loadInfoFile (br.ReadBytes ((int)infoSize));
+			infoData infoD = new infoData ();
+			infoD.load (info);
+			infoFile = infoD;
+
+			//Get symb file.
+			br.Position = (int)symbOffset;
+			if (symbOffset != (UInt32)0) {
+				NitroStructures.symbFile symb = NitroFileLoader.loadSymbFile (br.ReadBytes ((int)symbSize));
+				symbData symbD = new symbData ();
+				symbD.load (symb);
+				symbFile = symbD;
+			} else {
+			
+				//Make new file if blank.
+				symbFile = new symbData();
+				symbFile.sseqStrings = new List<symbStringName> ();
+				foreach (SseqData s in infoFile.sseqData) {
+					symbStringName t = new symbStringName ();
+					t.name = "NO_NAME";
+					t.isPlaceHolder = s.isPlaceHolder;
+					symbFile.sseqStrings.Add (t);
+				}
+				symbFile.seqArcStrings = new List<symbStringName> ();
+				symbFile.seqArcSubStrings = new List<List<symbStringName>> ();
+				foreach (SeqArcData s in infoFile.seqArcData) {
+					symbStringName t = new symbStringName ();
+					t.name = "NO_NAME";
+					t.isPlaceHolder = s.isPlaceHolder;
+					symbFile.seqArcStrings.Add (t);
+
+					//Seq Arc subs.
+					List<symbStringName> p = new List<symbStringName> ();
+					symbStringName q = new symbStringName ();
+					q.name = "UNKNOWN_FILES";
+					q.isPlaceHolder = false;
+					p.Add (q);
+					symbFile.seqArcSubStrings.Add (p);
+
+				}
+				symbFile.bankStrings = new List<symbStringName> ();
+				foreach (BankData s in infoFile.bankData) {
+					symbStringName t = new symbStringName ();
+					t.name = "NO_NAME";
+					t.isPlaceHolder = s.isPlaceHolder;
+					symbFile.bankStrings.Add (t);
+				}
+				symbFile.waveStrings = new List<symbStringName> ();
+				foreach (WaveData s in infoFile.waveData) {
+					symbStringName t = new symbStringName ();
+					t.name = "NO_NAME";
+					t.isPlaceHolder = s.isPlaceHolder;
+					symbFile.waveStrings.Add (t);
+				}
+				symbFile.playerStrings = new List<symbStringName> ();
+				foreach (PlayerData s in infoFile.playerData) {
+					symbStringName t = new symbStringName ();
+					t.name = "NO_NAME";
+					t.isPlaceHolder = s.isPlaceHolder;
+					symbFile.playerStrings.Add (t);
+				}
+				symbFile.groupStrings = new List<symbStringName> ();
+				foreach (GroupData s in infoFile.groupData) {
+					symbStringName t = new symbStringName ();
+					t.name = "NO_NAME";
+					t.isPlaceHolder = s.isPlaceHolder;
+					symbFile.groupStrings.Add (t);
+				}
+				symbFile.player2Strings = new List<symbStringName> ();
+				foreach (Player2Data s in infoFile.player2Data) {
+					symbStringName t = new symbStringName ();
+					t.name = "NO_NAME";
+					t.isPlaceHolder = s.isPlaceHolder;
+					symbFile.player2Strings.Add (t);
+				}
+				symbFile.strmStrings = new List<symbStringName> ();
+				foreach (StrmData s in infoFile.strmData) {
+					symbStringName t = new symbStringName ();
+					t.name = "NO_NAME";
+					t.isPlaceHolder = s.isPlaceHolder;
+					symbFile.strmStrings.Add (t);
+				}
+			
+			}
+
+
+			//Get FAT.
+			br.Position = (int)fatOffset;
+			fat.magic = br.ReadChars (4);
+			fat.size = br.ReadUInt32 ();
+			fat.nCount = br.ReadUInt32 ();
+
+			//Get records.
+			fat.records = new List<fatRecords>();
+			for (int i = 0; i < (int)fat.nCount; i++) {
+
+				fatRecords f = new fatRecords ();
+				f.offset= br.ReadUInt32 ();
+				f.nSize= br.ReadUInt32 ();
+				f.reserved = br.ReadUInt32s (2);
+				fat.records.Add (f);
+
+			}
+
+
+
+			//Get files.
+			br.Position = (int)filesOffset;
+			files.magic = br.ReadChars (4);
+			files.nSize = br.ReadUInt32 ();
+			files.nCount = br.ReadUInt32 ();
+			files.reserved = br.ReadUInt32 ();
+
+			files.files = new List<byte[]>();
+			files.sseqFiles = new List<byte[]> ();
+			files.seqArcFiles = new List<byte[]> ();
+			files.bankFiles = new List<byte[]> ();
+			files.waveFiles = new List<byte[]> ();
+			files.strmFiles = new List<byte[]> ();
+			foreach (fatRecords f in fat.records) {
+			
+				br.Position = f.offset;
+				files.files.Add(br.ReadBytes((int)f.nSize));
+			
+			}
+
+			//Now sort the files.
+			foreach (byte[] f in files.files) {
+
+				//Make new reader.
+				MemoryStream src2 = new MemoryStream(f);
+				BinaryDataReader br2 = new BinaryDataReader (src2);
+
+				//See what file it is.
+				UInt32 magic2 = br2.ReadUInt32();
+
+				if (magic2 == (UInt32)0x51455353) {files.sseqFiles.Add (f);}
+				if (magic2 == (UInt32)0x52415353) {files.seqArcFiles.Add (f);}
+				if (magic2 == (UInt32)0x4b4e4253) {files.bankFiles.Add (f);}
+				if (magic2 == (UInt32)0x52415753) {files.waveFiles.Add (f);}
+				if (magic2 == (UInt32)0x4d525453) {files.strmFiles.Add (f);}
+
+			}
+
+		}
+
+
+		//Extract the sdat.
+		public void extract(string path) {
+
+			//Make needed directories.
+			if (files.sseqFiles.Count > 1) {Directory.CreateDirectory(path+"/Sequence");}
+			if (files.seqArcFiles.Count > 1) {Directory.CreateDirectory(path+"/Sequence Archive");}
+			if (files.bankFiles.Count > 1) {Directory.CreateDirectory(path+"/Bank");}
+			if (files.waveFiles.Count > 1) {Directory.CreateDirectory(path+"/Wave Archive");}
+			if (files.strmFiles.Count > 1) {Directory.CreateDirectory(path+"/Stream");}
+
+			//Extract info and symb bins.
+			File.WriteAllBytes(path+"/symb.bin", NitroFileLoader.symbToBytes(symbFile.toSymb()));
+			File.WriteAllBytes(path+"/info.bin", NitroFileLoader.infoToBytes(infoFile.toInfoFile()));
+
+			//Extract sseqs.
+			for (int i = 0; i < files.sseqFiles.Count(); i++) {
+				//Get correct info.
+				for (int j = 0; j < infoFile.sseqData.Count(); j++) {
+					if ((int)infoFile.sseqData [j].fileId == i) {		
+						File.WriteAllBytes (path + "/Sequence/" + i.ToString ("D3") + symbFile.sseqStrings [j].name + ".sseq", files.sseqFiles[i]);
+						break;
+					}
+				}
+			}
+
+			//Extract seqArcs.
+			for (int i = 0; i < files.seqArcFiles.Count(); i++) {
+				//Get correct info.
+				for (int j = 0; j < infoFile.seqArcData.Count(); j++) {
+					if ((int)infoFile.seqArcData [j].fileId == i + files.sseqFiles.Count()) {		
+						File.WriteAllBytes (path + "/Sequence Archive/" + i.ToString ("D3") + symbFile.seqArcStrings [j].name + ".ssar", files.seqArcFiles[i]);
+						break;
+					}
+				}
+			}
+
+			//Extract bank.
+			for (int i = 0; i < files.bankFiles.Count(); i++) {
+				//Get correct info.
+				for (int j = 0; j < infoFile.bankData.Count(); j++) {
+					if ((int)infoFile.bankData [j].fileId == i + files.sseqFiles.Count() + files.seqArcFiles.Count()) {		
+						File.WriteAllBytes (path + "/Bank/" + i.ToString ("D3") + symbFile.bankStrings [j].name + ".sbnk", files.bankFiles[i]);
+						break;
+					}
+				}
+			}
+
+			//Extract wave.
+			for (int i = 0; i < files.waveFiles.Count(); i++) {
+				//Get correct info.
+				for (int j = 0; j < infoFile.waveData.Count(); j++) {
+					if ((int)infoFile.waveData [j].fileId == i + files.sseqFiles.Count() + files.seqArcFiles.Count() + files.bankFiles.Count()) {		
+						File.WriteAllBytes (path + "/Wave Archive/" + i.ToString ("D3") + symbFile.waveStrings [j].name + ".swar", files.waveFiles[i]);
+						break;
+					}
+				}
+			}
+
+
+			//Extract strm.
+			for (int i = 0; i < files.strmFiles.Count(); i++) {
+				//Get correct info.
+				for (int j = 0; j < infoFile.strmData.Count(); j++) {
+					if ((int)infoFile.strmData [j].fileId == i + files.sseqFiles.Count() + files.seqArcFiles.Count() + files.bankFiles.Count() + files.waveFiles.Count()) {		
+						File.WriteAllBytes (path + "/Stream/" + i.ToString ("D3") + symbFile.strmStrings [j].name + ".strm", files.strmFiles[i]);
+						break;
+					}
+				}
+			}
+
+
+		}
+
+
+
+		/// <summary>
+		/// Compress the specified path to an sdat.
+		/// </summary>
+		/// <param name="path">Path.</param>
+		public void compress(string path) {
+		
+			//Load bins.
+			symbFile = new symbData ();
+			symbFile.load (NitroFileLoader.loadSymbFile (File.ReadAllBytes ("symb.bin")));
+			infoFile = new infoData ();
+			infoFile.load (NitroFileLoader.loadInfoFile (File.ReadAllBytes ("info.bin")));
+
+			//Load sseqs.
+			files.sseqFiles = new List<byte[]>();
+			if (Directory.Exists (path + "/Sequence")) {
+				string[] sseqNames = Directory.EnumerateFiles (path + "/Sequence").ToArray ();
+				foreach (string s in sseqNames) {
+					files.sseqFiles.Add (File.ReadAllBytes (s));
+				}
+			}
+			//Load seqArcs.
+			files.seqArcFiles = new List<byte[]>();
+			if (Directory.Exists (path + "/Sequence Archive")) {
+				string[] seqArcNames = Directory.EnumerateFiles (path + "/Sequence Archive").ToArray ();
+				foreach (string s in seqArcNames) {
+					files.seqArcFiles.Add (File.ReadAllBytes (s));
+				}
+			}
+			//Load banks.
+			files.bankFiles = new List<byte[]>();
+			if (Directory.Exists (path + "/Bank")) {
+				string[] bankNames = Directory.EnumerateFiles (path + "/Bank").ToArray ();
+				foreach (string s in bankNames) {
+					files.bankFiles.Add (File.ReadAllBytes (s));
+				}
+			}
+			//Load waves.
+			files.waveFiles = new List<byte[]>();
+			if (Directory.Exists (path + "/Wave Archive")) {
+				string[] waveNames = Directory.EnumerateFiles (path + "/Wave Archive").ToArray ();
+				foreach (string s in waveNames) {
+					files.waveFiles.Add (File.ReadAllBytes (s));
+				}
+			}
+			//Load strms.
+			files.strmFiles = new List<byte[]>();
+			if (Directory.Exists (path + "/Stream")) {
+				string[] strmNames = Directory.EnumerateFiles (path + "/Stream").ToArray ();
+				foreach (string s in strmNames) {
+					files.strmFiles.Add (File.ReadAllBytes (s));
+				}
+			}
+
+			//Now add everything to files.
+			files.files = new List<byte[]>();
+			foreach (byte[] b in files.sseqFiles) {
+				files.files.Add (b);
+			}
+			foreach (byte[] b in files.seqArcFiles) {
+				files.files.Add (b);
+			}
+			foreach (byte[] b in files.bankFiles) {
+				files.files.Add (b);
+			}
+			foreach (byte[] b in files.waveFiles) {
+				files.files.Add (b);
+			}
+			foreach (byte[] b in files.strmFiles) {
+				files.files.Add (b);
+			}
+		
+		}
+
+
+		/// <summary>
+		/// Convert file to bytes.
+		/// </summary>
+		/// <returns>The bytes.</returns>
+		public byte[] toBytes() {
+
+			//Fix offsets.
+			fixOffsets ();
+
+			//Make new stream.
+			MemoryStream o = new MemoryStream ();
+			BinaryWriter bw = new BinaryWriter (o);
+
+			//Write header.
+			bw.Write (magic);
+			bw.Write (identifier);
+			bw.Write (fileSize);
+			bw.Write (headerSize);
+			bw.Write (nBlock);
+
+			//Write offsets.
+			bw.Write (symbOffset);
+			bw.Write (symbSize);
+			bw.Write (infoOffset);
+			bw.Write (infoSize);
+			bw.Write (fatOffset);
+			bw.Write (fatSize);
+			bw.Write (filesOffset);
+			bw.Write (filesSize);
+			bw.Write (reserved);
+
+			//Write symb.
+			bw.Write(NitroFileLoader.symbToBytes(symbFile.toSymb()));
+
+			//Write info.
+			bw.Write(NitroFileLoader.infoToBytes(infoFile.toInfoFile()));
+
+			//Write FAT.
+			bw.Write (fat.magic);
+			bw.Write (fat.size);
+			bw.Write (fat.nCount);
+			foreach (fatRecords n in fat.records) {
+			
+				bw.Write (n.offset);
+				bw.Write (n.nSize);
+				bw.Write (n.reserved [0]);
+				bw.Write (n.reserved [1]);
+			
+			}
+
+
+			//Write files.
+			bw.Write (files.magic);
+			bw.Write (files.nSize);
+			bw.Write (files.nCount);
+			bw.Write (files.reserved);
+			foreach (byte[] file in files.files) {
+			
+				bw.Write (file);
+
+			}
+
+
+			//Return o.
+			return o.ToArray();
+
+		}
+
+
+		/// <summary>
+		/// Fixes the offsets.
+		/// </summary>
+		public void fixOffsets() {
+
+			//Generate header crap.
+			magic = "SDAT".ToCharArray();
+			identifier = (UInt32)0x0100feff;
+			headerSize = (UInt16)64;
+			nBlock = (UInt16)4;
+			byte[] reserved2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+			reserved = reserved2;
+
+			//Offset.
+			UInt32 offset = headerSize;
+
+			//Symb offset is here.
+			symbOffset = offset;
+			symbSize = (UInt32) NitroFileLoader.symbToBytes (symbFile.toSymb ()).Length;
+
+			//Increment offset.
+			offset+=symbSize;
+
+			//Info offset is here.
+			infoOffset = offset;
+			infoSize = (UInt32) NitroFileLoader.infoToBytes (infoFile.toInfoFile ()).Length;
+
+			//Increment offse.
+			offset+=infoSize;
+
+			//FAT is here.
+			fatOffset = offset;
+
+			//Fix files first.
+			files.files = new List<byte[]>();
+			foreach (byte[] b in files.sseqFiles) {
+				files.files.Add (b);
+			}
+			foreach (byte[] b in files.seqArcFiles) {
+				files.files.Add (b);
+			}
+			foreach (byte[] b in files.bankFiles) {
+				files.files.Add (b);
+			}
+			foreach (byte[] b in files.waveFiles) {
+				files.files.Add (b);
+			}
+			foreach (byte[] b in files.strmFiles) {
+				files.files.Add (b);
+			}
+
+			//Fix FAT.
+			fat.magic = "FAT ".ToArray();
+			fat.nCount = (UInt32) files.files.Count ();
+			fat.records = new List<fatRecords> ();
+
+			//Get size of FAT.
+			fatSize = (UInt32)(12 + (16*fat.nCount));
+			fat.size = fatSize;
+			offset += fatSize;
+
+			//Files is here.
+			filesOffset = offset;
+
+			//Fix files.
+			files.magic = "FILE".ToCharArray();
+			files.reserved = (UInt32)0;
+			files.nCount = (UInt32) files.files.Count ();
+
+			//Now fix the individual FAT records.
+			files.nSize = (UInt32) 16;
+			filesSize = (UInt32)16;
+			offset += (UInt32)16;
+			for (int i = 0; i < files.files.Count (); i++) {
+			
+				fatRecords f = new fatRecords ();
+				f.nSize = (UInt32) files.files [i].Length;
+				f.offset = offset;
+				UInt32[] reserved = { (UInt32)0, (UInt32)0 };
+				f.reserved = reserved;
+				fat.records.Add (f);
+
+				offset += (UInt32) files.files [i].Length;
+				filesSize += (UInt32) files.files [i].Length;
+				files.nSize += (UInt32) files.files [i].Length;
+			
+			}
+
+
+			//Filesize is here.
+			fileSize = offset;
+
+
+
+		}
+
+
+	}
 
 }
