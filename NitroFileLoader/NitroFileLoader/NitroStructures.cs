@@ -2221,9 +2221,9 @@ namespace NitroFileLoader
 		
 			//Load bins.
 			symbFile = new symbData ();
-			symbFile.load (NitroFileLoader.loadSymbFile (File.ReadAllBytes ("symb.bin")));
+			symbFile.load (NitroFileLoader.loadSymbFile (File.ReadAllBytes (path + "\\symb.bin")));
 			infoFile = new infoData ();
-			infoFile.load (NitroFileLoader.loadInfoFile (File.ReadAllBytes ("info.bin")));
+			infoFile.load (NitroFileLoader.loadInfoFile (File.ReadAllBytes (path + "\\info.bin")));
 
 			//Load sseqs.
 			files.sseqFiles = new List<byte[]>();
