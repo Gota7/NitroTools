@@ -968,7 +968,8 @@ namespace NitroFileLoader
 
 			f.groupInfo = new NitroStructures.groupInfo[groupData.Count ()];
 			for (int i = 0; i < f.groupInfo.Length; i++) {
-			
+
+                groupData[i].count = (UInt32) groupData[i].subInfo.Count();
 				f.groupInfo [i].count = groupData [i].count;
 				f.groupInfo [i].isPlaceHolder = groupData [i].isPlaceHolder;
 				f.groupInfo[i].subInfo = new NitroStructures.groupSubInfo[(int)f.groupInfo[i].count];
@@ -1672,6 +1673,9 @@ namespace NitroFileLoader
 		/// </summary>
 		public void fixOffsets() {
 
+            //Unfix files.
+            unfixSwavFiles();
+
 			//General info.
 			magic = "SWAR".ToCharArray();
 			identifier = (UInt32)0x0100feff;
@@ -1722,6 +1726,9 @@ namespace NitroFileLoader
 			
 			}
 			fileSize = offset;
+
+            //Fix files.
+            fixSwavFiles();
 		
 		}
 

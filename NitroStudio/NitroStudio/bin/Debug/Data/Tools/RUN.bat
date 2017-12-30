@@ -1,2 +1,2 @@
-wav2swav.exe BowserMap.wav
+wav2swav.exe --help
 PAUSE

@@ -37,10 +37,8 @@ namespace NitroStudio
         public sdatFile sdat;
 
         //Application path
-        string nitroPath = Application.StartupPath;
+        public string nitroPath = Application.StartupPath;
         #endregion Init
-
-
 
 
         //Main window functions
@@ -183,6 +181,8 @@ namespace NitroStudio
                                     //Get path.
                                     sdatPath = openFileDialog1.FileName;
 
+                                    this.Text = "Nitro Studio - " + Path.GetFileName(sdatPath);
+
                                     //Get sdat.
                                     sdat = new sdatFile();
                                     sdat.load(File.ReadAllBytes(sdatPath));
@@ -193,8 +193,9 @@ namespace NitroStudio
                                     //Get sdat from the folder.
                                     if (File.Exists(Path.GetDirectoryName(openFileDialog1.FileName) + "\\info.bin"))
                                     {
-                                        sdatPath = Path.GetDirectoryName(openFileDialog1.FileName);
+                                        this.Text = "Nitro Studio - New_File.sdat";
 
+                                        sdatPath = Path.GetDirectoryName(openFileDialog1.FileName);
                                         sdat = new sdatFile();
                                         sdat.compress(sdatPath);
                                         sdat.fixOffsets();
@@ -503,10 +504,12 @@ namespace NitroStudio
                 {
                     save();
                     closeFile();
+                    this.Text = "Nitro Studio";
                 }
                 else if (result == 1)
                 {
                     closeFile();
+                    this.Text = "Nitro Studio";
                 }
             }
             //If no file open
@@ -554,13 +557,14 @@ namespace NitroStudio
             else {
 
                 SaveFileDialog s = new SaveFileDialog();
-                s.Filter = "Nitro Sound Data|*sdat";
+                s.Filter = "Nitro Sound Data|*.sdat";
                 s.Title = "Save sound data";
                 s.ShowDialog();
 
                 if (s.FileName != "") {
 
                     sdatPath = s.FileName;
+                    this.Text = "Nitro Studio - " + Path.GetFileName(sdatPath);
                     File.WriteAllBytes(sdatPath, sdat.toBytes());
 
                 }
@@ -657,6 +661,7 @@ namespace NitroStudio
         #endregion
 
 
+
         //Info panel.
         #region infoPanelStuff
 
@@ -694,7 +699,7 @@ namespace NitroStudio
                         //Show nEntry.
                         if (typeGroupBox.SelectedIndex == 0) {
                             foreach (TreeNode n in tree.Nodes[0].Nodes) {
-                                nEntryBox.Items.Add(n.Name);
+                                nEntryBox.Items.Add(n.Text);
                             }
                             nEntryBox.SelectedIndex = (int)sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].nEntry;
                         }
@@ -702,7 +707,7 @@ namespace NitroStudio
                         {
                             foreach (TreeNode n in tree.Nodes[2].Nodes)
                             {
-                                nEntryBox.Items.Add(n.Name);
+                                nEntryBox.Items.Add(n.Text);
                             }
                             nEntryBox.SelectedIndex = (int)sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].nEntry;
                         }
@@ -710,7 +715,7 @@ namespace NitroStudio
                         {
                             foreach (TreeNode n in tree.Nodes[3].Nodes)
                             {
-                                nEntryBox.Items.Add(n.Name);
+                                nEntryBox.Items.Add(n.Text);
                             }
                             nEntryBox.SelectedIndex = (int)sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].nEntry;
                         }
@@ -718,7 +723,7 @@ namespace NitroStudio
                         {
                             foreach (TreeNode n in tree.Nodes[1].Nodes)
                             {
-                                nEntryBox.Items.Add(n.Name);
+                                nEntryBox.Items.Add(n.Text);
                             }
                             nEntryBox.SelectedIndex = (int)sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].nEntry;
                         }
@@ -944,6 +949,10 @@ namespace NitroStudio
                     //Hide panel stuff.
                     hideAllPanelStuff();
 
+                    //Show player2group.
+                    player2Group.Show();
+
+
                 }
 
                 //Strm
@@ -952,6 +961,19 @@ namespace NitroStudio
 
                     //Hide panel stuff.
                     hideAllPanelStuff();
+
+                    //Show strm group.
+                    strmGroup.Show();
+
+                    //Show fileID.
+                    fileIdLabel.Show();
+                    fileIdBox.Show();
+                    for (int i = 0; i < fatFiles.Length; i++)
+                    {
+                        fileIdBox.Items.Add(fatFiles[i]);
+                    }
+                    fileIdBox.SelectedIndex = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId;
+                    fileIdBox.Show();
 
                 }
 
@@ -999,6 +1021,8 @@ namespace NitroStudio
             playerGroup.Hide();
             groupSubPanel.Hide();
             nEntryBox.Items.Clear();
+            player2Group.Hide();
+            strmGroup.Hide();
 
         }
 
@@ -1030,6 +1054,35 @@ namespace NitroStudio
                 if (tree.SelectedNode.Parent.Parent.Index == 5)
                 {
                     sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].type = (byte)typeGroupBox.SelectedIndex;
+
+                    int imageIndex = 0;
+
+                    switch (sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].type) {
+
+                        case 0:
+                            imageIndex = 0;
+                            break;
+
+                        case 1:
+                            imageIndex = 2;
+                            break;
+
+                        case 2:
+                            imageIndex = 3;
+                            break;
+
+                        case 3:
+                            imageIndex = 1;
+                            break;
+
+                        case 4:
+                            imageIndex = 9;
+                            break;
+
+                    }
+
+                    tree.Nodes[5].Nodes[tree.SelectedNode.Parent.Index].Nodes[tree.SelectedNode.Index].ImageIndex = imageIndex;
+                    tree.Nodes[5].Nodes[tree.SelectedNode.Parent.Index].Nodes[tree.SelectedNode.Index].SelectedImageIndex = imageIndex;
                 }
             }
 
@@ -1296,6 +1349,7 @@ namespace NitroStudio
 
 
         #endregion
+
 
 
         //More node stuff
@@ -1760,6 +1814,7 @@ namespace NitroStudio
         #endregion NodeShit
 
 
+
         //Edit certain files.
         #region fileOpenerNodes
         public void doubleClickNode(object sender, EventArgs e) {
@@ -1768,12 +1823,45 @@ namespace NitroStudio
                 if (tree.SelectedNode.Parent != null) {
                     if (tree.SelectedNode.Parent.Parent != null) {
 
+                        if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Sequence")
+                        {
+
+                            ByteViewerForm f = new ByteViewerForm(sdat.files.sseqFiles[tree.SelectedNode.Index], tree.SelectedNode.Text);
+                            f.Show();
+
+                        }
+
+                        if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Sequence Archive")
+                        {
+
+                            ByteViewerForm f = new ByteViewerForm(sdat.files.seqArcFiles[tree.SelectedNode.Index], tree.SelectedNode.Text);
+                            f.Show();
+
+                        }
+
+                        if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Bank")
+                        {
+
+                            ByteViewerForm f = new ByteViewerForm(sdat.files.bankFiles[tree.SelectedNode.Index], tree.SelectedNode.Text);
+                            f.Show();
+
+                        }
+
                         if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Wave Archive") {
 
-                            SwarEditor s = new SwarEditor(sdat.files.waveFiles[tree.SelectedNode.Index], tree.SelectedNode.Text.Split(' ')[1]);
+                            SwarEditor s = new SwarEditor(this, sdat.files.waveFiles[tree.SelectedNode.Index], tree.SelectedNode.Text.Split(' ')[1], tree.SelectedNode.Index);
                             s.Show();
 
                         }
+
+                        if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Stream")
+                        {
+
+                            ByteViewerForm f = new ByteViewerForm(sdat.files.strmFiles[tree.SelectedNode.Index], tree.SelectedNode.Text);
+                            f.Show();
+
+                        }
+
 
                     }
                 }
@@ -1783,9 +1871,15 @@ namespace NitroStudio
         #endregion
 
 
+
         //Main Node Menus.
         #region NodeMenu
 
+        //Insert node.
+        private void nodeMenu_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
 
         //Expand node.
         private void openTree3_Click(object sender, EventArgs e)
@@ -1803,42 +1897,409 @@ namespace NitroStudio
         //Enable adding things to the thing. (Add above).
         private void Add3_Click(object sender, EventArgs e)
         {
-            //Get the type of thing to add.
-            int type = tree.SelectedNode.Index;
+            //Type of thing to add.
+            string name = tree.SelectedNode.Parent.Text;
+            int index = tree.SelectedNode.Index;
 
-            //Get string.
-            string newName = Microsoft.VisualBasic.Interaction.InputBox("Input the name:", "Input:");
-
-            //If newName is not lame.
-            if (newName != "")
+            if (name == "Sound Sequence")
             {
-                if (type < 8)
-                {
-                    //Add the new string.
-                    //symbStrings[type][0].Add(symbStrings[type][0].Count, newName);
 
-                    //Update nodes.
-                    updateNodes();
-                }
-                else {
-                    //Make a new directory.
-                    //Directory.CreateDirectory(filesPath + "\\" + newName);
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.sseqStrings.Insert(index, s);
 
-                    //Update Nodes.
-                    updateNodes();
-                }
+                SseqData i = new SseqData();
+                i.fileId = 0;
+                i.bank = 0;
+                i.channelPriority = 64;
+                i.isPlaceHolder = false;
+                i.playerNumber = 0;
+                i.playerPriority = 64;
+                i.unknown1 = 0;
+                i.unknown2 = 0;
+                i.volume = 100;
+                sdat.infoFile.sseqData.Insert(index, i);
+
             }
+
+            if (name == "Sequence Archive")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.seqArcStrings.Insert(index, s);
+                List<symbStringName> t = new List<symbStringName>();
+                sdat.symbFile.seqArcSubStrings.Insert(index, t);
+
+                SeqArcData i = new SeqArcData();
+                i.fileId = 0;
+                i.isPlaceHolder = false;
+                sdat.infoFile.seqArcData.Insert(index, i);
+
+            }
+
+            if (name == "Instrument Bank")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.bankStrings.Insert(index, s);
+
+                BankData i = new BankData();
+                i.fileId = 0;
+                i.isPlaceHolder = false;
+                i.wave0 = 0;
+                i.wave1 = 0;
+                i.wave2 = 0;
+                i.wave3 = 0;
+                sdat.infoFile.bankData.Insert(index, i);
+
+            }
+
+
+            if (name == "Wave")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.waveStrings.Insert(index, s);
+
+                WaveData i = new WaveData();
+                i.fileId = 0;
+                i.isPlaceHolder = false;
+                sdat.infoFile.waveData.Insert(index, i);
+
+            }
+
+            if (name == "Player")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.playerStrings.Insert(index, s);
+
+                PlayerData i = new PlayerData();
+                i.channelFlag = 0;
+                i.heapSize = 0;
+                i.seqMax = 1;
+                i.isPlaceHolder = false;
+                sdat.infoFile.playerData.Insert(index, i);
+
+            }
+
+            if (name == "Group")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.groupStrings.Insert(index, s);
+
+                GroupData i = new GroupData();
+                i.count = 0;
+                i.subInfo = new List<GroupSubData>();
+                i.isPlaceHolder = false;
+                sdat.infoFile.groupData.Insert(index, i);
+
+
+            }
+
+
+            if (name == "Stream Player")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.player2Strings.Insert(index, s);
+
+                Player2Data i = new Player2Data();
+                i.count = 0;
+                byte[] reserved = { 0, 0, 0, 0, 0, 0, 0 };
+                i.reserved = reserved;
+                i.v0 = 0;
+                i.v1 = 0;
+                i.v2 = 0;
+                i.v3 = 0;
+                i.v4 = 0;
+                i.v5 = 0;
+                i.v6 = 0;
+                i.v7 = 0;
+                i.v8 = 0;
+                i.v9 = 0;
+                i.v10 = 0;
+                i.v11 = 0;
+                i.v12 = 0;
+                i.v13 = 0;
+                i.v14 = 0;
+                i.v15 = 0;
+                i.isPlaceHolder = false;
+                sdat.infoFile.player2Data.Insert(index, i);
+
+            }
+
+
+            if (name == "Stream")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.strmStrings.Insert(index, s);
+
+                StrmData i = new StrmData();
+                i.fileId = 0;
+                i.volume = 100;
+                i.player = 0;
+                i.priority = 64;
+                byte[] reserved = { 0, 0, 0, 0, 0 };
+                i.reserved = reserved;
+                i.isPlaceHolder = false;
+                sdat.infoFile.strmData.Insert(index, i);
+
+            }
+
+            updateNodes();
         }
 
         //Add below.
         private void Add32_Click(object sender, EventArgs e)
         {
+            //Type of thing to add.
+            string name = tree.SelectedNode.Parent.Text;
+            int index = tree.SelectedNode.Index + 1;
 
+            if (name == "Sound Sequence")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.sseqStrings.Insert(index, s);
+
+                SseqData i = new SseqData();
+                i.fileId = 0;
+                i.bank = 0;
+                i.channelPriority = 64;
+                i.isPlaceHolder = false;
+                i.playerNumber = 0;
+                i.playerPriority = 64;
+                i.unknown1 = 0;
+                i.unknown2 = 0;
+                i.volume = 100;
+                sdat.infoFile.sseqData.Insert(index, i);
+
+            }
+
+            if (name == "Sequence Archive")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.seqArcStrings.Insert(index, s);
+                List<symbStringName> t = new List<symbStringName>();
+                sdat.symbFile.seqArcSubStrings.Insert(index, t);
+
+                SeqArcData i = new SeqArcData();
+                i.fileId = 0;
+                i.isPlaceHolder = false;
+                sdat.infoFile.seqArcData.Insert(index, i);
+
+            }
+
+            if (name == "Instrument Bank")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.bankStrings.Insert(index, s);
+
+                BankData i = new BankData();
+                i.fileId = 0;
+                i.isPlaceHolder = false;
+                i.wave0 = 0;
+                i.wave1 = 0;
+                i.wave2 = 0;
+                i.wave3 = 0;
+                sdat.infoFile.bankData.Insert(index, i);
+
+            }
+
+
+            if (name == "Wave")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.waveStrings.Insert(index, s);
+
+                WaveData i = new WaveData();
+                i.fileId = 0;
+                i.isPlaceHolder = false;
+                sdat.infoFile.waveData.Insert(index, i);
+
+            }
+
+            if (name == "Player")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.playerStrings.Insert(index, s);
+
+                PlayerData i = new PlayerData();
+                i.channelFlag = 0;
+                i.heapSize = 0;
+                i.seqMax = 1;
+                i.isPlaceHolder = false;
+                sdat.infoFile.playerData.Insert(index, i);
+
+            }
+
+            if (name == "Group")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.groupStrings.Insert(index, s);
+
+                GroupData i = new GroupData();
+                i.count = 0;
+                i.subInfo = new List<GroupSubData>();
+                i.isPlaceHolder = false;
+                sdat.infoFile.groupData.Insert(index, i);
+
+
+            }
+
+
+            if (name == "Stream Player")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.player2Strings.Insert(index, s);
+
+                Player2Data i = new Player2Data();
+                i.count = 0;
+                byte[] reserved = { 0, 0, 0, 0, 0, 0, 0 };
+                i.reserved = reserved;
+                i.v0 = 0;
+                i.v1 = 0;
+                i.v2 = 0;
+                i.v3 = 0;
+                i.v4 = 0;
+                i.v5 = 0;
+                i.v6 = 0;
+                i.v7 = 0;
+                i.v8 = 0;
+                i.v9 = 0;
+                i.v10 = 0;
+                i.v11 = 0;
+                i.v12 = 0;
+                i.v13 = 0;
+                i.v14 = 0;
+                i.v15 = 0;
+                i.isPlaceHolder = false;
+                sdat.infoFile.player2Data.Insert(index, i);
+
+            }
+
+
+            if (name == "Stream")
+            {
+
+                //Add entry.
+                symbStringName s = new symbStringName();
+                s.name = "New entry";
+                s.isPlaceHolder = false;
+                sdat.symbFile.strmStrings.Insert(index, s);
+
+                StrmData i = new StrmData();
+                i.fileId = 0;
+                i.volume = 100;
+                i.player = 0;
+                i.priority = 64;
+                byte[] reserved = { 0, 0, 0, 0, 0 };
+                i.reserved = reserved;
+                i.isPlaceHolder = false;
+                sdat.infoFile.strmData.Insert(index, i);
+
+            }
+
+            updateNodes();
         }
 
         //Add inside.
         private void addInside_Click(object sender, EventArgs e)
         {
+
+            //If SeqArc.
+            if (tree.SelectedNode.Parent.Index == 1) {
+
+                //Get name.
+                string newName = Interaction.InputBox("Name the entry:", "Namer");
+                if (newName != "")
+                {
+
+                    //Rename the file.
+                    symbStringName s = new symbStringName();
+                    s.isPlaceHolder = false;
+                    s.name = newName;
+                    sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Index].Add(s);
+                    updateNodes();
+
+                }
+
+            }
+
+            //Groups.
+            else if (tree.SelectedNode.Parent.Index == 5)
+            {
+
+                //Add entry.
+                GroupSubData d = new GroupSubData();
+                d.loadFlag = 0;
+                d.nEntry = 0;
+                d.type = 0;
+                d.padding = 0;
+                sdat.infoFile.groupData[tree.SelectedNode.Index].subInfo.Add(d);
+                updateNodes();
+
+            }
+
+            //None of the above.
+            else {
+
+                MessageBox.Show("You can't insert anything in here!", "Notice:");
+
+            }
 
         }
 
@@ -1861,7 +2322,7 @@ namespace NitroStudio
                 {
                     sdat.symbFile.bankStrings[tree.SelectedNode.Index].name = newName;
                 }
-                if (tree.SelectedNode.Parent.Text == "Wave Archive")
+                if (tree.SelectedNode.Parent.Text == "Wave")
                 {
                     sdat.symbFile.waveStrings[tree.SelectedNode.Index].name = newName;
                 }
@@ -2157,6 +2618,7 @@ namespace NitroStudio
         }
 
         #endregion NodeMenu
+
 
 
         //Get a path of a file selection.
@@ -2457,14 +2919,311 @@ namespace NitroStudio
 
         }
 
+        //Add above.
         private void addAbove_Click(object sender, EventArgs e)
         {
-            
+
+            //Get indexes.
+            int parentIndex = tree.SelectedNode.Parent.Index;
+            int index = tree.SelectedNode.Index;
+
+            //Get the new file.
+            string folderName = tree.SelectedNode.Parent.Text;
+
+            OpenFileDialog o = new OpenFileDialog();
+            o.Title = "Select " + folderName + " file.";
+            o.Filter = "Sequence File|*.sseq";
+            if (folderName == "Sequence Archive") { o.Filter = "Sequence Archive|*.ssar"; }
+            if (folderName == "Bank") { o.Filter = "Sound Bank|*.sbnk"; }
+            if (folderName == "Wave Archive") { o.Filter = "Wave Archive|*.swar"; }
+            if (folderName == "Stream") { o.Filter = "Stream|*.strm"; }
+            o.ShowDialog();
+
+            //If not retarded name.
+            if (o.FileName != "")
+            {
+
+                if (o.FilterIndex == 1)
+                {
+
+                    //Add the file.
+                    if (folderName == "Sequence") { sdat.files.sseqFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    if (folderName == "Sequence Archive") { sdat.files.seqArcFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    if (folderName == "Bank") { sdat.files.bankFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    if (folderName == "Wave Archive") { sdat.files.waveFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    if (folderName == "Stream") { sdat.files.strmFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    sdat.fixOffsets();
+
+
+
+                }
+                else
+                {
+
+
+
+                }
+
+                //Fix the file IDs.
+                if (folderName == "Sequence")
+                {
+
+                    foreach (SseqData s in sdat.infoFile.sseqData) {
+
+                        if (s.fileId >= index) { s.fileId += 1; }
+
+                    }
+
+                    foreach (SeqArcData s in sdat.infoFile.seqArcData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (BankData s in sdat.infoFile.bankData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (WaveData s in sdat.infoFile.waveData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+                        s.fileId += 1;
+                    }
+
+                }
+
+                if (folderName == "Sequence Archive")
+                {
+                    foreach (SeqArcData s in sdat.infoFile.seqArcData)
+                    {
+
+                        if (s.fileId >= index + sdat.files.sseqFiles.Count) { s.fileId += 1; }
+
+                    }
+
+                    foreach (BankData s in sdat.infoFile.bankData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (WaveData s in sdat.infoFile.waveData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+                        s.fileId += 1;
+                    }
+
+                }
+
+                if (folderName == "Bank")
+                {
+
+                    foreach (BankData s in sdat.infoFile.bankData)
+                    {
+
+                        if (s.fileId >= index + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count) { s.fileId += 1; }
+
+                    }
+
+                    foreach (WaveData s in sdat.infoFile.waveData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+                        s.fileId += 1;
+                    }
+
+
+                }
+
+                if (folderName == "Wave Archive")
+                {
+
+                    foreach (WaveData s in sdat.infoFile.waveData)
+                    {
+
+                        if (s.fileId >= index + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count + sdat.files.bankFiles.Count) { s.fileId += 1; }
+
+                    }
+
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+                        s.fileId += 1;
+                    }
+
+
+                }
+
+                if (folderName == "Stream")
+                {
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+
+                        if (s.fileId >= index + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count + sdat.files.bankFiles.Count + sdat.files.strmFiles.Count) { s.fileId += 1; }
+
+                    }
+                }
+
+                //Update nodes.
+                updateNodes();
+
+            }
         }
 
         private void addBelow_Click(object sender, EventArgs e)
         {
+            //Get indexes.
+            int parentIndex = tree.SelectedNode.Parent.Index;
+            int index = tree.SelectedNode.Index+1;
 
+            //Get the new file.
+            string folderName = tree.SelectedNode.Parent.Text;
+
+            OpenFileDialog o = new OpenFileDialog();
+            o.Title = "Select " + folderName + " file.";
+            o.Filter = "Sequence File|*.sseq";
+            if (folderName == "Sequence Archive") { o.Filter = "Sequence Archive|*.ssar"; }
+            if (folderName == "Bank") { o.Filter = "Sound Bank|*.sbnk"; }
+            if (folderName == "Wave Archive") { o.Filter = "Wave Archive|*.swar"; }
+            if (folderName == "Stream") { o.Filter = "Stream|*.strm"; }
+            o.ShowDialog();
+
+            //If not retarded name.
+            if (o.FileName != "")
+            {
+
+                if (o.FilterIndex == 1)
+                {
+
+                    //Add the file.
+                    if (folderName == "Sequence") { sdat.files.sseqFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    if (folderName == "Sequence Archive") { sdat.files.seqArcFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    if (folderName == "Bank") { sdat.files.bankFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    if (folderName == "Wave Archive") { sdat.files.waveFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    if (folderName == "Stream") { sdat.files.strmFiles.Insert(index, File.ReadAllBytes(o.FileName)); }
+                    sdat.fixOffsets();
+
+
+
+                }
+                else
+                {
+
+
+
+                }
+
+                //Fix the file IDs.
+                if (folderName == "Sequence")
+                {
+
+                    foreach (SseqData s in sdat.infoFile.sseqData)
+                    {
+
+                        if (s.fileId >= index) { s.fileId += 1; }
+
+                    }
+
+                    foreach (SeqArcData s in sdat.infoFile.seqArcData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (BankData s in sdat.infoFile.bankData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (WaveData s in sdat.infoFile.waveData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+                        s.fileId += 1;
+                    }
+
+                }
+
+                if (folderName == "Sequence Archive")
+                {
+                    foreach (SeqArcData s in sdat.infoFile.seqArcData)
+                    {
+
+                        if (s.fileId >= index + sdat.files.sseqFiles.Count) { s.fileId += 1; }
+
+                    }
+
+                    foreach (BankData s in sdat.infoFile.bankData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (WaveData s in sdat.infoFile.waveData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+                        s.fileId += 1;
+                    }
+
+                }
+
+                if (folderName == "Bank")
+                {
+
+                    foreach (BankData s in sdat.infoFile.bankData)
+                    {
+
+                        if (s.fileId >= index + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count) { s.fileId += 1; }
+
+                    }
+
+                    foreach (WaveData s in sdat.infoFile.waveData)
+                    {
+                        s.fileId += 1;
+                    }
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+                        s.fileId += 1;
+                    }
+
+
+                }
+
+                if (folderName == "Wave Archive")
+                {
+
+                    foreach (WaveData s in sdat.infoFile.waveData)
+                    {
+
+                        if (s.fileId >= index + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count + sdat.files.bankFiles.Count) { s.fileId += 1; }
+
+                    }
+
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+                        s.fileId += 1;
+                    }
+
+
+                }
+
+                if (folderName == "Stream")
+                {
+                    foreach (StrmData s in sdat.infoFile.strmData)
+                    {
+
+                        if (s.fileId >= index + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count + sdat.files.bankFiles.Count + sdat.files.strmFiles.Count) { s.fileId += 1; }
+
+                    }
+                }
+
+                //Update nodes.
+                updateNodes();
+
+            }
         }
 
         #endregion FilesNodes
@@ -2528,19 +3287,21 @@ namespace NitroStudio
         #endregion EntryMenu
 
 
+
         //Actual node saving file.
         #region nodeSavesFile
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (fileOpen) save();
+            if (fileOpen) { save(); } else { MessageBox.Show("You need to have a file open to save!", "Notice:"); }
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (fileOpen) saveAs();
+            if (fileOpen) { saveAs(); } else { MessageBox.Show("You need to have a file open to save!", "Notice:"); }
         }
 
         #endregion
+
 
 
         //Export and import SDATs.
@@ -2594,27 +3355,161 @@ namespace NitroStudio
         #endregion
 
 
+
         //Sub Node Menu.
         #region subNodeMenu
         
+        //Add above.
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if (tree.SelectedNode.Parent != null)
+            {
 
+                //If seqArc.
+                if (tree.SelectedNode.Parent.Parent.Index == 1)
+                {
+
+                    //Get name.
+                    string newName = Interaction.InputBox("Name the entry:", "Namer");
+                    if (newName != "")
+                    {
+
+                        //Save indexes.
+                        int parentIndex = tree.SelectedNode.Parent.Index;
+                        int index = tree.SelectedNode.Index;
+
+                        //Rename the file.
+                        symbStringName s = new symbStringName();
+                        s.isPlaceHolder = false;
+                        s.name = newName;
+                        sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Parent.Index].Insert(tree.SelectedNode.Index, s);
+                        updateNodes();
+
+                        tree.SelectedNode = tree.Nodes[1].Nodes[parentIndex].Nodes[index];
+
+                    }
+
+                }
+
+                //If group.
+                if (tree.SelectedNode.Parent.Parent.Index == 5)
+                {
+
+                    //Get node.
+                    int parentIndex = tree.SelectedNode.Parent.Index;
+                    int index = tree.SelectedNode.Index;
+
+                    //Add entry.
+                    GroupSubData d = new GroupSubData();
+                    d.loadFlag = 0;
+                    d.nEntry = 0;
+                    d.type = 0;
+                    d.padding = 0;
+                    sdat.infoFile.groupData[parentIndex].subInfo.Insert(index, d);
+                    updateNodes();
+
+                    tree.SelectedNode = tree.Nodes[5].Nodes[parentIndex].Nodes[index];
+
+                }
+            }
         }
 
+        //Add below.
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
+            if (tree.SelectedNode.Parent != null)
+            {
 
+                //If seqArc.
+                if (tree.SelectedNode.Parent.Parent.Index == 1)
+                {
+
+                    //Get name.
+                    string newName = Interaction.InputBox("Name the entry:", "Namer");
+                    if (newName != "")
+                    {
+
+                        //Save indexes.
+                        int parentIndex = tree.SelectedNode.Parent.Index;
+                        int index = tree.SelectedNode.Index+1;
+
+                        //Rename the file.
+                        symbStringName s = new symbStringName();
+                        s.isPlaceHolder = false;
+                        s.name = newName;
+                        sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Parent.Index].Insert(index, s);
+                        updateNodes();
+
+                        tree.SelectedNode = tree.Nodes[1].Nodes[parentIndex].Nodes[index];
+
+                    }
+
+                }
+
+                //If group.
+                if (tree.SelectedNode.Parent.Parent.Index == 5)
+                {
+
+                    //Get node.
+                    int parentIndex = tree.SelectedNode.Parent.Index;
+                    int index = tree.SelectedNode.Index+1;
+
+                    //Add entry.
+                    GroupSubData d = new GroupSubData();
+                    d.loadFlag = 0;
+                    d.nEntry = 0;
+                    d.type = 0;
+                    d.padding = 0;
+                    sdat.infoFile.groupData[parentIndex].subInfo.Insert(index, d);
+                    updateNodes();
+
+                    tree.SelectedNode = tree.Nodes[5].Nodes[parentIndex].Nodes[index];
+
+                }
+            }
         }
 
+        //Rename
         private void toolStripMenuItem11_Click(object sender, EventArgs e)
         {
 
+            if (tree.SelectedNode.Parent.Parent.Index == 1)
+            {
+
+                string newName = Interaction.InputBox("Rename the entry:", "Renamer");
+                if (newName != "")
+                {
+
+                    //Rename the file.
+                    sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Parent.Index][tree.SelectedNode.Index].name = newName;
+                    updateNodes();
+
+                }
+
+            }
+            else {
+                MessageBox.Show("Group Entries don't have names!", "Notice:");
+            }
+
         }
 
+        //Delete
         private void toolStripMenuItem12_Click(object sender, EventArgs e)
         {
+            if (tree.SelectedNode.Parent.Parent.Index == 1)
+            {
 
+                sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Parent.Index].RemoveAt(tree.SelectedNode.Index);
+                updateNodes();
+
+            }
+            else if (tree.SelectedNode.Parent.Parent.Index == 5) {
+
+                sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo.RemoveAt(tree.SelectedNode.Index);
+                sdat.fixOffsets();
+                updateNodes();
+
+            }
         }
 
 
@@ -2628,10 +3523,109 @@ namespace NitroStudio
         {
             try
             {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=2cYzCjjo1BE&list=PLqLbHe4NpIb5T7evcOl9dll23HC8-i9QT");
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=_WtYuP4NF1I&index=17&list=PLqLbHe4NpIb5T7evcOl9dll23HC8-i9QT");
             }
             catch { }
         }
         #endregion
+
+
+
+        //New file.
+        #region newFile
+        private void newBetaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            //Make new file.
+            makeNewFile();
+
+        }
+
+        public void makeNewFile() {
+
+            //If file not open.
+            if (!fileOpen)
+            {
+
+                //Make a new sdat.
+                sdat = new sdatFile();
+
+                sdat.files = new sdatFile.fileBlock();
+                sdat.symbFile = new symbData();
+                sdat.infoFile = new infoData();
+
+                //Fix strings.
+                sdat.symbFile.sseqStrings = new List<symbStringName>();
+                sdat.symbFile.seqArcStrings = new List<symbStringName>();
+                sdat.symbFile.bankStrings = new List<symbStringName>();
+                sdat.symbFile.waveStrings = new List<symbStringName>();
+                sdat.symbFile.groupStrings = new List<symbStringName>();
+                sdat.symbFile.playerStrings = new List<symbStringName>();
+                sdat.symbFile.player2Strings = new List<symbStringName>();
+                sdat.symbFile.strmStrings = new List<symbStringName>();
+                sdat.symbFile.seqArcSubStrings = new List<List<symbStringName>>();
+
+                //Fix info.
+                sdat.infoFile.sseqData = new List<SseqData>();
+                sdat.infoFile.seqArcData = new List<SeqArcData>();
+                sdat.infoFile.bankData = new List<BankData>();
+                sdat.infoFile.waveData = new List<WaveData>();
+                sdat.infoFile.playerData = new List<PlayerData>();
+                sdat.infoFile.groupData = new List<GroupData>();
+                sdat.infoFile.player2Data = new List<Player2Data>();
+                sdat.infoFile.strmData = new List<StrmData>();
+
+                //Fix files.
+                sdat.files.files = new List<byte[]>();
+                sdat.files.sseqFiles = new List<byte[]>();
+                sdat.files.seqArcFiles = new List<byte[]>();
+                sdat.files.bankFiles = new List<byte[]>();
+                sdat.files.waveFiles = new List<byte[]>();
+                sdat.files.strmFiles = new List<byte[]>();
+
+                //Load node menus.
+                for (int i = 0; i < tree.Nodes.Count - 1; i++)
+                {
+                    tree.Nodes[i].ContextMenuStrip = bigNodeMenu;
+                }
+
+                sdatPath = "%BLANK%";
+
+                sdat.fixOffsets();
+
+                fileOpen = true;
+
+                //Update nodes.
+                updateNodes();
+
+                this.Text = "Nitro Studio - New_File.sdat";
+
+            }
+            else
+            {
+
+                //Show warning close menu.
+                SaveCloseDialog c = new SaveCloseDialog();
+                int h = c.getValue();
+
+                if (h == 0)
+                {
+                    sdatPath = "%BLANK%";
+                    save();
+                    closeFile();
+                    makeNewFile();
+                }
+                else if (h == 1) {
+                    closeFile();
+                    makeNewFile();
+                }
+
+            }
+
+        }
+
+        #endregion
+
+        
     }
 }

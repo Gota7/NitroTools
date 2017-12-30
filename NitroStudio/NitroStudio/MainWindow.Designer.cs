@@ -31,26 +31,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Sound Sequence");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Sequence Archive", 1, 1);
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Instrument Bank", 2, 2);
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Wave", 3, 3);
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Player", 4, 4);
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Group", 5, 5);
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Stream Player", 6, 6);
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Stream", 7, 7);
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Sequence", 8, 8);
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Sequence Archive", 8, 8);
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Bank", 8, 8);
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Wave Archive", 8, 8);
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Stream", 8, 8);
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("FILES", 8, 8, new System.Windows.Forms.TreeNode[] {
-            treeNode23,
-            treeNode24,
-            treeNode25,
-            treeNode26,
-            treeNode27});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sound Sequence");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sequence Archive", 1, 1);
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Instrument Bank", 2, 2);
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Wave", 3, 3);
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Player", 4, 4);
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Group", 5, 5);
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Stream Player", 6, 6);
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Stream", 7, 7);
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Sequence", 8, 8);
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Sequence Archive", 8, 8);
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Bank", 8, 8);
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Wave Archive", 8, 8);
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Stream", 8, 8);
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("FILES", 8, 8, new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13});
             this.bigFolderMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,13 +74,23 @@
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.byteSelect = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.fileIdBox = new System.Windows.Forms.ComboBox();
+            this.fileIdLabel = new System.Windows.Forms.Label();
+            this.player2Group = new System.Windows.Forms.Panel();
+            this.groupSubPanel = new System.Windows.Forms.Panel();
+            this.loadFlagGroupBox = new System.Windows.Forms.NumericUpDown();
+            this.loadFlagGroupLabel = new System.Windows.Forms.Label();
+            this.nEntryBox = new System.Windows.Forms.ComboBox();
+            this.nEntryLabel = new System.Windows.Forms.Label();
+            this.typeGroupLabel = new System.Windows.Forms.Label();
+            this.typeGroupBox = new System.Windows.Forms.ComboBox();
             this.playerGroup = new System.Windows.Forms.Panel();
+            this.sequenceMaxLabel = new System.Windows.Forms.Label();
             this.heapSizeBox = new System.Windows.Forms.NumericUpDown();
             this.heapSizeLabel = new System.Windows.Forms.Label();
             this.channelFlagBox = new System.Windows.Forms.NumericUpDown();
             this.channelFlagLabel = new System.Windows.Forms.Label();
             this.sequenceMaxBox = new System.Windows.Forms.NumericUpDown();
-            this.sequenceMaxLabel = new System.Windows.Forms.Label();
             this.bankGroup = new System.Windows.Forms.Panel();
             this.wave3Box = new System.Windows.Forms.ComboBox();
             this.wave2Box = new System.Windows.Forms.ComboBox();
@@ -90,16 +100,8 @@
             this.wave2Label = new System.Windows.Forms.Label();
             this.wave1Label = new System.Windows.Forms.Label();
             this.wave0Label = new System.Windows.Forms.Label();
-            this.groupSubPanel = new System.Windows.Forms.Panel();
-            this.loadFlagGroupBox = new System.Windows.Forms.NumericUpDown();
-            this.loadFlagGroupLabel = new System.Windows.Forms.Label();
-            this.nEntryBox = new System.Windows.Forms.ComboBox();
-            this.nEntryLabel = new System.Windows.Forms.Label();
-            this.typeGroupLabel = new System.Windows.Forms.Label();
-            this.typeGroupBox = new System.Windows.Forms.ComboBox();
             this.noSelectLabel = new System.Windows.Forms.Label();
             this.placeholderBox = new System.Windows.Forms.CheckBox();
-            this.fileIdBox = new System.Windows.Forms.ComboBox();
             this.sseqGroup = new System.Windows.Forms.Panel();
             this.playerNumberSseqLabel = new System.Windows.Forms.Label();
             this.playerPrioritySseqLabel = new System.Windows.Forms.Label();
@@ -111,7 +113,7 @@
             this.volumeSseqBox = new System.Windows.Forms.NumericUpDown();
             this.bankIDbox = new System.Windows.Forms.ComboBox();
             this.bankIdLabel = new System.Windows.Forms.Label();
-            this.fileIdLabel = new System.Windows.Forms.Label();
+            this.strmGroup = new System.Windows.Forms.Panel();
             this.tree = new System.Windows.Forms.TreeView();
             this.nodeImages = new System.Windows.Forms.ImageList(this.components);
             this.filesMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -151,13 +153,13 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupSubPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).BeginInit();
             this.playerGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.heapSizeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.channelFlagBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sequenceMaxBox)).BeginInit();
             this.bankGroup.SuspendLayout();
-            this.groupSubPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).BeginInit();
             this.sseqGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerNumberSseqBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPrioritySseqBox)).BeginInit();
@@ -181,6 +183,7 @@
             // 
             // toolStripMenuItem2
             // 
+            this.toolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem2.Image")));
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(119, 22);
             this.toolStripMenuItem2.Text = "Expand";
@@ -188,6 +191,7 @@
             // 
             // toolStripMenuItem3
             // 
+            this.toolStripMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem3.Image")));
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(119, 22);
             this.toolStripMenuItem3.Text = "Collapse";
@@ -223,14 +227,16 @@
             // 
             // newBetaToolStripMenuItem
             // 
-            this.newBetaToolStripMenuItem.Enabled = false;
+            this.newBetaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newBetaToolStripMenuItem.Image")));
             this.newBetaToolStripMenuItem.Name = "newBetaToolStripMenuItem";
             this.newBetaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newBetaToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.newBetaToolStripMenuItem.Text = "New (Beta)";
+            this.newBetaToolStripMenuItem.Text = "New";
+            this.newBetaToolStripMenuItem.Click += new System.EventHandler(this.newBetaToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
+            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
@@ -239,6 +245,7 @@
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
@@ -247,6 +254,7 @@
             // 
             // saveAsToolStripMenuItem
             // 
+            this.saveAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveAsToolStripMenuItem.Image")));
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
@@ -256,6 +264,7 @@
             // 
             // closeToolStripMenuItem
             // 
+            this.closeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("closeToolStripMenuItem.Image")));
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.C)));
@@ -265,6 +274,7 @@
             // 
             // quitToolStripMenuItem
             // 
+            this.quitToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("quitToolStripMenuItem.Image")));
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
             this.quitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.Q)));
@@ -284,6 +294,7 @@
             // 
             // exportToolStripMenuItem
             // 
+            this.exportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportToolStripMenuItem.Image")));
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
@@ -292,6 +303,7 @@
             // 
             // importToolStripMenuItem
             // 
+            this.importToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importToolStripMenuItem.Image")));
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.importToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
@@ -310,8 +322,9 @@
             // 
             // viewHelpToolStripMenuItem
             // 
+            this.viewHelpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("viewHelpToolStripMenuItem.Image")));
             this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
-            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.viewHelpToolStripMenuItem.Text = "View Help";
             this.viewHelpToolStripMenuItem.Click += new System.EventHandler(this.viewHelpToolStripMenuItem_Click);
             // 
@@ -325,6 +338,7 @@
             // 
             // aboutNitroComposerToolStripMenuItem
             // 
+            this.aboutNitroComposerToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutNitroComposerToolStripMenuItem.Image")));
             this.aboutNitroComposerToolStripMenuItem.Name = "aboutNitroComposerToolStripMenuItem";
             this.aboutNitroComposerToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.aboutNitroComposerToolStripMenuItem.Text = "About Nitro Studio";
@@ -371,14 +385,16 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.fileIdBox);
+            this.splitContainer1.Panel1.Controls.Add(this.fileIdLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.player2Group);
+            this.splitContainer1.Panel1.Controls.Add(this.groupSubPanel);
             this.splitContainer1.Panel1.Controls.Add(this.playerGroup);
             this.splitContainer1.Panel1.Controls.Add(this.bankGroup);
-            this.splitContainer1.Panel1.Controls.Add(this.groupSubPanel);
             this.splitContainer1.Panel1.Controls.Add(this.noSelectLabel);
             this.splitContainer1.Panel1.Controls.Add(this.placeholderBox);
-            this.splitContainer1.Panel1.Controls.Add(this.fileIdBox);
             this.splitContainer1.Panel1.Controls.Add(this.sseqGroup);
-            this.splitContainer1.Panel1.Controls.Add(this.fileIdLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.strmGroup);
             // 
             // splitContainer1.Panel2
             // 
@@ -388,22 +404,163 @@
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
             // 
+            // fileIdBox
+            // 
+            this.fileIdBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fileIdBox.FormattingEnabled = true;
+            this.fileIdBox.Location = new System.Drawing.Point(4, 26);
+            this.fileIdBox.Name = "fileIdBox";
+            this.fileIdBox.Size = new System.Drawing.Size(187, 21);
+            this.fileIdBox.TabIndex = 1;
+            this.fileIdBox.Visible = false;
+            this.fileIdBox.SelectedIndexChanged += new System.EventHandler(this.onFileIdChange);
+            // 
+            // fileIdLabel
+            // 
+            this.fileIdLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fileIdLabel.Location = new System.Drawing.Point(0, 0);
+            this.fileIdLabel.Name = "fileIdLabel";
+            this.fileIdLabel.Size = new System.Drawing.Size(194, 23);
+            this.fileIdLabel.TabIndex = 2;
+            this.fileIdLabel.Text = "File ID:";
+            this.fileIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.fileIdLabel.Visible = false;
+            // 
+            // player2Group
+            // 
+            this.player2Group.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.player2Group.Location = new System.Drawing.Point(0, 0);
+            this.player2Group.Name = "player2Group";
+            this.player2Group.Size = new System.Drawing.Size(194, 339);
+            this.player2Group.TabIndex = 14;
+            this.player2Group.Visible = false;
+            // 
+            // groupSubPanel
+            // 
+            this.groupSubPanel.Controls.Add(this.loadFlagGroupBox);
+            this.groupSubPanel.Controls.Add(this.loadFlagGroupLabel);
+            this.groupSubPanel.Controls.Add(this.nEntryBox);
+            this.groupSubPanel.Controls.Add(this.nEntryLabel);
+            this.groupSubPanel.Controls.Add(this.typeGroupLabel);
+            this.groupSubPanel.Controls.Add(this.typeGroupBox);
+            this.groupSubPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupSubPanel.Location = new System.Drawing.Point(0, 0);
+            this.groupSubPanel.Name = "groupSubPanel";
+            this.groupSubPanel.Size = new System.Drawing.Size(194, 339);
+            this.groupSubPanel.TabIndex = 12;
+            this.groupSubPanel.Visible = false;
+            // 
+            // loadFlagGroupBox
+            // 
+            this.loadFlagGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.loadFlagGroupBox.Location = new System.Drawing.Point(5, 124);
+            this.loadFlagGroupBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.loadFlagGroupBox.Name = "loadFlagGroupBox";
+            this.loadFlagGroupBox.Size = new System.Drawing.Size(185, 20);
+            this.loadFlagGroupBox.TabIndex = 5;
+            this.loadFlagGroupBox.ValueChanged += new System.EventHandler(this.onLoadFlagChanged);
+            // 
+            // loadFlagGroupLabel
+            // 
+            this.loadFlagGroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.loadFlagGroupLabel.Location = new System.Drawing.Point(1, 100);
+            this.loadFlagGroupLabel.Name = "loadFlagGroupLabel";
+            this.loadFlagGroupLabel.Size = new System.Drawing.Size(192, 23);
+            this.loadFlagGroupLabel.TabIndex = 4;
+            this.loadFlagGroupLabel.Text = "Load Flag:";
+            this.loadFlagGroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // nEntryBox
+            // 
+            this.nEntryBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nEntryBox.FormattingEnabled = true;
+            this.nEntryBox.Items.AddRange(new object[] {
+            "0 - SSEQ",
+            "1 - SBNK",
+            "2 - SWAR",
+            "3 - SSAR",
+            "WTF - Other"});
+            this.nEntryBox.Location = new System.Drawing.Point(5, 76);
+            this.nEntryBox.Name = "nEntryBox";
+            this.nEntryBox.Size = new System.Drawing.Size(186, 21);
+            this.nEntryBox.TabIndex = 3;
+            this.nEntryBox.SelectedIndexChanged += new System.EventHandler(this.onNEntryChanged);
+            // 
+            // nEntryLabel
+            // 
+            this.nEntryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.nEntryLabel.Location = new System.Drawing.Point(1, 50);
+            this.nEntryLabel.Name = "nEntryLabel";
+            this.nEntryLabel.Size = new System.Drawing.Size(192, 23);
+            this.nEntryLabel.TabIndex = 2;
+            this.nEntryLabel.Text = "Entry Number:";
+            this.nEntryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // typeGroupLabel
+            // 
+            this.typeGroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.typeGroupLabel.Location = new System.Drawing.Point(1, 0);
+            this.typeGroupLabel.Name = "typeGroupLabel";
+            this.typeGroupLabel.Size = new System.Drawing.Size(192, 23);
+            this.typeGroupLabel.TabIndex = 1;
+            this.typeGroupLabel.Text = "Type:";
+            this.typeGroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // typeGroupBox
+            // 
+            this.typeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.typeGroupBox.FormattingEnabled = true;
+            this.typeGroupBox.Items.AddRange(new object[] {
+            "0 - SSEQ",
+            "1 - SBNK",
+            "2 - SWAR",
+            "3 - SSAR",
+            "WTF - Other"});
+            this.typeGroupBox.Location = new System.Drawing.Point(4, 26);
+            this.typeGroupBox.Name = "typeGroupBox";
+            this.typeGroupBox.Size = new System.Drawing.Size(186, 21);
+            this.typeGroupBox.TabIndex = 0;
+            this.typeGroupBox.SelectedIndexChanged += new System.EventHandler(this.onTypeChanged);
+            // 
             // playerGroup
             // 
             this.playerGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerGroup.Controls.Add(this.sequenceMaxLabel);
             this.playerGroup.Controls.Add(this.heapSizeBox);
             this.playerGroup.Controls.Add(this.heapSizeLabel);
             this.playerGroup.Controls.Add(this.channelFlagBox);
             this.playerGroup.Controls.Add(this.channelFlagLabel);
             this.playerGroup.Controls.Add(this.sequenceMaxBox);
-            this.playerGroup.Controls.Add(this.sequenceMaxLabel);
             this.playerGroup.Location = new System.Drawing.Point(0, 14);
             this.playerGroup.Name = "playerGroup";
             this.playerGroup.Size = new System.Drawing.Size(195, 334);
             this.playerGroup.TabIndex = 11;
             this.playerGroup.Visible = false;
+            // 
+            // sequenceMaxLabel
+            // 
+            this.sequenceMaxLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sequenceMaxLabel.Location = new System.Drawing.Point(0, 1);
+            this.sequenceMaxLabel.Name = "sequenceMaxLabel";
+            this.sequenceMaxLabel.Size = new System.Drawing.Size(195, 23);
+            this.sequenceMaxLabel.TabIndex = 0;
+            this.sequenceMaxLabel.Text = "Sequence Max:";
+            this.sequenceMaxLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // heapSizeBox
             // 
@@ -471,17 +628,6 @@
             this.sequenceMaxBox.Size = new System.Drawing.Size(187, 20);
             this.sequenceMaxBox.TabIndex = 1;
             this.sequenceMaxBox.ValueChanged += new System.EventHandler(this.onSequenceMaxChanged);
-            // 
-            // sequenceMaxLabel
-            // 
-            this.sequenceMaxLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sequenceMaxLabel.Location = new System.Drawing.Point(0, 1);
-            this.sequenceMaxLabel.Name = "sequenceMaxLabel";
-            this.sequenceMaxLabel.Size = new System.Drawing.Size(195, 23);
-            this.sequenceMaxLabel.TabIndex = 0;
-            this.sequenceMaxLabel.Text = "Sequence Max:";
-            this.sequenceMaxLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // bankGroup
             // 
@@ -591,111 +737,12 @@
             this.wave0Label.Text = "Wave 0:";
             this.wave0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // groupSubPanel
-            // 
-            this.groupSubPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupSubPanel.Controls.Add(this.loadFlagGroupBox);
-            this.groupSubPanel.Controls.Add(this.loadFlagGroupLabel);
-            this.groupSubPanel.Controls.Add(this.nEntryBox);
-            this.groupSubPanel.Controls.Add(this.nEntryLabel);
-            this.groupSubPanel.Controls.Add(this.typeGroupLabel);
-            this.groupSubPanel.Controls.Add(this.typeGroupBox);
-            this.groupSubPanel.Location = new System.Drawing.Point(-1, 0);
-            this.groupSubPanel.Name = "groupSubPanel";
-            this.groupSubPanel.Size = new System.Drawing.Size(196, 339);
-            this.groupSubPanel.TabIndex = 12;
-            this.groupSubPanel.Visible = false;
-            // 
-            // loadFlagGroupBox
-            // 
-            this.loadFlagGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadFlagGroupBox.Location = new System.Drawing.Point(5, 124);
-            this.loadFlagGroupBox.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.loadFlagGroupBox.Name = "loadFlagGroupBox";
-            this.loadFlagGroupBox.Size = new System.Drawing.Size(187, 20);
-            this.loadFlagGroupBox.TabIndex = 5;
-            this.loadFlagGroupBox.ValueChanged += new System.EventHandler(this.onLoadFlagChanged);
-            // 
-            // loadFlagGroupLabel
-            // 
-            this.loadFlagGroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadFlagGroupLabel.Location = new System.Drawing.Point(1, 100);
-            this.loadFlagGroupLabel.Name = "loadFlagGroupLabel";
-            this.loadFlagGroupLabel.Size = new System.Drawing.Size(194, 23);
-            this.loadFlagGroupLabel.TabIndex = 4;
-            this.loadFlagGroupLabel.Text = "Load Flag:";
-            this.loadFlagGroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // nEntryBox
-            // 
-            this.nEntryBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nEntryBox.FormattingEnabled = true;
-            this.nEntryBox.Items.AddRange(new object[] {
-            "0 - SSEQ",
-            "1 - SBNK",
-            "2 - SWAR",
-            "3 - SSAR",
-            "WTF - Other"});
-            this.nEntryBox.Location = new System.Drawing.Point(5, 76);
-            this.nEntryBox.Name = "nEntryBox";
-            this.nEntryBox.Size = new System.Drawing.Size(188, 21);
-            this.nEntryBox.TabIndex = 3;
-            this.nEntryBox.SelectedIndexChanged += new System.EventHandler(this.onNEntryChanged);
-            // 
-            // nEntryLabel
-            // 
-            this.nEntryLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.nEntryLabel.Location = new System.Drawing.Point(1, 50);
-            this.nEntryLabel.Name = "nEntryLabel";
-            this.nEntryLabel.Size = new System.Drawing.Size(194, 23);
-            this.nEntryLabel.TabIndex = 2;
-            this.nEntryLabel.Text = "Entry Number:";
-            this.nEntryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // typeGroupLabel
-            // 
-            this.typeGroupLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.typeGroupLabel.Location = new System.Drawing.Point(1, 0);
-            this.typeGroupLabel.Name = "typeGroupLabel";
-            this.typeGroupLabel.Size = new System.Drawing.Size(194, 23);
-            this.typeGroupLabel.TabIndex = 1;
-            this.typeGroupLabel.Text = "Type:";
-            this.typeGroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // typeGroupBox
-            // 
-            this.typeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.typeGroupBox.FormattingEnabled = true;
-            this.typeGroupBox.Items.AddRange(new object[] {
-            "0 - SSEQ",
-            "1 - SBNK",
-            "2 - SWAR",
-            "3 - SSAR",
-            "WTF - Other"});
-            this.typeGroupBox.Location = new System.Drawing.Point(4, 26);
-            this.typeGroupBox.Name = "typeGroupBox";
-            this.typeGroupBox.Size = new System.Drawing.Size(188, 21);
-            this.typeGroupBox.TabIndex = 0;
-            this.typeGroupBox.SelectedIndexChanged += new System.EventHandler(this.onTypeChanged);
-            // 
             // noSelectLabel
             // 
             this.noSelectLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.noSelectLabel.Location = new System.Drawing.Point(0, 23);
+            this.noSelectLabel.Location = new System.Drawing.Point(0, 0);
             this.noSelectLabel.Name = "noSelectLabel";
-            this.noSelectLabel.Size = new System.Drawing.Size(194, 316);
+            this.noSelectLabel.Size = new System.Drawing.Size(194, 339);
             this.noSelectLabel.TabIndex = 0;
             this.noSelectLabel.Text = "No Valid Info Selected!";
             this.noSelectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -712,19 +759,6 @@
             this.placeholderBox.UseVisualStyleBackColor = true;
             this.placeholderBox.Visible = false;
             this.placeholderBox.CheckedChanged += new System.EventHandler(this.onCheckedChange);
-            // 
-            // fileIdBox
-            // 
-            this.fileIdBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fileIdBox.FormattingEnabled = true;
-            this.fileIdBox.Location = new System.Drawing.Point(4, 26);
-            this.fileIdBox.Name = "fileIdBox";
-            this.fileIdBox.Size = new System.Drawing.Size(187, 21);
-            this.fileIdBox.TabIndex = 1;
-            this.fileIdBox.Visible = false;
-            this.fileIdBox.SelectedIndexChanged += new System.EventHandler(this.onFileIdChange);
             // 
             // sseqGroup
             // 
@@ -874,16 +908,14 @@
             this.bankIdLabel.Text = "Bank ID:";
             this.bankIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // fileIdLabel
+            // strmGroup
             // 
-            this.fileIdLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fileIdLabel.Location = new System.Drawing.Point(0, 0);
-            this.fileIdLabel.Name = "fileIdLabel";
-            this.fileIdLabel.Size = new System.Drawing.Size(194, 23);
-            this.fileIdLabel.TabIndex = 2;
-            this.fileIdLabel.Text = "File ID:";
-            this.fileIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.fileIdLabel.Visible = false;
+            this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.strmGroup.Location = new System.Drawing.Point(0, 0);
+            this.strmGroup.Name = "strmGroup";
+            this.strmGroup.Size = new System.Drawing.Size(194, 363);
+            this.strmGroup.TabIndex = 15;
+            this.strmGroup.Visible = false;
             // 
             // tree
             // 
@@ -893,80 +925,80 @@
             this.tree.Indent = 15;
             this.tree.Location = new System.Drawing.Point(0, 0);
             this.tree.Name = "tree";
-            treeNode15.Name = "Sseq";
-            treeNode15.Tag = "sseq";
-            treeNode15.Text = "Sound Sequence";
-            treeNode16.ImageIndex = 1;
-            treeNode16.Name = "SeqArc";
-            treeNode16.SelectedImageIndex = 1;
-            treeNode16.Tag = "seqarc";
-            treeNode16.Text = "Sequence Archive";
-            treeNode17.ImageIndex = 2;
-            treeNode17.Name = "Bank";
-            treeNode17.SelectedImageIndex = 2;
-            treeNode17.Tag = "bank";
-            treeNode17.Text = "Instrument Bank";
-            treeNode18.ImageIndex = 3;
-            treeNode18.Name = "Wave";
-            treeNode18.SelectedImageIndex = 3;
-            treeNode18.Tag = "wave";
-            treeNode18.Text = "Wave";
-            treeNode19.ImageIndex = 4;
-            treeNode19.Name = "Player";
-            treeNode19.SelectedImageIndex = 4;
-            treeNode19.Tag = "player";
-            treeNode19.Text = "Player";
-            treeNode20.ImageIndex = 5;
-            treeNode20.Name = "Group";
-            treeNode20.SelectedImageIndex = 5;
-            treeNode20.Tag = "group";
-            treeNode20.Text = "Group";
-            treeNode21.ImageIndex = 6;
-            treeNode21.Name = "Strm Player";
-            treeNode21.SelectedImageIndex = 6;
-            treeNode21.Tag = "strmplayer";
-            treeNode21.Text = "Stream Player";
-            treeNode22.ImageIndex = 7;
-            treeNode22.Name = "strm";
-            treeNode22.SelectedImageIndex = 7;
-            treeNode22.Tag = "strm";
-            treeNode22.Text = "Stream";
-            treeNode23.ImageIndex = 8;
-            treeNode23.Name = "sequenceFiles";
-            treeNode23.SelectedImageIndex = 8;
-            treeNode23.Text = "Sequence";
-            treeNode24.ImageIndex = 8;
-            treeNode24.Name = "sequenceArchive";
-            treeNode24.SelectedImageIndex = 8;
-            treeNode24.Text = "Sequence Archive";
-            treeNode25.ImageIndex = 8;
-            treeNode25.Name = "bankFiles";
-            treeNode25.SelectedImageIndex = 8;
-            treeNode25.Text = "Bank";
-            treeNode26.ImageIndex = 8;
-            treeNode26.Name = "waveFiles";
-            treeNode26.SelectedImageIndex = 8;
-            treeNode26.Text = "Wave Archive";
-            treeNode27.ImageIndex = 8;
-            treeNode27.Name = "strmFiles";
-            treeNode27.SelectedImageIndex = 8;
-            treeNode27.Text = "Stream";
-            treeNode28.ContextMenuStrip = this.bigFolderMenu;
-            treeNode28.ImageIndex = 8;
-            treeNode28.Name = "FILES";
-            treeNode28.SelectedImageIndex = 8;
-            treeNode28.Tag = "files";
-            treeNode28.Text = "FILES";
+            treeNode1.Name = "Sseq";
+            treeNode1.Tag = "sseq";
+            treeNode1.Text = "Sound Sequence";
+            treeNode2.ImageIndex = 1;
+            treeNode2.Name = "SeqArc";
+            treeNode2.SelectedImageIndex = 1;
+            treeNode2.Tag = "seqarc";
+            treeNode2.Text = "Sequence Archive";
+            treeNode3.ImageIndex = 2;
+            treeNode3.Name = "Bank";
+            treeNode3.SelectedImageIndex = 2;
+            treeNode3.Tag = "bank";
+            treeNode3.Text = "Instrument Bank";
+            treeNode4.ImageIndex = 3;
+            treeNode4.Name = "Wave";
+            treeNode4.SelectedImageIndex = 3;
+            treeNode4.Tag = "wave";
+            treeNode4.Text = "Wave";
+            treeNode5.ImageIndex = 4;
+            treeNode5.Name = "Player";
+            treeNode5.SelectedImageIndex = 4;
+            treeNode5.Tag = "player";
+            treeNode5.Text = "Player";
+            treeNode6.ImageIndex = 5;
+            treeNode6.Name = "Group";
+            treeNode6.SelectedImageIndex = 5;
+            treeNode6.Tag = "group";
+            treeNode6.Text = "Group";
+            treeNode7.ImageIndex = 6;
+            treeNode7.Name = "Strm Player";
+            treeNode7.SelectedImageIndex = 6;
+            treeNode7.Tag = "strmplayer";
+            treeNode7.Text = "Stream Player";
+            treeNode8.ImageIndex = 7;
+            treeNode8.Name = "strm";
+            treeNode8.SelectedImageIndex = 7;
+            treeNode8.Tag = "strm";
+            treeNode8.Text = "Stream";
+            treeNode9.ImageIndex = 8;
+            treeNode9.Name = "sequenceFiles";
+            treeNode9.SelectedImageIndex = 8;
+            treeNode9.Text = "Sequence";
+            treeNode10.ImageIndex = 8;
+            treeNode10.Name = "sequenceArchive";
+            treeNode10.SelectedImageIndex = 8;
+            treeNode10.Text = "Sequence Archive";
+            treeNode11.ImageIndex = 8;
+            treeNode11.Name = "bankFiles";
+            treeNode11.SelectedImageIndex = 8;
+            treeNode11.Text = "Bank";
+            treeNode12.ImageIndex = 8;
+            treeNode12.Name = "waveFiles";
+            treeNode12.SelectedImageIndex = 8;
+            treeNode12.Text = "Wave Archive";
+            treeNode13.ImageIndex = 8;
+            treeNode13.Name = "strmFiles";
+            treeNode13.SelectedImageIndex = 8;
+            treeNode13.Text = "Stream";
+            treeNode14.ContextMenuStrip = this.bigFolderMenu;
+            treeNode14.ImageIndex = 8;
+            treeNode14.Name = "FILES";
+            treeNode14.SelectedImageIndex = 8;
+            treeNode14.Tag = "files";
+            treeNode14.Text = "FILES";
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20,
-            treeNode21,
-            treeNode22,
-            treeNode28});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode14});
             this.tree.SelectedImageIndex = 0;
             this.tree.ShowLines = false;
             this.tree.Size = new System.Drawing.Size(484, 363);
@@ -1004,7 +1036,7 @@
             // 
             // addAbove
             // 
-            this.addAbove.Enabled = false;
+            this.addAbove.Image = ((System.Drawing.Image)(resources.GetObject("addAbove.Image")));
             this.addAbove.Name = "addAbove";
             this.addAbove.Size = new System.Drawing.Size(158, 22);
             this.addAbove.Text = "Add Above This";
@@ -1012,7 +1044,7 @@
             // 
             // addBelow
             // 
-            this.addBelow.Enabled = false;
+            this.addBelow.Image = ((System.Drawing.Image)(resources.GetObject("addBelow.Image")));
             this.addBelow.Name = "addBelow";
             this.addBelow.Size = new System.Drawing.Size(158, 22);
             this.addBelow.Text = "Add Below This";
@@ -1020,6 +1052,7 @@
             // 
             // Export
             // 
+            this.Export.Image = ((System.Drawing.Image)(resources.GetObject("Export.Image")));
             this.Export.Name = "Export";
             this.Export.Size = new System.Drawing.Size(158, 22);
             this.Export.Text = "Export";
@@ -1027,6 +1060,7 @@
             // 
             // Replace
             // 
+            this.Replace.Image = ((System.Drawing.Image)(resources.GetObject("Replace.Image")));
             this.Replace.Name = "Replace";
             this.Replace.Size = new System.Drawing.Size(158, 22);
             this.Replace.Text = "Replace";
@@ -1034,6 +1068,7 @@
             // 
             // Delete
             // 
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(158, 22);
             this.Delete.Text = "Delete";
@@ -1050,6 +1085,7 @@
             // 
             // Add2
             // 
+            this.Add2.Image = ((System.Drawing.Image)(resources.GetObject("Add2.Image")));
             this.Add2.Name = "Add2";
             this.Add2.Size = new System.Drawing.Size(119, 22);
             this.Add2.Text = "Add";
@@ -1057,6 +1093,7 @@
             // 
             // openTree2
             // 
+            this.openTree2.Image = ((System.Drawing.Image)(resources.GetObject("openTree2.Image")));
             this.openTree2.Name = "openTree2";
             this.openTree2.Size = new System.Drawing.Size(119, 22);
             this.openTree2.Text = "Expand";
@@ -1064,6 +1101,7 @@
             // 
             // closeTree2
             // 
+            this.closeTree2.Image = ((System.Drawing.Image)(resources.GetObject("closeTree2.Image")));
             this.closeTree2.Name = "closeTree2";
             this.closeTree2.Size = new System.Drawing.Size(119, 22);
             this.closeTree2.Text = "Collapse";
@@ -1081,10 +1119,11 @@
             this.deleteMeh});
             this.nodeMenu.Name = "nodeMenu";
             this.nodeMenu.Size = new System.Drawing.Size(134, 158);
+            this.nodeMenu.Opening += new System.ComponentModel.CancelEventHandler(this.nodeMenu_Opening);
             // 
             // Add3
             // 
-            this.Add3.Enabled = false;
+            this.Add3.Image = ((System.Drawing.Image)(resources.GetObject("Add3.Image")));
             this.Add3.Name = "Add3";
             this.Add3.Size = new System.Drawing.Size(133, 22);
             this.Add3.Text = "Add Above";
@@ -1092,7 +1131,7 @@
             // 
             // Add32
             // 
-            this.Add32.Enabled = false;
+            this.Add32.Image = ((System.Drawing.Image)(resources.GetObject("Add32.Image")));
             this.Add32.Name = "Add32";
             this.Add32.Size = new System.Drawing.Size(133, 22);
             this.Add32.Text = "Add Below";
@@ -1100,7 +1139,7 @@
             // 
             // addInside
             // 
-            this.addInside.Enabled = false;
+            this.addInside.Image = ((System.Drawing.Image)(resources.GetObject("addInside.Image")));
             this.addInside.Name = "addInside";
             this.addInside.Size = new System.Drawing.Size(133, 22);
             this.addInside.Text = "Add Inside";
@@ -1108,6 +1147,7 @@
             // 
             // openTree3
             // 
+            this.openTree3.Image = ((System.Drawing.Image)(resources.GetObject("openTree3.Image")));
             this.openTree3.Name = "openTree3";
             this.openTree3.Size = new System.Drawing.Size(133, 22);
             this.openTree3.Text = "Expand";
@@ -1115,6 +1155,7 @@
             // 
             // closeTree3
             // 
+            this.closeTree3.Image = ((System.Drawing.Image)(resources.GetObject("closeTree3.Image")));
             this.closeTree3.Name = "closeTree3";
             this.closeTree3.Size = new System.Drawing.Size(133, 22);
             this.closeTree3.Text = "Collapse";
@@ -1122,6 +1163,7 @@
             // 
             // rename3
             // 
+            this.rename3.Image = ((System.Drawing.Image)(resources.GetObject("rename3.Image")));
             this.rename3.Name = "rename3";
             this.rename3.Size = new System.Drawing.Size(133, 22);
             this.rename3.Text = "Rename";
@@ -1129,6 +1171,7 @@
             // 
             // deleteMeh
             // 
+            this.deleteMeh.Image = ((System.Drawing.Image)(resources.GetObject("deleteMeh.Image")));
             this.deleteMeh.Name = "deleteMeh";
             this.deleteMeh.Size = new System.Drawing.Size(133, 22);
             this.deleteMeh.Text = "Delete";
@@ -1144,6 +1187,7 @@
             // 
             // Rename4
             // 
+            this.Rename4.Image = ((System.Drawing.Image)(resources.GetObject("Rename4.Image")));
             this.Rename4.Name = "Rename4";
             this.Rename4.Size = new System.Drawing.Size(117, 22);
             this.Rename4.Text = "Rename";
@@ -1151,6 +1195,7 @@
             // 
             // Delete4
             // 
+            this.Delete4.Image = ((System.Drawing.Image)(resources.GetObject("Delete4.Image")));
             this.Delete4.Name = "Delete4";
             this.Delete4.Size = new System.Drawing.Size(117, 22);
             this.Delete4.Text = "Delete";
@@ -1167,6 +1212,7 @@
             // 
             // toolStripMenuItem5
             // 
+            this.toolStripMenuItem5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem5.Image")));
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(119, 22);
             this.toolStripMenuItem5.Text = "Add";
@@ -1174,6 +1220,7 @@
             // 
             // toolStripMenuItem6
             // 
+            this.toolStripMenuItem6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem6.Image")));
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
             this.toolStripMenuItem6.Size = new System.Drawing.Size(119, 22);
             this.toolStripMenuItem6.Text = "Expand";
@@ -1181,6 +1228,7 @@
             // 
             // toolStripMenuItem7
             // 
+            this.toolStripMenuItem7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem7.Image")));
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
             this.toolStripMenuItem7.Size = new System.Drawing.Size(119, 22);
             this.toolStripMenuItem7.Text = "Collapse";
@@ -1198,7 +1246,7 @@
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.Enabled = false;
+            this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem1.Text = "Add Above";
@@ -1206,7 +1254,7 @@
             // 
             // toolStripMenuItem4
             // 
-            this.toolStripMenuItem4.Enabled = false;
+            this.toolStripMenuItem4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem4.Image")));
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem4.Text = "Add Below";
@@ -1214,7 +1262,7 @@
             // 
             // toolStripMenuItem11
             // 
-            this.toolStripMenuItem11.Enabled = false;
+            this.toolStripMenuItem11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem11.Image")));
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
             this.toolStripMenuItem11.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem11.Text = "Rename";
@@ -1222,7 +1270,7 @@
             // 
             // toolStripMenuItem12
             // 
-            this.toolStripMenuItem12.Enabled = false;
+            this.toolStripMenuItem12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem12.Image")));
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
             this.toolStripMenuItem12.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem12.Text = "Delete";
@@ -1251,13 +1299,13 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupSubPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).EndInit();
             this.playerGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.heapSizeBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.channelFlagBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sequenceMaxBox)).EndInit();
             this.bankGroup.ResumeLayout(false);
-            this.groupSubPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).EndInit();
             this.sseqGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.playerNumberSseqBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerPrioritySseqBox)).EndInit();
@@ -1369,6 +1417,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem11;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem12;
+        private System.Windows.Forms.Panel player2Group;
+        private System.Windows.Forms.Panel strmGroup;
     }
 }
 
