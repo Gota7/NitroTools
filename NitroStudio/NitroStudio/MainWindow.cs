@@ -1117,8 +1117,57 @@ namespace NitroStudio
 
                     //Show player2group.
                     player2Group.Show();
+                    placeholderBox.Show();
 
+                    //Check if placeholder.
+                    if (!sdat.infoFile.player2Data[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.player2Strings[tree.SelectedNode.Index].isPlaceHolder)
+                    {
 
+                        placeholderBox.Checked = false;
+
+                        //Set values.
+                        v0.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v0;
+                        v1.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v1;
+                        v2.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v2;
+                        v3.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v3;
+                        v4.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v4;
+                        v5.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v5;
+                        v6.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v6;
+                        v7.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v7;
+                        v8.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v8;
+                        v9.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v9;
+                        v10.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v10;
+                        v11.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v11;
+                        v12.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v12;
+                        v13.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v13;
+                        v14.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v14;
+                        v15.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v15;
+                        count.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].count;
+                    }
+                    else {
+
+                        placeholderBox.Checked = true;
+
+                        //Set values.
+                        v0.Value = 0;
+                        v1.Value = 0;
+                        v2.Value = 0;
+                        v3.Value = 0;
+                        v4.Value = 0;
+                        v5.Value = 0;
+                        v6.Value = 0;
+                        v7.Value = 0;
+                        v8.Value = 0;
+                        v9.Value = 0;
+                        v10.Value = 0;
+                        v11.Value = 0;
+                        v12.Value = 0;
+                        v13.Value = 0;
+                        v14.Value = 0;
+                        v15.Value = 0;
+                        count.Value = 0;
+
+                    }
                 }
 
                 //Strm
@@ -1127,6 +1176,7 @@ namespace NitroStudio
 
                     //Hide panel stuff.
                     hideAllPanelStuff();
+                    placeholderBox.Show();
 
                     //Show strm group.
                     strmGroup.Show();
@@ -1134,12 +1184,40 @@ namespace NitroStudio
                     //Show fileID.
                     fileIdLabel.Show();
                     fileIdBox.Show();
-                    for (int i = 0; i < fatFiles.Length; i++)
+                    fileIdBox.BringToFront();
+
+                    //Check if placeholder.
+                    if (!sdat.infoFile.strmData[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.strmStrings[tree.SelectedNode.Index].isPlaceHolder)
                     {
-                        fileIdBox.Items.Add(fatFiles[i]);
+
+                        placeholderBox.Checked = false;
+
+                        for (int i = 0; i < fatFiles.Length; i++)
+                        {
+                            fileIdBox.Items.Add(fatFiles[i]);
+                        }
+                        fileIdBox.SelectedIndex = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId;
+                        fileIdBox.Show();
+                        
+                        //Show the stuff.
+                        volumeBoxMushrooms.Value = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].volume;
+                        priorityBoxBlack.Value = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].priority;
+                        playerBoxMagic.Value = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].player;
+
                     }
-                    fileIdBox.SelectedIndex = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId;
-                    fileIdBox.Show();
+                    else {
+
+                        placeholderBox.Checked = true;
+
+                        fileIdBox.SelectedIndex = 0;
+                        fileIdBox.Show();
+
+                        //Show the stuff.
+                        volumeBoxMushrooms.Value = 0;
+                        priorityBoxBlack.Value = 0;
+                        playerBoxMagic.Value = 0;
+
+                    }
 
                 }
 
@@ -1557,6 +1635,205 @@ namespace NitroStudio
             }
         }
 
+        private void priorityLabelPig_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+
+        private void v0_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v0 = (byte)v0.Value;
+                }
+            }
+
+        }
+
+        private void v1_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 = (byte)v1.Value;
+                }
+            }
+        }
+
+        private void v2_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v2 = (byte)v2.Value;
+                }
+            }
+        }
+
+        private void v3_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v3 = (byte)v3.Value;
+                }
+            }
+        }
+
+        private void v4_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v4 = (byte)v4.Value;
+                }
+            }
+        }
+
+        private void v5_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v5 = (byte)v5.Value;
+                }
+            }
+        }
+
+        private void v6_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v6 = (byte)v6.Value;
+                }
+            }
+        }
+
+        private void v7_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v7 = (byte)v7.Value;
+                }
+            }
+        }
+
+        private void v8_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v8 = (byte)v8.Value;
+                }
+            }
+        }
+
+        private void v9_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v9 = (byte)v9.Value;
+                }
+            }
+        }
+
+        private void v10_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v10 = (byte)v10.Value;
+                }
+            }
+        }
+
+        private void v11_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v11 = (byte)v11.Value;
+                }
+            }
+        }
+
+        private void v12_ValueChanged_1(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v12 = (byte)v12.Value;
+                }
+            }
+        }
+
+        private void v13_ValueChanged_1(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v13 = (byte)v13.Value;
+                }
+            }
+        }
+
+        private void v14_ValueChanged_1(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v14 = (byte)v14.Value;
+                }
+            }
+        }
+
+        private void v15_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v15 = (byte)v15.Value;
+                }
+            }
+        }
+
+        private void count_ValueChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].count = (byte)count.Value;
+                }
+            }
+        }
 
         #endregion
 
@@ -3934,6 +4211,8 @@ namespace NitroStudio
             }
 
         }
+
+
 
         #endregion
 

@@ -158,6 +158,7 @@
     <Content Include="Data\Tools\InfoTool.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\Tools\libgcc_s_dw2-1.dll" />
     <Content Include="Data\Tools\libstdc++-6.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

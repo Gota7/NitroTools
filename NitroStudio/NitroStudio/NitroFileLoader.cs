@@ -253,7 +253,7 @@ namespace NitroFileLoader
 			for (int i = 0; i < f.strmRecord.count; i++) {
 
 				//Set position.
-				br.Position = (int)f.waveRecord.offsets[i];
+				br.Position = (int)f.strmRecord.offsets[i];
 
 				f.strmInfo [i].fileId = br.ReadUInt32 ();
 				f.strmInfo [i].volume = br.ReadByte ();

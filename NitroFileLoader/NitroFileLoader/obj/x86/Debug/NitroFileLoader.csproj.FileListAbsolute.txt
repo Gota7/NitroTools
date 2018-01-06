@@ -4,3 +4,8 @@ C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLo
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.csprojResolveAssemblyReference.cache
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.exe
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.pdb
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroFileLoader\NitroFileLoader\bin\Debug\NitroFileLoader.exe
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroFileLoader\NitroFileLoader\bin\Debug\NitroFileLoader.pdb
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.csprojResolveAssemblyReference.cache
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.exe
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroFileLoader\NitroFileLoader\obj\x86\Debug\NitroFileLoader.pdb

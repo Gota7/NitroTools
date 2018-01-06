@@ -12,7 +12,6 @@ An Editor For Nitro Sound Data (*.sdat)
 ## Known Bugs
 * Cannot edit placeholders.
 * Cannot edit nodes that have a fileID out of index.
-* Stream Player and Stream Info can't be edited yet. (Not implemented)
 
 ## Credits
 Given in the about tab of the program.

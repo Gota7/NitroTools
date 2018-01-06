@@ -10,10 +10,10 @@ namespace NitroFileLoader
 	{
 		public static void Main (string[] args)
 		{
-            
-			//Some dummy code for messing around with SYMB and INFO files.
 
-			/*
+            //Some dummy code for messing around with SYMB and INFO files.
+
+            /*
 			NitroStructures.infoFile f = NitroFileLoader.loadInfoFile (File.ReadAllBytes ("infoNSMB.bin"));
 
 			NitroStructures.infoFile h = f;
@@ -39,8 +39,8 @@ namespace NitroFileLoader
 			File.WriteAllBytes ("test2.bin", NitroFileLoader.symbToBytes(sData.toSymb()));
 */
 
-			//Test seqArc loading.
-			/*
+            //Test seqArc loading.
+            /*
 			byte[] seqArcNintendo = File.ReadAllBytes("sound_data/Sequence Archive/05NCS_SEQARC_NINTENDO.ssar");
 			byte[] seqArcVoice = File.ReadAllBytes("sound_data/Sequence Archive/02NCS_SEQARC_VOICE.ssar");
 			seqArc sN = new seqArc ();
@@ -48,7 +48,7 @@ namespace NitroFileLoader
 			seqArc vN = new seqArc ();
 			vN.load (seqArcVoice);
 			*/
-			/*
+            /*
 			//Wave arcs.
 			byte[] waveArcNintendo = File.ReadAllBytes("sound_data/Wave Archive/01NCS_WAVE_SE_NINTENDO.swar");
 			swarFile sW = new swarFile ();
@@ -87,6 +87,10 @@ namespace NitroFileLoader
 			otherSdat.load (otherSdatB);
 			otherSdat.extract ("extract2");
 			*/
+
+            //Info.
+            NitroStructures.infoFile f = new NitroStructures.infoFile();
+            f = NitroFileLoader.loadInfoFile(File.ReadAllBytes("info.bin"));
         }
 	}
 }

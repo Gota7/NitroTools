@@ -32,25 +32,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Sound Sequence");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Sequence Archive", 1, 1);
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Instrument Bank", 2, 2);
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Wave", 3, 3);
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Player", 4, 4);
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Group", 5, 5);
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Stream Player", 6, 6);
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Stream", 7, 7);
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Sequence", 8, 8);
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Sequence Archive", 8, 8);
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Bank", 8, 8);
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Wave Archive", 8, 8);
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Stream", 8, 8);
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("FILES", 8, 8, new System.Windows.Forms.TreeNode[] {
-            treeNode23,
-            treeNode24,
-            treeNode25,
-            treeNode26,
-            treeNode27});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sound Sequence");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sequence Archive", 1, 1);
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Instrument Bank", 2, 2);
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Wave", 3, 3);
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Player", 4, 4);
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Group", 5, 5);
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Stream Player", 6, 6);
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Stream", 7, 7);
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Sequence", 8, 8);
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Sequence Archive", 8, 8);
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Bank", 8, 8);
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Wave Archive", 8, 8);
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Stream", 8, 8);
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("FILES", 8, 8, new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10,
+            treeNode11,
+            treeNode12,
+            treeNode13});
             this.bigFolderMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,9 +74,38 @@
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.byteSelect = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.player2Group = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.v14 = new System.Windows.Forms.NumericUpDown();
+            this.v13 = new System.Windows.Forms.NumericUpDown();
+            this.v12 = new System.Windows.Forms.NumericUpDown();
+            this.v15 = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.v11 = new System.Windows.Forms.NumericUpDown();
+            this.v10 = new System.Windows.Forms.NumericUpDown();
+            this.v9 = new System.Windows.Forms.NumericUpDown();
+            this.v8 = new System.Windows.Forms.NumericUpDown();
+            this.v7 = new System.Windows.Forms.NumericUpDown();
+            this.v6 = new System.Windows.Forms.NumericUpDown();
+            this.v5 = new System.Windows.Forms.NumericUpDown();
+            this.v4 = new System.Windows.Forms.NumericUpDown();
+            this.v3 = new System.Windows.Forms.NumericUpDown();
+            this.v2 = new System.Windows.Forms.NumericUpDown();
+            this.v1 = new System.Windows.Forms.NumericUpDown();
+            this.v0 = new System.Windows.Forms.NumericUpDown();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.fileIdBox = new System.Windows.Forms.ComboBox();
             this.fileIdLabel = new System.Windows.Forms.Label();
-            this.player2Group = new System.Windows.Forms.Panel();
+            this.strmGroup = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.playerBoxMagic = new System.Windows.Forms.NumericUpDown();
+            this.playerLabelFrog = new System.Windows.Forms.Label();
+            this.priorityBoxBlack = new System.Windows.Forms.NumericUpDown();
+            this.priorityLabelPig = new System.Windows.Forms.Label();
+            this.volumeBoxMushrooms = new System.Windows.Forms.NumericUpDown();
+            this.volumeLabelFuckRocks = new System.Windows.Forms.Label();
+            this.placeholderBox = new System.Windows.Forms.CheckBox();
             this.groupSubPanel = new System.Windows.Forms.Panel();
             this.loadFlagGroupBox = new System.Windows.Forms.NumericUpDown();
             this.loadFlagGroupLabel = new System.Windows.Forms.Label();
@@ -101,7 +130,6 @@
             this.wave1Label = new System.Windows.Forms.Label();
             this.wave0Label = new System.Windows.Forms.Label();
             this.noSelectLabel = new System.Windows.Forms.Label();
-            this.placeholderBox = new System.Windows.Forms.CheckBox();
             this.sseqGroup = new System.Windows.Forms.Panel();
             this.playerNumberSseqLabel = new System.Windows.Forms.Label();
             this.playerPrioritySseqLabel = new System.Windows.Forms.Label();
@@ -113,7 +141,6 @@
             this.volumeSseqBox = new System.Windows.Forms.NumericUpDown();
             this.bankIDbox = new System.Windows.Forms.ComboBox();
             this.bankIdLabel = new System.Windows.Forms.Label();
-            this.strmGroup = new System.Windows.Forms.Panel();
             this.tree = new System.Windows.Forms.TreeView();
             this.nodeImages = new System.Windows.Forms.ImageList(this.components);
             this.filesMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -146,6 +173,8 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
+            this.countLabel = new System.Windows.Forms.Label();
+            this.count = new System.Windows.Forms.NumericUpDown();
             this.bigFolderMenu.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -153,6 +182,31 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.player2Group.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.v14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v15)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.v11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v0)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.strmGroup.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).BeginInit();
             this.groupSubPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).BeginInit();
             this.playerGroup.SuspendLayout();
@@ -171,6 +225,7 @@
             this.entryMenu.SuspendLayout();
             this.bigNodeMenu.SuspendLayout();
             this.subNodeMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.count)).BeginInit();
             this.SuspendLayout();
             // 
             // bigFolderMenu
@@ -385,16 +440,16 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.placeholderBox);
+            this.splitContainer1.Panel1.Controls.Add(this.strmGroup);
+            this.splitContainer1.Panel1.Controls.Add(this.player2Group);
             this.splitContainer1.Panel1.Controls.Add(this.fileIdBox);
             this.splitContainer1.Panel1.Controls.Add(this.fileIdLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.player2Group);
+            this.splitContainer1.Panel1.Controls.Add(this.placeholderBox);
             this.splitContainer1.Panel1.Controls.Add(this.groupSubPanel);
             this.splitContainer1.Panel1.Controls.Add(this.playerGroup);
             this.splitContainer1.Panel1.Controls.Add(this.bankGroup);
             this.splitContainer1.Panel1.Controls.Add(this.noSelectLabel);
             this.splitContainer1.Panel1.Controls.Add(this.sseqGroup);
-            this.splitContainer1.Panel1.Controls.Add(this.strmGroup);
             // 
             // splitContainer1.Panel2
             // 
@@ -403,6 +458,325 @@
             this.splitContainer1.SplitterDistance = 196;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // player2Group
+            // 
+            this.player2Group.Controls.Add(this.count);
+            this.player2Group.Controls.Add(this.countLabel);
+            this.player2Group.Controls.Add(this.tableLayoutPanel4);
+            this.player2Group.Controls.Add(this.v15);
+            this.player2Group.Controls.Add(this.tableLayoutPanel3);
+            this.player2Group.Controls.Add(this.tableLayoutPanel2);
+            this.player2Group.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.player2Group.Location = new System.Drawing.Point(0, 23);
+            this.player2Group.Name = "player2Group";
+            this.player2Group.Size = new System.Drawing.Size(194, 316);
+            this.player2Group.TabIndex = 14;
+            this.player2Group.Visible = false;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 3;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel4.Controls.Add(this.v14, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.v13, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.v12, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 117);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(194, 31);
+            this.tableLayoutPanel4.TabIndex = 13;
+            // 
+            // v14
+            // 
+            this.v14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v14.Location = new System.Drawing.Point(131, 3);
+            this.v14.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v14.Name = "v14";
+            this.v14.Size = new System.Drawing.Size(60, 20);
+            this.v14.TabIndex = 15;
+            this.v14.ValueChanged += new System.EventHandler(this.v14_ValueChanged_1);
+            // 
+            // v13
+            // 
+            this.v13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v13.Location = new System.Drawing.Point(67, 3);
+            this.v13.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v13.Name = "v13";
+            this.v13.Size = new System.Drawing.Size(58, 20);
+            this.v13.TabIndex = 14;
+            this.v13.ValueChanged += new System.EventHandler(this.v13_ValueChanged_1);
+            // 
+            // v12
+            // 
+            this.v12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v12.Location = new System.Drawing.Point(3, 3);
+            this.v12.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v12.Name = "v12";
+            this.v12.Size = new System.Drawing.Size(58, 20);
+            this.v12.TabIndex = 13;
+            this.v12.ValueChanged += new System.EventHandler(this.v12_ValueChanged_1);
+            // 
+            // v15
+            // 
+            this.v15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.v15.Location = new System.Drawing.Point(3, 150);
+            this.v15.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v15.Name = "v15";
+            this.v15.Size = new System.Drawing.Size(188, 20);
+            this.v15.TabIndex = 12;
+            this.v15.ValueChanged += new System.EventHandler(this.v15_ValueChanged);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.Controls.Add(this.v11, 2, 3);
+            this.tableLayoutPanel3.Controls.Add(this.v10, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.v9, 0, 3);
+            this.tableLayoutPanel3.Controls.Add(this.v8, 2, 2);
+            this.tableLayoutPanel3.Controls.Add(this.v7, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.v6, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.v5, 2, 1);
+            this.tableLayoutPanel3.Controls.Add(this.v4, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.v3, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.v2, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.v1, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.v0, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 17);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 12;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(194, 100);
+            this.tableLayoutPanel3.TabIndex = 1;
+            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
+            // 
+            // v11
+            // 
+            this.v11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v11.Location = new System.Drawing.Point(131, 78);
+            this.v11.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v11.Name = "v11";
+            this.v11.Size = new System.Drawing.Size(60, 20);
+            this.v11.TabIndex = 11;
+            this.v11.ValueChanged += new System.EventHandler(this.v11_ValueChanged);
+            // 
+            // v10
+            // 
+            this.v10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v10.Location = new System.Drawing.Point(67, 78);
+            this.v10.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v10.Name = "v10";
+            this.v10.Size = new System.Drawing.Size(58, 20);
+            this.v10.TabIndex = 10;
+            this.v10.ValueChanged += new System.EventHandler(this.v10_ValueChanged);
+            // 
+            // v9
+            // 
+            this.v9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v9.Location = new System.Drawing.Point(3, 78);
+            this.v9.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v9.Name = "v9";
+            this.v9.Size = new System.Drawing.Size(58, 20);
+            this.v9.TabIndex = 9;
+            this.v9.ValueChanged += new System.EventHandler(this.v9_ValueChanged);
+            // 
+            // v8
+            // 
+            this.v8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v8.Location = new System.Drawing.Point(131, 53);
+            this.v8.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v8.Name = "v8";
+            this.v8.Size = new System.Drawing.Size(60, 20);
+            this.v8.TabIndex = 8;
+            this.v8.ValueChanged += new System.EventHandler(this.v8_ValueChanged);
+            // 
+            // v7
+            // 
+            this.v7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v7.Location = new System.Drawing.Point(67, 53);
+            this.v7.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v7.Name = "v7";
+            this.v7.Size = new System.Drawing.Size(58, 20);
+            this.v7.TabIndex = 7;
+            this.v7.ValueChanged += new System.EventHandler(this.v7_ValueChanged);
+            // 
+            // v6
+            // 
+            this.v6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v6.Location = new System.Drawing.Point(3, 53);
+            this.v6.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v6.Name = "v6";
+            this.v6.Size = new System.Drawing.Size(58, 20);
+            this.v6.TabIndex = 6;
+            this.v6.ValueChanged += new System.EventHandler(this.v6_ValueChanged);
+            // 
+            // v5
+            // 
+            this.v5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v5.Location = new System.Drawing.Point(131, 28);
+            this.v5.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v5.Name = "v5";
+            this.v5.Size = new System.Drawing.Size(60, 20);
+            this.v5.TabIndex = 5;
+            this.v5.ValueChanged += new System.EventHandler(this.v5_ValueChanged);
+            // 
+            // v4
+            // 
+            this.v4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v4.Location = new System.Drawing.Point(67, 28);
+            this.v4.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v4.Name = "v4";
+            this.v4.Size = new System.Drawing.Size(58, 20);
+            this.v4.TabIndex = 4;
+            this.v4.ValueChanged += new System.EventHandler(this.v4_ValueChanged);
+            // 
+            // v3
+            // 
+            this.v3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v3.Location = new System.Drawing.Point(3, 28);
+            this.v3.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v3.Name = "v3";
+            this.v3.Size = new System.Drawing.Size(58, 20);
+            this.v3.TabIndex = 3;
+            this.v3.ValueChanged += new System.EventHandler(this.v3_ValueChanged);
+            // 
+            // v2
+            // 
+            this.v2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v2.Location = new System.Drawing.Point(131, 3);
+            this.v2.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v2.Name = "v2";
+            this.v2.Size = new System.Drawing.Size(60, 20);
+            this.v2.TabIndex = 2;
+            this.v2.ValueChanged += new System.EventHandler(this.v2_ValueChanged);
+            // 
+            // v1
+            // 
+            this.v1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v1.Location = new System.Drawing.Point(67, 3);
+            this.v1.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v1.Name = "v1";
+            this.v1.Size = new System.Drawing.Size(58, 20);
+            this.v1.TabIndex = 1;
+            this.v1.ValueChanged += new System.EventHandler(this.v1_ValueChanged);
+            // 
+            // v0
+            // 
+            this.v0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.v0.Location = new System.Drawing.Point(3, 3);
+            this.v0.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.v0.Name = "v0";
+            this.v0.Size = new System.Drawing.Size(58, 20);
+            this.v0.TabIndex = 0;
+            this.v0.ValueChanged += new System.EventHandler(this.v0_ValueChanged);
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 17);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(188, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "vTable:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // fileIdBox
             // 
@@ -428,14 +802,135 @@
             this.fileIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.fileIdLabel.Visible = false;
             // 
-            // player2Group
+            // strmGroup
             // 
-            this.player2Group.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.player2Group.Location = new System.Drawing.Point(0, 0);
-            this.player2Group.Name = "player2Group";
-            this.player2Group.Size = new System.Drawing.Size(194, 363);
-            this.player2Group.TabIndex = 14;
-            this.player2Group.Visible = false;
+            this.strmGroup.Controls.Add(this.tableLayoutPanel1);
+            this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.strmGroup.Location = new System.Drawing.Point(0, 23);
+            this.strmGroup.Name = "strmGroup";
+            this.strmGroup.Size = new System.Drawing.Size(194, 316);
+            this.strmGroup.TabIndex = 15;
+            this.strmGroup.Visible = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.playerBoxMagic, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.playerLabelFrog, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.priorityBoxBlack, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.priorityLabelPig, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.volumeBoxMushrooms, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.volumeLabelFuckRocks, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 316);
+            this.tableLayoutPanel1.TabIndex = 6;
+            // 
+            // playerBoxMagic
+            // 
+            this.playerBoxMagic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerBoxMagic.Location = new System.Drawing.Point(3, 148);
+            this.playerBoxMagic.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.playerBoxMagic.Name = "playerBoxMagic";
+            this.playerBoxMagic.Size = new System.Drawing.Size(188, 20);
+            this.playerBoxMagic.TabIndex = 5;
+            // 
+            // playerLabelFrog
+            // 
+            this.playerLabelFrog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playerLabelFrog.Location = new System.Drawing.Point(3, 120);
+            this.playerLabelFrog.Name = "playerLabelFrog";
+            this.playerLabelFrog.Size = new System.Drawing.Size(188, 25);
+            this.playerLabelFrog.TabIndex = 4;
+            this.playerLabelFrog.Text = "Player:";
+            this.playerLabelFrog.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // priorityBoxBlack
+            // 
+            this.priorityBoxBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.priorityBoxBlack.Location = new System.Drawing.Point(3, 98);
+            this.priorityBoxBlack.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.priorityBoxBlack.Name = "priorityBoxBlack";
+            this.priorityBoxBlack.Size = new System.Drawing.Size(188, 20);
+            this.priorityBoxBlack.TabIndex = 3;
+            // 
+            // priorityLabelPig
+            // 
+            this.priorityLabelPig.AutoSize = true;
+            this.priorityLabelPig.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priorityLabelPig.Location = new System.Drawing.Point(3, 70);
+            this.priorityLabelPig.Name = "priorityLabelPig";
+            this.priorityLabelPig.Size = new System.Drawing.Size(188, 25);
+            this.priorityLabelPig.TabIndex = 2;
+            this.priorityLabelPig.Text = "Priority:";
+            this.priorityLabelPig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.priorityLabelPig.Click += new System.EventHandler(this.priorityLabelPig_Click);
+            // 
+            // volumeBoxMushrooms
+            // 
+            this.volumeBoxMushrooms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volumeBoxMushrooms.Location = new System.Drawing.Point(3, 48);
+            this.volumeBoxMushrooms.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.volumeBoxMushrooms.Name = "volumeBoxMushrooms";
+            this.volumeBoxMushrooms.Size = new System.Drawing.Size(188, 20);
+            this.volumeBoxMushrooms.TabIndex = 1;
+            // 
+            // volumeLabelFuckRocks
+            // 
+            this.volumeLabelFuckRocks.AutoSize = true;
+            this.volumeLabelFuckRocks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.volumeLabelFuckRocks.Location = new System.Drawing.Point(3, 20);
+            this.volumeLabelFuckRocks.Name = "volumeLabelFuckRocks";
+            this.volumeLabelFuckRocks.Size = new System.Drawing.Size(188, 25);
+            this.volumeLabelFuckRocks.TabIndex = 0;
+            this.volumeLabelFuckRocks.Text = "Volume:";
+            this.volumeLabelFuckRocks.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // placeholderBox
+            // 
+            this.placeholderBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.placeholderBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.placeholderBox.Enabled = false;
+            this.placeholderBox.Location = new System.Drawing.Point(0, 339);
+            this.placeholderBox.Name = "placeholderBox";
+            this.placeholderBox.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.placeholderBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.placeholderBox.Size = new System.Drawing.Size(194, 24);
+            this.placeholderBox.TabIndex = 3;
+            this.placeholderBox.Text = "Placeholder:";
+            this.placeholderBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.placeholderBox.UseVisualStyleBackColor = true;
+            this.placeholderBox.Visible = false;
+            this.placeholderBox.CheckedChanged += new System.EventHandler(this.onCheckedChange);
             // 
             // groupSubPanel
             // 
@@ -747,23 +1242,6 @@
             this.noSelectLabel.Text = "No Valid Info Selected!";
             this.noSelectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // placeholderBox
-            // 
-            this.placeholderBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.placeholderBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.placeholderBox.Enabled = false;
-            this.placeholderBox.Location = new System.Drawing.Point(0, 339);
-            this.placeholderBox.Name = "placeholderBox";
-            this.placeholderBox.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.placeholderBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.placeholderBox.Size = new System.Drawing.Size(194, 24);
-            this.placeholderBox.TabIndex = 3;
-            this.placeholderBox.Text = "Placeholder:";
-            this.placeholderBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.placeholderBox.UseVisualStyleBackColor = true;
-            this.placeholderBox.Visible = false;
-            this.placeholderBox.CheckedChanged += new System.EventHandler(this.onCheckedChange);
-            // 
             // sseqGroup
             // 
             this.sseqGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -912,15 +1390,6 @@
             this.bankIdLabel.Text = "Bank ID:";
             this.bankIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // strmGroup
-            // 
-            this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.strmGroup.Location = new System.Drawing.Point(0, 0);
-            this.strmGroup.Name = "strmGroup";
-            this.strmGroup.Size = new System.Drawing.Size(194, 363);
-            this.strmGroup.TabIndex = 15;
-            this.strmGroup.Visible = false;
-            // 
             // tree
             // 
             this.tree.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -929,80 +1398,80 @@
             this.tree.Indent = 15;
             this.tree.Location = new System.Drawing.Point(0, 0);
             this.tree.Name = "tree";
-            treeNode15.Name = "Sseq";
-            treeNode15.Tag = "sseq";
-            treeNode15.Text = "Sound Sequence";
-            treeNode16.ImageIndex = 1;
-            treeNode16.Name = "SeqArc";
-            treeNode16.SelectedImageIndex = 1;
-            treeNode16.Tag = "seqarc";
-            treeNode16.Text = "Sequence Archive";
-            treeNode17.ImageIndex = 2;
-            treeNode17.Name = "Bank";
-            treeNode17.SelectedImageIndex = 2;
-            treeNode17.Tag = "bank";
-            treeNode17.Text = "Instrument Bank";
-            treeNode18.ImageIndex = 3;
-            treeNode18.Name = "Wave";
-            treeNode18.SelectedImageIndex = 3;
-            treeNode18.Tag = "wave";
-            treeNode18.Text = "Wave";
-            treeNode19.ImageIndex = 4;
-            treeNode19.Name = "Player";
-            treeNode19.SelectedImageIndex = 4;
-            treeNode19.Tag = "player";
-            treeNode19.Text = "Player";
-            treeNode20.ImageIndex = 5;
-            treeNode20.Name = "Group";
-            treeNode20.SelectedImageIndex = 5;
-            treeNode20.Tag = "group";
-            treeNode20.Text = "Group";
-            treeNode21.ImageIndex = 6;
-            treeNode21.Name = "Strm Player";
-            treeNode21.SelectedImageIndex = 6;
-            treeNode21.Tag = "strmplayer";
-            treeNode21.Text = "Stream Player";
-            treeNode22.ImageIndex = 7;
-            treeNode22.Name = "strm";
-            treeNode22.SelectedImageIndex = 7;
-            treeNode22.Tag = "strm";
-            treeNode22.Text = "Stream";
-            treeNode23.ImageIndex = 8;
-            treeNode23.Name = "sequenceFiles";
-            treeNode23.SelectedImageIndex = 8;
-            treeNode23.Text = "Sequence";
-            treeNode24.ImageIndex = 8;
-            treeNode24.Name = "sequenceArchive";
-            treeNode24.SelectedImageIndex = 8;
-            treeNode24.Text = "Sequence Archive";
-            treeNode25.ImageIndex = 8;
-            treeNode25.Name = "bankFiles";
-            treeNode25.SelectedImageIndex = 8;
-            treeNode25.Text = "Bank";
-            treeNode26.ImageIndex = 8;
-            treeNode26.Name = "waveFiles";
-            treeNode26.SelectedImageIndex = 8;
-            treeNode26.Text = "Wave Archive";
-            treeNode27.ImageIndex = 8;
-            treeNode27.Name = "strmFiles";
-            treeNode27.SelectedImageIndex = 8;
-            treeNode27.Text = "Stream";
-            treeNode28.ContextMenuStrip = this.bigFolderMenu;
-            treeNode28.ImageIndex = 8;
-            treeNode28.Name = "FILES";
-            treeNode28.SelectedImageIndex = 8;
-            treeNode28.Tag = "files";
-            treeNode28.Text = "FILES";
+            treeNode1.Name = "Sseq";
+            treeNode1.Tag = "sseq";
+            treeNode1.Text = "Sound Sequence";
+            treeNode2.ImageIndex = 1;
+            treeNode2.Name = "SeqArc";
+            treeNode2.SelectedImageIndex = 1;
+            treeNode2.Tag = "seqarc";
+            treeNode2.Text = "Sequence Archive";
+            treeNode3.ImageIndex = 2;
+            treeNode3.Name = "Bank";
+            treeNode3.SelectedImageIndex = 2;
+            treeNode3.Tag = "bank";
+            treeNode3.Text = "Instrument Bank";
+            treeNode4.ImageIndex = 3;
+            treeNode4.Name = "Wave";
+            treeNode4.SelectedImageIndex = 3;
+            treeNode4.Tag = "wave";
+            treeNode4.Text = "Wave";
+            treeNode5.ImageIndex = 4;
+            treeNode5.Name = "Player";
+            treeNode5.SelectedImageIndex = 4;
+            treeNode5.Tag = "player";
+            treeNode5.Text = "Player";
+            treeNode6.ImageIndex = 5;
+            treeNode6.Name = "Group";
+            treeNode6.SelectedImageIndex = 5;
+            treeNode6.Tag = "group";
+            treeNode6.Text = "Group";
+            treeNode7.ImageIndex = 6;
+            treeNode7.Name = "Strm Player";
+            treeNode7.SelectedImageIndex = 6;
+            treeNode7.Tag = "strmplayer";
+            treeNode7.Text = "Stream Player";
+            treeNode8.ImageIndex = 7;
+            treeNode8.Name = "strm";
+            treeNode8.SelectedImageIndex = 7;
+            treeNode8.Tag = "strm";
+            treeNode8.Text = "Stream";
+            treeNode9.ImageIndex = 8;
+            treeNode9.Name = "sequenceFiles";
+            treeNode9.SelectedImageIndex = 8;
+            treeNode9.Text = "Sequence";
+            treeNode10.ImageIndex = 8;
+            treeNode10.Name = "sequenceArchive";
+            treeNode10.SelectedImageIndex = 8;
+            treeNode10.Text = "Sequence Archive";
+            treeNode11.ImageIndex = 8;
+            treeNode11.Name = "bankFiles";
+            treeNode11.SelectedImageIndex = 8;
+            treeNode11.Text = "Bank";
+            treeNode12.ImageIndex = 8;
+            treeNode12.Name = "waveFiles";
+            treeNode12.SelectedImageIndex = 8;
+            treeNode12.Text = "Wave Archive";
+            treeNode13.ImageIndex = 8;
+            treeNode13.Name = "strmFiles";
+            treeNode13.SelectedImageIndex = 8;
+            treeNode13.Text = "Stream";
+            treeNode14.ContextMenuStrip = this.bigFolderMenu;
+            treeNode14.ImageIndex = 8;
+            treeNode14.Name = "FILES";
+            treeNode14.SelectedImageIndex = 8;
+            treeNode14.Tag = "files";
+            treeNode14.Text = "FILES";
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20,
-            treeNode21,
-            treeNode22,
-            treeNode28});
+            treeNode1,
+            treeNode2,
+            treeNode3,
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8,
+            treeNode14});
             this.tree.SelectedImageIndex = 0;
             this.tree.ShowLines = false;
             this.tree.Size = new System.Drawing.Size(484, 363);
@@ -1280,6 +1749,32 @@
             this.toolStripMenuItem12.Text = "Delete";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
             // 
+            // countLabel
+            // 
+            this.countLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.countLabel.Location = new System.Drawing.Point(3, 173);
+            this.countLabel.Name = "countLabel";
+            this.countLabel.Size = new System.Drawing.Size(188, 19);
+            this.countLabel.TabIndex = 14;
+            this.countLabel.Text = "Count:";
+            this.countLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // count
+            // 
+            this.count.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.count.Location = new System.Drawing.Point(4, 195);
+            this.count.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.count.Name = "count";
+            this.count.Size = new System.Drawing.Size(188, 20);
+            this.count.TabIndex = 15;
+            this.count.ValueChanged += new System.EventHandler(this.count_ValueChanged);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1303,6 +1798,33 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.player2Group.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.v14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v15)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.v11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v0)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.strmGroup.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).EndInit();
             this.groupSubPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).EndInit();
             this.playerGroup.ResumeLayout(false);
@@ -1321,6 +1843,7 @@
             this.entryMenu.ResumeLayout(false);
             this.bigNodeMenu.ResumeLayout(false);
             this.subNodeMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.count)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1423,6 +1946,35 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem12;
         private System.Windows.Forms.Panel player2Group;
         private System.Windows.Forms.Panel strmGroup;
+        private System.Windows.Forms.NumericUpDown volumeBoxMushrooms;
+        private System.Windows.Forms.Label volumeLabelFuckRocks;
+        private System.Windows.Forms.Label priorityLabelPig;
+        private System.Windows.Forms.Label playerLabelFrog;
+        private System.Windows.Forms.NumericUpDown priorityBoxBlack;
+        private System.Windows.Forms.NumericUpDown playerBoxMagic;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.NumericUpDown v5;
+        private System.Windows.Forms.NumericUpDown v4;
+        private System.Windows.Forms.NumericUpDown v3;
+        private System.Windows.Forms.NumericUpDown v2;
+        private System.Windows.Forms.NumericUpDown v1;
+        private System.Windows.Forms.NumericUpDown v0;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown v11;
+        private System.Windows.Forms.NumericUpDown v10;
+        private System.Windows.Forms.NumericUpDown v9;
+        private System.Windows.Forms.NumericUpDown v8;
+        private System.Windows.Forms.NumericUpDown v7;
+        private System.Windows.Forms.NumericUpDown v6;
+        private System.Windows.Forms.NumericUpDown v15;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.NumericUpDown v14;
+        private System.Windows.Forms.NumericUpDown v13;
+        private System.Windows.Forms.NumericUpDown v12;
+        private System.Windows.Forms.Label countLabel;
+        private System.Windows.Forms.NumericUpDown count;
     }
 }
 
