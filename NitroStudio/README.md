@@ -8,6 +8,7 @@ An Editor For Nitro Sound Data (*.sdat)
 * Edit string names or info of nodes. 
 * Edit SWARs.
 * Edit SBNKs.
+* Play STRMs.
 * View hex data of un-openable files. 
  
 ## Known Bugs 

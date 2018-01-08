@@ -2344,8 +2344,20 @@ namespace NitroStudio
                         if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Stream")
                         {
 
-                            ByteViewerForm f = new ByteViewerForm(sdat.files.strmFiles[tree.SelectedNode.Index], tree.SelectedNode.Text);
-                            f.Show();
+                            //Convert STRM to .wav
+                            File.WriteAllBytes(nitroPath+"/Data/Tools/tmp.strm", sdat.files.strmFiles[tree.SelectedNode.Index]);
+                            string infoArguments = "tmp.strm";
+                            Process p2 = new Process();
+                            p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\"";
+                            p2.StartInfo.Arguments = infoArguments;
+                            p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                            Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
+                            p2.Start();
+                            p2.WaitForExit();
+                            Directory.SetCurrentDirectory(nitroPath);
+
+                            StrmPlayer s = new StrmPlayer(nitroPath+"/Data/Tools/tmp.wav");
+                            s.Show();
 
                         }
 

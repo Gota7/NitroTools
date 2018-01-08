@@ -30,3 +30,9 @@ C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csprojResolveAssemblyReference.cache
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.SbnkEditor.resources
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.NumberSelectionDialog.resources
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\Interop.WMPLib.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\Interop.WMPLib.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\AxInterop.WMPLib.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csproj.ResolveComReference.cache
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.StrmPlayer.resources

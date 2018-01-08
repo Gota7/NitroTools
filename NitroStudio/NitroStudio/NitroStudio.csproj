@@ -111,6 +111,12 @@
     <Compile Include="SbnkEditor.Designer.cs">
       <DependentUpon>SbnkEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="StrmPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrmPlayer.Designer.cs">
+      <DependentUpon>StrmPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="SwarEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,9 @@
     <EmbeddedResource Include="SbnkEditor.resx">
       <DependentUpon>SbnkEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StrmPlayer.resx">
+      <DependentUpon>StrmPlayer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SwarEditor.resx">
       <DependentUpon>SwarEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,7 +174,25 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Image\Fox.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
