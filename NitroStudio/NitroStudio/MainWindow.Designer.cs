@@ -74,7 +74,17 @@
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.byteSelect = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.strmGroup = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.playerBoxMagic = new System.Windows.Forms.NumericUpDown();
+            this.playerLabelFrog = new System.Windows.Forms.Label();
+            this.priorityBoxBlack = new System.Windows.Forms.NumericUpDown();
+            this.priorityLabelPig = new System.Windows.Forms.Label();
+            this.volumeBoxMushrooms = new System.Windows.Forms.NumericUpDown();
+            this.volumeLabelFuckRocks = new System.Windows.Forms.Label();
             this.player2Group = new System.Windows.Forms.Panel();
+            this.count = new System.Windows.Forms.NumericUpDown();
+            this.countLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.v14 = new System.Windows.Forms.NumericUpDown();
             this.v13 = new System.Windows.Forms.NumericUpDown();
@@ -97,14 +107,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.fileIdBox = new System.Windows.Forms.ComboBox();
             this.fileIdLabel = new System.Windows.Forms.Label();
-            this.strmGroup = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.playerBoxMagic = new System.Windows.Forms.NumericUpDown();
-            this.playerLabelFrog = new System.Windows.Forms.Label();
-            this.priorityBoxBlack = new System.Windows.Forms.NumericUpDown();
-            this.priorityLabelPig = new System.Windows.Forms.Label();
-            this.volumeBoxMushrooms = new System.Windows.Forms.NumericUpDown();
-            this.volumeLabelFuckRocks = new System.Windows.Forms.Label();
             this.placeholderBox = new System.Windows.Forms.CheckBox();
             this.groupSubPanel = new System.Windows.Forms.Panel();
             this.loadFlagGroupBox = new System.Windows.Forms.NumericUpDown();
@@ -173,8 +175,6 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
-            this.countLabel = new System.Windows.Forms.Label();
-            this.count = new System.Windows.Forms.NumericUpDown();
             this.bigFolderMenu.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -182,7 +182,13 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.strmGroup.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).BeginInit();
             this.player2Group.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.count)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.v14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.v13)).BeginInit();
@@ -202,11 +208,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.v1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.v0)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            this.strmGroup.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).BeginInit();
             this.groupSubPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).BeginInit();
             this.playerGroup.SuspendLayout();
@@ -225,7 +226,6 @@
             this.entryMenu.SuspendLayout();
             this.bigNodeMenu.SuspendLayout();
             this.subNodeMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.count)).BeginInit();
             this.SuspendLayout();
             // 
             // bigFolderMenu
@@ -459,6 +459,119 @@
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
             // 
+            // strmGroup
+            // 
+            this.strmGroup.Controls.Add(this.tableLayoutPanel1);
+            this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.strmGroup.Location = new System.Drawing.Point(0, 23);
+            this.strmGroup.Name = "strmGroup";
+            this.strmGroup.Size = new System.Drawing.Size(194, 316);
+            this.strmGroup.TabIndex = 15;
+            this.strmGroup.Visible = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.playerBoxMagic, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.playerLabelFrog, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.priorityBoxBlack, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.priorityLabelPig, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.volumeBoxMushrooms, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.volumeLabelFuckRocks, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 316);
+            this.tableLayoutPanel1.TabIndex = 6;
+            // 
+            // playerBoxMagic
+            // 
+            this.playerBoxMagic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerBoxMagic.Location = new System.Drawing.Point(3, 148);
+            this.playerBoxMagic.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.playerBoxMagic.Name = "playerBoxMagic";
+            this.playerBoxMagic.Size = new System.Drawing.Size(188, 20);
+            this.playerBoxMagic.TabIndex = 5;
+            // 
+            // playerLabelFrog
+            // 
+            this.playerLabelFrog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playerLabelFrog.Location = new System.Drawing.Point(3, 120);
+            this.playerLabelFrog.Name = "playerLabelFrog";
+            this.playerLabelFrog.Size = new System.Drawing.Size(188, 25);
+            this.playerLabelFrog.TabIndex = 4;
+            this.playerLabelFrog.Text = "Player:";
+            this.playerLabelFrog.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // priorityBoxBlack
+            // 
+            this.priorityBoxBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.priorityBoxBlack.Location = new System.Drawing.Point(3, 98);
+            this.priorityBoxBlack.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.priorityBoxBlack.Name = "priorityBoxBlack";
+            this.priorityBoxBlack.Size = new System.Drawing.Size(188, 20);
+            this.priorityBoxBlack.TabIndex = 3;
+            // 
+            // priorityLabelPig
+            // 
+            this.priorityLabelPig.AutoSize = true;
+            this.priorityLabelPig.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priorityLabelPig.Location = new System.Drawing.Point(3, 70);
+            this.priorityLabelPig.Name = "priorityLabelPig";
+            this.priorityLabelPig.Size = new System.Drawing.Size(188, 25);
+            this.priorityLabelPig.TabIndex = 2;
+            this.priorityLabelPig.Text = "Priority:";
+            this.priorityLabelPig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.priorityLabelPig.Click += new System.EventHandler(this.priorityLabelPig_Click);
+            // 
+            // volumeBoxMushrooms
+            // 
+            this.volumeBoxMushrooms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volumeBoxMushrooms.Location = new System.Drawing.Point(3, 48);
+            this.volumeBoxMushrooms.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.volumeBoxMushrooms.Name = "volumeBoxMushrooms";
+            this.volumeBoxMushrooms.Size = new System.Drawing.Size(188, 20);
+            this.volumeBoxMushrooms.TabIndex = 1;
+            // 
+            // volumeLabelFuckRocks
+            // 
+            this.volumeLabelFuckRocks.AutoSize = true;
+            this.volumeLabelFuckRocks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.volumeLabelFuckRocks.Location = new System.Drawing.Point(3, 20);
+            this.volumeLabelFuckRocks.Name = "volumeLabelFuckRocks";
+            this.volumeLabelFuckRocks.Size = new System.Drawing.Size(188, 25);
+            this.volumeLabelFuckRocks.TabIndex = 0;
+            this.volumeLabelFuckRocks.Text = "Volume:";
+            this.volumeLabelFuckRocks.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // player2Group
             // 
             this.player2Group.Controls.Add(this.count);
@@ -473,6 +586,32 @@
             this.player2Group.Size = new System.Drawing.Size(194, 316);
             this.player2Group.TabIndex = 14;
             this.player2Group.Visible = false;
+            // 
+            // count
+            // 
+            this.count.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.count.Location = new System.Drawing.Point(4, 195);
+            this.count.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.count.Name = "count";
+            this.count.Size = new System.Drawing.Size(188, 20);
+            this.count.TabIndex = 15;
+            this.count.ValueChanged += new System.EventHandler(this.count_ValueChanged);
+            // 
+            // countLabel
+            // 
+            this.countLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.countLabel.Location = new System.Drawing.Point(3, 173);
+            this.countLabel.Name = "countLabel";
+            this.countLabel.Size = new System.Drawing.Size(188, 19);
+            this.countLabel.TabIndex = 14;
+            this.countLabel.Text = "Count:";
+            this.countLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // tableLayoutPanel4
             // 
@@ -801,119 +940,6 @@
             this.fileIdLabel.Text = "File ID:";
             this.fileIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.fileIdLabel.Visible = false;
-            // 
-            // strmGroup
-            // 
-            this.strmGroup.Controls.Add(this.tableLayoutPanel1);
-            this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.strmGroup.Location = new System.Drawing.Point(0, 23);
-            this.strmGroup.Name = "strmGroup";
-            this.strmGroup.Size = new System.Drawing.Size(194, 316);
-            this.strmGroup.TabIndex = 15;
-            this.strmGroup.Visible = false;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.playerBoxMagic, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.playerLabelFrog, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.priorityBoxBlack, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.priorityLabelPig, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.volumeBoxMushrooms, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.volumeLabelFuckRocks, 0, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 316);
-            this.tableLayoutPanel1.TabIndex = 6;
-            // 
-            // playerBoxMagic
-            // 
-            this.playerBoxMagic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerBoxMagic.Location = new System.Drawing.Point(3, 148);
-            this.playerBoxMagic.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.playerBoxMagic.Name = "playerBoxMagic";
-            this.playerBoxMagic.Size = new System.Drawing.Size(188, 20);
-            this.playerBoxMagic.TabIndex = 5;
-            // 
-            // playerLabelFrog
-            // 
-            this.playerLabelFrog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playerLabelFrog.Location = new System.Drawing.Point(3, 120);
-            this.playerLabelFrog.Name = "playerLabelFrog";
-            this.playerLabelFrog.Size = new System.Drawing.Size(188, 25);
-            this.playerLabelFrog.TabIndex = 4;
-            this.playerLabelFrog.Text = "Player:";
-            this.playerLabelFrog.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // priorityBoxBlack
-            // 
-            this.priorityBoxBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.priorityBoxBlack.Location = new System.Drawing.Point(3, 98);
-            this.priorityBoxBlack.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.priorityBoxBlack.Name = "priorityBoxBlack";
-            this.priorityBoxBlack.Size = new System.Drawing.Size(188, 20);
-            this.priorityBoxBlack.TabIndex = 3;
-            // 
-            // priorityLabelPig
-            // 
-            this.priorityLabelPig.AutoSize = true;
-            this.priorityLabelPig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priorityLabelPig.Location = new System.Drawing.Point(3, 70);
-            this.priorityLabelPig.Name = "priorityLabelPig";
-            this.priorityLabelPig.Size = new System.Drawing.Size(188, 25);
-            this.priorityLabelPig.TabIndex = 2;
-            this.priorityLabelPig.Text = "Priority:";
-            this.priorityLabelPig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.priorityLabelPig.Click += new System.EventHandler(this.priorityLabelPig_Click);
-            // 
-            // volumeBoxMushrooms
-            // 
-            this.volumeBoxMushrooms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeBoxMushrooms.Location = new System.Drawing.Point(3, 48);
-            this.volumeBoxMushrooms.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.volumeBoxMushrooms.Name = "volumeBoxMushrooms";
-            this.volumeBoxMushrooms.Size = new System.Drawing.Size(188, 20);
-            this.volumeBoxMushrooms.TabIndex = 1;
-            // 
-            // volumeLabelFuckRocks
-            // 
-            this.volumeLabelFuckRocks.AutoSize = true;
-            this.volumeLabelFuckRocks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.volumeLabelFuckRocks.Location = new System.Drawing.Point(3, 20);
-            this.volumeLabelFuckRocks.Name = "volumeLabelFuckRocks";
-            this.volumeLabelFuckRocks.Size = new System.Drawing.Size(188, 25);
-            this.volumeLabelFuckRocks.TabIndex = 0;
-            this.volumeLabelFuckRocks.Text = "Volume:";
-            this.volumeLabelFuckRocks.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // placeholderBox
             // 
@@ -1749,32 +1775,6 @@
             this.toolStripMenuItem12.Text = "Delete";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
             // 
-            // countLabel
-            // 
-            this.countLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.countLabel.Location = new System.Drawing.Point(3, 173);
-            this.countLabel.Name = "countLabel";
-            this.countLabel.Size = new System.Drawing.Size(188, 19);
-            this.countLabel.TabIndex = 14;
-            this.countLabel.Text = "Count:";
-            this.countLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // count
-            // 
-            this.count.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.count.Location = new System.Drawing.Point(4, 195);
-            this.count.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.count.Name = "count";
-            this.count.Size = new System.Drawing.Size(188, 20);
-            this.count.TabIndex = 15;
-            this.count.ValueChanged += new System.EventHandler(this.count_ValueChanged);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1798,7 +1798,14 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.strmGroup.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).EndInit();
             this.player2Group.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.count)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.v14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.v13)).EndInit();
@@ -1819,12 +1826,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.v0)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.strmGroup.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).EndInit();
             this.groupSubPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).EndInit();
             this.playerGroup.ResumeLayout(false);
@@ -1843,7 +1844,6 @@
             this.entryMenu.ResumeLayout(false);
             this.bigNodeMenu.ResumeLayout(false);
             this.subNodeMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.count)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -85,6 +85,12 @@
     </Compile>
     <Compile Include="NitroFileLoader.cs" />
     <Compile Include="NitroStructures.cs" />
+    <Compile Include="NumberSelectionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NumberSelectionDialog.Designer.cs">
+      <DependentUpon>NumberSelectionDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveCloseDialog.cs">
@@ -98,6 +104,12 @@
     </Compile>
     <Compile Include="SaveQuitDialog.Designer.cs">
       <DependentUpon>SaveQuitDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SbnkEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SbnkEditor.Designer.cs">
+      <DependentUpon>SbnkEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="SwarEditor.cs">
       <SubType>Form</SubType>
@@ -116,6 +128,9 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NumberSelectionDialog.resx">
+      <DependentUpon>NumberSelectionDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -130,6 +145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SaveQuitDialog.resx">
       <DependentUpon>SaveQuitDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SbnkEditor.resx">
+      <DependentUpon>SbnkEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SwarEditor.resx">
       <DependentUpon>SwarEditor.cs</DependentUpon>

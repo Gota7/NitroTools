@@ -28,3 +28,5 @@ C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\Data\Tools\wav2strm.exe
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\Data\Tools\libstdc++-6.dll
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csprojResolveAssemblyReference.cache
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.SbnkEditor.resources
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.NumberSelectionDialog.resources

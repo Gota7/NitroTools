@@ -2329,8 +2329,8 @@ namespace NitroStudio
                         if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Bank")
                         {
 
-                            ByteViewerForm f = new ByteViewerForm(sdat.files.bankFiles[tree.SelectedNode.Index], tree.SelectedNode.Text);
-                            f.Show();
+                            SbnkEditor s = new SbnkEditor(this, sdat.files.bankFiles[tree.SelectedNode.Index], tree.SelectedNode.Text.Split(' ')[1], tree.SelectedNode.Index);
+                            s.Show();
 
                         }
 

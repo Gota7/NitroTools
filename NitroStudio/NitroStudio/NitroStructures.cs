@@ -1815,6 +1815,7 @@ namespace NitroFileLoader
 		public UInt16 nBlocks; //Amount of nBlocks.
 		public sbnkData[] data; //Data.
 
+		//Data sector.
 		public struct sbnkData {
 
 			public char[] magic; //DATA.
@@ -1825,6 +1826,7 @@ namespace NitroFileLoader
 
 		}
 
+		//Records of each instrument.
 		public struct sbnkInstrumentRecord {
 
 			public byte fRecord; //Type???
@@ -1832,8 +1834,14 @@ namespace NitroFileLoader
 			public byte reserved; //Reserved.
 			public bool isPlaceholder; //Is placeholder.
 
+			//Instrument - Only one of these types.
+			public sbnkInstrumentLessThan16 instrumentA;
+			public sbnkInstrumentEquals16 instrumentB;
+			public sbnkInstrumentGreaterThan16 instrumentC;
+
 		}
 
+		//Less than 16 instrument.
 		public struct sbnkInstrumentLessThan16
 		{
 			public UInt16 swavNumber; //Swav number.
@@ -1845,6 +1853,42 @@ namespace NitroFileLoader
 			public byte releaseRate; //Release rate.
 			public byte pan; //Pan.
 
+		}
+
+		//==16 Instrument data.
+		public struct sbnkInstrumentEquals16
+		{
+			public byte lowerNote; //Lowest Note
+			public byte upperNote; //Upper Note.
+			public List<basicInstrumentStuff> stuff; //Count=upperNote-lowerNote+1
+		}
+
+		//>16 Instrument data.
+		public struct sbnkInstrumentGreaterThan16 {
+			public byte region0; //Region 0.
+			public byte region1; //Region 1.
+			public byte region2; //Region 2.
+			public byte region3; //Region 3.
+			public byte region4; //Region 4.
+			public byte region5; //Region 5.
+			public byte region6; //Region 6.
+			public byte region7; //Region 7.
+			public List<basicInstrumentStuff> stuff; //Count=Amount of nonzero regions.
+		}
+
+
+		//Basic instrument data.
+		public struct basicInstrumentStuff
+		{
+			public UInt16 unknown; //01 00 (Usually)
+			public UInt16 swavNumber; //Swav number.
+			public UInt16 swarNumber; //Swar number, relative to info block.
+			public byte noteNumber; //Note number.
+			public byte attackRate; //Attack rate.
+			public byte decayRate; //Decay rate.
+			public byte sustainLevel; //Sustain rate.
+			public byte releaseRate; //Release rate.
+			public byte pan; //Pan.
 		}
 
 
@@ -1888,9 +1932,366 @@ namespace NitroFileLoader
 				
 				}
 
+				//Read each instrument.
+				for (int j = 0; j < data[i].records.Length; j++) {
+
+					//If not placeholder.
+					if (!data [i].records [j].isPlaceholder) {
+
+						//Set position.
+						br.Position = data [i].records [j].instrumentOffset;
+
+						//Read the instrument.
+						if (data [i].records [j].fRecord < 16) {
+
+							sbnkInstrumentLessThan16 a = new sbnkInstrumentLessThan16 ();
+							a.swavNumber = br.ReadUInt16 ();
+							a.swarNumber = br.ReadUInt16 ();
+							a.noteNumber = br.ReadByte ();
+							a.attackRate = br.ReadByte ();
+							a.decayRate = br.ReadByte ();
+							a.sustainLevel = br.ReadByte ();
+							a.releaseRate = br.ReadByte ();
+							a.pan = br.ReadByte ();
+
+							data [i].records [j].instrumentA = a;
+
+						} else if (data [i].records [j].fRecord == 16) {
+
+							sbnkInstrumentEquals16 a = new sbnkInstrumentEquals16();
+
+							a.lowerNote = br.ReadByte ();
+							a.upperNote = br.ReadByte ();
+
+							//Instrument data.
+							a.stuff = new List<basicInstrumentStuff>();
+
+							int count = (int)(a.upperNote - a.lowerNote + 1);
+							for (int h = 0; h < count; h++) {
+							
+								basicInstrumentStuff c = new basicInstrumentStuff ();
+
+								c.unknown = br.ReadUInt16 ();
+								c.swavNumber = br.ReadUInt16 ();
+								c.swarNumber = br.ReadUInt16 ();
+								c.noteNumber = br.ReadByte ();
+								c.attackRate = br.ReadByte ();
+								c.decayRate = br.ReadByte ();
+								c.sustainLevel = br.ReadByte ();
+								c.releaseRate = br.ReadByte ();
+								c.pan = br.ReadByte ();
+							
+								a.stuff.Add (c);
+							}
+
+							data [i].records [j].instrumentB = a;
+						
+						} else {
+						
+							sbnkInstrumentGreaterThan16 a = new sbnkInstrumentGreaterThan16 ();
+
+							a.region0 = br.ReadByte ();
+							a.region1 = br.ReadByte ();
+							a.region2 = br.ReadByte ();
+							a.region3 = br.ReadByte ();
+							a.region4 = br.ReadByte ();
+							a.region5 = br.ReadByte ();
+							a.region6 = br.ReadByte ();
+							a.region7 = br.ReadByte ();
+
+							//New list.
+							a.stuff = new List<basicInstrumentStuff>();
+
+							//Get count.
+							int count = 0;
+							if (a.region0 == 0) {
+								count = 0;
+							} else {
+								if (a.region1 == 0) {
+									count = 1;
+								} else {
+									if (a.region2 == 0) {
+										count = 2;
+									} else {
+										if (a.region3 == 0) {
+											count = 3;
+										} else {
+											if (a.region4 == 0) {
+												count = 4;
+											} else {
+												if (a.region5 == 0) {
+													count = 5;
+												} else {
+													if (a.region6 == 0) {
+														count = 6;
+													} else {
+														if (a.region7 == 0) {
+															count = 7;
+														} else {
+															count = 8;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+
+							//Get stuff.
+							for (int h = 0; h < count; h++) {
+
+								basicInstrumentStuff c = new basicInstrumentStuff ();
+
+								c.unknown = br.ReadUInt16 ();
+								c.swavNumber = br.ReadUInt16 ();
+								c.swarNumber = br.ReadUInt16 ();
+								c.noteNumber = br.ReadByte ();
+								c.attackRate = br.ReadByte ();
+								c.decayRate = br.ReadByte ();
+								c.sustainLevel = br.ReadByte ();
+								c.releaseRate = br.ReadByte ();
+								c.pan = br.ReadByte ();
+
+								a.stuff.Add (c);
+							}
+
+							data [i].records [j].instrumentC = a;
+						
+						}
+
+					}
+
+				}
+
 			}
 
 		}
+		//What a terribly written function.
+
+
+		/// <summary>
+		/// Convert to bytes.
+		/// </summary>
+		/// <value>To bytes.</value>
+		public byte[] toBytes() {
+
+			//Update offsets.
+			fixOffsets();
+
+			//Make writer.
+			MemoryStream o = new MemoryStream();
+			BinaryWriter bw= new BinaryWriter(o);
+
+
+			//Write lame stuff.
+			bw.Write (magic);
+			bw.Write (identifier);
+			bw.Write (fileSize);
+			bw.Write (headerSize);
+			bw.Write (nBlocks);
+
+			//Write data.
+			foreach (sbnkData s in data) {
+
+				bw.Write (s.magic);
+				bw.Write (s.size);
+				foreach (UInt32 r in s.reserved) {
+					bw.Write (r);
+				}
+				bw.Write (s.nCount);
+
+				//Write the records.
+				foreach (sbnkInstrumentRecord r in s.records) {
+
+					bw.Write (r.fRecord);
+					bw.Write (r.instrumentOffset);
+					bw.Write (r.reserved);
+
+				}
+
+				//Write the instruments.
+				foreach (sbnkInstrumentRecord r in s.records) {
+
+					if (!r.isPlaceholder) {
+					
+						//Write less than 16.
+						if (r.fRecord < 16) {
+							bw.Write (r.instrumentA.swavNumber);
+							bw.Write (r.instrumentA.swarNumber);
+							bw.Write (r.instrumentA.noteNumber);
+							bw.Write (r.instrumentA.attackRate);
+							bw.Write (r.instrumentA.decayRate);
+							bw.Write (r.instrumentA.sustainLevel);
+							bw.Write (r.instrumentA.releaseRate);
+							bw.Write (r.instrumentA.pan);
+
+							//Equals 16.
+						} else if (r.fRecord == 16) {
+							bw.Write (r.instrumentB.lowerNote);
+							bw.Write (r.instrumentB.upperNote);
+							foreach (basicInstrumentStuff h in r.instrumentB.stuff) {
+								bw.Write (h.unknown);
+								bw.Write (h.swavNumber);
+								bw.Write (h.swarNumber);
+								bw.Write (h.noteNumber);
+								bw.Write (h.attackRate);
+								bw.Write (h.decayRate);
+								bw.Write (h.sustainLevel);
+								bw.Write (h.releaseRate);
+								bw.Write (h.pan);
+							}
+							//Greater than.
+						} else {
+							
+							//Get count.
+							int count = 0;
+							if (r.instrumentC.region0 == 0) {
+								count = 0;
+							} else {
+								if (r.instrumentC.region1 == 0) {
+									count = 1;
+								} else {
+									if (r.instrumentC.region2 == 0) {
+										count = 2;
+									} else {
+										if (r.instrumentC.region3 == 0) {
+											count = 3;
+										} else {
+											if (r.instrumentC.region4 == 0) {
+												count = 4;
+											} else {
+												if (r.instrumentC.region5 == 0) {
+													count = 5;
+												} else {
+													if (r.instrumentC.region6 == 0) {
+														count = 6;
+													} else {
+														if (r.instrumentC.region7 == 0) {
+															count = 7;
+														} else {
+															count = 8;
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+								
+								bw.Write (r.instrumentC.region0);
+								bw.Write (r.instrumentC.region1);
+								bw.Write (r.instrumentC.region2);
+								bw.Write (r.instrumentC.region3);
+								bw.Write (r.instrumentC.region4);
+								bw.Write (r.instrumentC.region5);
+								bw.Write (r.instrumentC.region6);
+								bw.Write (r.instrumentC.region7);
+
+							//Write the instruments.
+							for (int i = 0; i < count; i++) {
+
+								bw.Write (r.instrumentC.stuff [i].unknown);
+								bw.Write (r.instrumentC.stuff [i].swavNumber);
+								bw.Write (r.instrumentC.stuff [i].swarNumber);
+								bw.Write (r.instrumentC.stuff [i].noteNumber);
+								bw.Write (r.instrumentC.stuff [i].attackRate);
+								bw.Write (r.instrumentC.stuff [i].decayRate);
+								bw.Write (r.instrumentC.stuff [i].sustainLevel);
+								bw.Write (r.instrumentC.stuff [i].releaseRate);
+								bw.Write (r.instrumentC.stuff [i].pan);
+
+							}
+
+
+						}
+					
+					}
+
+				}
+
+			}
+
+
+			//Return final.
+			return o.ToArray();
+
+		}
+
+
+
+		/// <summary>
+		/// Sets the fix offsets.
+		/// </summary>
+		/// <value>The fix offsets.</value>
+		public void fixOffsets() {
+
+			magic = "SBNK".ToCharArray ();
+			identifier = 0x0100FEFF;
+			headerSize = 16;
+			nBlocks = (UInt16) data.Length;
+
+			//Offset.
+			UInt32 offset = (UInt32)16;
+
+			//Fix data.
+			for (int j = 0; j < data.Count(); j++) {
+
+				UInt32 size = 0;
+
+				data[j].magic = "DATA".ToCharArray ();
+				data[j].reserved = new UInt32[8];
+				for (int i = 0; i < data[j].reserved.Count (); i++) {
+					data[j].reserved [i] = 0;
+				}
+				data[j].nCount = (UInt32) data[j].records.Count ();
+
+				offset += (UInt32)(44);
+				size += (UInt32)(44);
+
+				//Increment offset by the amount of records.
+				offset += (UInt32)(data[j].nCount*4);
+				size += (UInt32)(data[j].nCount*4);
+
+				//Start getting offsets for each instrument record.
+				for (int i = 0; i < data[j].records.Count(); i++) {
+
+					data[j].records [i].reserved = 0;
+					if (data[j].records [i].isPlaceholder) {
+					
+						data[j].records [i].fRecord = 0;
+						data[j].records [i].instrumentOffset = 0;
+					
+					} else {
+
+						//Offset here.
+						data[j].records[i].instrumentOffset = (UInt16) offset;
+					
+						//Find the offset by adding the bytes.
+						if (data[j].records [i].fRecord < 16) {
+							offset += (UInt32)(10);
+							size += (UInt32)(10);
+						} else if (data[j].records [i].fRecord == 16) {
+							offset += (UInt32)(data[j].records[i].instrumentB.stuff.Count * 12 + 2);
+							size += (UInt32)(data[j].records[i].instrumentB.stuff.Count * 12 + 2);
+						} else {
+							offset += (UInt32)(data[j].records[i].instrumentC.stuff.Count * 12 + 8);
+							size += (UInt32)(data[j].records[i].instrumentC.stuff.Count * 12 + 8);
+						}
+					
+					}
+
+				}
+
+				data [j].size = size;
+
+			}
+
+			fileSize = offset;
+
+		}
+
 
 	}
 
