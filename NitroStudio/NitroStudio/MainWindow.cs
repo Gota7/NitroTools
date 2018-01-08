@@ -3328,7 +3328,7 @@ namespace NitroStudio
 
                     //Export the new file.
                     if(ending == ".sseq") File.Copy(nitroPath + "\\Data\\Tools\\tmp.mid", saveFileDialog1.FileName, true);
-                    if(ending == ".strm") File.Copy(nitroPath + "\\Data\\Tools\\tmp.strm", saveFileDialog1.FileName, true);
+                    if(ending == ".strm") File.Copy(nitroPath + "\\Data\\Tools\\tmp.wav", saveFileDialog1.FileName, true);
 
                     //Delete useless files.
                     Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools\\");
@@ -3494,7 +3494,7 @@ namespace NitroStudio
                     Process p2 = new Process();
                     string infoArguments = "";
                     if (ending == ".sseq") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\midi2sseq.exe\""; infoArguments = "tmp tmp.sseq"; }
-                    if (ending == ".strm") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\""; infoArguments = "tmp"; }
+                    if (ending == ".strm") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\wav2strm.exe\""; infoArguments = "tmp"; }
                     p2.StartInfo.Arguments = infoArguments;
                     if (ending == ".strm") { p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; }
                     Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");

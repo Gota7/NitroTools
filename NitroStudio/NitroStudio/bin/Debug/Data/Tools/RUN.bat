@@ -1,2 +1,2 @@
-wav2swav.exe --help
+wav2strm.exe tmp
 PAUSE
