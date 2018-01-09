@@ -2863,4 +2863,128 @@ namespace NitroFileLoader
 
 	}
 
+
+
+	/// <summary>
+	/// Sseq file.
+	/// </summary>
+	public class sseqFile {
+
+		public char[] magic; //SSEQ
+		public UInt32 identifier; //Indetifier
+		public UInt32 fileSize; //File size
+		public UInt16 headerSize; //16
+		public UInt16 nBlocks; //1
+		public sseqData[] data; //Data blocks.
+
+
+		/// <summary>
+		/// Sseq data.
+		/// </summary>
+		public struct sseqData {
+
+			public char[] magic; //DATA
+			UInt32 size; //Size of this block.
+			UInt32 offset; //Data offset.
+			List<command> commands; //Commands.
+
+		}
+
+		/// <summary>
+		/// Commands.
+		/// </summary>
+		public struct command {
+
+			byte type;
+			byte[] parameters;
+
+		}
+
+	}
+
+
+	public class ssarFile {
+
+		public char[] magic; //SSAR.
+		public UInt32 identifier; //Identifier.
+		public UInt32 fileSize; //Filesize.
+		public UInt16 headerSize; //Header size.
+		public UInt16 nBlock; //Number of blocks.
+		public ssarData[] data; //Data
+
+		//SSAR data.
+		public struct ssarData {
+
+			public char[] magic; //DATA.
+			public UInt32 nSize; //nSize.
+			public UInt32 offset; //Data offset.
+			public UInt32 nCount; //Number of SSEQ.
+			public ssarRecord[] records; //Records.
+			public byte[] data; //SSEQ data.
+
+		}
+
+		//SSAR record.
+		public struct ssarRecord {
+
+			public UInt32 offset; //Relative offset to SSEQ. ABS = offset + ssarData.Offset.
+			public UInt16 bank; //Bank.
+			public byte volume; //Volume.
+			public byte cpr; //Channel Priority.
+			public byte ppr; //Player Priority.
+			public byte player; //Player number.
+			public byte[] reserved; //[2].
+
+		}
+
+		//Load the data.
+		public void load(byte[] b) {
+
+			//New reader.
+			MemoryStream src = new MemoryStream(b);
+			BinaryDataReader br = new BinaryDataReader (src);
+
+			//Read data.
+			magic = br.ReadChars(4);
+			identifier = br.ReadUInt32 ();
+			fileSize = br.ReadUInt32 ();
+			headerSize = br.ReadUInt16 ();
+			nBlock = br.ReadUInt16 ();
+
+			data = new ssarData[(int)nBlock];
+
+			//Read data.
+			for (int i = 0; i < data.Count(); i++) {
+
+				data [i].magic = br.ReadChars (4);
+				data [i].nSize = br.ReadUInt32 ();
+				data [i].offset = br.ReadUInt32 ();
+				data [i].nCount = br.ReadUInt32 ();
+
+				data[i].records = new ssarRecord[(int)data[i].nCount];
+
+				//Read records.
+				for (int j = 0; j < data[i].records.Count(); j++) {
+
+					data [i].records [j].offset = br.ReadUInt32 ();
+					data [i].records [j].bank = br.ReadUInt16 ();
+					data [i].records [j].volume = br.ReadByte ();
+					data [i].records [j].cpr = br.ReadByte ();
+					data [i].records [j].ppr = br.ReadByte ();
+					data [i].records [j].player = br.ReadByte ();
+					data [i].records [j].reserved = br.ReadBytes (2);
+
+				}
+
+				//Read data.
+				int recordLength = (int)data[i].nCount*12+16;
+
+				data [i].data = br.ReadBytes (recordLength);
+
+			}
+
+		}
+
+	}
+
 }

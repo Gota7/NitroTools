@@ -36,3 +36,8 @@ C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\AxInterop.WMPLib.dll
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csproj.ResolveComReference.cache
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.StrmPlayer.resources
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\NAudio.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\LibEndianBinaryIO.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\LibMKToolbox.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\LibNitro.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\Tao.DevIl.dll

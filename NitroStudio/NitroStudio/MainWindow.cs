@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using SymbTool2;
 using InfoTool2;
 using NitroFileLoader;
+using LibNitro;
 
 namespace NitroStudio
 {
@@ -35,6 +36,7 @@ namespace NitroStudio
 
         //The SDAT.
         public sdatFile sdat;
+        LibNitro.SND.Player.SimpleSequencePlayer sseqPlayer;
 
         //Application path
         public string nitroPath = Application.StartupPath;
@@ -781,6 +783,17 @@ namespace NitroStudio
 
                         placeholderBox.Checked = false;
 
+                        //Show Gericom.
+                        gericomPause.Show();
+                        gericomPlay.Show();
+                        gericomStop.Show();
+                        gericomLabel.Show();
+
+                        //Add player.
+                        sdat.fixOffsets();
+                        if (sseqPlayer != null) sseqPlayer.Stop();
+                        sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
+
                         //FileId
                         fileIdLabel.Show();
                         for (int i = 0; i < fatFiles.Length; i++)
@@ -819,6 +832,12 @@ namespace NitroStudio
                     else
                     {
 
+                        //Hide Gericom.
+                        gericomPause.Show();
+                        gericomPlay.Show();
+                        gericomStop.Show();
+                        gericomLabel.Show();
+
                         //FileID.
                         fileIdLabel.Show();
                         for (int i = 0; i < fatFiles.Length; i++)
@@ -845,6 +864,8 @@ namespace NitroStudio
                         playerNumberSseqBox.Value = 0;
 
                         placeholderBox.Checked = true;
+
+                        
 
                     }
 
@@ -1468,6 +1489,11 @@ namespace NitroStudio
                         sdat.infoFile.sseqData[tree.SelectedNode.Index].bank = (UInt16)(bankIDbox.SelectedIndex - 1);
                     }
 
+                    //Add player.
+                    sdat.fixOffsets();
+                    if (sseqPlayer != null) sseqPlayer.Stop();
+                    sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
+
                 }
 
 
@@ -1567,6 +1593,12 @@ namespace NitroStudio
             //Sseq
             if (tree.SelectedNode.Parent.Index == 0) {
                 sdat.infoFile.sseqData[tree.SelectedNode.Index].fileId = (UInt32)fileIdBox.SelectedIndex;
+
+                //Add player.
+                sdat.fixOffsets();
+                if (sseqPlayer != null) sseqPlayer.Stop();
+                sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
+
             }
 
             //SeqArc
@@ -2316,6 +2348,7 @@ namespace NitroStudio
 
             if (tree.SelectedNode != null) {
                 if (tree.SelectedNode.Parent != null) {
+
                     if (tree.SelectedNode.Parent.Parent != null) {
 
                         if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Sequence")
@@ -3966,9 +3999,10 @@ namespace NitroStudio
                     sdat.fixOffsets();
                 }
 
-            }
 
-            updateNodes();
+
+                updateNodes();
+            }
 
         }
 
@@ -4252,8 +4286,43 @@ namespace NitroStudio
 
 
 
+
+
+
+
         #endregion
 
-        
+
+
+        //Gericom player.
+        #region gericomPlayer
+
+        private void gericomPlay_Click(object sender, EventArgs e)
+        {
+            sseqPlayer.Play();
+        }
+
+        private void gericomPause_Click(object sender, EventArgs e)
+        {
+            sseqPlayer.Pause();
+        }
+
+        private void gericomStop_Click(object sender, EventArgs e)
+        {
+            sseqPlayer.Stop();
+        }
+
+        private void onClosingPlayer(object sender, FormClosingEventArgs e)
+        {
+
+            if (sseqPlayer != null) { sseqPlayer.Stop();}
+
+        }
+
+        #endregion
+
+
+
+
     }
 }

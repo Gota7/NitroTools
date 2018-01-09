@@ -74,6 +74,23 @@
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
             this.byteSelect = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.sseqGroup = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.gericomLabel = new System.Windows.Forms.Label();
+            this.gericomPlay = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.gericomPause = new System.Windows.Forms.Button();
+            this.gericomStop = new System.Windows.Forms.Button();
+            this.playerNumberSseqLabel = new System.Windows.Forms.Label();
+            this.playerPrioritySseqLabel = new System.Windows.Forms.Label();
+            this.channelPrioritySseqLabel = new System.Windows.Forms.Label();
+            this.volumeSseqLabel = new System.Windows.Forms.Label();
+            this.playerNumberSseqBox = new System.Windows.Forms.NumericUpDown();
+            this.playerPrioritySseqBox = new System.Windows.Forms.NumericUpDown();
+            this.channelPrioritySseqBox = new System.Windows.Forms.NumericUpDown();
+            this.volumeSseqBox = new System.Windows.Forms.NumericUpDown();
+            this.bankIDbox = new System.Windows.Forms.ComboBox();
+            this.bankIdLabel = new System.Windows.Forms.Label();
             this.strmGroup = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.playerBoxMagic = new System.Windows.Forms.NumericUpDown();
@@ -132,17 +149,6 @@
             this.wave1Label = new System.Windows.Forms.Label();
             this.wave0Label = new System.Windows.Forms.Label();
             this.noSelectLabel = new System.Windows.Forms.Label();
-            this.sseqGroup = new System.Windows.Forms.Panel();
-            this.playerNumberSseqLabel = new System.Windows.Forms.Label();
-            this.playerPrioritySseqLabel = new System.Windows.Forms.Label();
-            this.channelPrioritySseqLabel = new System.Windows.Forms.Label();
-            this.volumeSseqLabel = new System.Windows.Forms.Label();
-            this.playerNumberSseqBox = new System.Windows.Forms.NumericUpDown();
-            this.playerPrioritySseqBox = new System.Windows.Forms.NumericUpDown();
-            this.channelPrioritySseqBox = new System.Windows.Forms.NumericUpDown();
-            this.volumeSseqBox = new System.Windows.Forms.NumericUpDown();
-            this.bankIDbox = new System.Windows.Forms.ComboBox();
-            this.bankIdLabel = new System.Windows.Forms.Label();
             this.tree = new System.Windows.Forms.TreeView();
             this.nodeImages = new System.Windows.Forms.ImageList(this.components);
             this.filesMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -182,6 +188,13 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.sseqGroup.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerNumberSseqBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPrioritySseqBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.channelPrioritySseqBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeSseqBox)).BeginInit();
             this.strmGroup.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).BeginInit();
@@ -215,11 +228,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.channelFlagBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sequenceMaxBox)).BeginInit();
             this.bankGroup.SuspendLayout();
-            this.sseqGroup.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.playerNumberSseqBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerPrioritySseqBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.channelPrioritySseqBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.volumeSseqBox)).BeginInit();
             this.filesMenu.SuspendLayout();
             this.foldersMenu.SuspendLayout();
             this.nodeMenu.SuspendLayout();
@@ -262,7 +270,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(825, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -405,9 +413,9 @@
             this.progressBar,
             this.status,
             this.byteSelect});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 389);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 472);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(684, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(825, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "status1";
             // 
@@ -440,6 +448,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.sseqGroup);
             this.splitContainer1.Panel1.Controls.Add(this.strmGroup);
             this.splitContainer1.Panel1.Controls.Add(this.player2Group);
             this.splitContainer1.Panel1.Controls.Add(this.fileIdBox);
@@ -449,15 +458,237 @@
             this.splitContainer1.Panel1.Controls.Add(this.playerGroup);
             this.splitContainer1.Panel1.Controls.Add(this.bankGroup);
             this.splitContainer1.Panel1.Controls.Add(this.noSelectLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.sseqGroup);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tree);
-            this.splitContainer1.Size = new System.Drawing.Size(684, 365);
-            this.splitContainer1.SplitterDistance = 196;
+            this.splitContainer1.Size = new System.Drawing.Size(825, 448);
+            this.splitContainer1.SplitterDistance = 236;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // sseqGroup
+            // 
+            this.sseqGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sseqGroup.Controls.Add(this.tableLayoutPanel6);
+            this.sseqGroup.Controls.Add(this.tableLayoutPanel5);
+            this.sseqGroup.Controls.Add(this.playerNumberSseqLabel);
+            this.sseqGroup.Controls.Add(this.playerPrioritySseqLabel);
+            this.sseqGroup.Controls.Add(this.channelPrioritySseqLabel);
+            this.sseqGroup.Controls.Add(this.volumeSseqLabel);
+            this.sseqGroup.Controls.Add(this.playerNumberSseqBox);
+            this.sseqGroup.Controls.Add(this.playerPrioritySseqBox);
+            this.sseqGroup.Controls.Add(this.channelPrioritySseqBox);
+            this.sseqGroup.Controls.Add(this.volumeSseqBox);
+            this.sseqGroup.Controls.Add(this.bankIDbox);
+            this.sseqGroup.Controls.Add(this.bankIdLabel);
+            this.sseqGroup.Location = new System.Drawing.Point(0, 53);
+            this.sseqGroup.Name = "sseqGroup";
+            this.sseqGroup.Size = new System.Drawing.Size(234, 363);
+            this.sseqGroup.TabIndex = 8;
+            this.sseqGroup.Visible = false;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.gericomLabel, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.gericomPlay, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 280);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(234, 54);
+            this.tableLayoutPanel6.TabIndex = 15;
+            // 
+            // gericomLabel
+            // 
+            this.gericomLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gericomLabel.Location = new System.Drawing.Point(3, 0);
+            this.gericomLabel.Name = "gericomLabel";
+            this.gericomLabel.Size = new System.Drawing.Size(228, 27);
+            this.gericomLabel.TabIndex = 12;
+            this.gericomLabel.Text = "Gericom Player:";
+            this.gericomLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // gericomPlay
+            // 
+            this.gericomPlay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gericomPlay.Location = new System.Drawing.Point(3, 30);
+            this.gericomPlay.Name = "gericomPlay";
+            this.gericomPlay.Size = new System.Drawing.Size(228, 21);
+            this.gericomPlay.TabIndex = 11;
+            this.gericomPlay.Text = "Play";
+            this.gericomPlay.UseVisualStyleBackColor = true;
+            this.gericomPlay.Click += new System.EventHandler(this.gericomPlay_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.gericomPause, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.gericomStop, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 334);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(234, 29);
+            this.tableLayoutPanel5.TabIndex = 14;
+            // 
+            // gericomPause
+            // 
+            this.gericomPause.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gericomPause.Location = new System.Drawing.Point(3, 3);
+            this.gericomPause.Name = "gericomPause";
+            this.gericomPause.Size = new System.Drawing.Size(111, 23);
+            this.gericomPause.TabIndex = 13;
+            this.gericomPause.Text = "Pause";
+            this.gericomPause.UseVisualStyleBackColor = true;
+            this.gericomPause.Click += new System.EventHandler(this.gericomPause_Click);
+            // 
+            // gericomStop
+            // 
+            this.gericomStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gericomStop.Location = new System.Drawing.Point(120, 3);
+            this.gericomStop.Name = "gericomStop";
+            this.gericomStop.Size = new System.Drawing.Size(111, 23);
+            this.gericomStop.TabIndex = 10;
+            this.gericomStop.Text = "Stop";
+            this.gericomStop.UseVisualStyleBackColor = true;
+            this.gericomStop.Click += new System.EventHandler(this.gericomStop_Click);
+            // 
+            // playerNumberSseqLabel
+            // 
+            this.playerNumberSseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerNumberSseqLabel.Location = new System.Drawing.Point(4, 196);
+            this.playerNumberSseqLabel.Name = "playerNumberSseqLabel";
+            this.playerNumberSseqLabel.Size = new System.Drawing.Size(227, 23);
+            this.playerNumberSseqLabel.TabIndex = 9;
+            this.playerNumberSseqLabel.Text = "Player Number:";
+            this.playerNumberSseqLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // playerPrioritySseqLabel
+            // 
+            this.playerPrioritySseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerPrioritySseqLabel.Location = new System.Drawing.Point(3, 147);
+            this.playerPrioritySseqLabel.Name = "playerPrioritySseqLabel";
+            this.playerPrioritySseqLabel.Size = new System.Drawing.Size(228, 23);
+            this.playerPrioritySseqLabel.TabIndex = 8;
+            this.playerPrioritySseqLabel.Text = "Player Priority:";
+            this.playerPrioritySseqLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // channelPrioritySseqLabel
+            // 
+            this.channelPrioritySseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.channelPrioritySseqLabel.Location = new System.Drawing.Point(4, 98);
+            this.channelPrioritySseqLabel.Name = "channelPrioritySseqLabel";
+            this.channelPrioritySseqLabel.Size = new System.Drawing.Size(227, 23);
+            this.channelPrioritySseqLabel.TabIndex = 7;
+            this.channelPrioritySseqLabel.Text = "Channel Priority:";
+            this.channelPrioritySseqLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // volumeSseqLabel
+            // 
+            this.volumeSseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volumeSseqLabel.Location = new System.Drawing.Point(3, 49);
+            this.volumeSseqLabel.Name = "volumeSseqLabel";
+            this.volumeSseqLabel.Size = new System.Drawing.Size(229, 23);
+            this.volumeSseqLabel.TabIndex = 6;
+            this.volumeSseqLabel.Text = "Volume:";
+            this.volumeSseqLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // playerNumberSseqBox
+            // 
+            this.playerNumberSseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerNumberSseqBox.Location = new System.Drawing.Point(4, 222);
+            this.playerNumberSseqBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.playerNumberSseqBox.Name = "playerNumberSseqBox";
+            this.playerNumberSseqBox.Size = new System.Drawing.Size(227, 20);
+            this.playerNumberSseqBox.TabIndex = 5;
+            this.playerNumberSseqBox.ValueChanged += new System.EventHandler(this.onPlayerNumberChanged);
+            // 
+            // playerPrioritySseqBox
+            // 
+            this.playerPrioritySseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerPrioritySseqBox.Location = new System.Drawing.Point(4, 173);
+            this.playerPrioritySseqBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.playerPrioritySseqBox.Name = "playerPrioritySseqBox";
+            this.playerPrioritySseqBox.Size = new System.Drawing.Size(228, 20);
+            this.playerPrioritySseqBox.TabIndex = 4;
+            this.playerPrioritySseqBox.ValueChanged += new System.EventHandler(this.onPlayerPriorityChanged);
+            // 
+            // channelPrioritySseqBox
+            // 
+            this.channelPrioritySseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.channelPrioritySseqBox.Location = new System.Drawing.Point(3, 124);
+            this.channelPrioritySseqBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.channelPrioritySseqBox.Name = "channelPrioritySseqBox";
+            this.channelPrioritySseqBox.Size = new System.Drawing.Size(229, 20);
+            this.channelPrioritySseqBox.TabIndex = 3;
+            this.channelPrioritySseqBox.ValueChanged += new System.EventHandler(this.onChannelPriorityChanged);
+            // 
+            // volumeSseqBox
+            // 
+            this.volumeSseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volumeSseqBox.Location = new System.Drawing.Point(4, 75);
+            this.volumeSseqBox.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.volumeSseqBox.Name = "volumeSseqBox";
+            this.volumeSseqBox.Size = new System.Drawing.Size(228, 20);
+            this.volumeSseqBox.TabIndex = 2;
+            this.volumeSseqBox.ValueChanged += new System.EventHandler(this.onVolumeChanged);
+            // 
+            // bankIDbox
+            // 
+            this.bankIDbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankIDbox.FormattingEnabled = true;
+            this.bankIDbox.Location = new System.Drawing.Point(4, 26);
+            this.bankIDbox.Name = "bankIDbox";
+            this.bankIDbox.Size = new System.Drawing.Size(228, 21);
+            this.bankIDbox.TabIndex = 1;
+            this.bankIDbox.SelectedIndexChanged += new System.EventHandler(this.onBankIdChanged);
+            // 
+            // bankIdLabel
+            // 
+            this.bankIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankIdLabel.Location = new System.Drawing.Point(48, 0);
+            this.bankIdLabel.Name = "bankIdLabel";
+            this.bankIdLabel.Size = new System.Drawing.Size(140, 23);
+            this.bankIdLabel.TabIndex = 0;
+            this.bankIdLabel.Text = "Bank ID:";
+            this.bankIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // strmGroup
             // 
@@ -465,7 +696,7 @@
             this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.strmGroup.Location = new System.Drawing.Point(0, 23);
             this.strmGroup.Name = "strmGroup";
-            this.strmGroup.Size = new System.Drawing.Size(194, 316);
+            this.strmGroup.Size = new System.Drawing.Size(234, 399);
             this.strmGroup.TabIndex = 15;
             this.strmGroup.Visible = false;
             // 
@@ -491,7 +722,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(194, 316);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(234, 399);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // playerBoxMagic
@@ -506,7 +737,7 @@
             0,
             0});
             this.playerBoxMagic.Name = "playerBoxMagic";
-            this.playerBoxMagic.Size = new System.Drawing.Size(188, 20);
+            this.playerBoxMagic.Size = new System.Drawing.Size(228, 20);
             this.playerBoxMagic.TabIndex = 5;
             // 
             // playerLabelFrog
@@ -514,7 +745,7 @@
             this.playerLabelFrog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerLabelFrog.Location = new System.Drawing.Point(3, 120);
             this.playerLabelFrog.Name = "playerLabelFrog";
-            this.playerLabelFrog.Size = new System.Drawing.Size(188, 25);
+            this.playerLabelFrog.Size = new System.Drawing.Size(228, 25);
             this.playerLabelFrog.TabIndex = 4;
             this.playerLabelFrog.Text = "Player:";
             this.playerLabelFrog.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -531,7 +762,7 @@
             0,
             0});
             this.priorityBoxBlack.Name = "priorityBoxBlack";
-            this.priorityBoxBlack.Size = new System.Drawing.Size(188, 20);
+            this.priorityBoxBlack.Size = new System.Drawing.Size(228, 20);
             this.priorityBoxBlack.TabIndex = 3;
             // 
             // priorityLabelPig
@@ -540,7 +771,7 @@
             this.priorityLabelPig.Dock = System.Windows.Forms.DockStyle.Fill;
             this.priorityLabelPig.Location = new System.Drawing.Point(3, 70);
             this.priorityLabelPig.Name = "priorityLabelPig";
-            this.priorityLabelPig.Size = new System.Drawing.Size(188, 25);
+            this.priorityLabelPig.Size = new System.Drawing.Size(228, 25);
             this.priorityLabelPig.TabIndex = 2;
             this.priorityLabelPig.Text = "Priority:";
             this.priorityLabelPig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -558,7 +789,7 @@
             0,
             0});
             this.volumeBoxMushrooms.Name = "volumeBoxMushrooms";
-            this.volumeBoxMushrooms.Size = new System.Drawing.Size(188, 20);
+            this.volumeBoxMushrooms.Size = new System.Drawing.Size(228, 20);
             this.volumeBoxMushrooms.TabIndex = 1;
             // 
             // volumeLabelFuckRocks
@@ -567,7 +798,7 @@
             this.volumeLabelFuckRocks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.volumeLabelFuckRocks.Location = new System.Drawing.Point(3, 20);
             this.volumeLabelFuckRocks.Name = "volumeLabelFuckRocks";
-            this.volumeLabelFuckRocks.Size = new System.Drawing.Size(188, 25);
+            this.volumeLabelFuckRocks.Size = new System.Drawing.Size(228, 25);
             this.volumeLabelFuckRocks.TabIndex = 0;
             this.volumeLabelFuckRocks.Text = "Volume:";
             this.volumeLabelFuckRocks.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -583,7 +814,7 @@
             this.player2Group.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player2Group.Location = new System.Drawing.Point(0, 23);
             this.player2Group.Name = "player2Group";
-            this.player2Group.Size = new System.Drawing.Size(194, 316);
+            this.player2Group.Size = new System.Drawing.Size(234, 399);
             this.player2Group.TabIndex = 14;
             this.player2Group.Visible = false;
             // 
@@ -598,7 +829,7 @@
             0,
             0});
             this.count.Name = "count";
-            this.count.Size = new System.Drawing.Size(188, 20);
+            this.count.Size = new System.Drawing.Size(228, 20);
             this.count.TabIndex = 15;
             this.count.ValueChanged += new System.EventHandler(this.count_ValueChanged);
             // 
@@ -608,7 +839,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.countLabel.Location = new System.Drawing.Point(3, 173);
             this.countLabel.Name = "countLabel";
-            this.countLabel.Size = new System.Drawing.Size(188, 19);
+            this.countLabel.Size = new System.Drawing.Size(228, 19);
             this.countLabel.TabIndex = 14;
             this.countLabel.Text = "Count:";
             this.countLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -627,34 +858,34 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(194, 31);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(234, 31);
             this.tableLayoutPanel4.TabIndex = 13;
             // 
             // v14
             // 
             this.v14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v14.Location = new System.Drawing.Point(131, 3);
+            this.v14.Location = new System.Drawing.Point(159, 3);
             this.v14.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v14.Name = "v14";
-            this.v14.Size = new System.Drawing.Size(60, 20);
+            this.v14.Size = new System.Drawing.Size(72, 20);
             this.v14.TabIndex = 15;
             this.v14.ValueChanged += new System.EventHandler(this.v14_ValueChanged_1);
             // 
             // v13
             // 
             this.v13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v13.Location = new System.Drawing.Point(67, 3);
+            this.v13.Location = new System.Drawing.Point(81, 3);
             this.v13.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v13.Name = "v13";
-            this.v13.Size = new System.Drawing.Size(58, 20);
+            this.v13.Size = new System.Drawing.Size(72, 20);
             this.v13.TabIndex = 14;
             this.v13.ValueChanged += new System.EventHandler(this.v13_ValueChanged_1);
             // 
@@ -668,7 +899,7 @@
             0,
             0});
             this.v12.Name = "v12";
-            this.v12.Size = new System.Drawing.Size(58, 20);
+            this.v12.Size = new System.Drawing.Size(72, 20);
             this.v12.TabIndex = 13;
             this.v12.ValueChanged += new System.EventHandler(this.v12_ValueChanged_1);
             // 
@@ -683,7 +914,7 @@
             0,
             0});
             this.v15.Name = "v15";
-            this.v15.Size = new System.Drawing.Size(188, 20);
+            this.v15.Size = new System.Drawing.Size(228, 20);
             this.v15.TabIndex = 12;
             this.v15.ValueChanged += new System.EventHandler(this.v15_ValueChanged);
             // 
@@ -721,35 +952,35 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(194, 100);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(234, 100);
             this.tableLayoutPanel3.TabIndex = 1;
             this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // v11
             // 
             this.v11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v11.Location = new System.Drawing.Point(131, 78);
+            this.v11.Location = new System.Drawing.Point(159, 78);
             this.v11.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v11.Name = "v11";
-            this.v11.Size = new System.Drawing.Size(60, 20);
+            this.v11.Size = new System.Drawing.Size(72, 20);
             this.v11.TabIndex = 11;
             this.v11.ValueChanged += new System.EventHandler(this.v11_ValueChanged);
             // 
             // v10
             // 
             this.v10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v10.Location = new System.Drawing.Point(67, 78);
+            this.v10.Location = new System.Drawing.Point(81, 78);
             this.v10.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v10.Name = "v10";
-            this.v10.Size = new System.Drawing.Size(58, 20);
+            this.v10.Size = new System.Drawing.Size(72, 20);
             this.v10.TabIndex = 10;
             this.v10.ValueChanged += new System.EventHandler(this.v10_ValueChanged);
             // 
@@ -763,35 +994,35 @@
             0,
             0});
             this.v9.Name = "v9";
-            this.v9.Size = new System.Drawing.Size(58, 20);
+            this.v9.Size = new System.Drawing.Size(72, 20);
             this.v9.TabIndex = 9;
             this.v9.ValueChanged += new System.EventHandler(this.v9_ValueChanged);
             // 
             // v8
             // 
             this.v8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v8.Location = new System.Drawing.Point(131, 53);
+            this.v8.Location = new System.Drawing.Point(159, 53);
             this.v8.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v8.Name = "v8";
-            this.v8.Size = new System.Drawing.Size(60, 20);
+            this.v8.Size = new System.Drawing.Size(72, 20);
             this.v8.TabIndex = 8;
             this.v8.ValueChanged += new System.EventHandler(this.v8_ValueChanged);
             // 
             // v7
             // 
             this.v7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v7.Location = new System.Drawing.Point(67, 53);
+            this.v7.Location = new System.Drawing.Point(81, 53);
             this.v7.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v7.Name = "v7";
-            this.v7.Size = new System.Drawing.Size(58, 20);
+            this.v7.Size = new System.Drawing.Size(72, 20);
             this.v7.TabIndex = 7;
             this.v7.ValueChanged += new System.EventHandler(this.v7_ValueChanged);
             // 
@@ -805,35 +1036,35 @@
             0,
             0});
             this.v6.Name = "v6";
-            this.v6.Size = new System.Drawing.Size(58, 20);
+            this.v6.Size = new System.Drawing.Size(72, 20);
             this.v6.TabIndex = 6;
             this.v6.ValueChanged += new System.EventHandler(this.v6_ValueChanged);
             // 
             // v5
             // 
             this.v5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v5.Location = new System.Drawing.Point(131, 28);
+            this.v5.Location = new System.Drawing.Point(159, 28);
             this.v5.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v5.Name = "v5";
-            this.v5.Size = new System.Drawing.Size(60, 20);
+            this.v5.Size = new System.Drawing.Size(72, 20);
             this.v5.TabIndex = 5;
             this.v5.ValueChanged += new System.EventHandler(this.v5_ValueChanged);
             // 
             // v4
             // 
             this.v4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v4.Location = new System.Drawing.Point(67, 28);
+            this.v4.Location = new System.Drawing.Point(81, 28);
             this.v4.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v4.Name = "v4";
-            this.v4.Size = new System.Drawing.Size(58, 20);
+            this.v4.Size = new System.Drawing.Size(72, 20);
             this.v4.TabIndex = 4;
             this.v4.ValueChanged += new System.EventHandler(this.v4_ValueChanged);
             // 
@@ -847,35 +1078,35 @@
             0,
             0});
             this.v3.Name = "v3";
-            this.v3.Size = new System.Drawing.Size(58, 20);
+            this.v3.Size = new System.Drawing.Size(72, 20);
             this.v3.TabIndex = 3;
             this.v3.ValueChanged += new System.EventHandler(this.v3_ValueChanged);
             // 
             // v2
             // 
             this.v2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v2.Location = new System.Drawing.Point(131, 3);
+            this.v2.Location = new System.Drawing.Point(159, 3);
             this.v2.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v2.Name = "v2";
-            this.v2.Size = new System.Drawing.Size(60, 20);
+            this.v2.Size = new System.Drawing.Size(72, 20);
             this.v2.TabIndex = 2;
             this.v2.ValueChanged += new System.EventHandler(this.v2_ValueChanged);
             // 
             // v1
             // 
             this.v1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v1.Location = new System.Drawing.Point(67, 3);
+            this.v1.Location = new System.Drawing.Point(81, 3);
             this.v1.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
             this.v1.Name = "v1";
-            this.v1.Size = new System.Drawing.Size(58, 20);
+            this.v1.Size = new System.Drawing.Size(72, 20);
             this.v1.TabIndex = 1;
             this.v1.ValueChanged += new System.EventHandler(this.v1_ValueChanged);
             // 
@@ -889,7 +1120,7 @@
             0,
             0});
             this.v0.Name = "v0";
-            this.v0.Size = new System.Drawing.Size(58, 20);
+            this.v0.Size = new System.Drawing.Size(72, 20);
             this.v0.TabIndex = 0;
             this.v0.ValueChanged += new System.EventHandler(this.v0_ValueChanged);
             // 
@@ -903,7 +1134,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 17);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(234, 17);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label1
@@ -912,7 +1143,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(188, 13);
+            this.label1.Size = new System.Drawing.Size(228, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "vTable:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -925,7 +1156,7 @@
             this.fileIdBox.FormattingEnabled = true;
             this.fileIdBox.Location = new System.Drawing.Point(4, 26);
             this.fileIdBox.Name = "fileIdBox";
-            this.fileIdBox.Size = new System.Drawing.Size(187, 21);
+            this.fileIdBox.Size = new System.Drawing.Size(227, 21);
             this.fileIdBox.TabIndex = 1;
             this.fileIdBox.Visible = false;
             this.fileIdBox.SelectedIndexChanged += new System.EventHandler(this.onFileIdChange);
@@ -935,7 +1166,7 @@
             this.fileIdLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.fileIdLabel.Location = new System.Drawing.Point(0, 0);
             this.fileIdLabel.Name = "fileIdLabel";
-            this.fileIdLabel.Size = new System.Drawing.Size(194, 23);
+            this.fileIdLabel.Size = new System.Drawing.Size(234, 23);
             this.fileIdLabel.TabIndex = 2;
             this.fileIdLabel.Text = "File ID:";
             this.fileIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -946,11 +1177,11 @@
             this.placeholderBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.placeholderBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.placeholderBox.Enabled = false;
-            this.placeholderBox.Location = new System.Drawing.Point(0, 339);
+            this.placeholderBox.Location = new System.Drawing.Point(0, 422);
             this.placeholderBox.Name = "placeholderBox";
             this.placeholderBox.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.placeholderBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.placeholderBox.Size = new System.Drawing.Size(194, 24);
+            this.placeholderBox.Size = new System.Drawing.Size(234, 24);
             this.placeholderBox.TabIndex = 3;
             this.placeholderBox.Text = "Placeholder:";
             this.placeholderBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -969,7 +1200,7 @@
             this.groupSubPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupSubPanel.Location = new System.Drawing.Point(0, 0);
             this.groupSubPanel.Name = "groupSubPanel";
-            this.groupSubPanel.Size = new System.Drawing.Size(194, 363);
+            this.groupSubPanel.Size = new System.Drawing.Size(234, 446);
             this.groupSubPanel.TabIndex = 12;
             this.groupSubPanel.Visible = false;
             // 
@@ -984,7 +1215,7 @@
             0,
             0});
             this.loadFlagGroupBox.Name = "loadFlagGroupBox";
-            this.loadFlagGroupBox.Size = new System.Drawing.Size(185, 20);
+            this.loadFlagGroupBox.Size = new System.Drawing.Size(225, 20);
             this.loadFlagGroupBox.TabIndex = 5;
             this.loadFlagGroupBox.ValueChanged += new System.EventHandler(this.onLoadFlagChanged);
             // 
@@ -994,7 +1225,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loadFlagGroupLabel.Location = new System.Drawing.Point(1, 100);
             this.loadFlagGroupLabel.Name = "loadFlagGroupLabel";
-            this.loadFlagGroupLabel.Size = new System.Drawing.Size(192, 23);
+            this.loadFlagGroupLabel.Size = new System.Drawing.Size(232, 23);
             this.loadFlagGroupLabel.TabIndex = 4;
             this.loadFlagGroupLabel.Text = "Load Flag:";
             this.loadFlagGroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1012,7 +1243,7 @@
             "WTF - Other"});
             this.nEntryBox.Location = new System.Drawing.Point(5, 76);
             this.nEntryBox.Name = "nEntryBox";
-            this.nEntryBox.Size = new System.Drawing.Size(186, 21);
+            this.nEntryBox.Size = new System.Drawing.Size(226, 21);
             this.nEntryBox.TabIndex = 3;
             this.nEntryBox.SelectedIndexChanged += new System.EventHandler(this.onNEntryChanged);
             // 
@@ -1022,7 +1253,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nEntryLabel.Location = new System.Drawing.Point(1, 50);
             this.nEntryLabel.Name = "nEntryLabel";
-            this.nEntryLabel.Size = new System.Drawing.Size(192, 23);
+            this.nEntryLabel.Size = new System.Drawing.Size(232, 23);
             this.nEntryLabel.TabIndex = 2;
             this.nEntryLabel.Text = "Entry Number:";
             this.nEntryLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1033,7 +1264,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.typeGroupLabel.Location = new System.Drawing.Point(1, 0);
             this.typeGroupLabel.Name = "typeGroupLabel";
-            this.typeGroupLabel.Size = new System.Drawing.Size(192, 23);
+            this.typeGroupLabel.Size = new System.Drawing.Size(232, 23);
             this.typeGroupLabel.TabIndex = 1;
             this.typeGroupLabel.Text = "Type:";
             this.typeGroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1051,7 +1282,7 @@
             "WTF - Other"});
             this.typeGroupBox.Location = new System.Drawing.Point(4, 26);
             this.typeGroupBox.Name = "typeGroupBox";
-            this.typeGroupBox.Size = new System.Drawing.Size(186, 21);
+            this.typeGroupBox.Size = new System.Drawing.Size(226, 21);
             this.typeGroupBox.TabIndex = 0;
             this.typeGroupBox.SelectedIndexChanged += new System.EventHandler(this.onTypeChanged);
             // 
@@ -1068,7 +1299,7 @@
             this.playerGroup.Controls.Add(this.sequenceMaxBox);
             this.playerGroup.Location = new System.Drawing.Point(0, 14);
             this.playerGroup.Name = "playerGroup";
-            this.playerGroup.Size = new System.Drawing.Size(195, 334);
+            this.playerGroup.Size = new System.Drawing.Size(235, 417);
             this.playerGroup.TabIndex = 11;
             this.playerGroup.Visible = false;
             // 
@@ -1078,7 +1309,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sequenceMaxLabel.Location = new System.Drawing.Point(0, 1);
             this.sequenceMaxLabel.Name = "sequenceMaxLabel";
-            this.sequenceMaxLabel.Size = new System.Drawing.Size(195, 23);
+            this.sequenceMaxLabel.Size = new System.Drawing.Size(235, 23);
             this.sequenceMaxLabel.TabIndex = 0;
             this.sequenceMaxLabel.Text = "Sequence Max:";
             this.sequenceMaxLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1094,7 +1325,7 @@
             0,
             0});
             this.heapSizeBox.Name = "heapSizeBox";
-            this.heapSizeBox.Size = new System.Drawing.Size(187, 20);
+            this.heapSizeBox.Size = new System.Drawing.Size(227, 20);
             this.heapSizeBox.TabIndex = 5;
             this.heapSizeBox.ValueChanged += new System.EventHandler(this.onheapSizeChanged);
             // 
@@ -1104,7 +1335,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.heapSizeLabel.Location = new System.Drawing.Point(0, 104);
             this.heapSizeLabel.Name = "heapSizeLabel";
-            this.heapSizeLabel.Size = new System.Drawing.Size(195, 23);
+            this.heapSizeLabel.Size = new System.Drawing.Size(235, 23);
             this.heapSizeLabel.TabIndex = 4;
             this.heapSizeLabel.Text = "Heap Size (Bytes):";
             this.heapSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1120,7 +1351,7 @@
             0,
             0});
             this.channelFlagBox.Name = "channelFlagBox";
-            this.channelFlagBox.Size = new System.Drawing.Size(187, 20);
+            this.channelFlagBox.Size = new System.Drawing.Size(227, 20);
             this.channelFlagBox.TabIndex = 3;
             this.channelFlagBox.ValueChanged += new System.EventHandler(this.onChannelFlagChanged);
             // 
@@ -1130,7 +1361,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.channelFlagLabel.Location = new System.Drawing.Point(-2, 51);
             this.channelFlagLabel.Name = "channelFlagLabel";
-            this.channelFlagLabel.Size = new System.Drawing.Size(195, 23);
+            this.channelFlagLabel.Size = new System.Drawing.Size(235, 23);
             this.channelFlagLabel.TabIndex = 2;
             this.channelFlagLabel.Text = "Channel Flag:";
             this.channelFlagLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1146,7 +1377,7 @@
             0,
             0});
             this.sequenceMaxBox.Name = "sequenceMaxBox";
-            this.sequenceMaxBox.Size = new System.Drawing.Size(187, 20);
+            this.sequenceMaxBox.Size = new System.Drawing.Size(227, 20);
             this.sequenceMaxBox.TabIndex = 1;
             this.sequenceMaxBox.ValueChanged += new System.EventHandler(this.onSequenceMaxChanged);
             // 
@@ -1165,7 +1396,7 @@
             this.bankGroup.Controls.Add(this.wave0Label);
             this.bankGroup.Location = new System.Drawing.Point(0, 53);
             this.bankGroup.Name = "bankGroup";
-            this.bankGroup.Size = new System.Drawing.Size(194, 280);
+            this.bankGroup.Size = new System.Drawing.Size(234, 363);
             this.bankGroup.TabIndex = 4;
             this.bankGroup.Visible = false;
             // 
@@ -1176,7 +1407,7 @@
             this.wave3Box.FormattingEnabled = true;
             this.wave3Box.Location = new System.Drawing.Point(3, 184);
             this.wave3Box.Name = "wave3Box";
-            this.wave3Box.Size = new System.Drawing.Size(188, 21);
+            this.wave3Box.Size = new System.Drawing.Size(228, 21);
             this.wave3Box.TabIndex = 7;
             this.wave3Box.SelectedIndexChanged += new System.EventHandler(this.wave3updated);
             // 
@@ -1187,7 +1418,7 @@
             this.wave2Box.FormattingEnabled = true;
             this.wave2Box.Location = new System.Drawing.Point(3, 128);
             this.wave2Box.Name = "wave2Box";
-            this.wave2Box.Size = new System.Drawing.Size(188, 21);
+            this.wave2Box.Size = new System.Drawing.Size(228, 21);
             this.wave2Box.TabIndex = 6;
             this.wave2Box.SelectedIndexChanged += new System.EventHandler(this.wave2updated);
             // 
@@ -1198,7 +1429,7 @@
             this.wave1Box.FormattingEnabled = true;
             this.wave1Box.Location = new System.Drawing.Point(3, 75);
             this.wave1Box.Name = "wave1Box";
-            this.wave1Box.Size = new System.Drawing.Size(188, 21);
+            this.wave1Box.Size = new System.Drawing.Size(228, 21);
             this.wave1Box.TabIndex = 5;
             this.wave1Box.SelectedIndexChanged += new System.EventHandler(this.wave1updated);
             // 
@@ -1210,7 +1441,7 @@
             this.wave0Box.FormattingEnabled = true;
             this.wave0Box.Location = new System.Drawing.Point(3, 26);
             this.wave0Box.Name = "wave0Box";
-            this.wave0Box.Size = new System.Drawing.Size(188, 21);
+            this.wave0Box.Size = new System.Drawing.Size(228, 21);
             this.wave0Box.TabIndex = 4;
             this.wave0Box.SelectedIndexChanged += new System.EventHandler(this.wave0updated);
             // 
@@ -1220,7 +1451,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wave3Label.Location = new System.Drawing.Point(3, 152);
             this.wave3Label.Name = "wave3Label";
-            this.wave3Label.Size = new System.Drawing.Size(188, 29);
+            this.wave3Label.Size = new System.Drawing.Size(228, 29);
             this.wave3Label.TabIndex = 3;
             this.wave3Label.Text = "Wave 3:";
             this.wave3Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1231,7 +1462,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wave2Label.Location = new System.Drawing.Point(3, 99);
             this.wave2Label.Name = "wave2Label";
-            this.wave2Label.Size = new System.Drawing.Size(188, 26);
+            this.wave2Label.Size = new System.Drawing.Size(228, 26);
             this.wave2Label.TabIndex = 2;
             this.wave2Label.Text = "Wave 2:";
             this.wave2Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1242,7 +1473,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wave1Label.Location = new System.Drawing.Point(3, 50);
             this.wave1Label.Name = "wave1Label";
-            this.wave1Label.Size = new System.Drawing.Size(188, 22);
+            this.wave1Label.Size = new System.Drawing.Size(228, 22);
             this.wave1Label.TabIndex = 1;
             this.wave1Label.Text = "Wave 1:";
             this.wave1Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1253,7 +1484,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wave0Label.Location = new System.Drawing.Point(3, 0);
             this.wave0Label.Name = "wave0Label";
-            this.wave0Label.Size = new System.Drawing.Size(188, 23);
+            this.wave0Label.Size = new System.Drawing.Size(228, 23);
             this.wave0Label.TabIndex = 0;
             this.wave0Label.Text = "Wave 0:";
             this.wave0Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1263,158 +1494,10 @@
             this.noSelectLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noSelectLabel.Location = new System.Drawing.Point(0, 0);
             this.noSelectLabel.Name = "noSelectLabel";
-            this.noSelectLabel.Size = new System.Drawing.Size(194, 363);
+            this.noSelectLabel.Size = new System.Drawing.Size(234, 446);
             this.noSelectLabel.TabIndex = 0;
             this.noSelectLabel.Text = "No Valid Info Selected!";
             this.noSelectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // sseqGroup
-            // 
-            this.sseqGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sseqGroup.Controls.Add(this.playerNumberSseqLabel);
-            this.sseqGroup.Controls.Add(this.playerPrioritySseqLabel);
-            this.sseqGroup.Controls.Add(this.channelPrioritySseqLabel);
-            this.sseqGroup.Controls.Add(this.volumeSseqLabel);
-            this.sseqGroup.Controls.Add(this.playerNumberSseqBox);
-            this.sseqGroup.Controls.Add(this.playerPrioritySseqBox);
-            this.sseqGroup.Controls.Add(this.channelPrioritySseqBox);
-            this.sseqGroup.Controls.Add(this.volumeSseqBox);
-            this.sseqGroup.Controls.Add(this.bankIDbox);
-            this.sseqGroup.Controls.Add(this.bankIdLabel);
-            this.sseqGroup.Location = new System.Drawing.Point(0, 53);
-            this.sseqGroup.Name = "sseqGroup";
-            this.sseqGroup.Size = new System.Drawing.Size(194, 280);
-            this.sseqGroup.TabIndex = 8;
-            this.sseqGroup.Visible = false;
-            // 
-            // playerNumberSseqLabel
-            // 
-            this.playerNumberSseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerNumberSseqLabel.Location = new System.Drawing.Point(4, 196);
-            this.playerNumberSseqLabel.Name = "playerNumberSseqLabel";
-            this.playerNumberSseqLabel.Size = new System.Drawing.Size(187, 23);
-            this.playerNumberSseqLabel.TabIndex = 9;
-            this.playerNumberSseqLabel.Text = "Player Number:";
-            this.playerNumberSseqLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // playerPrioritySseqLabel
-            // 
-            this.playerPrioritySseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerPrioritySseqLabel.Location = new System.Drawing.Point(3, 147);
-            this.playerPrioritySseqLabel.Name = "playerPrioritySseqLabel";
-            this.playerPrioritySseqLabel.Size = new System.Drawing.Size(188, 23);
-            this.playerPrioritySseqLabel.TabIndex = 8;
-            this.playerPrioritySseqLabel.Text = "Player Priority:";
-            this.playerPrioritySseqLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // channelPrioritySseqLabel
-            // 
-            this.channelPrioritySseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.channelPrioritySseqLabel.Location = new System.Drawing.Point(4, 98);
-            this.channelPrioritySseqLabel.Name = "channelPrioritySseqLabel";
-            this.channelPrioritySseqLabel.Size = new System.Drawing.Size(187, 23);
-            this.channelPrioritySseqLabel.TabIndex = 7;
-            this.channelPrioritySseqLabel.Text = "Channel Priority:";
-            this.channelPrioritySseqLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // volumeSseqLabel
-            // 
-            this.volumeSseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeSseqLabel.Location = new System.Drawing.Point(3, 49);
-            this.volumeSseqLabel.Name = "volumeSseqLabel";
-            this.volumeSseqLabel.Size = new System.Drawing.Size(189, 23);
-            this.volumeSseqLabel.TabIndex = 6;
-            this.volumeSseqLabel.Text = "Volume:";
-            this.volumeSseqLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // playerNumberSseqBox
-            // 
-            this.playerNumberSseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerNumberSseqBox.Location = new System.Drawing.Point(4, 222);
-            this.playerNumberSseqBox.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.playerNumberSseqBox.Name = "playerNumberSseqBox";
-            this.playerNumberSseqBox.Size = new System.Drawing.Size(187, 20);
-            this.playerNumberSseqBox.TabIndex = 5;
-            this.playerNumberSseqBox.ValueChanged += new System.EventHandler(this.onPlayerNumberChanged);
-            // 
-            // playerPrioritySseqBox
-            // 
-            this.playerPrioritySseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerPrioritySseqBox.Location = new System.Drawing.Point(4, 173);
-            this.playerPrioritySseqBox.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.playerPrioritySseqBox.Name = "playerPrioritySseqBox";
-            this.playerPrioritySseqBox.Size = new System.Drawing.Size(188, 20);
-            this.playerPrioritySseqBox.TabIndex = 4;
-            this.playerPrioritySseqBox.ValueChanged += new System.EventHandler(this.onPlayerPriorityChanged);
-            // 
-            // channelPrioritySseqBox
-            // 
-            this.channelPrioritySseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.channelPrioritySseqBox.Location = new System.Drawing.Point(3, 124);
-            this.channelPrioritySseqBox.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.channelPrioritySseqBox.Name = "channelPrioritySseqBox";
-            this.channelPrioritySseqBox.Size = new System.Drawing.Size(189, 20);
-            this.channelPrioritySseqBox.TabIndex = 3;
-            this.channelPrioritySseqBox.ValueChanged += new System.EventHandler(this.onChannelPriorityChanged);
-            // 
-            // volumeSseqBox
-            // 
-            this.volumeSseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeSseqBox.Location = new System.Drawing.Point(4, 75);
-            this.volumeSseqBox.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.volumeSseqBox.Name = "volumeSseqBox";
-            this.volumeSseqBox.Size = new System.Drawing.Size(188, 20);
-            this.volumeSseqBox.TabIndex = 2;
-            this.volumeSseqBox.ValueChanged += new System.EventHandler(this.onVolumeChanged);
-            // 
-            // bankIDbox
-            // 
-            this.bankIDbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bankIDbox.FormattingEnabled = true;
-            this.bankIDbox.Location = new System.Drawing.Point(4, 26);
-            this.bankIDbox.Name = "bankIDbox";
-            this.bankIDbox.Size = new System.Drawing.Size(188, 21);
-            this.bankIDbox.TabIndex = 1;
-            this.bankIDbox.SelectedIndexChanged += new System.EventHandler(this.onBankIdChanged);
-            // 
-            // bankIdLabel
-            // 
-            this.bankIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bankIdLabel.Location = new System.Drawing.Point(48, 0);
-            this.bankIdLabel.Name = "bankIdLabel";
-            this.bankIdLabel.Size = new System.Drawing.Size(100, 23);
-            this.bankIdLabel.TabIndex = 0;
-            this.bankIdLabel.Text = "Bank ID:";
-            this.bankIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tree
             // 
@@ -1500,7 +1583,7 @@
             treeNode14});
             this.tree.SelectedImageIndex = 0;
             this.tree.ShowLines = false;
-            this.tree.Size = new System.Drawing.Size(484, 363);
+            this.tree.Size = new System.Drawing.Size(585, 446);
             this.tree.TabIndex = 0;
             this.tree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseClick);
@@ -1780,7 +1863,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(684, 411);
+            this.ClientSize = new System.Drawing.Size(825, 494);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -1788,6 +1871,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "Nitro Studio";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onClosingPlayer);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.bigFolderMenu.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -1798,6 +1882,13 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.sseqGroup.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.playerNumberSseqBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerPrioritySseqBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.channelPrioritySseqBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeSseqBox)).EndInit();
             this.strmGroup.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -1833,11 +1924,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.channelFlagBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sequenceMaxBox)).EndInit();
             this.bankGroup.ResumeLayout(false);
-            this.sseqGroup.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.playerNumberSseqBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerPrioritySseqBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.channelPrioritySseqBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.volumeSseqBox)).EndInit();
             this.filesMenu.ResumeLayout(false);
             this.foldersMenu.ResumeLayout(false);
             this.nodeMenu.ResumeLayout(false);
@@ -1975,6 +2061,12 @@
         private System.Windows.Forms.NumericUpDown v12;
         private System.Windows.Forms.Label countLabel;
         private System.Windows.Forms.NumericUpDown count;
+        private System.Windows.Forms.Label gericomLabel;
+        private System.Windows.Forms.Button gericomPlay;
+        private System.Windows.Forms.Button gericomStop;
+        private System.Windows.Forms.Button gericomPause;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
     }
 }
 
