@@ -23,5 +23,5 @@ RoadrunnerWMC, SDAT Research.
 Loveemu, SDAT Research, Tools.
 Gota7, Nitro Studio and Structures.
 
-©2017-2018 Gota7, Gericom
+2017-2018 Gota7, Gericom
 (Everything but tools and images)
