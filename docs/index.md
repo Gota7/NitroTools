@@ -14,6 +14,7 @@ Nitro Studio is probably what you came here for.
 # Credits
 Nintendo, Tools.
 Gericom, NitroLib, SSEQ Players.
+Bloom, Testing, Suggestions.
 Josh, SDAT Research.
 Crystal, SDAT Research.
 Nintendon, SDAT Research.

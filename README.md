@@ -17,6 +17,7 @@ Some tools for Nitro Sound Data (SDAT)
 ## Credits
 * Gota7 - Coder of everything.
 * Gericom - NitroLib and SSEQ players.
+* Bloom - Beta Testing, Suggestions.
 * Crystal - SDAT Research.
 * loveemu - SDAT Research.
 * Nintendon - SDAT Research.
