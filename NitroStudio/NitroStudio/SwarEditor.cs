@@ -243,12 +243,16 @@ namespace NitroStudio
         private void Export_Click(object sender, EventArgs e)
         {
             SaveFileDialog f = new SaveFileDialog();
-            f.Filter = "Swav File|*.swav|Wave|*.wav";
+            f.Filter = "Supported Files|*.swav;*.wav|Swav File|*.swav|Wave|*.wav";
             f.Title = "Export the file";
             f.ShowDialog();
 
             if (f.FileName != "")
             {
+
+                if (f.FileName.EndsWith(".swav")) { f.FilterIndex = 1; }
+                if (f.FileName.EndsWith(".wav")) { f.FilterIndex = 2; }
+
                 if (f.FilterIndex == 1)
                 {
                     File.WriteAllBytes(f.FileName, file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index]);
@@ -275,11 +279,15 @@ namespace NitroStudio
         {
 
             OpenFileDialog f = new OpenFileDialog();
-            f.Filter = "Swav File|*.swav|Wave|*.wav";
+            f.Filter = "Supported Files|*.swav;*.wav|Swav File|*.swav|Wave|*.wav";
             f.Title = "Import the file";
             f.ShowDialog();
 
             if (f.FileName != "") {
+
+
+                if (f.FileName.EndsWith(".swav")) { f.FilterIndex = 1; }
+                if (f.FileName.EndsWith(".wav")) { f.FilterIndex = 2; }
 
                 if (f.FilterIndex == 1)
                 {

@@ -698,6 +698,7 @@ namespace NitroStudio
                     p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
                     p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
                     p.StartInfo.CreateNoWindow = true;
+                    p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     p.Start();
                     p.WaitForExit();
 
@@ -721,6 +722,7 @@ namespace NitroStudio
                     p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
                     p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
                     p.StartInfo.CreateNoWindow = true;
+                    p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     p.Start();
                     p.WaitForExit();
 
@@ -743,6 +745,7 @@ namespace NitroStudio
                     p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
                     p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
                     p.StartInfo.CreateNoWindow = true;
+                    p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                     p.Start();
                     p.WaitForExit();
 

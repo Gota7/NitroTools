@@ -157,7 +157,7 @@ namespace NitroStudio
                 OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
                 openFileDialog1.InitialDirectory = "c:\\";
-                openFileDialog1.Filter = "Nitro Sound Data|*.sdat|Symbol Binary|symb.bin";
+                openFileDialog1.Filter = "Supported Files|*.sdat;symb.bin|Nitro Sound Data|*.sdat|Symbol Binary|symb.bin";
                 openFileDialog1.FilterIndex = 1;
                 openFileDialog1.RestoreDirectory = true;
                 openFileDialog1.InitialDirectory = previousPath;
@@ -175,7 +175,14 @@ namespace NitroStudio
                                 previousPath = Path.GetDirectoryName(openFileDialog1.FileName);
                                 acc_path = openFileDialog1.FileName;
 
-                                if (openFileDialog1.FilterIndex == 1)
+                                if (openFileDialog1.FilterIndex == 1) {
+
+                                    if (openFileDialog1.FileName.EndsWith(".sdat")) { openFileDialog1.FilterIndex = 2; }
+                                    if (openFileDialog1.FileName.EndsWith(".bin")) { openFileDialog1.FilterIndex = 3; }
+
+                                }
+
+                                if (openFileDialog1.FilterIndex == 2)
                                 {
 
                                     //Get path.
@@ -188,7 +195,8 @@ namespace NitroStudio
                                     sdat.load(File.ReadAllBytes(sdatPath));
 
                                 }
-                                else {
+                                if (openFileDialog1.FilterIndex == 3)
+                                {
 
                                     //Get sdat from the folder.
                                     if (File.Exists(Path.GetDirectoryName(openFileDialog1.FileName) + "\\info.bin"))
@@ -3459,13 +3467,13 @@ namespace NitroStudio
             //Ending.
             string ending = name.Substring(name.IndexOf('.'));
 
-            string filter = "Sound Sequence|*.sseq|MIDI Sequence|*.mid";
+            string filter = "Supported Files|*.sseq;*.mid|Sound Sequence|*.sseq|MIDI Sequence|*.mid";
 
             //Change ending.
             if (ending == ".ssar") { filter = "Sequence Archive|*.ssar"; }
             if (ending == ".sbnk") { filter = "Sound Bank|*.sbnk"; }
             if (ending == ".swar") { filter = "Wave Archive|*.swar"; }
-            if (ending == ".strm") { filter = "Stream|*.strm|PCM Wave|*.wav"; }
+            if (ending == ".strm") { filter = "Supported Files|*.strm;*.wav|Stream|*.strm|PCM Wave|*.wav"; }
 
             OpenFileDialog f = new OpenFileDialog();
             f.Filter = filter;
@@ -3474,6 +3482,24 @@ namespace NitroStudio
             f.ShowDialog();
 
             if (f.FileName != "") {
+
+                if (ending == ".sseq" || ending == ".strm") {
+
+                    if (ending == ".sseq")
+                    {
+
+                        if (f.FileName.EndsWith(".mid")) { f.FilterIndex = 2; }
+                        if (f.FileName.EndsWith(".sseq")) { f.FilterIndex = 1; }
+
+                    }
+                    else {
+
+                        if (f.FileName.EndsWith(".wav")) { f.FilterIndex = 2; }
+                        if (f.FileName.EndsWith(".strm")) { f.FilterIndex = 1; }
+
+                    }
+
+                }
 
                 if (f.FilterIndex == 1)
                 {
