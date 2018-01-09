@@ -1531,7 +1531,7 @@
             this.Replace,
             this.Delete});
             this.filesMenu.Name = "filesMenu";
-            this.filesMenu.Size = new System.Drawing.Size(159, 136);
+            this.filesMenu.Size = new System.Drawing.Size(159, 114);
             // 
             // addAbove
             // 

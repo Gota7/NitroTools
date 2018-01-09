@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NitroFileLoader;
+using System.Media;
+using System.Diagnostics;
 
 namespace NitroStudio
 {
@@ -19,6 +21,11 @@ namespace NitroStudio
         sbnkFile file;
         private MainWindow parent;
         int parentIndex;
+
+        //Emulator variables.
+        int bankId = 0;
+        sbnkFile.basicInstrumentStuff emulatorInfo;
+        SoundPlayer player = new SoundPlayer();
 
         public SbnkEditor(MainWindow parent, byte[] b, string name, int index)
         {
@@ -129,7 +136,7 @@ namespace NitroStudio
                         }
                         else {
 
-                            tree.Nodes[0].Nodes[i].Nodes[j].Nodes.Add("Universal Intrument");
+                            tree.Nodes[0].Nodes[i].Nodes[j].Nodes.Add("Universal Instrument");
 
                         }
 
@@ -256,6 +263,9 @@ namespace NitroStudio
         //Do Info Panel Stuff.
         public void doInfoStuff() {
 
+            //Do emulator stuff.
+            doEmulatorStuff();
+
             if (tree.SelectedNode.Parent != null)
             {
 
@@ -274,7 +284,7 @@ namespace NitroStudio
                         {
 
                             //Universal record.
-                            if (tree.SelectedNode.Text == "Universal Intrument")
+                            if (tree.SelectedNode.Text == "Universal Instrument")
                             {
 
                                 hideAllThings();
@@ -428,6 +438,389 @@ namespace NitroStudio
             basicInfoRegionalPanel.Hide();
             noInfoPanel.Show();
 
+        }
+
+        #endregion
+
+
+        //Emulator Stuff
+        #region emulatorStuff
+
+        //Do emulator stuff.
+        public void doEmulatorStuff() {
+
+            hideStuff();
+
+            //See if instrument node.
+            if (tree.SelectedNode != null) {
+
+                //Universal Instrument.
+                if (tree.SelectedNode.Text.StartsWith("Universal"))
+                {
+
+                    //Show stuff.
+                    intrumentPanel.Show();
+
+                    //Set basic instrument stuff.
+                    emulatorInfo = new sbnkFile.basicInstrumentStuff();
+                    emulatorInfo.attackRate = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.attackRate;
+                    emulatorInfo.decayRate = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.decayRate;
+                    emulatorInfo.swarNumber = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.swarNumber;
+                    emulatorInfo.swavNumber = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.swavNumber;
+                    emulatorInfo.sustainLevel = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.sustainLevel;
+                    emulatorInfo.releaseRate = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.releaseRate;
+                    emulatorInfo.pan = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.pan;
+                    emulatorInfo.noteNumber = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.noteNumber;
+                    emulatorInfo.unknown = 1;
+
+                    doInstrumentStuff();
+
+                }
+                //Regional
+                else if (tree.SelectedNode.Text.StartsWith("Region") && !tree.SelectedNode.Text.StartsWith("Regional"))
+                {
+
+                    //Show stuff.
+                    intrumentPanel.Show();
+
+                    //Get stuff.
+                    emulatorInfo = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index];
+
+                    doInstrumentStuff();
+
+                }
+                //Ranged
+                else if (tree.SelectedNode.Text.StartsWith("Key"))
+                {
+
+                    //Show stuff.
+                    intrumentPanel.Show();
+
+                    //Get stuff.
+                    emulatorInfo = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index];
+
+                    doInstrumentStuff();
+
+                }
+
+
+            }
+
+        }
+
+        public void hideStuff() {
+            noInstrumentPanel.Show();
+            intrumentPanel.Hide();
+        }
+
+        #endregion
+
+
+        //Instrument Stuff
+        #region instrumentStuff
+
+        public void doInstrumentStuff() {
+
+            //Get the bank IDs.
+            bankEmulationBox.Items.Clear();
+
+            int count = 0;
+            foreach (symbStringName b in parent.sdat.symbFile.bankStrings) {
+                if (b.isPlaceHolder) {
+                    bankEmulationBox.Items.Add("[" + count + "] %PLACEHOLDER%");
+                }
+                else
+                {
+                    bankEmulationBox.Items.Add("[" + count + "] " + b.name);
+                }
+                count += 1;
+            }
+            bankEmulationBox.SelectedIndex = bankId;
+
+            //Edit SWAR list.
+            swar1.Items.Clear();
+            swar2.Items.Clear();
+            swar3.Items.Clear();
+            swar4.Items.Clear();
+
+            //Add SWARs.
+            count = 0;
+            swar1.Items.Add("FFFF - None");
+            swar2.Items.Add("FFFF - None");
+            swar3.Items.Add("FFFF - None");
+            swar4.Items.Add("FFFF - None");
+            foreach (symbStringName b in parent.sdat.symbFile.waveStrings)
+            {
+                if (b.isPlaceHolder)
+                {
+                    swar1.Items.Add("[" + count + "] %PLACEHOLDER%");
+                    swar2.Items.Add("[" + count + "] %PLACEHOLDER%");
+                    swar3.Items.Add("[" + count + "] %PLACEHOLDER%");
+                    swar4.Items.Add("[" + count + "] %PLACEHOLDER%");
+                }
+                else
+                {
+                    swar1.Items.Add("[" + count + "] " + b.name);
+                    swar2.Items.Add("[" + count + "] " + b.name);
+                    swar3.Items.Add("[" + count + "] " + b.name);
+                    swar4.Items.Add("[" + count + "] " + b.name);
+                }
+                count += 1;
+            }
+
+            //Select waves.
+            if (parent.sdat.infoFile.bankData[bankId].wave0 != 0xFFFF && !parent.sdat.infoFile.bankData[bankId].isPlaceHolder) { swar1.SelectedIndex = parent.sdat.infoFile.bankData[bankId].wave0 + 1; } else { swar1.SelectedIndex = 0; }
+            if (parent.sdat.infoFile.bankData[bankId].wave1 != 0xFFFF && !parent.sdat.infoFile.bankData[bankId].isPlaceHolder) { swar2.SelectedIndex = parent.sdat.infoFile.bankData[bankId].wave1 + 1; } else { swar2.SelectedIndex = 0; }
+            if (parent.sdat.infoFile.bankData[bankId].wave2 != 0xFFFF && !parent.sdat.infoFile.bankData[bankId].isPlaceHolder) { swar3.SelectedIndex = parent.sdat.infoFile.bankData[bankId].wave2 + 1; } else { swar3.SelectedIndex = 0; }
+            if (parent.sdat.infoFile.bankData[bankId].wave3 != 0xFFFF && !parent.sdat.infoFile.bankData[bankId].isPlaceHolder) { swar4.SelectedIndex = parent.sdat.infoFile.bankData[bankId].wave3 + 1; } else { swar4.SelectedIndex = 0; }
+
+        }
+
+        //Bank Update.
+        private void bankEmulationBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bankId = bankEmulationBox.SelectedIndex;
+
+            //Add SWARs.
+            int count = 0;
+            swar1.Items.Add("FFFF - None");
+            swar2.Items.Add("FFFF - None");
+            swar3.Items.Add("FFFF - None");
+            swar4.Items.Add("FFFF - None");
+            foreach (symbStringName b in parent.sdat.symbFile.waveStrings)
+            {
+                if (b.isPlaceHolder)
+                {
+                    swar1.Items.Add("[" + count + "] %PLACEHOLDER%");
+                    swar2.Items.Add("[" + count + "] %PLACEHOLDER%");
+                    swar3.Items.Add("[" + count + "] %PLACEHOLDER%");
+                    swar4.Items.Add("[" + count + "] %PLACEHOLDER%");
+                }
+                else
+                {
+                    swar1.Items.Add("[" + count + "] " + b.name);
+                    swar2.Items.Add("[" + count + "] " + b.name);
+                    swar3.Items.Add("[" + count + "] " + b.name);
+                    swar4.Items.Add("[" + count + "] " + b.name);
+                }
+                count += 1;
+            }
+
+            //Select waves.
+            if (parent.sdat.infoFile.bankData[bankId].wave0 != 0xFFFF && !parent.sdat.infoFile.bankData[bankId].isPlaceHolder) { swar1.SelectedIndex = parent.sdat.infoFile.bankData[bankId].wave0 + 1; } else { swar1.SelectedIndex = 0; }
+            if (parent.sdat.infoFile.bankData[bankId].wave1 != 0xFFFF && !parent.sdat.infoFile.bankData[bankId].isPlaceHolder) { swar2.SelectedIndex = parent.sdat.infoFile.bankData[bankId].wave1 + 1; } else { swar2.SelectedIndex = 0; }
+            if (parent.sdat.infoFile.bankData[bankId].wave2 != 0xFFFF && !parent.sdat.infoFile.bankData[bankId].isPlaceHolder) { swar3.SelectedIndex = parent.sdat.infoFile.bankData[bankId].wave2 + 1; } else { swar3.SelectedIndex = 0; }
+            if (parent.sdat.infoFile.bankData[bankId].wave3 != 0xFFFF && !parent.sdat.infoFile.bankData[bankId].isPlaceHolder) { swar4.SelectedIndex = parent.sdat.infoFile.bankData[bankId].wave3 + 1; } else { swar4.SelectedIndex = 0; }
+
+        }
+
+        #endregion
+
+
+        //Extract wav stuff
+        #region waveButtons
+
+        private void createTempButton_Click(object sender, EventArgs e)
+        {
+
+            //Change Directory.
+            Directory.SetCurrentDirectory(nitroPath + "/Data/Temp");
+
+            //Create Folders.
+            Directory.CreateDirectory("0");
+            Directory.CreateDirectory("1");
+            Directory.CreateDirectory("2");
+            Directory.CreateDirectory("3");
+
+
+            //Extract the swavs.
+            Directory.SetCurrentDirectory(nitroPath);
+
+            //Dump swavs.
+            for (int i = 0; i < 4; i++) {
+                swarFile f = new swarFile();
+
+                if (i == 0 && parent.sdat.infoFile.bankData[bankId].wave0 != 0xFFFF)
+                {
+                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave0]);
+                    for (int j = 0; j < f.data[0].files.Count(); j++) {
+                        dumpSwav(i, j);
+                    }
+                }
+                if (i == 1 && parent.sdat.infoFile.bankData[bankId].wave1 != 0xFFFF)
+                {
+                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave1]);
+                    for (int j = 0; j < f.data[0].files.Count(); j++)
+                    {
+                        dumpSwav(i, j);
+                    }
+                }
+                if (i == 2 && parent.sdat.infoFile.bankData[bankId].wave2 != 0xFFFF)
+                {
+                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave2]);
+                    for (int j = 0; j < f.data[0].files.Count(); j++)
+                    {
+                        dumpSwav(i, j);
+                    }
+                }
+                if (i == 3 && parent.sdat.infoFile.bankData[bankId].wave3 != 0xFFFF)
+                {
+                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave3]);
+                    for (int j = 0; j < f.data[0].files.Count(); j++)
+                    {
+                        dumpSwav(i, j);
+                    }
+                }
+
+            }
+
+            createTempButton.Enabled = false;
+            deleteTempButton.Enabled = true;
+
+            originalButton.Enabled = true;
+            loopBox.Enabled = true;
+            moddedButton.Enabled = false;
+            stopButton.Enabled = true;
+        }
+
+        public void dumpSwav(int swar, int swav) {
+
+            //See if placeholder.
+            if (swar == 0) {
+                if (parent.sdat.infoFile.bankData[bankId].wave0 != 0xFFFF) {
+                    swarFile f = new swarFile();
+                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave0]);
+
+                    File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", f.data[0].files[swav]);
+
+                    //Convert.
+                    Process p = new Process();
+                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
+                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
+                    p.StartInfo.CreateNoWindow = true;
+                    p.Start();
+                    p.WaitForExit();
+
+                    if (File.Exists("Data\\Temp\\0\\"+swav+".wav")) { File.Delete("Data\\Temp\\0\\" + swav + ".wav"); }
+                    File.Delete("Data\\Tools\\tmp.swav");
+                    File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\0\\" + swav + ".wav");
+
+                }
+            }
+            if (swar == 1)
+            {
+                if (parent.sdat.infoFile.bankData[bankId].wave1 != 0xFFFF)
+                {
+                    swarFile f = new swarFile();
+                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave1]);
+
+                    File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", f.data[0].files[swav]);
+
+                    //Convert.
+                    Process p = new Process();
+                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
+                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
+                    p.StartInfo.CreateNoWindow = true;
+                    p.Start();
+                    p.WaitForExit();
+
+                    if (File.Exists("Data\\Temp\\1\\" + swav + ".wav")) { File.Delete("Data\\Temp\\1\\" + swav + ".wav"); }
+                    File.Delete("Data\\Tools\\tmp.swav");
+                    File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\1\\" + swav + ".wav");
+                }
+            }
+            if (swar == 2)
+            {
+                if (parent.sdat.infoFile.bankData[bankId].wave2 != 0xFFFF)
+                {
+                    swarFile f = new swarFile();
+                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave2]);
+
+                    File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", f.data[0].files[swav]);
+
+                    //Convert.
+                    Process p = new Process();
+                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
+                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
+                    p.StartInfo.CreateNoWindow = true;
+                    p.Start();
+                    p.WaitForExit();
+
+                    if (File.Exists("Data\\Temp\\2\\" + swav + ".wav")) { File.Delete("Data\\Temp\\2\\" + swav + ".wav"); }
+                    File.Delete("Data\\Tools\\tmp.swav");
+                    File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\2\\" + swav + ".wav");
+                }
+            }
+            if (swar == 3)
+            {
+                if (parent.sdat.infoFile.bankData[bankId].wave3 != 0xFFFF)
+                {
+                    swarFile f = new swarFile();
+                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave3]);
+
+                    File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", f.data[0].files[swav]);
+
+                    //Convert.
+                    Process p = new Process();
+                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
+                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
+                    p.StartInfo.CreateNoWindow = true;
+                    p.Start();
+                    p.WaitForExit();
+
+                    if (File.Exists("Data\\Temp\\3\\" + swav + ".wav")) { File.Delete("Data\\Temp\\3\\" + swav + ".wav"); }
+                    File.Delete("Data\\Tools\\tmp.swav");
+                    File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\3\\" + swav + ".wav");
+                }
+            }
+
+        }
+
+        private void deleteTempButton_Click(object sender, EventArgs e)
+        {
+            //Delete everything.
+            Directory.SetCurrentDirectory(nitroPath + "/Data/Temp");
+            Directory.Delete("0", true);
+            Directory.Delete("1", true);
+            Directory.Delete("2", true);
+            Directory.Delete("3", true);
+            Directory.SetCurrentDirectory(nitroPath);
+
+            createTempButton.Enabled = true;
+            deleteTempButton.Enabled = false;
+
+            originalButton.Enabled = false;
+            loopBox.Enabled = false;
+            moddedButton.Enabled = false;
+            stopButton.Enabled = false;
+        }
+
+        #endregion
+
+
+        //Sound Player Deluxe
+        #region soundPlayerDeluxe
+
+        private void moddedButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void originalButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                player = new SoundPlayer("Data/Temp/" + emulatorInfo.swarNumber + "/" + emulatorInfo.swavNumber + ".wav");
+                if (loopBox.Checked) { player.PlayLooping(); } else { player.Play(); }
+            }
+            catch {
+                MessageBox.Show("File not found! Are you emulating the wrong bank?", "Error!");
+            }
+        }
+
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            player.Stop();
         }
 
         #endregion
@@ -741,6 +1134,8 @@ namespace NitroStudio
         //Update Ranged Data.
         private void updateRangedButton_Click(object sender, EventArgs e)
         {
+            doEmulatorStuff();
+
             sbnkFile.basicInstrumentStuff f = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index];
 
             f.attackRate = (byte)attackRateBoxRanged.Value;
@@ -759,6 +1154,8 @@ namespace NitroStudio
         //Update Regional Data.
         private void updateButtonRegional_Click(object sender, EventArgs e)
         {
+            doEmulatorStuff();
+
             sbnkFile.basicInstrumentStuff f = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index];
 
             f.attackRate = (byte)attackRateBoxRegional.Value;
@@ -777,6 +1174,8 @@ namespace NitroStudio
         //Update Universal Data.
         private void updateDataUniversal_Click(object sender, EventArgs e)
         {
+            doEmulatorStuff();
+
             sbnkFile.sbnkInstrumentLessThan16 f = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA;
 
             f.attackRate = (byte)attackRateBoxUniversal.Value;
