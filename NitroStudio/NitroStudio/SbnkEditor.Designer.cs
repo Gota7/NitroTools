@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SbnkEditor));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("SBNK", 1, 1);
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("SBNK", 1, 1);
             this.menu = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newBetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1402,6 +1402,7 @@
             // 
             this.fRecordBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.fRecordBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fRecordBox.FormattingEnabled = true;
             this.fRecordBox.Items.AddRange(new object[] {
             "0 - Placeholder",
@@ -1482,12 +1483,12 @@
             this.tree.ImageList = this.icons;
             this.tree.Location = new System.Drawing.Point(0, 0);
             this.tree.Name = "tree";
-            treeNode1.ImageIndex = 1;
-            treeNode1.Name = "SBNK";
-            treeNode1.SelectedImageIndex = 1;
-            treeNode1.Text = "SBNK";
+            treeNode2.ImageIndex = 1;
+            treeNode2.Name = "SBNK";
+            treeNode2.SelectedImageIndex = 1;
+            treeNode2.Text = "SBNK";
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.tree.SelectedImageIndex = 0;
             this.tree.Size = new System.Drawing.Size(310, 409);
             this.tree.TabIndex = 0;
@@ -1528,7 +1529,7 @@
             this.loopBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loopBox.Enabled = false;
-            this.loopBox.Location = new System.Drawing.Point(3, 302);
+            this.loopBox.Location = new System.Drawing.Point(3, 331);
             this.loopBox.Name = "loopBox";
             this.loopBox.Size = new System.Drawing.Size(159, 17);
             this.loopBox.TabIndex = 9;
@@ -1557,7 +1558,7 @@
             this.originalButton.Name = "originalButton";
             this.originalButton.Size = new System.Drawing.Size(159, 23);
             this.originalButton.TabIndex = 7;
-            this.originalButton.Text = "Play Original";
+            this.originalButton.Text = "Play";
             this.originalButton.UseVisualStyleBackColor = true;
             this.originalButton.Click += new System.EventHandler(this.originalButton_Click);
             // 
@@ -1566,19 +1567,20 @@
             this.moddedButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.moddedButton.Enabled = false;
-            this.moddedButton.Location = new System.Drawing.Point(3, 325);
+            this.moddedButton.Location = new System.Drawing.Point(4, 273);
             this.moddedButton.Name = "moddedButton";
             this.moddedButton.Size = new System.Drawing.Size(159, 23);
             this.moddedButton.TabIndex = 6;
             this.moddedButton.Text = "Play Modded";
             this.moddedButton.UseVisualStyleBackColor = true;
+            this.moddedButton.Visible = false;
             this.moddedButton.Click += new System.EventHandler(this.moddedButton_Click);
             // 
             // soundPlayerLabel
             // 
             this.soundPlayerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.soundPlayerLabel.Location = new System.Drawing.Point(3, 276);
+            this.soundPlayerLabel.Location = new System.Drawing.Point(3, 299);
             this.soundPlayerLabel.Name = "soundPlayerLabel";
             this.soundPlayerLabel.Size = new System.Drawing.Size(159, 23);
             this.soundPlayerLabel.TabIndex = 5;
@@ -1636,6 +1638,7 @@
             // swar4
             // 
             this.swar4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.swar4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.swar4.Enabled = false;
             this.swar4.FormattingEnabled = true;
             this.swar4.Location = new System.Drawing.Point(3, 123);
@@ -1646,6 +1649,7 @@
             // swar3
             // 
             this.swar3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.swar3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.swar3.Enabled = false;
             this.swar3.FormattingEnabled = true;
             this.swar3.Location = new System.Drawing.Point(3, 93);
@@ -1656,6 +1660,7 @@
             // swar2
             // 
             this.swar2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.swar2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.swar2.Enabled = false;
             this.swar2.FormattingEnabled = true;
             this.swar2.Location = new System.Drawing.Point(3, 63);
@@ -1676,6 +1681,7 @@
             // swar1
             // 
             this.swar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.swar1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.swar1.Enabled = false;
             this.swar1.FormattingEnabled = true;
             this.swar1.Location = new System.Drawing.Point(3, 33);
@@ -1687,6 +1693,7 @@
             // 
             this.bankEmulationBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankEmulationBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bankEmulationBox.FormattingEnabled = true;
             this.bankEmulationBox.Location = new System.Drawing.Point(12, 26);
             this.bankEmulationBox.Name = "bankEmulationBox";

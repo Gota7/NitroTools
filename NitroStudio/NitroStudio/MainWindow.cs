@@ -833,10 +833,10 @@ namespace NitroStudio
                     {
 
                         //Hide Gericom.
-                        gericomPause.Show();
-                        gericomPlay.Show();
-                        gericomStop.Show();
-                        gericomLabel.Show();
+                        gericomPause.Hide();
+                        gericomPlay.Hide();
+                        gericomStop.Hide();
+                        gericomLabel.Hide();
 
                         //FileID.
                         fileIdLabel.Show();
@@ -1490,9 +1490,16 @@ namespace NitroStudio
                     }
 
                     //Add player.
-                    sdat.fixOffsets();
-                    if (sseqPlayer != null) sseqPlayer.Stop();
-                    sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
+                    if (!sdat.infoFile.sseqData[tree.SelectedNode.Index].isPlaceHolder)
+                    {
+                        try
+                        {
+                            sdat.fixOffsets();
+                            if (sseqPlayer != null) sseqPlayer.Stop();
+                            sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
+                        }
+                        catch { }
+                    }
 
                 }
 
@@ -1595,10 +1602,16 @@ namespace NitroStudio
                 sdat.infoFile.sseqData[tree.SelectedNode.Index].fileId = (UInt32)fileIdBox.SelectedIndex;
 
                 //Add player.
-                sdat.fixOffsets();
-                if (sseqPlayer != null) sseqPlayer.Stop();
-                sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
-
+                if (!sdat.infoFile.sseqData[tree.SelectedNode.Index].isPlaceHolder)
+                {
+                    try
+                    {
+                        sdat.fixOffsets();
+                        if (sseqPlayer != null) sseqPlayer.Stop();
+                        sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
+                    }
+                    catch { }
+                }
             }
 
             //SeqArc
@@ -2362,8 +2375,8 @@ namespace NitroStudio
                         if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Sequence Archive")
                         {
 
-                            ByteViewerForm f = new ByteViewerForm(sdat.files.seqArcFiles[tree.SelectedNode.Index], tree.SelectedNode.Text);
-                            f.Show();
+                            SsarEditor s = new SsarEditor(this, sdat.files.seqArcFiles[tree.SelectedNode.Index], tree.Nodes[2], tree.SelectedNode.Text.Split(' ')[1]);
+                            s.Show();
 
                         }
 

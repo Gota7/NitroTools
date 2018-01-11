@@ -2934,6 +2934,7 @@ namespace NitroFileLoader
 			public byte ppr; //Player Priority.
 			public byte player; //Player number.
 			public byte[] reserved; //[2].
+            public bool isPlaceholder; //Placeholder.
 
 		}
 
@@ -2973,8 +2974,9 @@ namespace NitroFileLoader
 					data [i].records [j].ppr = br.ReadByte ();
 					data [i].records [j].player = br.ReadByte ();
 					data [i].records [j].reserved = br.ReadBytes (2);
+                    if (data[i].records[j].bank == 0 && data[i].records[j].volume == 0 && data[i].records[j].cpr == 0 && data[i].records[j].ppr == 0 && data[i].records[j].player == 0) { data[i].records[j].isPlaceholder = true; } else { data[i].records[j].isPlaceholder = false; }
 
-				}
+                }
 
 				//Read data.
 				int recordLength = (int)data[i].nCount*12+16;

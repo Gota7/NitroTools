@@ -41,3 +41,4 @@ C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\LibMKToolbox.dll
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\LibNitro.dll
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\bin\Debug\Tao.DevIl.dll
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\NitroStudio\NitroStudio\obj\Debug\NitroStudio.SsarEditor.resources

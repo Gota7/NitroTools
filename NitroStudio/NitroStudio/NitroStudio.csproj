@@ -126,6 +126,18 @@
     <Compile Include="SbnkEditor.Designer.cs">
       <DependentUpon>SbnkEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="SsarEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SsarEditor.Designer.cs">
+      <DependentUpon>SsarEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SseqEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SseqEditor.Designer.cs">
+      <DependentUpon>SseqEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="StrmPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SbnkEditor.resx">
       <DependentUpon>SbnkEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SsarEditor.resx">
+      <DependentUpon>SsarEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StrmPlayer.resx">
       <DependentUpon>StrmPlayer.cs</DependentUpon>

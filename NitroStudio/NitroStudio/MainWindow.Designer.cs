@@ -672,6 +672,7 @@
             this.bankIDbox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.bankIDbox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bankIDbox.FormattingEnabled = true;
             this.bankIDbox.Location = new System.Drawing.Point(4, 26);
             this.bankIDbox.Name = "bankIDbox";
@@ -1153,6 +1154,7 @@
             this.fileIdBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.fileIdBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fileIdBox.FormattingEnabled = true;
             this.fileIdBox.Location = new System.Drawing.Point(4, 26);
             this.fileIdBox.Name = "fileIdBox";
@@ -1234,6 +1236,7 @@
             // 
             this.nEntryBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.nEntryBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.nEntryBox.FormattingEnabled = true;
             this.nEntryBox.Items.AddRange(new object[] {
             "0 - SSEQ",
@@ -1273,6 +1276,7 @@
             // 
             this.typeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.typeGroupBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeGroupBox.FormattingEnabled = true;
             this.typeGroupBox.Items.AddRange(new object[] {
             "0 - SSEQ",
@@ -1404,6 +1408,7 @@
             // 
             this.wave3Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.wave3Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.wave3Box.FormattingEnabled = true;
             this.wave3Box.Location = new System.Drawing.Point(3, 184);
             this.wave3Box.Name = "wave3Box";
@@ -1415,6 +1420,7 @@
             // 
             this.wave2Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.wave2Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.wave2Box.FormattingEnabled = true;
             this.wave2Box.Location = new System.Drawing.Point(3, 128);
             this.wave2Box.Name = "wave2Box";
@@ -1426,6 +1432,7 @@
             // 
             this.wave1Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.wave1Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.wave1Box.FormattingEnabled = true;
             this.wave1Box.Location = new System.Drawing.Point(3, 75);
             this.wave1Box.Name = "wave1Box";
@@ -1438,6 +1445,7 @@
             this.wave0Box.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.wave0Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.wave0Box.FormattingEnabled = true;
             this.wave0Box.Location = new System.Drawing.Point(3, 26);
             this.wave0Box.Name = "wave0Box";

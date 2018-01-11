@@ -345,6 +345,7 @@
             "PCM8",
             "PCM16",
             "(IMA-)ADPCM"});
+            this.typeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeBox.Enabled = false;
             this.typeBox.FormattingEnabled = true;
             this.typeBox.Items.AddRange(new object[] {
