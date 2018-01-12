@@ -2561,6 +2561,63 @@ namespace NitroStudio
             if (tree.SelectedNode != null) {
                 if (tree.SelectedNode.Parent != null) {
 
+                    if (tree.SelectedNode.Parent.Parent == null)
+                    {
+
+                        if (tree.SelectedNode.Parent.Text == "Instrument Bank")
+                        {
+
+                            TreeNode n = tree.Nodes[8].Nodes[2].Nodes[(int)sdat.infoFile.bankData[tree.SelectedNode.Index].fileId - (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count())];
+
+                            if (!sdat.infoFile.bankData[tree.SelectedNode.Index].isPlaceHolder)
+                            {
+                                sdat.fixOffsets();
+                                SbnkEditor s = new SbnkEditor(this, sdat.files.files[(int)sdat.infoFile.bankData[tree.SelectedNode.Index].fileId], n.Text.Split(' ')[1], (int)(sdat.infoFile.bankData[tree.SelectedNode.Index].fileId - (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count())), tree.SelectedNode.Index);
+                                s.Show();
+                            }
+
+                        }
+
+                        else if (tree.SelectedNode.Parent.Text == "Wave")
+                        {
+
+                            TreeNode n = tree.Nodes[8].Nodes[3].Nodes[(int)sdat.infoFile.waveData[tree.SelectedNode.Index].fileId - (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count() + sdat.files.bankFiles.Count())];
+
+                            if (!sdat.infoFile.waveData[tree.SelectedNode.Index].isPlaceHolder)
+                            {
+                                sdat.fixOffsets();
+                                SwarEditor s = new SwarEditor(this, sdat.files.files[(int)sdat.infoFile.waveData[tree.SelectedNode.Index].fileId], n.Text.Split(' ')[1], (int)(sdat.infoFile.waveData[tree.SelectedNode.Index].fileId - (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count() + sdat.files.bankFiles.Count())));
+                                s.Show();
+                            }
+
+                        }
+
+                        else if (tree.SelectedNode.Parent.Text == "Stream")
+                        {
+
+                            if (!sdat.infoFile.strmData[tree.SelectedNode.Index].isPlaceHolder)
+                            {
+                                //Convert STRM to .wav
+                                sdat.fixOffsets();
+                                File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.strm", sdat.files.files[(int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId]);
+                                string infoArguments = "tmp.strm";
+                                Process p2 = new Process();
+                                p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\"";
+                                p2.StartInfo.Arguments = infoArguments;
+                                p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                                Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
+                                p2.Start();
+                                p2.WaitForExit();
+                                Directory.SetCurrentDirectory(nitroPath);
+
+                                StrmPlayer s = new StrmPlayer(nitroPath + "/Data/Tools/tmp.wav");
+                                s.Show();
+                            }
+
+                        }
+
+                    }
+
                     if (tree.SelectedNode.Parent.Parent != null) {
 
                         if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Sequence")
@@ -2582,10 +2639,11 @@ namespace NitroStudio
                         if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Bank")
                         {
 
-                            SbnkEditor s = new SbnkEditor(this, sdat.files.bankFiles[tree.SelectedNode.Index], tree.SelectedNode.Text.Split(' ')[1], tree.SelectedNode.Index);
+                            SbnkEditor s = new SbnkEditor(this, sdat.files.bankFiles[tree.SelectedNode.Index], tree.SelectedNode.Text.Split(' ')[1], tree.SelectedNode.Index, 0);
                             s.Show();
 
                         }
+                        
 
                         if (tree.SelectedNode.Parent.Parent.Name == "FILES" && tree.SelectedNode.Parent.Name == "Wave Archive") {
 

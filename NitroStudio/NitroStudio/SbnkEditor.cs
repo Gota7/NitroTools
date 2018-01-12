@@ -27,7 +27,7 @@ namespace NitroStudio
         sbnkFile.basicInstrumentStuff emulatorInfo;
         SoundPlayer player = new SoundPlayer();
 
-        public SbnkEditor(MainWindow parent, byte[] b, string name, int index)
+        public SbnkEditor(MainWindow parent, byte[] b, string name, int index, int emulationIndex)
         {
             InitializeComponent();
 
@@ -39,11 +39,31 @@ namespace NitroStudio
             this.Text = name;
             tree.Nodes[0].Text = name;
 
-            //Update nodes.
-            updateNodes();
+            //Get the bank IDs.
+            bankEmulationBox.Items.Clear();
 
             this.parent = parent;
             parentIndex = index;
+
+            //Bank Emulation.
+            int count = 0;
+            foreach (symbStringName sa in parent.sdat.symbFile.bankStrings)
+            {
+                if (sa.isPlaceHolder)
+                {
+                    bankEmulationBox.Items.Add("[" + count + "] %PLACEHOLDER%");
+                }
+                else
+                {
+                    bankEmulationBox.Items.Add("[" + count + "] " + sa.name);
+                }
+                count += 1;
+            }
+            bankEmulationBox.SelectedIndex = emulationIndex;
+            
+
+            //Update nodes.
+            updateNodes();
         }
 
         //Update nodes
@@ -414,9 +434,9 @@ namespace NitroStudio
 
                         }
 
-                    } 
+                    }
 
-                } else {hideAllThings();}
+                } else { hideAllThings(); }
 
             }
             else {
@@ -702,7 +722,7 @@ namespace NitroStudio
                     p.Start();
                     p.WaitForExit();
 
-                    if (File.Exists("Data\\Temp\\0\\"+swav+".wav")) { File.Delete("Data\\Temp\\0\\" + swav + ".wav"); }
+                    if (File.Exists("Data\\Temp\\0\\" + swav + ".wav")) { File.Delete("Data\\Temp\\0\\" + swav + ".wav"); }
                     File.Delete("Data\\Tools\\tmp.swav");
                     File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\0\\" + swav + ".wav");
 
@@ -806,7 +826,7 @@ namespace NitroStudio
 
         private void moddedButton_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void originalButton_Click(object sender, EventArgs e)
@@ -1300,7 +1320,7 @@ namespace NitroStudio
 
             for (int i = 0; i < count; i++)
             {
-                r.Insert(index+1, s);
+                r.Insert(index + 1, s);
             }
 
             file.data[parentIndex].records = r.ToArray();
@@ -1311,7 +1331,7 @@ namespace NitroStudio
         {
             if (tree.SelectedNode.Index != 0) {
                 sbnkFile.sbnkInstrumentRecord current = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index];
-                sbnkFile.sbnkInstrumentRecord above = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index-1];
+                sbnkFile.sbnkInstrumentRecord above = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index - 1];
 
                 file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index - 1] = current;
                 file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index] = above;
@@ -1321,7 +1341,7 @@ namespace NitroStudio
 
         private void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tree.SelectedNode.Index != file.data[tree.SelectedNode.Parent.Index].records.Count()-1)
+            if (tree.SelectedNode.Index != file.data[tree.SelectedNode.Parent.Index].records.Count() - 1)
             {
                 sbnkFile.sbnkInstrumentRecord current = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index];
                 sbnkFile.sbnkInstrumentRecord below = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index + 1];
@@ -1330,6 +1350,41 @@ namespace NitroStudio
                 file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index] = below;
                 updateNodes();
             }
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            nistFile n = new nistFile();
+            n.loadRecord(file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index]);
+
+            SaveFileDialog s = new SaveFileDialog();
+            s.RestoreDirectory = true;
+            s.Filter = "Nitro Instrument|*.nist";
+            s.FilterIndex = 1;
+            s.ShowDialog();
+
+            if (s.FileName != "") {
+                File.WriteAllBytes(s.FileName, n.toBytes());
+            }
+
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            o.RestoreDirectory = true;
+            o.Filter = "Nitro Instrument|*.nist";
+            o.FilterIndex = 1;
+            o.ShowDialog();
+
+            if (o.FileName != "")
+            {
+                nistFile n = new nistFile();
+                n.load(File.ReadAllBytes(o.FileName));
+                file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index] = n.toRecord();
+                updateNodes();
+            }
+
         }
 
         private void expandToolStripMenuItem2_Click(object sender, EventArgs e)
@@ -1354,6 +1409,354 @@ namespace NitroStudio
 
 
 
+
+
+        //Nitro Instrument (*.nist) Specification.
+        #region nitroInstrument
+
+        public class nistFile {
+
+            public char[] magic; //NIST.
+            public byte fRecord; //Type.
+            public byte isPlaceHolder; //0 No. 1 Yes.
+
+            //Instrument - Only one of these types.
+			public sbnkFile.sbnkInstrumentLessThan16 instrumentA;
+			public sbnkFile.sbnkInstrumentEquals16 instrumentB;
+			public sbnkFile.sbnkInstrumentGreaterThan16 instrumentC;
+
+
+            //Load NIST.
+            public void load(byte[] b) {
+
+                MemoryStream src = new MemoryStream(b);
+                BinaryReader br = new BinaryReader(src);
+
+                magic = br.ReadChars(4);
+                fRecord = br.ReadByte();
+                isPlaceHolder = br.ReadByte();
+
+                if (isPlaceHolder == 0 && fRecord != 0) {
+
+                    if (fRecord < 16)
+                    {
+
+                        instrumentA = new sbnkFile.sbnkInstrumentLessThan16();
+                        instrumentA.swavNumber = br.ReadUInt16();
+                        instrumentA.swarNumber = br.ReadUInt16();
+                        instrumentA.noteNumber = br.ReadByte();
+                        instrumentA.attackRate = br.ReadByte();
+                        instrumentA.decayRate = br.ReadByte();
+                        instrumentA.sustainLevel = br.ReadByte();
+                        instrumentA.releaseRate = br.ReadByte();
+                        instrumentA.pan = br.ReadByte();
+
+                    }
+                    else if (fRecord == 16)
+                    {
+
+                        instrumentB = new sbnkFile.sbnkInstrumentEquals16();
+                        instrumentB.lowerNote = br.ReadByte();
+                        instrumentB.upperNote = br.ReadByte();
+                        instrumentB.stuff = new List<sbnkFile.basicInstrumentStuff>();
+
+                        //Add stuff.
+                        int count = instrumentB.upperNote - instrumentB.lowerNote + 1;
+                        for (int i = 0; i < count; i++) {
+
+                            sbnkFile.basicInstrumentStuff c = new sbnkFile.basicInstrumentStuff();
+
+                            c.unknown = br.ReadUInt16();
+                            c.swavNumber = br.ReadUInt16();
+                            c.swarNumber = br.ReadUInt16();
+                            c.noteNumber = br.ReadByte();
+                            c.attackRate = br.ReadByte();
+                            c.decayRate = br.ReadByte();
+                            c.sustainLevel = br.ReadByte();
+                            c.releaseRate = br.ReadByte();
+                            c.pan = br.ReadByte();
+
+                            instrumentB.stuff.Add(c);
+
+                        }
+
+                    }
+                    else {
+
+                        instrumentC = new sbnkFile.sbnkInstrumentGreaterThan16();
+                        instrumentC.region0 = br.ReadByte();
+                        instrumentC.region1 = br.ReadByte();
+                        instrumentC.region2 = br.ReadByte();
+                        instrumentC.region3 = br.ReadByte();
+                        instrumentC.region4 = br.ReadByte();
+                        instrumentC.region5 = br.ReadByte();
+                        instrumentC.region6 = br.ReadByte();
+                        instrumentC.region7 = br.ReadByte();
+
+                        //New list.
+                        instrumentC.stuff = new List<sbnkFile.basicInstrumentStuff>();
+
+                        //Get count.
+                        int count = 0;
+                        if (instrumentC.region0 == 0)
+                        {
+                            count = 0;
+                        }
+                        else
+                        {
+                            if (instrumentC.region1 == 0)
+                            {
+                                count = 1;
+                            }
+                            else
+                            {
+                                if (instrumentC.region2 == 0)
+                                {
+                                    count = 2;
+                                }
+                                else
+                                {
+                                    if (instrumentC.region3 == 0)
+                                    {
+                                        count = 3;
+                                    }
+                                    else
+                                    {
+                                        if (instrumentC.region4 == 0)
+                                        {
+                                            count = 4;
+                                        }
+                                        else
+                                        {
+                                            if (instrumentC.region5 == 0)
+                                            {
+                                                count = 5;
+                                            }
+                                            else
+                                            {
+                                                if (instrumentC.region6 == 0)
+                                                {
+                                                    count = 6;
+                                                }
+                                                else
+                                                {
+                                                    if (instrumentC.region7 == 0)
+                                                    {
+                                                        count = 7;
+                                                    }
+                                                    else
+                                                    {
+                                                        count = 8;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        for (int i = 0; i < count; i++)
+                        {
+
+                            sbnkFile.basicInstrumentStuff c = new sbnkFile.basicInstrumentStuff();
+
+                            c.unknown = br.ReadUInt16();
+                            c.swavNumber = br.ReadUInt16();
+                            c.swarNumber = br.ReadUInt16();
+                            c.noteNumber = br.ReadByte();
+                            c.attackRate = br.ReadByte();
+                            c.decayRate = br.ReadByte();
+                            c.sustainLevel = br.ReadByte();
+                            c.releaseRate = br.ReadByte();
+                            c.pan = br.ReadByte();
+
+                            instrumentC.stuff.Add(c);
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            //Write NIST.
+            public byte[] toBytes()
+            {
+
+                MemoryStream o = new MemoryStream();
+                BinaryWriter bw = new BinaryWriter(o);
+
+                bw.Write(magic);
+                bw.Write(fRecord);
+                bw.Write(isPlaceHolder);
+
+                if (isPlaceHolder == 0 && fRecord != 0)
+                {
+
+                    if (fRecord < 16)
+                    {
+
+                        bw.Write(instrumentA.swavNumber);
+                        bw.Write(instrumentA.swarNumber);
+                        bw.Write(instrumentA.noteNumber);
+                        bw.Write(instrumentA.attackRate);
+                        bw.Write(instrumentA.decayRate);
+                        bw.Write(instrumentA.sustainLevel);
+                        bw.Write(instrumentA.releaseRate);
+                        bw.Write(instrumentA.pan);
+
+                    }
+                    else if (fRecord == 16)
+                    {
+
+                        bw.Write(instrumentB.lowerNote);
+                        bw.Write(instrumentB.upperNote);
+
+                        //Write stuff.
+                        int count = instrumentB.upperNote - instrumentB.lowerNote + 1;
+                        for (int i = 0; i < count; i++)
+                        {
+
+                            bw.Write(instrumentB.stuff[i].unknown);
+                            bw.Write(instrumentB.stuff[i].swavNumber);
+                            bw.Write(instrumentB.stuff[i].swarNumber);
+                            bw.Write(instrumentB.stuff[i].noteNumber);
+                            bw.Write(instrumentB.stuff[i].attackRate);
+                            bw.Write(instrumentB.stuff[i].decayRate);
+                            bw.Write(instrumentB.stuff[i].sustainLevel);
+                            bw.Write(instrumentB.stuff[i].releaseRate);
+                            bw.Write(instrumentB.stuff[i].pan);
+
+                        }
+
+                    }
+                    else
+                    {
+
+                        bw.Write(instrumentC.region0);
+                        bw.Write(instrumentC.region1);
+                        bw.Write(instrumentC.region2);
+                        bw.Write(instrumentC.region3);
+                        bw.Write(instrumentC.region4);
+                        bw.Write(instrumentC.region5);
+                        bw.Write(instrumentC.region6);
+                        bw.Write(instrumentC.region7);
+
+                        //Get count.
+                        int count = 0;
+                        if (instrumentC.region0 == 0)
+                        {
+                            count = 0;
+                        }
+                        else
+                        {
+                            if (instrumentC.region1 == 0)
+                            {
+                                count = 1;
+                            }
+                            else
+                            {
+                                if (instrumentC.region2 == 0)
+                                {
+                                    count = 2;
+                                }
+                                else
+                                {
+                                    if (instrumentC.region3 == 0)
+                                    {
+                                        count = 3;
+                                    }
+                                    else
+                                    {
+                                        if (instrumentC.region4 == 0)
+                                        {
+                                            count = 4;
+                                        }
+                                        else
+                                        {
+                                            if (instrumentC.region5 == 0)
+                                            {
+                                                count = 5;
+                                            }
+                                            else
+                                            {
+                                                if (instrumentC.region6 == 0)
+                                                {
+                                                    count = 6;
+                                                }
+                                                else
+                                                {
+                                                    if (instrumentC.region7 == 0)
+                                                    {
+                                                        count = 7;
+                                                    }
+                                                    else
+                                                    {
+                                                        count = 8;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        for (int i = 0; i < count; i++)
+                        {
+
+                            bw.Write(instrumentC.stuff[i].unknown);
+                            bw.Write(instrumentC.stuff[i].swavNumber);
+                            bw.Write(instrumentC.stuff[i].swarNumber);
+                            bw.Write(instrumentC.stuff[i].noteNumber);
+                            bw.Write(instrumentC.stuff[i].attackRate);
+                            bw.Write(instrumentC.stuff[i].decayRate);
+                            bw.Write(instrumentC.stuff[i].sustainLevel);
+                            bw.Write(instrumentC.stuff[i].releaseRate);
+                            bw.Write(instrumentC.stuff[i].pan);
+
+                        }
+
+                    }
+
+                }
+
+                return o.ToArray();
+
+            }
+
+            //To Record.
+            public sbnkFile.sbnkInstrumentRecord toRecord() {
+
+                sbnkFile.sbnkInstrumentRecord r = new sbnkFile.sbnkInstrumentRecord();
+
+                r.fRecord = fRecord;
+                r.instrumentA = instrumentA;
+                r.instrumentB = instrumentB;
+                r.instrumentC = instrumentC;
+                if (isPlaceHolder == 0) { r.isPlaceholder = false; } else { r.isPlaceholder = true; }
+                r.reserved = 0;
+                r.instrumentOffset = 0;
+
+                return r;
+
+            }
+
+            //Load Record.
+            public void loadRecord(sbnkFile.sbnkInstrumentRecord r) {
+
+                magic = "NIST".ToCharArray();
+                fRecord = r.fRecord;
+                instrumentA = r.instrumentA;
+                instrumentB = r.instrumentB;
+                instrumentC = r.instrumentC;
+                if (r.isPlaceholder) { isPlaceHolder = 1; } else { isPlaceHolder = 0; }
+
+            }
+
+        }
+
+        #endregion
 
 
 
