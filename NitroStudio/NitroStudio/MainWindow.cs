@@ -752,6 +752,15 @@ namespace NitroStudio
 
                         //Hide panel stuff.
                         hideAllPanelStuff();
+                        placeHolderLayout.Show();
+
+                        if (sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Parent.Index][tree.SelectedNode.Index].isPlaceHolder)
+                        {
+                            placeholderBox.Checked = true;
+                        }
+                        else {
+                            placeholderBox.Checked = false;
+                        }
 
                     }
                     else
@@ -775,7 +784,7 @@ namespace NitroStudio
 
                     //Sseq.
                     sseqGroup.Show();
-                    placeholderBox.Show();
+                    placeHolderLayout.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.sseqData[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.sseqStrings[tree.SelectedNode.Index].isPlaceHolder)
@@ -791,8 +800,12 @@ namespace NitroStudio
 
                         //Add player.
                         sdat.fixOffsets();
-                        if (sseqPlayer != null) sseqPlayer.Stop();
-                        sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
+                        try
+                        {
+                            if (sseqPlayer != null) sseqPlayer.Stop();
+                            sseqPlayer = new LibNitro.SND.Player.SimpleSequencePlayer(new LibNitro.SND.SDAT(sdat.toBytes()), tree.SelectedNode.Index);
+                        }
+                        catch { MessageBox.Show("You can only play a .sseq!", "Notice:"); }
 
                         //FileId
                         fileIdLabel.Show();
@@ -840,21 +853,12 @@ namespace NitroStudio
 
                         //FileID.
                         fileIdLabel.Show();
-                        for (int i = 0; i < fatFiles.Length; i++)
-                        {
-                            fileIdBox.Items.Add(fatFiles[i]);
-                        }
+                        fileIdBox.Items.Add("Null");
                         fileIdBox.Show();
                         fileIdBox.SelectedIndex = 0;
 
                         //Bank.
-                        bankIDbox.Items.Add("FFFF - Blank.");
-                        foreach (TreeNode t in tree.Nodes[2].Nodes)
-                        {
-
-                            bankIDbox.Items.Add(t.Name);
-
-                        }
+                        bankIDbox.Items.Add("Null");
                         bankIDbox.SelectedIndex = 0;
 
                         //The boxes.
@@ -879,7 +883,7 @@ namespace NitroStudio
 
                     //Hide panel stuff.
                     hideAllPanelStuff();
-                    placeholderBox.Show();
+                    placeHolderLayout.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.seqArcData[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.seqArcStrings[tree.SelectedNode.Index].isPlaceHolder)
@@ -904,10 +908,8 @@ namespace NitroStudio
 
                         //File ID.
                         fileIdLabel.Show();
-                        for (int i = 0; i < fatFiles.Length; i++)
-                        {
-                            fileIdBox.Items.Add(fatFiles[i]);
-                        }
+                        fileIdBox.Items.Add("Null");
+                        fileIdBox.Show();
                         fileIdBox.SelectedIndex = 0;
 
                     }
@@ -924,7 +926,7 @@ namespace NitroStudio
 
                     //Show bank group.
                     bankGroup.Show();
-                    placeholderBox.Show();
+                    placeHolderLayout.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.bankData[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.bankStrings[tree.SelectedNode.Index].isPlaceHolder)
@@ -1001,19 +1003,10 @@ namespace NitroStudio
                         placeholderBox.Checked = true;
 
                         //Show corresponding waves.
-                        wave0Box.Items.Add("FFFF - Blank.");
-                        wave1Box.Items.Add("FFFF - Blank.");
-                        wave2Box.Items.Add("FFFF - Blank.");
-                        wave3Box.Items.Add("FFFF - Blank.");
-                        foreach (TreeNode t in tree.Nodes[3].Nodes)
-                        {
-
-                            wave0Box.Items.Add(t.Name);
-                            wave1Box.Items.Add(t.Name);
-                            wave2Box.Items.Add(t.Name);
-                            wave3Box.Items.Add(t.Name);
-
-                        }
+                        wave0Box.Items.Add("Null");
+                        wave1Box.Items.Add("Null");
+                        wave2Box.Items.Add("Null");
+                        wave3Box.Items.Add("Null");
                         wave0Box.SelectedIndex = 0;
                         wave1Box.SelectedIndex = 0;
                         wave2Box.SelectedIndex = 0;
@@ -1021,10 +1014,7 @@ namespace NitroStudio
 
                         //FileId
                         fileIdLabel.Show();
-                        for (int i = 0; i < fatFiles.Length; i++)
-                        {
-                            fileIdBox.Items.Add(fatFiles[i]);
-                        }
+                        fileIdBox.Items.Add("Null");
                         fileIdBox.SelectedIndex = 0;
                         fileIdBox.Show();
 
@@ -1040,7 +1030,7 @@ namespace NitroStudio
 
                     //Hide panel stuff.
                     hideAllPanelStuff();
-                    placeholderBox.Show();
+                    placeHolderLayout.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.waveData[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.waveStrings[tree.SelectedNode.Index].isPlaceHolder)
@@ -1064,10 +1054,7 @@ namespace NitroStudio
 
                         //FileId
                         fileIdLabel.Show();
-                        for (int i = 0; i < fatFiles.Length; i++)
-                        {
-                            fileIdBox.Items.Add(fatFiles[i]);
-                        }
+                        fileIdBox.Items.Add("Null");
                         fileIdBox.SelectedIndex = 0;
                         fileIdBox.Show();
 
@@ -1085,7 +1072,7 @@ namespace NitroStudio
 
                     //Show player panel.
                     playerGroup.Show();
-                    placeholderBox.Show();
+                    placeHolderLayout.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.playerData[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.playerStrings[tree.SelectedNode.Index].isPlaceHolder)
@@ -1120,7 +1107,7 @@ namespace NitroStudio
 
                     //Hide panel stuff.
                     hideAllPanelStuff();
-                    placeholderBox.Show();
+                    placeHolderLayout.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.groupData[tree.SelectedNode.Index].isPlaceHolder)
@@ -1146,7 +1133,7 @@ namespace NitroStudio
 
                     //Show player2group.
                     player2Group.Show();
-                    placeholderBox.Show();
+                    placeHolderLayout.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.player2Data[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.player2Strings[tree.SelectedNode.Index].isPlaceHolder)
@@ -1205,7 +1192,7 @@ namespace NitroStudio
 
                     //Hide panel stuff.
                     hideAllPanelStuff();
-                    placeholderBox.Show();
+                    placeHolderLayout.Show();
 
                     //Show strm group.
                     strmGroup.Show();
@@ -1238,6 +1225,7 @@ namespace NitroStudio
 
                         placeholderBox.Checked = true;
 
+                        fileIdBox.Items.Add("Null");
                         fileIdBox.SelectedIndex = 0;
                         fileIdBox.Show();
 
@@ -1282,7 +1270,8 @@ namespace NitroStudio
             fileIdBox.Enabled = true;
             fileIdBox.Items.Clear();
             bankGroup.Hide();
-            placeholderBox.Hide();
+            placeHolderLayout.Hide();
+            placeHolderLayout.Hide();
             placeholderBox.Checked = false;
             wave0Box.Items.Clear();
             wave1Box.Items.Clear();
@@ -1298,6 +1287,216 @@ namespace NitroStudio
 
         }
 
+        //Toggle placeholders.
+        private void togglePlaceholderButton_Click(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null && placeholderBox.Checked == false)
+            {
+
+                if (tree.SelectedNode.Parent.Parent != null)
+                {
+                    if (tree.SelectedNode.Parent.Parent.Index == 1)
+                    {
+                        sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Parent.Index][tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+                }
+                else
+                {
+
+                    //Sseq
+                    if (tree.SelectedNode.Parent.Index == 0)
+                    {
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].isPlaceHolder = true;
+                        sdat.symbFile.sseqStrings[tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+
+                    //SeqArc
+                    if (tree.SelectedNode.Parent.Index == 1)
+                    {
+                        sdat.infoFile.seqArcData[tree.SelectedNode.Index].isPlaceHolder = true;
+                        sdat.symbFile.seqArcStrings[tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+
+                    //Bank
+                    if (tree.SelectedNode.Parent.Index == 2)
+                    {
+                        sdat.infoFile.bankData[tree.SelectedNode.Index].isPlaceHolder = true;
+                        sdat.symbFile.bankStrings[tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+
+                    //Wave
+                    if (tree.SelectedNode.Parent.Index == 3)
+                    {
+                        sdat.infoFile.waveData[tree.SelectedNode.Index].isPlaceHolder = true;
+                        sdat.symbFile.waveStrings[tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+
+                    //Player
+                    if (tree.SelectedNode.Parent.Index == 4)
+                    {
+                        sdat.infoFile.playerData[tree.SelectedNode.Index].isPlaceHolder = true;
+                        sdat.symbFile.playerStrings[tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+
+                    //Group
+                    if (tree.SelectedNode.Parent.Index == 5)
+                    {
+                        sdat.infoFile.groupData[tree.SelectedNode.Index].isPlaceHolder = true;
+                        sdat.symbFile.groupStrings[tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+
+                    //Player2
+                    if (tree.SelectedNode.Parent.Index == 6)
+                    {
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].isPlaceHolder = true;
+                        sdat.symbFile.player2Strings[tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+
+                    //Stream
+                    if (tree.SelectedNode.Parent.Index == 7)
+                    {
+                        sdat.infoFile.strmData[tree.SelectedNode.Index].isPlaceHolder = true;
+                        sdat.symbFile.strmStrings[tree.SelectedNode.Index].isPlaceHolder = true;
+                    }
+                }
+
+                updateNodes();
+
+            } else if (tree.SelectedNode.Parent != null && placeholderBox.Checked == true)
+            {
+
+                if (tree.SelectedNode.Parent.Parent != null)
+                {
+                    if (tree.SelectedNode.Parent.Parent.Index == 1)
+                    {
+                        sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Parent.Index][tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.seqArcSubStrings[tree.SelectedNode.Parent.Index][tree.SelectedNode.Index].name = "Unknown_Name";
+                    }
+                }
+                else
+                {
+
+                    //Sseq
+                    if (tree.SelectedNode.Parent.Index == 0)
+                    {
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.sseqStrings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.symbFile.sseqStrings[tree.SelectedNode.Index].name = "Unknown_Name";
+
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].bank = 0;
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].channelPriority = 64;
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].fileId = 0;
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].playerNumber = 0;
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].playerPriority = 64;
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].volume = 100;
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].unknown1 = 0;
+                        sdat.infoFile.sseqData[tree.SelectedNode.Index].unknown2 = 0;
+                    }
+
+                    //SeqArc
+                    if (tree.SelectedNode.Parent.Index == 1)
+                    {
+                        sdat.infoFile.seqArcData[tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.seqArcStrings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.symbFile.seqArcStrings[tree.SelectedNode.Index].name = "Unknown_Name";
+
+                        sdat.infoFile.seqArcData[tree.SelectedNode.Index].fileId = 0;
+                    }
+
+                    //Bank
+                    if (tree.SelectedNode.Parent.Index == 2)
+                    {
+                        sdat.infoFile.bankData[tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.bankStrings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.symbFile.bankStrings[tree.SelectedNode.Index].name = "Unknown_Name";
+
+                        sdat.infoFile.bankData[tree.SelectedNode.Index].wave0 = 0;
+                        sdat.infoFile.bankData[tree.SelectedNode.Index].wave1 = 0;
+                        sdat.infoFile.bankData[tree.SelectedNode.Index].wave2 = 0;
+                        sdat.infoFile.bankData[tree.SelectedNode.Index].wave3 = 0;
+                        sdat.infoFile.bankData[tree.SelectedNode.Index].fileId = 0;
+                    }
+
+                    //Wave
+                    if (tree.SelectedNode.Parent.Index == 3)
+                    {
+                        sdat.infoFile.waveData[tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.waveStrings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.symbFile.waveStrings[tree.SelectedNode.Index].name = "Unknown_Name";
+
+                        sdat.infoFile.waveData[tree.SelectedNode.Index].fileId = 0;
+                    }
+
+                    //Player
+                    if (tree.SelectedNode.Parent.Index == 4)
+                    {
+                        sdat.infoFile.playerData[tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.playerStrings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.symbFile.playerStrings[tree.SelectedNode.Index].name = "Unknown_Name";
+
+                        sdat.infoFile.playerData[tree.SelectedNode.Index].channelFlag = 0;
+                        sdat.infoFile.playerData[tree.SelectedNode.Index].heapSize = 0;
+                        sdat.infoFile.playerData[tree.SelectedNode.Index].seqMax = 0;
+
+                    }
+
+                    //Group
+                    if (tree.SelectedNode.Parent.Index == 5)
+                    {
+                        sdat.infoFile.groupData[tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.groupStrings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.infoFile.groupData[tree.SelectedNode.Index].count = 0;
+                        sdat.infoFile.groupData[tree.SelectedNode.Index].subInfo = new List<GroupSubData>();
+                    }
+
+                    //Player2
+                    if (tree.SelectedNode.Parent.Index == 6)
+                    {
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.player2Strings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].count = 0;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v0 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v2 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v3 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v4 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v5 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v6 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v7 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v8 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v9 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v10 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v11 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v12 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v13 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v14 = 255;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v15 = 255;
+                    }
+
+                    //Stream
+                    if (tree.SelectedNode.Parent.Index == 7)
+                    {
+                        sdat.infoFile.strmData[tree.SelectedNode.Index].isPlaceHolder = false;
+                        sdat.symbFile.strmStrings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.infoFile.strmData[tree.SelectedNode.Index].fileId = 0;
+                        sdat.infoFile.strmData[tree.SelectedNode.Index].player = 0;
+                        sdat.infoFile.strmData[tree.SelectedNode.Index].priority = 64;
+                        sdat.infoFile.strmData[tree.SelectedNode.Index].volume = 100;
+                    }
+                }
+
+                updateNodes();
+
+            }
+        }
 
         /// <summary>
         /// Placeholder stuff.
@@ -4332,10 +4531,11 @@ namespace NitroStudio
 
         }
 
+
+
+
         #endregion
 
-
-
-
+        
     }
 }

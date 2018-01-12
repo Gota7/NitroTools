@@ -124,7 +124,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.fileIdBox = new System.Windows.Forms.ComboBox();
             this.fileIdLabel = new System.Windows.Forms.Label();
-            this.placeholderBox = new System.Windows.Forms.CheckBox();
             this.groupSubPanel = new System.Windows.Forms.Panel();
             this.loadFlagGroupBox = new System.Windows.Forms.NumericUpDown();
             this.loadFlagGroupLabel = new System.Windows.Forms.Label();
@@ -181,6 +180,9 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
+            this.placeHolderLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.placeholderBox = new System.Windows.Forms.CheckBox();
+            this.togglePlaceholderButton = new System.Windows.Forms.Button();
             this.bigFolderMenu.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -234,6 +236,7 @@
             this.entryMenu.SuspendLayout();
             this.bigNodeMenu.SuspendLayout();
             this.subNodeMenu.SuspendLayout();
+            this.placeHolderLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // bigFolderMenu
@@ -448,12 +451,12 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.sseqGroup);
+            this.splitContainer1.Panel1.Controls.Add(this.placeHolderLayout);
             this.splitContainer1.Panel1.Controls.Add(this.strmGroup);
+            this.splitContainer1.Panel1.Controls.Add(this.sseqGroup);
             this.splitContainer1.Panel1.Controls.Add(this.player2Group);
             this.splitContainer1.Panel1.Controls.Add(this.fileIdBox);
             this.splitContainer1.Panel1.Controls.Add(this.fileIdLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.placeholderBox);
             this.splitContainer1.Panel1.Controls.Add(this.groupSubPanel);
             this.splitContainer1.Panel1.Controls.Add(this.playerGroup);
             this.splitContainer1.Panel1.Controls.Add(this.bankGroup);
@@ -697,7 +700,7 @@
             this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.strmGroup.Location = new System.Drawing.Point(0, 23);
             this.strmGroup.Name = "strmGroup";
-            this.strmGroup.Size = new System.Drawing.Size(234, 399);
+            this.strmGroup.Size = new System.Drawing.Size(234, 423);
             this.strmGroup.TabIndex = 15;
             this.strmGroup.Visible = false;
             // 
@@ -705,16 +708,17 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.playerBoxMagic, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.playerLabelFrog, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.priorityBoxBlack, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.priorityLabelPig, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.volumeBoxMushrooms, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.volumeLabelFuckRocks, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.playerBoxMagic, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.playerLabelFrog, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.priorityBoxBlack, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.volumeBoxMushrooms, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.priorityLabelPig, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.volumeLabelFuckRocks, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -723,7 +727,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(234, 399);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(234, 423);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
             // playerBoxMagic
@@ -731,7 +735,7 @@
             this.playerBoxMagic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerBoxMagic.Location = new System.Drawing.Point(3, 148);
+            this.playerBoxMagic.Location = new System.Drawing.Point(3, 168);
             this.playerBoxMagic.Maximum = new decimal(new int[] {
             255,
             0,
@@ -744,7 +748,7 @@
             // playerLabelFrog
             // 
             this.playerLabelFrog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playerLabelFrog.Location = new System.Drawing.Point(3, 120);
+            this.playerLabelFrog.Location = new System.Drawing.Point(3, 140);
             this.playerLabelFrog.Name = "playerLabelFrog";
             this.playerLabelFrog.Size = new System.Drawing.Size(228, 25);
             this.playerLabelFrog.TabIndex = 4;
@@ -756,7 +760,7 @@
             this.priorityBoxBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.priorityBoxBlack.Location = new System.Drawing.Point(3, 98);
+            this.priorityBoxBlack.Location = new System.Drawing.Point(3, 118);
             this.priorityBoxBlack.Maximum = new decimal(new int[] {
             255,
             0,
@@ -770,7 +774,7 @@
             // 
             this.priorityLabelPig.AutoSize = true;
             this.priorityLabelPig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priorityLabelPig.Location = new System.Drawing.Point(3, 70);
+            this.priorityLabelPig.Location = new System.Drawing.Point(3, 90);
             this.priorityLabelPig.Name = "priorityLabelPig";
             this.priorityLabelPig.Size = new System.Drawing.Size(228, 25);
             this.priorityLabelPig.TabIndex = 2;
@@ -783,7 +787,7 @@
             this.volumeBoxMushrooms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeBoxMushrooms.Location = new System.Drawing.Point(3, 48);
+            this.volumeBoxMushrooms.Location = new System.Drawing.Point(3, 68);
             this.volumeBoxMushrooms.Maximum = new decimal(new int[] {
             255,
             0,
@@ -797,7 +801,7 @@
             // 
             this.volumeLabelFuckRocks.AutoSize = true;
             this.volumeLabelFuckRocks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.volumeLabelFuckRocks.Location = new System.Drawing.Point(3, 20);
+            this.volumeLabelFuckRocks.Location = new System.Drawing.Point(3, 40);
             this.volumeLabelFuckRocks.Name = "volumeLabelFuckRocks";
             this.volumeLabelFuckRocks.Size = new System.Drawing.Size(228, 25);
             this.volumeLabelFuckRocks.TabIndex = 0;
@@ -815,7 +819,7 @@
             this.player2Group.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player2Group.Location = new System.Drawing.Point(0, 23);
             this.player2Group.Name = "player2Group";
-            this.player2Group.Size = new System.Drawing.Size(234, 399);
+            this.player2Group.Size = new System.Drawing.Size(234, 423);
             this.player2Group.TabIndex = 14;
             this.player2Group.Visible = false;
             // 
@@ -1173,23 +1177,6 @@
             this.fileIdLabel.Text = "File ID:";
             this.fileIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.fileIdLabel.Visible = false;
-            // 
-            // placeholderBox
-            // 
-            this.placeholderBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.placeholderBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.placeholderBox.Enabled = false;
-            this.placeholderBox.Location = new System.Drawing.Point(0, 422);
-            this.placeholderBox.Name = "placeholderBox";
-            this.placeholderBox.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
-            this.placeholderBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.placeholderBox.Size = new System.Drawing.Size(234, 24);
-            this.placeholderBox.TabIndex = 3;
-            this.placeholderBox.Text = "Placeholder:";
-            this.placeholderBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.placeholderBox.UseVisualStyleBackColor = true;
-            this.placeholderBox.Visible = false;
-            this.placeholderBox.CheckedChanged += new System.EventHandler(this.onCheckedChange);
             // 
             // groupSubPanel
             // 
@@ -1866,6 +1853,47 @@
             this.toolStripMenuItem12.Text = "Delete";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
             // 
+            // placeHolderLayout
+            // 
+            this.placeHolderLayout.ColumnCount = 2;
+            this.placeHolderLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.placeHolderLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.placeHolderLayout.Controls.Add(this.placeholderBox, 1, 0);
+            this.placeHolderLayout.Controls.Add(this.togglePlaceholderButton, 0, 0);
+            this.placeHolderLayout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.placeHolderLayout.Location = new System.Drawing.Point(0, 419);
+            this.placeHolderLayout.Name = "placeHolderLayout";
+            this.placeHolderLayout.RowCount = 1;
+            this.placeHolderLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.placeHolderLayout.Size = new System.Drawing.Size(234, 27);
+            this.placeHolderLayout.TabIndex = 17;
+            this.placeHolderLayout.Visible = false;
+            // 
+            // placeholderBox
+            // 
+            this.placeholderBox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.placeholderBox.Enabled = false;
+            this.placeholderBox.Location = new System.Drawing.Point(120, 3);
+            this.placeholderBox.Name = "placeholderBox";
+            this.placeholderBox.Padding = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.placeholderBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.placeholderBox.Size = new System.Drawing.Size(108, 18);
+            this.placeholderBox.TabIndex = 3;
+            this.placeholderBox.Text = "Placeholder:";
+            this.placeholderBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.placeholderBox.UseVisualStyleBackColor = true;
+            // 
+            // togglePlaceholderButton
+            // 
+            this.togglePlaceholderButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.togglePlaceholderButton.Location = new System.Drawing.Point(3, 3);
+            this.togglePlaceholderButton.Name = "togglePlaceholderButton";
+            this.togglePlaceholderButton.Size = new System.Drawing.Size(111, 21);
+            this.togglePlaceholderButton.TabIndex = 4;
+            this.togglePlaceholderButton.Text = "Toggle Placeholder";
+            this.togglePlaceholderButton.UseVisualStyleBackColor = true;
+            this.togglePlaceholderButton.Click += new System.EventHandler(this.togglePlaceholderButton_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1938,6 +1966,7 @@
             this.entryMenu.ResumeLayout(false);
             this.bigNodeMenu.ResumeLayout(false);
             this.subNodeMenu.ResumeLayout(false);
+            this.placeHolderLayout.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1984,7 +2013,6 @@
         private System.Windows.Forms.Label noSelectLabel;
         private System.Windows.Forms.ComboBox fileIdBox;
         private System.Windows.Forms.Label fileIdLabel;
-        private System.Windows.Forms.CheckBox placeholderBox;
         private System.Windows.Forms.Panel bankGroup;
         private System.Windows.Forms.ComboBox wave0Box;
         private System.Windows.Forms.Label wave3Label;
@@ -2075,6 +2103,9 @@
         private System.Windows.Forms.Button gericomPause;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel placeHolderLayout;
+        private System.Windows.Forms.CheckBox placeholderBox;
+        private System.Windows.Forms.Button togglePlaceholderButton;
     }
 }
 
