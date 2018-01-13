@@ -3608,6 +3608,7 @@ namespace NitroStudio
             saveFileDialog1.CheckPathExists = true;
             saveFileDialog1.Filter = fileExportString;
             saveFileDialog1.FilterIndex = filterIndex;
+            saveFileDialog1.FileName = rootName.Split(' ')[1];
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {

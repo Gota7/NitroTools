@@ -93,7 +93,7 @@ namespace NitroStudio
                     if (file.data[i].records[j].isPlaceholder)
                     {
 
-                        tree.Nodes[0].Nodes[i].Nodes.Add("[" + j + "] " + "%PLACEHOLDER%");
+                        tree.Nodes[0].Nodes[i].Nodes.Add("[" + j + "] " + "%PLACEHOLDER%", "[" + j + "] " + "%PLACEHOLDER%", 5, 5);
                         tree.Nodes[0].Nodes[i].Nodes[j].ContextMenuStrip = recordMenu;
 
                     }
@@ -834,7 +834,7 @@ namespace NitroStudio
             try
             {
                 player = new SoundPlayer("Data/Temp/" + emulatorInfo.swarNumber + "/" + emulatorInfo.swavNumber + ".wav");
-                if (loopBox.Checked) { player.PlayLooping(); } else { player.Play(); }
+                if (loopBox.Checked) { player.PlayLooping(); } else { player.PlaySync(); }
             }
             catch {
                 MessageBox.Show("File not found! Are you emulating the wrong bank?", "Error!");

@@ -33,10 +33,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SwarEditor));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.swavGroup = new System.Windows.Forms.Panel();
-            this.soundPlayerDeluxeTM = new System.Windows.Forms.Label();
-            this.stopSoundPlaybackBox = new System.Windows.Forms.Button();
             this.loopPlaybackCheckbox = new System.Windows.Forms.CheckBox();
+            this.updateDataButton = new System.Windows.Forms.Button();
+            this.soundPlayerDeluxeTM = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.playSoundPlaybackBox = new System.Windows.Forms.Button();
+            this.stopSoundPlaybackBox = new System.Windows.Forms.Button();
             this.nonLoopLengthBox = new System.Windows.Forms.NumericUpDown();
             this.loopOffsetBox = new System.Windows.Forms.NumericUpDown();
             this.nTimeBox = new System.Windows.Forms.NumericUpDown();
@@ -83,6 +85,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.swavGroup.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nonLoopLengthBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loopOffsetBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTimeBox)).BeginInit();
@@ -110,16 +113,16 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tree);
-            this.splitContainer1.Size = new System.Drawing.Size(583, 325);
-            this.splitContainer1.SplitterDistance = 194;
+            this.splitContainer1.Size = new System.Drawing.Size(712, 393);
+            this.splitContainer1.SplitterDistance = 208;
             this.splitContainer1.TabIndex = 0;
             // 
             // swavGroup
             // 
-            this.swavGroup.Controls.Add(this.soundPlayerDeluxeTM);
-            this.swavGroup.Controls.Add(this.stopSoundPlaybackBox);
             this.swavGroup.Controls.Add(this.loopPlaybackCheckbox);
-            this.swavGroup.Controls.Add(this.playSoundPlaybackBox);
+            this.swavGroup.Controls.Add(this.updateDataButton);
+            this.swavGroup.Controls.Add(this.soundPlayerDeluxeTM);
+            this.swavGroup.Controls.Add(this.tableLayoutPanel1);
             this.swavGroup.Controls.Add(this.nonLoopLengthBox);
             this.swavGroup.Controls.Add(this.loopOffsetBox);
             this.swavGroup.Controls.Add(this.nTimeBox);
@@ -135,68 +138,88 @@
             this.swavGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.swavGroup.Location = new System.Drawing.Point(0, 0);
             this.swavGroup.Name = "swavGroup";
-            this.swavGroup.Size = new System.Drawing.Size(192, 323);
+            this.swavGroup.Size = new System.Drawing.Size(206, 391);
             this.swavGroup.TabIndex = 0;
             this.swavGroup.Visible = false;
             // 
-            // soundPlayerDeluxeTM
-            // 
-            this.soundPlayerDeluxeTM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.soundPlayerDeluxeTM.Location = new System.Drawing.Point(3, 244);
-            this.soundPlayerDeluxeTM.Name = "soundPlayerDeluxeTM";
-            this.soundPlayerDeluxeTM.Size = new System.Drawing.Size(189, 27);
-            this.soundPlayerDeluxeTM.TabIndex = 16;
-            this.soundPlayerDeluxeTM.Text = "Sound Player Deluxe™";
-            this.soundPlayerDeluxeTM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // stopSoundPlaybackBox
-            // 
-            this.stopSoundPlaybackBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.stopSoundPlaybackBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.stopSoundPlaybackBox.Location = new System.Drawing.Point(96, 296);
-            this.stopSoundPlaybackBox.Name = "stopSoundPlaybackBox";
-            this.stopSoundPlaybackBox.Size = new System.Drawing.Size(93, 24);
-            this.stopSoundPlaybackBox.TabIndex = 14;
-            this.stopSoundPlaybackBox.Text = "Stop Sound";
-            this.stopSoundPlaybackBox.UseVisualStyleBackColor = true;
-            this.stopSoundPlaybackBox.Click += new System.EventHandler(this.stopSoundPlaybackBox_Click);
-            // 
             // loopPlaybackCheckbox
             // 
-            this.loopPlaybackCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.loopPlaybackCheckbox.AutoSize = true;
-            this.loopPlaybackCheckbox.Location = new System.Drawing.Point(54, 274);
+            this.loopPlaybackCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.loopPlaybackCheckbox.Location = new System.Drawing.Point(3, 330);
             this.loopPlaybackCheckbox.Name = "loopPlaybackCheckbox";
-            this.loopPlaybackCheckbox.Size = new System.Drawing.Size(84, 17);
+            this.loopPlaybackCheckbox.Size = new System.Drawing.Size(200, 24);
             this.loopPlaybackCheckbox.TabIndex = 15;
             this.loopPlaybackCheckbox.Text = "Loop Sound";
             this.loopPlaybackCheckbox.UseVisualStyleBackColor = true;
             this.loopPlaybackCheckbox.CheckedChanged += new System.EventHandler(this.loopPlaybackCheckbox_CheckedChanged);
             // 
+            // updateDataButton
+            // 
+            this.updateDataButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.updateDataButton.Location = new System.Drawing.Point(3, 243);
+            this.updateDataButton.Name = "updateDataButton";
+            this.updateDataButton.Size = new System.Drawing.Size(200, 23);
+            this.updateDataButton.TabIndex = 19;
+            this.updateDataButton.Text = "Update Data:";
+            this.updateDataButton.UseVisualStyleBackColor = true;
+            this.updateDataButton.Click += new System.EventHandler(this.updateDataButton_Click);
+            // 
+            // soundPlayerDeluxeTM
+            // 
+            this.soundPlayerDeluxeTM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.soundPlayerDeluxeTM.Location = new System.Drawing.Point(5, 308);
+            this.soundPlayerDeluxeTM.Name = "soundPlayerDeluxeTM";
+            this.soundPlayerDeluxeTM.Size = new System.Drawing.Size(198, 19);
+            this.soundPlayerDeluxeTM.TabIndex = 16;
+            this.soundPlayerDeluxeTM.Text = "Sound Player Deluxe™";
+            this.soundPlayerDeluxeTM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.playSoundPlaybackBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.stopSoundPlaybackBox, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 357);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(206, 34);
+            this.tableLayoutPanel1.TabIndex = 17;
+            // 
             // playSoundPlaybackBox
             // 
-            this.playSoundPlaybackBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.playSoundPlaybackBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.playSoundPlaybackBox.Location = new System.Drawing.Point(3, 296);
+            this.playSoundPlaybackBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playSoundPlaybackBox.Location = new System.Drawing.Point(3, 3);
             this.playSoundPlaybackBox.Name = "playSoundPlaybackBox";
-            this.playSoundPlaybackBox.Size = new System.Drawing.Size(87, 24);
+            this.playSoundPlaybackBox.Size = new System.Drawing.Size(97, 28);
             this.playSoundPlaybackBox.TabIndex = 13;
             this.playSoundPlaybackBox.Text = "Play Sound";
             this.playSoundPlaybackBox.UseVisualStyleBackColor = true;
             this.playSoundPlaybackBox.Click += new System.EventHandler(this.playSoundPlaybackBox_Click);
             // 
+            // stopSoundPlaybackBox
+            // 
+            this.stopSoundPlaybackBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.stopSoundPlaybackBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stopSoundPlaybackBox.Location = new System.Drawing.Point(106, 3);
+            this.stopSoundPlaybackBox.Name = "stopSoundPlaybackBox";
+            this.stopSoundPlaybackBox.Size = new System.Drawing.Size(97, 28);
+            this.stopSoundPlaybackBox.TabIndex = 14;
+            this.stopSoundPlaybackBox.Text = "Stop Sound";
+            this.stopSoundPlaybackBox.UseVisualStyleBackColor = true;
+            this.stopSoundPlaybackBox.Click += new System.EventHandler(this.stopSoundPlaybackBox_Click);
+            // 
             // nonLoopLengthBox
             // 
-            this.nonLoopLengthBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.nonLoopLengthBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.nonLoopLengthBox.Enabled = false;
             this.nonLoopLengthBox.Location = new System.Drawing.Point(3, 221);
             this.nonLoopLengthBox.Maximum = new decimal(new int[] {
             -1,
@@ -204,16 +227,14 @@
             0,
             0});
             this.nonLoopLengthBox.Name = "nonLoopLengthBox";
-            this.nonLoopLengthBox.Size = new System.Drawing.Size(186, 20);
+            this.nonLoopLengthBox.Size = new System.Drawing.Size(200, 20);
             this.nonLoopLengthBox.TabIndex = 11;
             this.nonLoopLengthBox.ValueChanged += new System.EventHandler(this.onValueBoxChanged);
             // 
             // loopOffsetBox
             // 
-            this.loopOffsetBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.loopOffsetBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loopOffsetBox.Enabled = false;
             this.loopOffsetBox.Location = new System.Drawing.Point(3, 179);
             this.loopOffsetBox.Maximum = new decimal(new int[] {
             65535,
@@ -221,16 +242,14 @@
             0,
             0});
             this.loopOffsetBox.Name = "loopOffsetBox";
-            this.loopOffsetBox.Size = new System.Drawing.Size(186, 20);
+            this.loopOffsetBox.Size = new System.Drawing.Size(200, 20);
             this.loopOffsetBox.TabIndex = 10;
             this.loopOffsetBox.ValueChanged += new System.EventHandler(this.onValueBoxChanged);
             // 
             // nTimeBox
             // 
-            this.nTimeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.nTimeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.nTimeBox.Enabled = false;
             this.nTimeBox.Location = new System.Drawing.Point(3, 141);
             this.nTimeBox.Maximum = new decimal(new int[] {
             65535,
@@ -238,16 +257,14 @@
             0,
             0});
             this.nTimeBox.Name = "nTimeBox";
-            this.nTimeBox.Size = new System.Drawing.Size(186, 20);
+            this.nTimeBox.Size = new System.Drawing.Size(200, 20);
             this.nTimeBox.TabIndex = 9;
             this.nTimeBox.ValueChanged += new System.EventHandler(this.onValueBoxChanged);
             // 
             // samplingBox
             // 
-            this.samplingBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.samplingBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.samplingBox.Enabled = false;
             this.samplingBox.Location = new System.Drawing.Point(3, 102);
             this.samplingBox.Maximum = new decimal(new int[] {
             65535,
@@ -255,20 +272,18 @@
             0,
             0});
             this.samplingBox.Name = "samplingBox";
-            this.samplingBox.Size = new System.Drawing.Size(186, 20);
+            this.samplingBox.Size = new System.Drawing.Size(200, 20);
             this.samplingBox.TabIndex = 8;
             this.samplingBox.ValueChanged += new System.EventHandler(this.onValueBoxChanged);
             // 
             // loopBox
             // 
-            this.loopBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.loopBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loopBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.loopBox.Enabled = false;
             this.loopBox.Location = new System.Drawing.Point(3, 66);
             this.loopBox.Name = "loopBox";
-            this.loopBox.Size = new System.Drawing.Size(189, 17);
+            this.loopBox.Size = new System.Drawing.Size(200, 17);
             this.loopBox.TabIndex = 7;
             this.loopBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.loopBox.UseVisualStyleBackColor = true;
@@ -276,12 +291,11 @@
             // 
             // nonLoopLengthLabel
             // 
-            this.nonLoopLengthLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.nonLoopLengthLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nonLoopLengthLabel.Location = new System.Drawing.Point(3, 202);
             this.nonLoopLengthLabel.Name = "nonLoopLengthLabel";
-            this.nonLoopLengthLabel.Size = new System.Drawing.Size(189, 16);
+            this.nonLoopLengthLabel.Size = new System.Drawing.Size(200, 16);
             this.nonLoopLengthLabel.TabIndex = 6;
             this.nonLoopLengthLabel.Text = "Non Loop Length";
             this.nonLoopLengthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -289,36 +303,33 @@
             // 
             // loopOffsetLabel
             // 
-            this.loopOffsetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.loopOffsetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loopOffsetLabel.Location = new System.Drawing.Point(3, 164);
             this.loopOffsetLabel.Name = "loopOffsetLabel";
-            this.loopOffsetLabel.Size = new System.Drawing.Size(186, 12);
+            this.loopOffsetLabel.Size = new System.Drawing.Size(200, 12);
             this.loopOffsetLabel.TabIndex = 5;
             this.loopOffsetLabel.Text = "Loop Offset";
             this.loopOffsetLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nTimeLabel
             // 
-            this.nTimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.nTimeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.nTimeLabel.Location = new System.Drawing.Point(0, 125);
+            this.nTimeLabel.Location = new System.Drawing.Point(2, 125);
             this.nTimeLabel.Name = "nTimeLabel";
-            this.nTimeLabel.Size = new System.Drawing.Size(189, 13);
+            this.nTimeLabel.Size = new System.Drawing.Size(201, 13);
             this.nTimeLabel.TabIndex = 4;
             this.nTimeLabel.Text = "nTime";
             this.nTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // samplingLabel
             // 
-            this.samplingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.samplingLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.samplingLabel.Location = new System.Drawing.Point(3, 86);
             this.samplingLabel.Name = "samplingLabel";
-            this.samplingLabel.Size = new System.Drawing.Size(183, 13);
+            this.samplingLabel.Size = new System.Drawing.Size(200, 13);
             this.samplingLabel.TabIndex = 3;
             this.samplingLabel.Text = "Sampling Rate:";
             this.samplingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -326,27 +337,24 @@
             // 
             // loopsLabel
             // 
-            this.loopsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.loopsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loopsLabel.Location = new System.Drawing.Point(0, 40);
+            this.loopsLabel.Location = new System.Drawing.Point(3, 40);
             this.loopsLabel.Name = "loopsLabel";
-            this.loopsLabel.Size = new System.Drawing.Size(189, 23);
+            this.loopsLabel.Size = new System.Drawing.Size(200, 23);
             this.loopsLabel.TabIndex = 2;
             this.loopsLabel.Text = "Loop Flag:";
             this.loopsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // typeBox
             // 
-            this.typeBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.typeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.typeBox.AutoCompleteCustomSource.AddRange(new string[] {
             "PCM8",
             "PCM16",
             "(IMA-)ADPCM"});
             this.typeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.typeBox.Enabled = false;
             this.typeBox.FormattingEnabled = true;
             this.typeBox.Items.AddRange(new object[] {
             "0 - PCM8",
@@ -354,18 +362,17 @@
             "2- (IMA-)ADPCM"});
             this.typeBox.Location = new System.Drawing.Point(3, 16);
             this.typeBox.Name = "typeBox";
-            this.typeBox.Size = new System.Drawing.Size(186, 21);
+            this.typeBox.Size = new System.Drawing.Size(200, 21);
             this.typeBox.TabIndex = 1;
             this.typeBox.SelectedIndexChanged += new System.EventHandler(this.onDropBoxChanged);
             // 
             // typeLabel
             // 
-            this.typeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.typeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.typeLabel.Location = new System.Drawing.Point(0, 0);
+            this.typeLabel.Location = new System.Drawing.Point(3, 0);
             this.typeLabel.Name = "typeLabel";
-            this.typeLabel.Size = new System.Drawing.Size(192, 13);
+            this.typeLabel.Size = new System.Drawing.Size(200, 13);
             this.typeLabel.TabIndex = 0;
             this.typeLabel.Text = "Type:";
             this.typeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -376,7 +383,7 @@
             this.noInfoLabelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noInfoLabelPanel.Location = new System.Drawing.Point(0, 0);
             this.noInfoLabelPanel.Name = "noInfoLabelPanel";
-            this.noInfoLabelPanel.Size = new System.Drawing.Size(192, 323);
+            this.noInfoLabelPanel.Size = new System.Drawing.Size(206, 391);
             this.noInfoLabelPanel.TabIndex = 13;
             // 
             // noInfoLabel
@@ -386,7 +393,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.noInfoLabel.Location = new System.Drawing.Point(-1, 0);
             this.noInfoLabel.Name = "noInfoLabel";
-            this.noInfoLabel.Size = new System.Drawing.Size(193, 323);
+            this.noInfoLabel.Size = new System.Drawing.Size(231, 391);
             this.noInfoLabel.TabIndex = 0;
             this.noInfoLabel.Text = "No Valid Info Selected!";
             this.noInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -403,7 +410,7 @@
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
             this.tree.SelectedImageIndex = 0;
-            this.tree.Size = new System.Drawing.Size(383, 323);
+            this.tree.Size = new System.Drawing.Size(498, 391);
             this.tree.TabIndex = 0;
             this.tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseClick);
             this.tree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.onNodeDoubleClick);
@@ -423,7 +430,7 @@
             this.editToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(583, 24);
+            this.menu.Size = new System.Drawing.Size(712, 24);
             this.menu.TabIndex = 11;
             this.menu.Text = "menuStrip1";
             // 
@@ -634,12 +641,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(583, 349);
+            this.ClientSize = new System.Drawing.Size(712, 417);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menu);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "SwarEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Swar Editor";
@@ -649,7 +654,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.swavGroup.ResumeLayout(false);
-            this.swavGroup.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nonLoopLengthBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loopOffsetBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nTimeBox)).EndInit();
@@ -714,5 +719,7 @@
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem expandToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem collapseToolStripMenuItem1;
+        private System.Windows.Forms.Button updateDataButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

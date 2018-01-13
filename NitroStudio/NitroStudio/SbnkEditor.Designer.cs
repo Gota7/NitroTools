@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SbnkEditor));
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("SBNK", 1, 1);
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("SBNK", 1, 1);
             this.menu = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.newBetaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -160,11 +160,11 @@
             this.addBelowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moveDownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -1485,12 +1485,12 @@
             this.tree.ImageList = this.icons;
             this.tree.Location = new System.Drawing.Point(0, 0);
             this.tree.Name = "tree";
-            treeNode2.ImageIndex = 1;
-            treeNode2.Name = "SBNK";
-            treeNode2.SelectedImageIndex = 1;
-            treeNode2.Text = "SBNK";
+            treeNode1.ImageIndex = 1;
+            treeNode1.Name = "SBNK";
+            treeNode1.SelectedImageIndex = 1;
+            treeNode1.Text = "SBNK";
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.tree.SelectedImageIndex = 0;
             this.tree.Size = new System.Drawing.Size(310, 409);
             this.tree.TabIndex = 0;
@@ -1506,6 +1506,7 @@
             this.icons.Images.SetKeyName(2, "group.png");
             this.icons.Images.SetKeyName(3, "record.png");
             this.icons.Images.SetKeyName(4, "sseq.png");
+            this.icons.Images.SetKeyName(5, "blank.png");
             // 
             // intrumentPanel
             // 
@@ -1820,7 +1821,7 @@
             this.collapseToolStripMenuItem2,
             this.deleteToolStripMenuItem1});
             this.recordMenu.Name = "recordMenu";
-            this.recordMenu.Size = new System.Drawing.Size(153, 224);
+            this.recordMenu.Size = new System.Drawing.Size(139, 202);
             // 
             // addAboveToolStripMenuItem
             // 
@@ -1842,7 +1843,7 @@
             // 
             this.moveUpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("moveUpToolStripMenuItem.Image")));
             this.moveUpToolStripMenuItem.Name = "moveUpToolStripMenuItem";
-            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moveUpToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.moveUpToolStripMenuItem.Text = "Move Up";
             this.moveUpToolStripMenuItem.Click += new System.EventHandler(this.moveUpToolStripMenuItem_Click);
             // 
@@ -1850,9 +1851,25 @@
             // 
             this.moveDownToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("moveDownToolStripMenuItem.Image")));
             this.moveDownToolStripMenuItem.Name = "moveDownToolStripMenuItem";
-            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moveDownToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.moveDownToolStripMenuItem.Text = "Move Down";
             this.moveDownToolStripMenuItem.Click += new System.EventHandler(this.moveDownToolStripMenuItem_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportToolStripMenuItem.Image")));
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.exportToolStripMenuItem.Text = "Export";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importToolStripMenuItem.Image")));
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.importToolStripMenuItem.Text = "Import";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // expandToolStripMenuItem2
             // 
@@ -1877,22 +1894,6 @@
             this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(138, 22);
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
-            // 
-            // exportToolStripMenuItem
-            // 
-            this.exportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportToolStripMenuItem.Image")));
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exportToolStripMenuItem.Text = "Export";
-            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
-            // 
-            // importToolStripMenuItem
-            // 
-            this.importToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importToolStripMenuItem.Image")));
-            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.importToolStripMenuItem.Text = "Import";
-            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // SbnkEditor
             // 

@@ -56,10 +56,15 @@ namespace NitroStudio
         public void updateNodes() {
 
             tree.BeginUpdate();
-            foreach (TreeNode e in tree.Nodes[0].Nodes) {
+
+            List<string> expandedNodes = collectExpandedNodes(tree.Nodes);
+
+            foreach (TreeNode e in tree.Nodes[0].Nodes)
+            {
                 tree.Nodes[0].Nodes.RemoveAt(0);
             }
             tree.SelectedNode = tree.Nodes[0];
+
             for (int i = 0; i < file.data.Length; i++) {
 
                 //Add nodes.
@@ -77,6 +82,18 @@ namespace NitroStudio
             }
 
             tree.Nodes[0].ContextMenuStrip = bigMenu;
+
+            //Restore the nodes if they exist.
+            if (expandedNodes.Count > 0)
+            {
+                TreeNode IamExpandedNode;
+                for (int i = 0; i < expandedNodes.Count; i++)
+                {
+                    IamExpandedNode = FindNodeByName(tree.Nodes, expandedNodes[i]);
+                    expandNodePath(IamExpandedNode);
+                }
+
+            }
 
             tree.EndUpdate();
 
@@ -132,12 +149,55 @@ namespace NitroStudio
 
         }
 
+        //Get expanded nodes.
+        List<string> collectExpandedNodes(TreeNodeCollection Nodes)
+        {
+            List<string> _lst = new List<string>();
+            foreach (TreeNode checknode in Nodes)
+            {
+                if (checknode.IsExpanded)
+                    _lst.Add(checknode.Name);
+                if (checknode.Nodes.Count > 0)
+                    _lst.AddRange(collectExpandedNodes(checknode.Nodes));
+            }
+            return _lst;
+        }
+
+
+        /// <summary>
+        /// Find nodes by name.
+        /// </summary>
+        /// <param name="NodesCollection"></param>
+        /// <param name="Name"></param>
+        /// <returns></returns>
+        TreeNode FindNodeByName(TreeNodeCollection NodesCollection, string Name)
+        {
+            TreeNode returnNode = null; // Default value to return
+            foreach (TreeNode checkNode in NodesCollection)
+            {
+                if (checkNode.Name == Name)  //checks if this node name is correct
+                    returnNode = checkNode;
+                else if (checkNode.Nodes.Count > 0) //node has child
+                {
+                    returnNode = FindNodeByName(checkNode.Nodes, Name);
+                }
+
+                if (returnNode != null) //check if founded do not continue and break
+                {
+                    return returnNode;
+                }
+
+            }
+            //not found
+            return returnNode;
+        }
+
         #endregion
 
 
         //Sound menu.
         #region soundMenu
-        
+
         //Add above.
         private void addAbove_Click(object sender, EventArgs e)
         {
@@ -245,6 +305,7 @@ namespace NitroStudio
             SaveFileDialog f = new SaveFileDialog();
             f.Filter = "Supported Files|*.swav;*.wav|Swav File|*.swav|Wave|*.wav";
             f.Title = "Export the file";
+            f.FileName = tree.SelectedNode.Text;
             f.ShowDialog();
 
             if (f.FileName != "")
@@ -445,6 +506,25 @@ namespace NitroStudio
         public void onCheckBoxChanged(object sender, EventArgs e) { rewriteFile(); }
         public void onValueBoxChanged(object sender, EventArgs e) { rewriteFile(); }
 
+
+        private void updateDataButton_Click(object sender, EventArgs e)
+        {
+            //Set info.
+            currentSwavFile = new swavFile();
+            currentSwavFile.load(file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index]);
+
+            currentSwavFile.data[0].info.waveType = (byte)typeBox.SelectedIndex;
+            if (loopBox.Checked) { currentSwavFile.data[0].info.loopFlag = 1; } else { currentSwavFile.data[0].info.loopFlag = 0; }
+            currentSwavFile.data[0].info.nSampleRate = (UInt16)samplingBox.Value;
+            currentSwavFile.data[0].info.nTime = (UInt16)nTimeBox.Value;
+            currentSwavFile.data[0].info.loopOffset = (UInt16)loopOffsetBox.Value;
+            currentSwavFile.data[0].info.nonLoopLength = (UInt32)nonLoopLengthBox.Value;
+
+            file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index] = currentSwavFile.toBytes();
+            tree.SelectedNode = tree.SelectedNode;
+            doInfoStuff();
+        }
+
         #endregion
 
 
@@ -489,7 +569,7 @@ namespace NitroStudio
                 }
                 else
                 {
-                    player.Play();
+                    player.PlaySync();
 
                     //Delete file.
                     File.Delete(nitroPath + "/Data/Tools/tmp.wav");
@@ -741,6 +821,7 @@ namespace NitroStudio
 
         #endregion
 
+        
     }
 
 
