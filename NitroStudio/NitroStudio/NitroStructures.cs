@@ -2428,7 +2428,7 @@ namespace NitroFileLoader
 					symbStringName t = new symbStringName ();
 					t.name = "NO_NAME";
 					t.isPlaceHolder = s.isPlaceHolder;
-					symbFile.seqArcStrings.Add (t);
+                    symbFile.seqArcStrings.Add (t);
 
 					//Seq Arc subs.
 					List<symbStringName> p = new List<symbStringName> ();
@@ -2444,42 +2444,42 @@ namespace NitroFileLoader
 					symbStringName t = new symbStringName ();
 					t.name = "NO_NAME";
 					t.isPlaceHolder = s.isPlaceHolder;
-					symbFile.bankStrings.Add (t);
+                    symbFile.bankStrings.Add (t);
 				}
 				symbFile.waveStrings = new List<symbStringName> ();
 				foreach (WaveData s in infoFile.waveData) {
 					symbStringName t = new symbStringName ();
 					t.name = "NO_NAME";
 					t.isPlaceHolder = s.isPlaceHolder;
-					symbFile.waveStrings.Add (t);
+                    symbFile.waveStrings.Add (t);
 				}
 				symbFile.playerStrings = new List<symbStringName> ();
 				foreach (PlayerData s in infoFile.playerData) {
 					symbStringName t = new symbStringName ();
 					t.name = "NO_NAME";
 					t.isPlaceHolder = s.isPlaceHolder;
-					symbFile.playerStrings.Add (t);
+                    symbFile.playerStrings.Add (t);
 				}
 				symbFile.groupStrings = new List<symbStringName> ();
 				foreach (GroupData s in infoFile.groupData) {
 					symbStringName t = new symbStringName ();
 					t.name = "NO_NAME";
 					t.isPlaceHolder = s.isPlaceHolder;
-					symbFile.groupStrings.Add (t);
+                    symbFile.groupStrings.Add (t);
 				}
 				symbFile.player2Strings = new List<symbStringName> ();
 				foreach (Player2Data s in infoFile.player2Data) {
 					symbStringName t = new symbStringName ();
 					t.name = "NO_NAME";
 					t.isPlaceHolder = s.isPlaceHolder;
-					symbFile.player2Strings.Add (t);
+                    symbFile.player2Strings.Add (t);
 				}
 				symbFile.strmStrings = new List<symbStringName> ();
 				foreach (StrmData s in infoFile.strmData) {
 					symbStringName t = new symbStringName ();
 					t.name = "NO_NAME";
 					t.isPlaceHolder = s.isPlaceHolder;
-					symbFile.strmStrings.Add (t);
+                    symbFile.strmStrings.Add (t);
 				}
 			
 			}

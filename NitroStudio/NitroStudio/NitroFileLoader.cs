@@ -580,9 +580,17 @@ namespace NitroFileLoader
 				//Set position to sub records.
 				br.Position = s.seqArcRecord.subNames[i].seqArcSubOffset;
 
-				//Read offsets.
-				s.seqArcSubRecord[i].count = br.ReadUInt32();
-				s.seqArcSubRecord [i].offsets = br.ReadUInt32s ((int)s.seqArcSubRecord[i].count);
+                if (s.seqArcRecord.subNames[i].seqArcNameOffset != 0)
+                {
+
+                    //Read offsets.
+                    s.seqArcSubRecord[i].count = br.ReadUInt32();
+                    s.seqArcSubRecord[i].offsets = br.ReadUInt32s((int)s.seqArcSubRecord[i].count);
+
+                }
+                else {
+                    s.seqArcSubRecord[i].count = 0;
+                }
 
 			}
 
@@ -614,12 +622,18 @@ namespace NitroFileLoader
 			s.strings.sseqStrings = new NitroStructures.symbStringEntry[(int)s.sseqRecord.offsets.Length];
 			for (int i = 0; i < s.sseqRecord.offsets.Length; i++) {
 
-				//Read strings.
-				s.strings.sseqStrings[i].name = getStringFromOffset(br, s.sseqRecord.offsets[i]);
-				s.strings.sseqStrings [i].seperator = (byte)0;
+                //Read strings.
+                if (s.sseqRecord.offsets[i] != 0)
+                {
+                    s.strings.sseqStrings[i].name = getStringFromOffset(br, s.sseqRecord.offsets[i]);
+                    s.strings.sseqStrings[i].seperator = (byte)0;
 
-				s.strings.sseqStrings [i].isPlaceHolder = false;
-				if (s.sseqRecord.offsets[i] == 0) {s.strings.sseqStrings [i].isPlaceHolder = true;}
+                    s.strings.sseqStrings[i].isPlaceHolder = false;
+                }
+                else
+                {
+                    s.strings.sseqStrings[i].isPlaceHolder = true;
+                }
 
 			}
 
@@ -628,13 +642,21 @@ namespace NitroFileLoader
 			s.strings.seqArcStrings = new NitroStructures.symbStringEntry[(int)s.seqArcRecord.count];
 			for (int i = 0; i < s.seqArcRecord.count; i++) {
 
-				//Read strings.
-				s.strings.seqArcStrings[i].name = getStringFromOffset(br, s.seqArcRecord.subNames[i].seqArcNameOffset);
-				s.strings.seqArcStrings [i].seperator = (byte)0;
+                //Read strings.
+                if (s.seqArcRecord.subNames[i].seqArcNameOffset != 0)
+                {
+                    s.strings.seqArcStrings[i].name = getStringFromOffset(br, s.seqArcRecord.subNames[i].seqArcNameOffset);
+                    s.strings.seqArcStrings[i].seperator = (byte)0;
 
-				s.strings.seqArcStrings [i].isPlaceHolder = false;
-				if (s.seqArcRecord.subNames[i].seqArcNameOffset == 0) {s.strings.seqArcStrings [i].isPlaceHolder = true;}
+                    s.strings.seqArcStrings[i].isPlaceHolder = false;
 
+                }
+                else {
+
+                    s.strings.seqArcStrings[i].isPlaceHolder = true;
+
+                }
+				
 			}
 
 
@@ -642,17 +664,31 @@ namespace NitroFileLoader
 			s.strings.seqArcSubStrings = new NitroStructures.symbStringEntry[(int)s.seqArcRecord.count][];
 			for (int i = 0; i < s.seqArcRecord.count; i++) {
 
-				//Read strings.
-				s.strings.seqArcSubStrings[i] = new NitroStructures.symbStringEntry[s.seqArcSubRecord[i].count];
-				for (int j = 0; j < s.seqArcSubRecord[i].count; j++) {
+                if (s.seqArcRecord.subNames[i].seqArcNameOffset != 0)
+                {
 
-					s.strings.seqArcSubStrings[i][j].name = getStringFromOffset(br, s.seqArcSubRecord[i].offsets[j]);
-					s.strings.seqArcSubStrings [i] [j].seperator = 0;
+                    //Read strings.
+                    s.strings.seqArcSubStrings[i] = new NitroStructures.symbStringEntry[s.seqArcSubRecord[i].count];
+                    for (int j = 0; j < s.seqArcSubRecord[i].count; j++)
+                    {
 
-					s.strings.seqArcSubStrings [i][j].isPlaceHolder = false;
-					if (s.seqArcSubRecord[i].offsets[j] == 0) {s.strings.seqArcSubStrings [i][j].isPlaceHolder = true;}
+                        if (s.seqArcSubRecord[i].offsets[j] != 0)
+                        {
 
-				}
+                            s.strings.seqArcSubStrings[i][j].name = getStringFromOffset(br, s.seqArcSubRecord[i].offsets[j]);
+                            s.strings.seqArcSubStrings[i][j].seperator = 0;
+
+                            s.strings.seqArcSubStrings[i][j].isPlaceHolder = false;
+                        }
+                        else
+                        {
+                            s.strings.seqArcSubStrings[i][j].isPlaceHolder = true;
+                        }
+
+
+                    }
+
+                }
 
 			}
 
@@ -661,12 +697,18 @@ namespace NitroFileLoader
 			s.strings.bankStrings = new NitroStructures.symbStringEntry[(int)s.bankRecord.offsets.Length];
 			for (int i = 0; i < s.bankRecord.offsets.Length; i++) {
 
-				//Read strings.
-				s.strings.bankStrings[i].name = getStringFromOffset(br, s.bankRecord.offsets[i]);
-				s.strings.bankStrings [i].seperator = (byte)0;
+                //Read strings.
+                if (s.bankRecord.offsets[i] != 0)
+                {
+                    s.strings.bankStrings[i].name = getStringFromOffset(br, s.bankRecord.offsets[i]);
+                    s.strings.bankStrings[i].seperator = (byte)0;
 
-				s.strings.bankStrings [i].isPlaceHolder = false;
-				if (s.bankRecord.offsets[i] == 0) {s.strings.bankStrings [i].isPlaceHolder = true;}
+                    s.strings.bankStrings[i].isPlaceHolder = false;
+                }
+                else {
+                    s.strings.bankStrings[i].isPlaceHolder = true;
+                }
+				 
 
 			}
 
@@ -675,12 +717,17 @@ namespace NitroFileLoader
 			s.strings.waveStrings = new NitroStructures.symbStringEntry[(int)s.waveRecord.offsets.Length];
 			for (int i = 0; i < s.waveRecord.offsets.Length; i++) {
 
-				//Read strings.
-				s.strings.waveStrings[i].name = getStringFromOffset(br, s.waveRecord.offsets[i]);
-				s.strings.waveStrings [i].seperator = (byte)0;
+                //Read strings.
+                if (s.waveRecord.offsets[i] != 0)
+                {
+                    s.strings.waveStrings[i].name = getStringFromOffset(br, s.waveRecord.offsets[i]);
+                    s.strings.waveStrings[i].seperator = (byte)0;
 
-				s.strings.waveStrings [i].isPlaceHolder = false;
-				if (s.waveRecord.offsets[i] == 0) {s.strings.waveStrings [i].isPlaceHolder = true;}
+                    s.strings.waveStrings[i].isPlaceHolder = false;
+                }
+                else {
+                    s.strings.waveStrings[i].isPlaceHolder = true;
+                }
 
 			}
 
@@ -689,12 +736,17 @@ namespace NitroFileLoader
 			s.strings.playerStrings = new NitroStructures.symbStringEntry[(int)s.playerRecord.offsets.Length];
 			for (int i = 0; i < s.playerRecord.offsets.Length; i++) {
 
-				//Read strings.
-				s.strings.playerStrings[i].name = getStringFromOffset(br, s.playerRecord.offsets[i]);
-				s.strings.playerStrings [i].seperator = (byte)0;
+                //Read strings.
+                if (s.playerRecord.offsets[i] != 0)
+                {
+                    s.strings.playerStrings[i].name = getStringFromOffset(br, s.playerRecord.offsets[i]);
+                    s.strings.playerStrings[i].seperator = (byte)0;
 
-				s.strings.playerStrings [i].isPlaceHolder = false;
-				if (s.playerRecord.offsets[i] == 0) {s.strings.playerStrings [i].isPlaceHolder = true;}
+                    s.strings.playerStrings[i].isPlaceHolder = false;
+                }
+                else {
+                    s.strings.playerStrings[i].isPlaceHolder = true;
+                }
 
 			}
 
@@ -703,12 +755,17 @@ namespace NitroFileLoader
 			s.strings.groupStrings = new NitroStructures.symbStringEntry[(int)s.groupRecord.offsets.Length];
 			for (int i = 0; i < s.groupRecord.offsets.Length; i++) {
 
-				//Read strings.
-				s.strings.groupStrings[i].name = getStringFromOffset(br, s.groupRecord.offsets[i]);
-				s.strings.groupStrings [i].seperator = (byte)0;
+                //Read strings.
+                if (s.groupRecord.offsets[i] != 0)
+                {
+                    s.strings.groupStrings[i].name = getStringFromOffset(br, s.groupRecord.offsets[i]);
+                    s.strings.groupStrings[i].seperator = (byte)0;
 
-				s.strings.groupStrings [i].isPlaceHolder = false;
-				if (s.groupRecord.offsets[i] == 0) {s.strings.groupStrings [i].isPlaceHolder = true;}
+                    s.strings.groupStrings[i].isPlaceHolder = false;
+                }
+                else {
+                    s.strings.groupStrings[i].isPlaceHolder = true;
+                }
 
 			}
 
@@ -717,12 +774,18 @@ namespace NitroFileLoader
 			s.strings.player2Strings = new NitroStructures.symbStringEntry[(int)s.player2Record.offsets.Length];
 			for (int i = 0; i < s.player2Record.offsets.Length; i++) {
 
-				//Read strings.
-				s.strings.player2Strings[i].name = getStringFromOffset(br, s.player2Record.offsets[i]);
-				s.strings.player2Strings [i].seperator = (byte)0;
+                //Read strings.
+                if (s.player2Record.offsets[i] != 0)
+                {
+                    s.strings.player2Strings[i].name = getStringFromOffset(br, s.player2Record.offsets[i]);
+                    s.strings.player2Strings[i].seperator = (byte)0;
 
-				s.strings.player2Strings [i].isPlaceHolder = false;
-				if (s.player2Record.offsets[i] == 0) {s.strings.player2Strings [i].isPlaceHolder = true;}
+                    s.strings.player2Strings[i].isPlaceHolder = false;
+                }
+                else {
+                    s.strings.player2Strings[i].isPlaceHolder = true;
+                }
+				
 
 			}
 
@@ -731,12 +794,17 @@ namespace NitroFileLoader
 			s.strings.strmStrings = new NitroStructures.symbStringEntry[(int)s.strmRecord.offsets.Length];
 			for (int i = 0; i < s.strmRecord.offsets.Length; i++) {
 
-				//Read strings.
-				s.strings.strmStrings[i].name = getStringFromOffset(br, s.strmRecord.offsets[i]);
-				s.strings.strmStrings [i].seperator = (byte)0;
+                //Read strings.
+                if (s.strmRecord.offsets[i] != 0)
+                {
+                    s.strings.strmStrings[i].name = getStringFromOffset(br, s.strmRecord.offsets[i]);
+                    s.strings.strmStrings[i].seperator = (byte)0;
 
-				s.strings.strmStrings [i].isPlaceHolder = false;
-				if (s.strmRecord.offsets[i] == 0) {s.strings.strmStrings [i].isPlaceHolder = true;}
+                    s.strings.strmStrings[i].isPlaceHolder = false;
+                }
+                else {
+                    s.strings.strmStrings[i].isPlaceHolder = true;
+                }
 
 			}
 

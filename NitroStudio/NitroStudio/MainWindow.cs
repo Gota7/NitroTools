@@ -681,7 +681,7 @@ namespace NitroStudio
             {
 
                 //Menus per node.
-
+                togglePlaceholderButton.Enabled = true;
 
                 //Double parent nodes.
                 if (tree.SelectedNode.Parent.Parent != null)
@@ -883,7 +883,6 @@ namespace NitroStudio
 
                     //Hide panel stuff.
                     hideAllPanelStuff();
-                    placeHolderLayout.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.seqArcData[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.seqArcStrings[tree.SelectedNode.Index].isPlaceHolder)

@@ -14,6 +14,7 @@ An Editor For Nitro Sound Data (*.sdat)
  
 ## Known Bugs 
 * Cannot edit nodes that have a fileID out of index. (So just remove them?)
+* If a SeqArc is a placeholder, you are out of luck.
  
 ## Credits 
 Given in the about tab of the program. 
