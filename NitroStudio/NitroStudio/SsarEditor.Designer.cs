@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("SSAR", 1, 1);
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("SSAR", 1, 1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SsarEditor));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.infoPanel = new System.Windows.Forms.Panel();
@@ -55,6 +55,14 @@
             this.icons = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fixSDATSYMBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uSEATYOUROWNRISKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -114,7 +122,6 @@
             // 
             this.channelPrioritySseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.channelPrioritySseqBox.Enabled = false;
             this.channelPrioritySseqBox.Location = new System.Drawing.Point(3, 116);
             this.channelPrioritySseqBox.Maximum = new decimal(new int[] {
             255,
@@ -129,7 +136,6 @@
             // 
             this.volumeSseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeSseqBox.Enabled = false;
             this.volumeSseqBox.Location = new System.Drawing.Point(3, 70);
             this.volumeSseqBox.Maximum = new decimal(new int[] {
             255,
@@ -144,7 +150,6 @@
             // 
             this.playerPrioritySseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerPrioritySseqBox.Enabled = false;
             this.playerPrioritySseqBox.Location = new System.Drawing.Point(3, 162);
             this.playerPrioritySseqBox.Maximum = new decimal(new int[] {
             255,
@@ -161,7 +166,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bankIDbox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.bankIDbox.Enabled = false;
             this.bankIDbox.FormattingEnabled = true;
             this.bankIDbox.Location = new System.Drawing.Point(3, 23);
             this.bankIDbox.Name = "bankIDbox";
@@ -172,7 +176,6 @@
             // 
             this.playerNumberSseqBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerNumberSseqBox.Enabled = false;
             this.playerNumberSseqBox.Location = new System.Drawing.Point(3, 208);
             this.playerNumberSseqBox.Maximum = new decimal(new int[] {
             255,
@@ -187,7 +190,6 @@
             // 
             this.bankIdLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bankIdLabel.Enabled = false;
             this.bankIdLabel.Location = new System.Drawing.Point(3, 0);
             this.bankIdLabel.Name = "bankIdLabel";
             this.bankIdLabel.Size = new System.Drawing.Size(195, 20);
@@ -199,7 +201,6 @@
             // 
             this.volumeSseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeSseqLabel.Enabled = false;
             this.volumeSseqLabel.Location = new System.Drawing.Point(3, 47);
             this.volumeSseqLabel.Name = "volumeSseqLabel";
             this.volumeSseqLabel.Size = new System.Drawing.Size(195, 20);
@@ -211,7 +212,6 @@
             // 
             this.channelPrioritySseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.channelPrioritySseqLabel.Enabled = false;
             this.channelPrioritySseqLabel.Location = new System.Drawing.Point(3, 93);
             this.channelPrioritySseqLabel.Name = "channelPrioritySseqLabel";
             this.channelPrioritySseqLabel.Size = new System.Drawing.Size(195, 20);
@@ -226,6 +226,7 @@
             this.tableLayoutPanel6.Controls.Add(this.gericomLabel, 0, 0);
             this.tableLayoutPanel6.Controls.Add(this.gericomPlay, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel6.Enabled = false;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 284);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
@@ -263,6 +264,7 @@
             this.gericomPlay.TabIndex = 11;
             this.gericomPlay.Text = "Play";
             this.gericomPlay.UseVisualStyleBackColor = true;
+            this.gericomPlay.Click += new System.EventHandler(this.gericomPlay_Click);
             // 
             // tableLayoutPanel5
             // 
@@ -272,6 +274,7 @@
             this.tableLayoutPanel5.Controls.Add(this.gericomPause, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.gericomStop, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tableLayoutPanel5.Enabled = false;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 341);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
@@ -303,7 +306,6 @@
             // 
             this.playerPrioritySseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerPrioritySseqLabel.Enabled = false;
             this.playerPrioritySseqLabel.Location = new System.Drawing.Point(3, 139);
             this.playerPrioritySseqLabel.Name = "playerPrioritySseqLabel";
             this.playerPrioritySseqLabel.Size = new System.Drawing.Size(195, 20);
@@ -315,7 +317,6 @@
             // 
             this.playerNumberSseqLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerNumberSseqLabel.Enabled = false;
             this.playerNumberSseqLabel.Location = new System.Drawing.Point(3, 185);
             this.playerNumberSseqLabel.Name = "playerNumberSseqLabel";
             this.playerNumberSseqLabel.Size = new System.Drawing.Size(195, 20);
@@ -349,12 +350,12 @@
             this.tree.ImageList = this.icons;
             this.tree.Location = new System.Drawing.Point(0, 0);
             this.tree.Name = "tree";
-            treeNode2.ImageIndex = 1;
-            treeNode2.Name = "SSAR";
-            treeNode2.SelectedImageIndex = 1;
-            treeNode2.Text = "SSAR";
+            treeNode1.ImageIndex = 1;
+            treeNode1.Name = "SSAR";
+            treeNode1.SelectedImageIndex = 1;
+            treeNode1.Text = "SSAR";
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.tree.SelectedImageIndex = 0;
             this.tree.Size = new System.Drawing.Size(401, 370);
             this.tree.TabIndex = 0;
@@ -372,7 +373,9 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.uSEATYOUROWNRISKToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(610, 24);
@@ -381,9 +384,77 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.importFromFileToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-            this.fileToolStripMenuItem.Text = "I Don\'t Work";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveAsToolStripMenuItem.Image")));
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.saveAsToolStripMenuItem.Text = "Save As";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // quitToolStripMenuItem
+            // 
+            this.quitToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("quitToolStripMenuItem.Image")));
+            this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.quitToolStripMenuItem.Text = "Quit";
+            this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
+            // 
+            // importFromFileToolStripMenuItem
+            // 
+            this.importFromFileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importFromFileToolStripMenuItem.Image")));
+            this.importFromFileToolStripMenuItem.Name = "importFromFileToolStripMenuItem";
+            this.importFromFileToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.importFromFileToolStripMenuItem.Text = "Import From File";
+            this.importFromFileToolStripMenuItem.Click += new System.EventHandler(this.importFromFileToolStripMenuItem_Click);
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Enabled = false;
+            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.newToolStripMenuItem.Text = "New";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fixSDATSYMBToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // fixSDATSYMBToolStripMenuItem
+            // 
+            this.fixSDATSYMBToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fixSDATSYMBToolStripMenuItem.Image")));
+            this.fixSDATSYMBToolStripMenuItem.Name = "fixSDATSYMBToolStripMenuItem";
+            this.fixSDATSYMBToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.fixSDATSYMBToolStripMenuItem.Text = "Fix SDAT SYMB";
+            // 
+            // uSEATYOUROWNRISKToolStripMenuItem
+            // 
+            this.uSEATYOUROWNRISKToolStripMenuItem.Name = "uSEATYOUROWNRISKToolStripMenuItem";
+            this.uSEATYOUROWNRISKToolStripMenuItem.Size = new System.Drawing.Size(151, 20);
+            this.uSEATYOUROWNRISKToolStripMenuItem.Text = "USE AT YOUR OWN RISK!";
             // 
             // SsarEditor
             // 
@@ -440,5 +511,13 @@
         private System.Windows.Forms.Label channelPrioritySseqLabel;
         private System.Windows.Forms.Panel noInfoPanel;
         private System.Windows.Forms.Label noInfoLabel;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importFromFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fixSDATSYMBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uSEATYOUROWNRISKToolStripMenuItem;
     }
 }

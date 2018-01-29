@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NitroFileLoader;
+using System.IO;
 
 namespace NitroStudio
 {
@@ -19,6 +20,7 @@ namespace NitroStudio
         LibNitro.SND.SSAR nitroFile;
         LibNitro.SND.Player.DSSoundContext dsc = new LibNitro.SND.Player.DSSoundContext();
         TreeNode bankNode;
+        sdatFile sdat;
 
         public SsarEditor(MainWindow p, byte[] b, TreeNode ban, string name)
         {
@@ -30,6 +32,13 @@ namespace NitroStudio
             tree.Nodes[0].Text = name;
             this.Text = name;
             updateNodes();
+
+
+            //Make a new SDAT with the SSEQs.
+            sdat = p.sdat;
+            sdat.files.sseqFiles = new List<byte[]>();
+            //foreach ()
+
 
         }
 
@@ -254,9 +263,69 @@ namespace NitroStudio
 
         }
 
+
+
+        #endregion
+
+
+        //File menu.
+        #region fileMenu
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void importFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            o.RestoreDirectory = true;
+            o.Filter = "Sequence Archive|*.ssar";
+            o.ShowDialog();
+
+            if (o.FileName != "") {
+
+                file.load(File.ReadAllBytes(o.FileName));
+
+            }
+
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog s = new SaveFileDialog();
+            s.RestoreDirectory = true;
+            s.Filter = "Sequence Archive|*.ssar";
+            s.ShowDialog();
+
+            if (s.FileName != "") {
+                File.WriteAllBytes(s.FileName, file.toBytes());
+            }
+
+        }
+
         #endregion
 
 
 
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //Play
+        private void gericomPlay_Click(object sender, EventArgs e)
+        {
+
+            
+
+        }
     }
 }

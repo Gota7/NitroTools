@@ -569,7 +569,7 @@ namespace NitroStudio
                 }
                 else
                 {
-                    player.PlaySync();
+                    player.Play();
 
                     //Delete file.
                     File.Delete(nitroPath + "/Data/Tools/tmp.wav");

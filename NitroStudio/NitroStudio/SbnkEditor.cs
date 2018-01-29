@@ -154,6 +154,13 @@ namespace NitroStudio
                             }
 
                         }
+
+                        else if (file.data[i].records[j].fRecord == 2) {
+
+                            tree.Nodes[0].Nodes[i].Nodes[j].Nodes.Add("8-Bit Instrument");
+
+                        }
+
                         else {
 
                             tree.Nodes[0].Nodes[i].Nodes[j].Nodes.Add("Universal Instrument");
@@ -303,8 +310,10 @@ namespace NitroStudio
                         if (tree.SelectedNode.Parent.Parent.Parent.Parent == null)
                         {
 
+                            originalButton.Enabled = true;
+
                             //Universal record.
-                            if (tree.SelectedNode.Text == "Universal Instrument")
+                            if (tree.SelectedNode.Text == "Universal Instrument" || tree.SelectedNode.Text == "8-Bit Instrument")
                             {
 
                                 hideAllThings();
@@ -324,6 +333,21 @@ namespace NitroStudio
                                     decayRateBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.decayRate;
                                     noteNumberBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.noteNumber;
                                     panBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.pan;
+
+                                    //fRecord.
+                                    if (file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].fRecord == 2)
+                                    {
+
+                                        swavNumberUniversal.Text = "Wave Type:";
+                                        originalButton.Enabled = false;
+
+                                    }
+                                    else {
+
+                                        swavNumberUniversal.Text = "Swav Number:";
+                                        originalButton.Enabled = true;
+
+                                    }
 
                                 }
                                 else
@@ -834,7 +858,7 @@ namespace NitroStudio
             try
             {
                 player = new SoundPlayer("Data/Temp/" + emulatorInfo.swarNumber + "/" + emulatorInfo.swavNumber + ".wav");
-                if (loopBox.Checked) { player.PlayLooping(); } else { player.PlaySync(); }
+                if (loopBox.Checked) { player.PlayLooping(); } else { player.Play(); }
             }
             catch {
                 MessageBox.Show("File not found! Are you emulating the wrong bank?", "Error!");

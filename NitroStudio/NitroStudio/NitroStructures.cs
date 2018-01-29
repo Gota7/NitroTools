@@ -2987,6 +2987,44 @@ namespace NitroFileLoader
 
 		}
 
+        //Write the data.
+        public byte[] toBytes() {
+
+            MemoryStream o = new MemoryStream();
+            BinaryWriter bw = new BinaryWriter(o);
+
+            //Write stuff.
+            bw.Write(magic);
+            bw.Write(identifier);
+            bw.Write(fileSize);
+            bw.Write(headerSize);
+            bw.Write(nBlock);
+            foreach (ssarData s in data) {
+
+                bw.Write(s.magic);
+                bw.Write(s.nSize);
+                bw.Write(s.offset);
+                bw.Write(s.nCount);
+                foreach (ssarRecord r in s.records) {
+
+                    bw.Write(r.offset);
+                    bw.Write(r.bank);
+                    bw.Write(r.volume);
+                    bw.Write(r.cpr);
+                    bw.Write(r.ppr);
+                    bw.Write(r.player);
+                    bw.Write(r.reserved);
+
+                }
+                bw.Write(s.data);
+
+            }
+
+
+            return o.ToArray();
+
+        }
+
 	}
 
 }

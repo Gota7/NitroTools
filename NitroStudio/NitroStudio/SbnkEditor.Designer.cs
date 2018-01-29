@@ -249,7 +249,7 @@
             this.saveAsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(94, 20);
             this.toolStripMenuItem1.Text = "File";
             // 
             // newBetaToolStripMenuItem
@@ -1409,20 +1409,20 @@
             this.fRecordBox.Items.AddRange(new object[] {
             "0 - Placeholder",
             "1 - Universal",
-            "2 - Universal",
-            "3 - Universal",
-            "4 - Universal",
-            "5 - Universal",
-            "6 - Universal",
-            "7 - Universal",
-            "8 - Universal",
-            "9 - Universal",
-            "10 - Universal",
-            "11 - Universal",
-            "12 - Universal",
-            "13 - Universal",
-            "14 - Universal",
-            "15 - Universal",
+            "2 - 8-Bit",
+            "3 - Universal?",
+            "4 - Universal?",
+            "5 - INVALID",
+            "6 - INVALID",
+            "7 - INVALID",
+            "8 - INVALID",
+            "9 - INVALID",
+            "10 - INVALID",
+            "11 - INVALID",
+            "12 - INVALID",
+            "13 - INVALID",
+            "14 - INVALID",
+            "15 - INVALID",
             "16 - Ranged",
             "17 - Regional"});
             this.fRecordBox.Location = new System.Drawing.Point(3, 16);
