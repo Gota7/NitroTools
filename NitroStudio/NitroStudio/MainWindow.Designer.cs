@@ -103,32 +103,12 @@
             this.bankIDbox = new System.Windows.Forms.ComboBox();
             this.bankIdLabel = new System.Windows.Forms.Label();
             this.player2Group = new System.Windows.Forms.Panel();
-            this.count = new System.Windows.Forms.NumericUpDown();
-            this.countLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.v14 = new System.Windows.Forms.NumericUpDown();
-            this.v13 = new System.Windows.Forms.NumericUpDown();
-            this.v12 = new System.Windows.Forms.NumericUpDown();
-            this.v15 = new System.Windows.Forms.NumericUpDown();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.v11 = new System.Windows.Forms.NumericUpDown();
-            this.v10 = new System.Windows.Forms.NumericUpDown();
-            this.v9 = new System.Windows.Forms.NumericUpDown();
-            this.v8 = new System.Windows.Forms.NumericUpDown();
-            this.v7 = new System.Windows.Forms.NumericUpDown();
-            this.v6 = new System.Windows.Forms.NumericUpDown();
-            this.v5 = new System.Windows.Forms.NumericUpDown();
-            this.v4 = new System.Windows.Forms.NumericUpDown();
-            this.v3 = new System.Windows.Forms.NumericUpDown();
-            this.v2 = new System.Windows.Forms.NumericUpDown();
-            this.v1 = new System.Windows.Forms.NumericUpDown();
-            this.v0 = new System.Windows.Forms.NumericUpDown();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.channel1Box = new System.Windows.Forms.NumericUpDown();
+            this.channel0Box = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.fileIdBox = new System.Windows.Forms.ComboBox();
             this.fileIdLabel = new System.Windows.Forms.Label();
             this.groupSubPanel = new System.Windows.Forms.Panel();
-            this.loadFlagGroupBox = new System.Windows.Forms.NumericUpDown();
             this.loadFlagGroupLabel = new System.Windows.Forms.Label();
             this.nEntryBox = new System.Windows.Forms.ComboBox();
             this.nEntryLabel = new System.Windows.Forms.Label();
@@ -183,6 +163,19 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
+            this.typeBox = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.channel0 = new System.Windows.Forms.Label();
+            this.channel1 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.sbnkBoxLoad = new System.Windows.Forms.CheckBox();
+            this.sseqBoxLoad = new System.Windows.Forms.CheckBox();
+            this.ssarBoxLoad = new System.Windows.Forms.CheckBox();
+            this.swarBoxLoad = new System.Windows.Forms.CheckBox();
+            this.nodeSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.parentNodeSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.exportToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bigFolderMenu.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -204,28 +197,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.channelPrioritySseqBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSseqBox)).BeginInit();
             this.player2Group.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.count)).BeginInit();
-            this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.v14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v15)).BeginInit();
-            this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.v11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v0)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.channel1Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.channel0Box)).BeginInit();
             this.groupSubPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).BeginInit();
             this.playerGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.heapSizeBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.channelFlagBox)).BeginInit();
@@ -237,6 +211,8 @@
             this.entryMenu.SuspendLayout();
             this.bigNodeMenu.SuspendLayout();
             this.subNodeMenu.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // bigFolderMenu
@@ -415,7 +391,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.progressBar,
             this.status,
-            this.byteSelect});
+            this.byteSelect,
+            this.nodeSelected,
+            this.parentNodeSelected});
             this.statusStrip1.Location = new System.Drawing.Point(0, 472);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(825, 22);
@@ -451,13 +429,13 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupSubPanel);
+            this.splitContainer1.Panel1.Controls.Add(this.player2Group);
             this.splitContainer1.Panel1.Controls.Add(this.placeHolderLayout);
             this.splitContainer1.Panel1.Controls.Add(this.strmGroup);
             this.splitContainer1.Panel1.Controls.Add(this.sseqGroup);
-            this.splitContainer1.Panel1.Controls.Add(this.player2Group);
             this.splitContainer1.Panel1.Controls.Add(this.fileIdBox);
             this.splitContainer1.Panel1.Controls.Add(this.fileIdLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.groupSubPanel);
             this.splitContainer1.Panel1.Controls.Add(this.playerGroup);
             this.splitContainer1.Panel1.Controls.Add(this.bankGroup);
             this.splitContainer1.Panel1.Controls.Add(this.noSelectLabel);
@@ -851,347 +829,55 @@
             // 
             // player2Group
             // 
-            this.player2Group.Controls.Add(this.count);
-            this.player2Group.Controls.Add(this.countLabel);
-            this.player2Group.Controls.Add(this.tableLayoutPanel4);
-            this.player2Group.Controls.Add(this.v15);
+            this.player2Group.Controls.Add(this.label1);
             this.player2Group.Controls.Add(this.tableLayoutPanel3);
-            this.player2Group.Controls.Add(this.tableLayoutPanel2);
+            this.player2Group.Controls.Add(this.typeBox);
             this.player2Group.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player2Group.Location = new System.Drawing.Point(0, 23);
             this.player2Group.Name = "player2Group";
-            this.player2Group.Size = new System.Drawing.Size(234, 423);
+            this.player2Group.Size = new System.Drawing.Size(234, 396);
             this.player2Group.TabIndex = 14;
             this.player2Group.Visible = false;
             // 
-            // count
+            // channel1Box
             // 
-            this.count.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.channel1Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.count.Location = new System.Drawing.Point(4, 195);
-            this.count.Maximum = new decimal(new int[] {
+            this.channel1Box.Location = new System.Drawing.Point(118, 25);
+            this.channel1Box.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.count.Name = "count";
-            this.count.Size = new System.Drawing.Size(228, 20);
-            this.count.TabIndex = 15;
-            this.count.ValueChanged += new System.EventHandler(this.count_ValueChanged);
+            this.channel1Box.Name = "channel1Box";
+            this.channel1Box.Size = new System.Drawing.Size(109, 20);
+            this.channel1Box.TabIndex = 15;
+            this.channel1Box.ValueChanged += new System.EventHandler(this.count_ValueChanged);
             // 
-            // countLabel
+            // channel0Box
             // 
-            this.countLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.channel0Box.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.countLabel.Location = new System.Drawing.Point(3, 173);
-            this.countLabel.Name = "countLabel";
-            this.countLabel.Size = new System.Drawing.Size(228, 19);
-            this.countLabel.TabIndex = 14;
-            this.countLabel.Text = "Count:";
-            this.countLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel4.Controls.Add(this.v14, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.v13, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.v12, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 117);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(234, 31);
-            this.tableLayoutPanel4.TabIndex = 13;
-            // 
-            // v14
-            // 
-            this.v14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v14.Location = new System.Drawing.Point(159, 3);
-            this.v14.Maximum = new decimal(new int[] {
+            this.channel0Box.Location = new System.Drawing.Point(3, 25);
+            this.channel0Box.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.v14.Name = "v14";
-            this.v14.Size = new System.Drawing.Size(72, 20);
-            this.v14.TabIndex = 15;
-            this.v14.ValueChanged += new System.EventHandler(this.v14_ValueChanged_1);
-            // 
-            // v13
-            // 
-            this.v13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v13.Location = new System.Drawing.Point(81, 3);
-            this.v13.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v13.Name = "v13";
-            this.v13.Size = new System.Drawing.Size(72, 20);
-            this.v13.TabIndex = 14;
-            this.v13.ValueChanged += new System.EventHandler(this.v13_ValueChanged_1);
-            // 
-            // v12
-            // 
-            this.v12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v12.Location = new System.Drawing.Point(3, 3);
-            this.v12.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v12.Name = "v12";
-            this.v12.Size = new System.Drawing.Size(72, 20);
-            this.v12.TabIndex = 13;
-            this.v12.ValueChanged += new System.EventHandler(this.v12_ValueChanged_1);
-            // 
-            // v15
-            // 
-            this.v15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.v15.Location = new System.Drawing.Point(3, 150);
-            this.v15.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v15.Name = "v15";
-            this.v15.Size = new System.Drawing.Size(228, 20);
-            this.v15.TabIndex = 12;
-            this.v15.ValueChanged += new System.EventHandler(this.v15_ValueChanged);
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Controls.Add(this.v11, 2, 3);
-            this.tableLayoutPanel3.Controls.Add(this.v10, 1, 3);
-            this.tableLayoutPanel3.Controls.Add(this.v9, 0, 3);
-            this.tableLayoutPanel3.Controls.Add(this.v8, 2, 2);
-            this.tableLayoutPanel3.Controls.Add(this.v7, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.v6, 0, 2);
-            this.tableLayoutPanel3.Controls.Add(this.v5, 2, 1);
-            this.tableLayoutPanel3.Controls.Add(this.v4, 1, 1);
-            this.tableLayoutPanel3.Controls.Add(this.v3, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.v2, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.v1, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.v0, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 17);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 12;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(234, 100);
-            this.tableLayoutPanel3.TabIndex = 1;
-            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
-            // 
-            // v11
-            // 
-            this.v11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v11.Location = new System.Drawing.Point(159, 78);
-            this.v11.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v11.Name = "v11";
-            this.v11.Size = new System.Drawing.Size(72, 20);
-            this.v11.TabIndex = 11;
-            this.v11.ValueChanged += new System.EventHandler(this.v11_ValueChanged);
-            // 
-            // v10
-            // 
-            this.v10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v10.Location = new System.Drawing.Point(81, 78);
-            this.v10.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v10.Name = "v10";
-            this.v10.Size = new System.Drawing.Size(72, 20);
-            this.v10.TabIndex = 10;
-            this.v10.ValueChanged += new System.EventHandler(this.v10_ValueChanged);
-            // 
-            // v9
-            // 
-            this.v9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v9.Location = new System.Drawing.Point(3, 78);
-            this.v9.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v9.Name = "v9";
-            this.v9.Size = new System.Drawing.Size(72, 20);
-            this.v9.TabIndex = 9;
-            this.v9.ValueChanged += new System.EventHandler(this.v9_ValueChanged);
-            // 
-            // v8
-            // 
-            this.v8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v8.Location = new System.Drawing.Point(159, 53);
-            this.v8.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v8.Name = "v8";
-            this.v8.Size = new System.Drawing.Size(72, 20);
-            this.v8.TabIndex = 8;
-            this.v8.ValueChanged += new System.EventHandler(this.v8_ValueChanged);
-            // 
-            // v7
-            // 
-            this.v7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v7.Location = new System.Drawing.Point(81, 53);
-            this.v7.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v7.Name = "v7";
-            this.v7.Size = new System.Drawing.Size(72, 20);
-            this.v7.TabIndex = 7;
-            this.v7.ValueChanged += new System.EventHandler(this.v7_ValueChanged);
-            // 
-            // v6
-            // 
-            this.v6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v6.Location = new System.Drawing.Point(3, 53);
-            this.v6.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v6.Name = "v6";
-            this.v6.Size = new System.Drawing.Size(72, 20);
-            this.v6.TabIndex = 6;
-            this.v6.ValueChanged += new System.EventHandler(this.v6_ValueChanged);
-            // 
-            // v5
-            // 
-            this.v5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v5.Location = new System.Drawing.Point(159, 28);
-            this.v5.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v5.Name = "v5";
-            this.v5.Size = new System.Drawing.Size(72, 20);
-            this.v5.TabIndex = 5;
-            this.v5.ValueChanged += new System.EventHandler(this.v5_ValueChanged);
-            // 
-            // v4
-            // 
-            this.v4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v4.Location = new System.Drawing.Point(81, 28);
-            this.v4.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v4.Name = "v4";
-            this.v4.Size = new System.Drawing.Size(72, 20);
-            this.v4.TabIndex = 4;
-            this.v4.ValueChanged += new System.EventHandler(this.v4_ValueChanged);
-            // 
-            // v3
-            // 
-            this.v3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v3.Location = new System.Drawing.Point(3, 28);
-            this.v3.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v3.Name = "v3";
-            this.v3.Size = new System.Drawing.Size(72, 20);
-            this.v3.TabIndex = 3;
-            this.v3.ValueChanged += new System.EventHandler(this.v3_ValueChanged);
-            // 
-            // v2
-            // 
-            this.v2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v2.Location = new System.Drawing.Point(159, 3);
-            this.v2.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v2.Name = "v2";
-            this.v2.Size = new System.Drawing.Size(72, 20);
-            this.v2.TabIndex = 2;
-            this.v2.ValueChanged += new System.EventHandler(this.v2_ValueChanged);
-            // 
-            // v1
-            // 
-            this.v1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v1.Location = new System.Drawing.Point(81, 3);
-            this.v1.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v1.Name = "v1";
-            this.v1.Size = new System.Drawing.Size(72, 20);
-            this.v1.TabIndex = 1;
-            this.v1.ValueChanged += new System.EventHandler(this.v1_ValueChanged);
-            // 
-            // v0
-            // 
-            this.v0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.v0.Location = new System.Drawing.Point(3, 3);
-            this.v0.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.v0.Name = "v0";
-            this.v0.Size = new System.Drawing.Size(72, 20);
-            this.v0.TabIndex = 0;
-            this.v0.ValueChanged += new System.EventHandler(this.v0_ValueChanged);
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(234, 17);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.channel0Box.Name = "channel0Box";
+            this.channel0Box.Size = new System.Drawing.Size(109, 20);
+            this.channel0Box.TabIndex = 12;
+            this.channel0Box.ValueChanged += new System.EventHandler(this.v15_ValueChanged);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(0, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(228, 13);
+            this.label1.Size = new System.Drawing.Size(235, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "vTable:";
+            this.label1.Text = "Type:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // fileIdBox
@@ -1221,33 +907,18 @@
             // 
             // groupSubPanel
             // 
-            this.groupSubPanel.Controls.Add(this.loadFlagGroupBox);
+            this.groupSubPanel.Controls.Add(this.tableLayoutPanel2);
             this.groupSubPanel.Controls.Add(this.loadFlagGroupLabel);
             this.groupSubPanel.Controls.Add(this.nEntryBox);
             this.groupSubPanel.Controls.Add(this.nEntryLabel);
             this.groupSubPanel.Controls.Add(this.typeGroupLabel);
             this.groupSubPanel.Controls.Add(this.typeGroupBox);
             this.groupSubPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupSubPanel.Location = new System.Drawing.Point(0, 0);
+            this.groupSubPanel.Location = new System.Drawing.Point(0, 23);
             this.groupSubPanel.Name = "groupSubPanel";
-            this.groupSubPanel.Size = new System.Drawing.Size(234, 446);
+            this.groupSubPanel.Size = new System.Drawing.Size(234, 396);
             this.groupSubPanel.TabIndex = 12;
             this.groupSubPanel.Visible = false;
-            // 
-            // loadFlagGroupBox
-            // 
-            this.loadFlagGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadFlagGroupBox.Location = new System.Drawing.Point(5, 124);
-            this.loadFlagGroupBox.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.loadFlagGroupBox.Name = "loadFlagGroupBox";
-            this.loadFlagGroupBox.Size = new System.Drawing.Size(225, 20);
-            this.loadFlagGroupBox.TabIndex = 5;
-            this.loadFlagGroupBox.ValueChanged += new System.EventHandler(this.onLoadFlagChanged);
             // 
             // loadFlagGroupLabel
             // 
@@ -1257,7 +928,7 @@
             this.loadFlagGroupLabel.Name = "loadFlagGroupLabel";
             this.loadFlagGroupLabel.Size = new System.Drawing.Size(232, 23);
             this.loadFlagGroupLabel.TabIndex = 4;
-            this.loadFlagGroupLabel.Text = "Load Flag:";
+            this.loadFlagGroupLabel.Text = "Load Flags:";
             this.loadFlagGroupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nEntryBox
@@ -1733,10 +1404,12 @@
             this.addInside,
             this.openTree3,
             this.closeTree3,
+            this.exportToolStripMenuItem1,
+            this.replaceToolStripMenuItem,
             this.rename3,
             this.deleteMeh});
             this.nodeMenu.Name = "nodeMenu";
-            this.nodeMenu.Size = new System.Drawing.Size(134, 158);
+            this.nodeMenu.Size = new System.Drawing.Size(181, 224);
             this.nodeMenu.Opening += new System.ComponentModel.CancelEventHandler(this.nodeMenu_Opening);
             // 
             // Add3
@@ -1894,6 +1567,157 @@
             this.toolStripMenuItem12.Text = "Delete";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
             // 
+            // typeBox
+            // 
+            this.typeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.typeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.typeBox.FormattingEnabled = true;
+            this.typeBox.Items.AddRange(new object[] {
+            "Mono",
+            "Stereo"});
+            this.typeBox.Location = new System.Drawing.Point(5, 26);
+            this.typeBox.Name = "typeBox";
+            this.typeBox.Size = new System.Drawing.Size(224, 21);
+            this.typeBox.TabIndex = 16;
+            this.typeBox.SelectedIndexChanged += new System.EventHandler(this.typeBox_SelectedIndexChanged);
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.channel1, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.channel0Box, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.channel1Box, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.channel0, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(1, 50);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(230, 45);
+            this.tableLayoutPanel3.TabIndex = 17;
+            // 
+            // channel0
+            // 
+            this.channel0.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.channel0.Location = new System.Drawing.Point(3, 0);
+            this.channel0.Name = "channel0";
+            this.channel0.Size = new System.Drawing.Size(109, 19);
+            this.channel0.TabIndex = 14;
+            this.channel0.Text = "Left:";
+            this.channel0.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // channel1
+            // 
+            this.channel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.channel1.Location = new System.Drawing.Point(118, 0);
+            this.channel1.Name = "channel1";
+            this.channel1.Size = new System.Drawing.Size(109, 19);
+            this.channel1.TabIndex = 16;
+            this.channel1.Text = "Right:";
+            this.channel1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.ssarBoxLoad, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.sseqBoxLoad, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.sbnkBoxLoad, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.swarBoxLoad, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 121);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(226, 47);
+            this.tableLayoutPanel2.TabIndex = 7;
+            // 
+            // sbnkBoxLoad
+            // 
+            this.sbnkBoxLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sbnkBoxLoad.Location = new System.Drawing.Point(116, 3);
+            this.sbnkBoxLoad.Name = "sbnkBoxLoad";
+            this.sbnkBoxLoad.Size = new System.Drawing.Size(107, 17);
+            this.sbnkBoxLoad.TabIndex = 7;
+            this.sbnkBoxLoad.Text = "Load SBNK";
+            this.sbnkBoxLoad.UseVisualStyleBackColor = true;
+            this.sbnkBoxLoad.CheckedChanged += new System.EventHandler(this.sbnkBoxLoad_CheckedChanged);
+            // 
+            // sseqBoxLoad
+            // 
+            this.sseqBoxLoad.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.sseqBoxLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sseqBoxLoad.Location = new System.Drawing.Point(3, 26);
+            this.sseqBoxLoad.Name = "sseqBoxLoad";
+            this.sseqBoxLoad.Size = new System.Drawing.Size(107, 18);
+            this.sseqBoxLoad.TabIndex = 8;
+            this.sseqBoxLoad.Text = "Load SSEQ";
+            this.sseqBoxLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.sseqBoxLoad.UseVisualStyleBackColor = true;
+            this.sseqBoxLoad.CheckedChanged += new System.EventHandler(this.sseqBoxLoad_CheckedChanged);
+            // 
+            // ssarBoxLoad
+            // 
+            this.ssarBoxLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ssarBoxLoad.Location = new System.Drawing.Point(116, 26);
+            this.ssarBoxLoad.Name = "ssarBoxLoad";
+            this.ssarBoxLoad.Size = new System.Drawing.Size(107, 18);
+            this.ssarBoxLoad.TabIndex = 9;
+            this.ssarBoxLoad.Text = "Load SSAR";
+            this.ssarBoxLoad.UseVisualStyleBackColor = true;
+            this.ssarBoxLoad.CheckedChanged += new System.EventHandler(this.ssarBoxLoad_CheckedChanged);
+            // 
+            // swarBoxLoad
+            // 
+            this.swarBoxLoad.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.swarBoxLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.swarBoxLoad.Location = new System.Drawing.Point(3, 3);
+            this.swarBoxLoad.Name = "swarBoxLoad";
+            this.swarBoxLoad.Size = new System.Drawing.Size(107, 17);
+            this.swarBoxLoad.TabIndex = 6;
+            this.swarBoxLoad.Text = "Load SWARs";
+            this.swarBoxLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.swarBoxLoad.UseVisualStyleBackColor = true;
+            this.swarBoxLoad.CheckedChanged += new System.EventHandler(this.swarBoxLoad_CheckedChanged);
+            // 
+            // nodeSelected
+            // 
+            this.nodeSelected.Name = "nodeSelected";
+            this.nodeSelected.Size = new System.Drawing.Size(102, 17);
+            this.nodeSelected.Text = "No node selected!";
+            // 
+            // parentNodeSelected
+            // 
+            this.parentNodeSelected.Name = "parentNodeSelected";
+            this.parentNodeSelected.Size = new System.Drawing.Size(118, 17);
+            this.parentNodeSelected.Text = "Node\'s parent is null!";
+            // 
+            // exportToolStripMenuItem1
+            // 
+            this.exportToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("exportToolStripMenuItem1.Image")));
+            this.exportToolStripMenuItem1.Name = "exportToolStripMenuItem1";
+            this.exportToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem1.Text = "Export File";
+            this.exportToolStripMenuItem1.Click += new System.EventHandler(this.exportToolStripMenuItem1_Click);
+            // 
+            // replaceToolStripMenuItem
+            // 
+            this.replaceToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("replaceToolStripMenuItem.Image")));
+            this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.replaceToolStripMenuItem.Text = "Replace File";
+            this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1933,29 +1757,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.channelPrioritySseqBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSseqBox)).EndInit();
             this.player2Group.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.count)).EndInit();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.v14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v15)).EndInit();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.v11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v0)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.channel1Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.channel0Box)).EndInit();
             this.groupSubPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.loadFlagGroupBox)).EndInit();
             this.playerGroup.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.heapSizeBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.channelFlagBox)).EndInit();
@@ -1967,6 +1771,8 @@
             this.entryMenu.ResumeLayout(false);
             this.bigNodeMenu.ResumeLayout(false);
             this.subNodeMenu.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2045,7 +1851,6 @@
         private System.Windows.Forms.ComboBox typeGroupBox;
         private System.Windows.Forms.Label nEntryLabel;
         private System.Windows.Forms.ComboBox nEntryBox;
-        private System.Windows.Forms.NumericUpDown loadFlagGroupBox;
         private System.Windows.Forms.Label loadFlagGroupLabel;
         private System.Windows.Forms.ToolStripStatusLabel byteSelect;
         private System.Windows.Forms.ToolStripMenuItem addAbove;
@@ -2075,28 +1880,9 @@
         private System.Windows.Forms.NumericUpDown priorityBoxBlack;
         private System.Windows.Forms.NumericUpDown playerBoxMagic;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.NumericUpDown v5;
-        private System.Windows.Forms.NumericUpDown v4;
-        private System.Windows.Forms.NumericUpDown v3;
-        private System.Windows.Forms.NumericUpDown v2;
-        private System.Windows.Forms.NumericUpDown v1;
-        private System.Windows.Forms.NumericUpDown v0;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown v11;
-        private System.Windows.Forms.NumericUpDown v10;
-        private System.Windows.Forms.NumericUpDown v9;
-        private System.Windows.Forms.NumericUpDown v8;
-        private System.Windows.Forms.NumericUpDown v7;
-        private System.Windows.Forms.NumericUpDown v6;
-        private System.Windows.Forms.NumericUpDown v15;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.NumericUpDown v14;
-        private System.Windows.Forms.NumericUpDown v13;
-        private System.Windows.Forms.NumericUpDown v12;
-        private System.Windows.Forms.Label countLabel;
-        private System.Windows.Forms.NumericUpDown count;
+        private System.Windows.Forms.NumericUpDown channel0Box;
+        private System.Windows.Forms.NumericUpDown channel1Box;
         private System.Windows.Forms.Label gericomLabel;
         private System.Windows.Forms.Button gericomPlay;
         private System.Windows.Forms.Button gericomStop;
@@ -2106,6 +1892,19 @@
         private System.Windows.Forms.TableLayoutPanel placeHolderLayout;
         private System.Windows.Forms.CheckBox placeholderBox;
         private System.Windows.Forms.Button togglePlaceholderButton;
+        private System.Windows.Forms.ComboBox typeBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label channel1;
+        private System.Windows.Forms.Label channel0;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.CheckBox ssarBoxLoad;
+        private System.Windows.Forms.CheckBox sseqBoxLoad;
+        private System.Windows.Forms.CheckBox sbnkBoxLoad;
+        private System.Windows.Forms.CheckBox swarBoxLoad;
+        private System.Windows.Forms.ToolStripStatusLabel nodeSelected;
+        private System.Windows.Forms.ToolStripStatusLabel parentNodeSelected;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
     }
 }
 

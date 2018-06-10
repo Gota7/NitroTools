@@ -78,14 +78,14 @@ namespace NitroStudio
                 tree.Nodes[0].Nodes.RemoveAt(0);
             }
             tree.SelectedNode = tree.Nodes[0];
-            tree.Nodes[0].ContextMenuStrip = bigMenu;
+            tree.Nodes[0].ContextMenuStrip = blockMenu;
 
-            for (int i = 0; i < file.data.Length; i++)
+            for (int i = 0; i < 1; i++)
             {
 
                 //Add nodes.
-                tree.Nodes[0].Nodes.Add("Block " + i, "Block " + i, 1, 1);
-                tree.Nodes[0].Nodes[i].ContextMenuStrip = blockMenu;
+                //tree.Nodes[0].Nodes.Add("Block " + i, "Block " + i, 1, 1);
+                //tree.Nodes[0].Nodes[i].ContextMenuStrip = blockMenu;
 
                 for (int j = 0; j < file.data[i].records.Length; j++)
                 {
@@ -93,81 +93,93 @@ namespace NitroStudio
                     if (file.data[i].records[j].isPlaceholder)
                     {
 
-                        tree.Nodes[0].Nodes[i].Nodes.Add("[" + j + "] " + "%PLACEHOLDER%", "[" + j + "] " + "%PLACEHOLDER%", 5, 5);
-                        tree.Nodes[0].Nodes[i].Nodes[j].ContextMenuStrip = recordMenu;
+                        tree.Nodes[0].Nodes.Add("[" + j + "] " + "%PLACEHOLDER%", "[" + j + "] " + "%PLACEHOLDER%", 5, 5);
 
                     }
                     else
                     {
 
-                        tree.Nodes[0].Nodes[i].Nodes.Add("[" + j + "] " + "Record", "[" + j + "] " + "Record", 3, 3);
-                        tree.Nodes[0].Nodes[i].Nodes[j].ContextMenuStrip = recordMenu;
+                        //tree.Nodes[0].Nodes.Add("[" + j + "] " + "Record", "[" + j + "] " + "Record", 3, 3);
+                        //tree.Nodes[0].Nodes[j].ContextMenuStrip = recordMenu;
 
                         //Add each of the other records due to type.
                         if (file.data[i].records[j].fRecord == 16)
                         {
-                            tree.Nodes[0].Nodes[i].Nodes[j].Nodes.Add("Ranged Instrument");
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "Ranged Instrument", "[" + j + "] " + "Ranged Instrument", 8, 8);
 
                             int count = (int)file.data[i].records[j].instrumentB.lowerNote;
                             for (int h = 0; h < file.data[i].records[j].instrumentB.stuff.Count(); h++)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Key " + count, "Key " + count, 4, 4);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Key " + count, "Key " + count, 4, 4);
                                 count += 1;
                             }
                         }
                         else if (file.data[i].records[j].fRecord > 16)
                         {
-                            tree.Nodes[0].Nodes[i].Nodes[j].Nodes.Add("Regional Instrument");
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "Regional Instrument", "[" + j + "] " + "Regional Instrument", 9, 9);
 
                             sbnkFile.sbnkInstrumentGreaterThan16 r = file.data[i].records[j].instrumentC;
                             if (r.stuff.Count > 0)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Region 0-" + r.region0, "Region 0-" + r.region0, 2, 2);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Region 0-" + r.region0, "Region 0-" + r.region0, 2, 2);
                             }
                             if (r.stuff.Count > 1)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Region " + (r.region0 + 1) + "-" + r.region1, "Region " + (r.region0 + 1) + "-" + r.region1, 2, 2);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Region " + (r.region0 + 1) + "-" + r.region1, "Region " + (r.region0 + 1) + "-" + r.region1, 2, 2);
                             }
                             if (r.stuff.Count > 2)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Region " + (r.region1 + 1) + "-" + r.region2, "Region " + (r.region1 + 1) + "-" + r.region2, 2, 2);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Region " + (r.region1 + 1) + "-" + r.region2, "Region " + (r.region1 + 1) + "-" + r.region2, 2, 2);
                             }
                             if (r.stuff.Count > 3)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Region " + (r.region2 + 1) + "-" + r.region3, "Region " + (r.region2 + 1) + "-" + r.region3, 2, 2);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Region " + (r.region2 + 1) + "-" + r.region3, "Region " + (r.region2 + 1) + "-" + r.region3, 2, 2);
                             }
                             if (r.stuff.Count > 4)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Region " + (r.region3 + 1) + "-" + r.region4, "Region " + (r.region3 + 1) + "-" + r.region4, 2, 2);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Region " + (r.region3 + 1) + "-" + r.region4, "Region " + (r.region3 + 1) + "-" + r.region4, 2, 2);
                             }
                             if (r.stuff.Count > 5)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Region " + (r.region4 + 1) + "-" + r.region5, "Region " + (r.region4 + 1) + "-" + r.region5, 2, 2);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Region " + (r.region4 + 1) + "-" + r.region5, "Region " + (r.region4 + 1) + "-" + r.region5, 2, 2);
                             }
                             if (r.stuff.Count > 6)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Region " + (r.region5 + 1) + "-" + r.region6, "Region " + (r.region5 + 1) + "-" + r.region6, 2, 2);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Region " + (r.region5 + 1) + "-" + r.region6, "Region " + (r.region5 + 1) + "-" + r.region6, 2, 2);
                             }
                             if (r.stuff.Count > 7)
                             {
-                                tree.Nodes[0].Nodes[i].Nodes[j].Nodes[0].Nodes.Add("Region " + (r.region6 + 1) + "-" + r.region7, "Region " + (r.region6 + 1) + "-" + r.region7, 2, 2);
+                                tree.Nodes[0].Nodes[j].Nodes.Add("Region " + (r.region6 + 1) + "-" + r.region7, "Region " + (r.region6 + 1) + "-" + r.region7, 2, 2);
                             }
 
                         }
 
-                        else if (file.data[i].records[j].fRecord == 2) {
-
-                            tree.Nodes[0].Nodes[i].Nodes[j].Nodes.Add("8-Bit Instrument");
-
+                        else if (file.data[i].records[j].fRecord == 2)
+                        {
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "8-Bit Instrument", "[" + j + "] " + "8-Bit Instrument", 6, 6);
                         }
 
-                        else {
+                        else if (file.data[i].records[j].fRecord == 3) {
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "White Noise Instrument", "[" + j + "] " + "White Noise Instrument", 7, 7);
+                        }
 
-                            tree.Nodes[0].Nodes[i].Nodes[j].Nodes.Add("Universal Instrument");
+                        else if (file.data[i].records[j].fRecord == 5)
+                        {
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "Mystery Instrument", "[" + j + "] " + "Mystery Instrument", 5, 5);
+                        }
 
+                        else if (file.data[i].records[j].fRecord == 1)
+                        {
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "Universal Instrument");
+                        }
+
+                        else
+                        {
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "Invalid Instrument");
                         }
 
                     }
+                    tree.Nodes[0].Nodes[j].ContextMenuStrip = recordMenu;
 
                 }
 
@@ -292,180 +304,203 @@ namespace NitroStudio
 
             //Do emulator stuff.
             doEmulatorStuff();
+            hideAllThings();
 
-            if (tree.SelectedNode.Parent != null)
+            //See what node is selected.
+            if (tree.SelectedNode != null)
             {
 
-                if (tree.SelectedNode.Parent.Parent != null) {
+                nodeSelected.Text = "Node: " + tree.SelectedNode.Text + ";";
 
-                    //fRecord stuff.
-                    if (tree.SelectedNode.Parent.Parent.Parent == null) {
+                if (tree.SelectedNode.Parent != null)
+                {
 
-                        hideAllThings();
-                        fRecordPanel.Show();
-                        fRecordBox.SelectedIndex = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].fRecord;
+                    nodeParent.Text = "Parent Node: " + tree.SelectedNode.Parent.Text;
 
-                    } else {
+                    //Instrument.
+                    if (tree.SelectedNode.Parent.Parent == null)
+                    {
 
-                        if (tree.SelectedNode.Parent.Parent.Parent.Parent == null)
+                        int type = file.data[0].records[tree.SelectedNode.Index].fRecord;
+                        fRecordBox.SelectedIndex = type;
+                        universalPanel.Enabled = true;
+                        switch (type)
                         {
 
-                            originalButton.Enabled = true;
+                            case 0:
+                                universalPanel.Enabled = false;
+                                universalPanel.Show();
+                                showInstrumentChanger();
 
-                            //Universal record.
-                            if (tree.SelectedNode.Text == "Universal Instrument" || tree.SelectedNode.Text == "8-Bit Instrument")
-                            {
+                                swavNumberUniversal.Text = "Swav Number:";
+                                swavNumberUniversal.Show();
+                                swavNumberBoxUniversal.Show();
+                                swarBoxUniversal.Value = 0;
+                                attackRateBoxUniversal.Value = 0;
+                                decayRateBoxUniversal.Value = 0;
+                                noteNumberBoxUniversal.Value = 0;
+                                panBoxUniversal.Value = 0;
+                                releaseRateBoxUniversal.Value = 0;
+                                sustainRateBoxUniversal.Value = 0;
+                                swavNumberBoxUniversal.Value = 0;
+                                break;
 
-                                hideAllThings();
+                            case 1:
+                                universalPanel.Show();
+                                showInstrumentChanger();
 
-                                if (file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].fRecord < 16)
-                                {
+                                swavNumberUniversal.Text = "Swav Number:";
+                                swavNumberUniversal.Enabled = true;
+                                swavNumberBoxUniversal.Enabled = true;
+                                swarBoxUniversal.Enabled = true;
+                                swarLabelUniversal.Enabled = true;
+                                swarBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swarNumber;
+                                attackRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.attackRate;
+                                decayRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.decayRate;
+                                noteNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.noteNumber;
+                                panBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.pan;
+                                releaseRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.releaseRate;
+                                sustainRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.sustainLevel;
+                                swavNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swavNumber;
+                                break;
 
-                                    universalPanel.Show();
+                            case 2:
+                                universalPanel.Show();
+                                showInstrumentChanger();
+                                swavNumberUniversal.Text = "Duty Cycle:";
+                                swavNumberUniversal.Enabled = true;
+                                swavNumberBoxUniversal.Enabled = true;
+                                swarBoxUniversal.Enabled = true;
+                                swarLabelUniversal.Enabled = true;
+                                swarBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swarNumber;
+                                attackRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.attackRate;
+                                decayRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.decayRate;
+                                noteNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.noteNumber;
+                                panBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.pan;
+                                releaseRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.releaseRate;
+                                sustainRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.sustainLevel;
+                                swavNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swavNumber;
+                                break;
 
-                                    //Set values.
-                                    swarBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.swarNumber;
-                                    swavNumberBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.swavNumber;
-                                    attackRateBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.attackRate;
-                                    decayRateBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.decayRate;
-                                    releaseRateBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.releaseRate;
-                                    sustainRateBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.sustainLevel;
-                                    decayRateBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.decayRate;
-                                    noteNumberBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.noteNumber;
-                                    panBoxUniversal.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.pan;
+                            case 3:
+                                universalPanel.Show();
+                                showInstrumentChanger();
+                                swavNumberUniversal.Enabled = false;
+                                swavNumberBoxUniversal.Enabled = false;
+                                swarBoxUniversal.Enabled = false;
+                                swarLabelUniversal.Enabled = false;
+                                swarBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swarNumber;
+                                attackRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.attackRate;
+                                decayRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.decayRate;
+                                noteNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.noteNumber;
+                                panBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.pan;
+                                releaseRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.releaseRate;
+                                sustainRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.sustainLevel;
+                                break;
 
-                                    //fRecord.
-                                    if (file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].fRecord == 2)
-                                    {
+                            case 16:
+                                showInstrumentChanger();
+                                rangedPanel.Show();
 
-                                        swavNumberUniversal.Text = "Wave Type:";
-                                        originalButton.Enabled = false;
+                                upperNoteBoxRanged.Value = file.data[0].records[tree.SelectedNode.Index].instrumentB.upperNote;
+                                lowerNoteBoxRanged.Value = file.data[0].records[tree.SelectedNode.Index].instrumentB.lowerNote;
+                                break;
 
-                                    }
-                                    else {
+                            case 17:
+                                showInstrumentChanger();
+                                regionedPanel.Show();
 
-                                        swavNumberUniversal.Text = "Swav Number:";
-                                        originalButton.Enabled = true;
+                                region0Box.Value = file.data[0].records[tree.SelectedNode.Index].instrumentC.region0;
+                                region1Box.Value = file.data[0].records[tree.SelectedNode.Index].instrumentC.region1;
+                                region2Box.Value = file.data[0].records[tree.SelectedNode.Index].instrumentC.region2;
+                                region3Box.Value = file.data[0].records[tree.SelectedNode.Index].instrumentC.region3;
+                                region4Box.Value = file.data[0].records[tree.SelectedNode.Index].instrumentC.region4;
+                                region5Box.Value = file.data[0].records[tree.SelectedNode.Index].instrumentC.region5;
+                                region6Box.Value = file.data[0].records[tree.SelectedNode.Index].instrumentC.region6;
+                                region7Box.Value = file.data[0].records[tree.SelectedNode.Index].instrumentC.region7;
+                                break;
 
-                                    }
+                            default:
+                                universalPanel.Show();
+                                showInstrumentChanger();
 
-                                }
-                                else
-                                {
-
-                                    //Show not instrument type box.
-                                    MessageBox.Show("You can only edit the type of instrument selected!", "Notice:");
-
-                                }
-
-                            }
-                            //Ranged record.
-                            else if (tree.SelectedNode.Text == "Ranged Instrument")
-                            {
-
-                                hideAllThings();
-
-                                if (file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].fRecord == 16)
-                                {
-
-                                    rangedPanel.Show();
-
-                                    //Set things.
-                                    lowerNoteBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentB.lowerNote;
-                                    upperNoteBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentB.upperNote;
-
-                                }
-                                else
-                                {
-
-                                    //Show not instrument type box.
-                                    MessageBox.Show("You can only edit the type of instrument selected!", "Notice:");
-
-                                }
-
-                            }
-                            //Regional Record.
-                            else if (tree.SelectedNode.Text == "Regional Instrument")
-                            {
-                                hideAllThings();
-
-                                if (file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].fRecord > 16)
-                                {
-                                    regionedPanel.Show();
-
-
-                                    //Set things.
-                                    region0Box.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region0;
-                                    region1Box.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region1;
-                                    region2Box.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region2;
-                                    region3Box.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region3;
-                                    region4Box.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region4;
-                                    region5Box.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region5;
-                                    region6Box.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region6;
-                                    region7Box.Value = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region7;
-
-                                }
-                                else
-                                {
-
-                                    //Show not instrument type box.
-                                    MessageBox.Show("You can only edit the type of instrument selected!", "Notice:");
-
-                                }
-
-                            }
-                            else { hideAllThings(); }
+                                swavNumberUniversal.Text = "Swav Number:";
+                                swavNumberUniversal.Show();
+                                swavNumberBoxUniversal.Show();
+                                swarBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swarNumber;
+                                attackRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.attackRate;
+                                decayRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.decayRate;
+                                noteNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.noteNumber;
+                                panBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.pan;
+                                releaseRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.releaseRate;
+                                sustainRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.sustainLevel;
+                                swavNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swavNumber;
+                                break;
 
                         }
-                        else {
 
-                            hideAllThings();
+                    }
+                    else {
 
-                            //Ranged Instrument.
-                            if (tree.SelectedNode.Parent.Text == "Ranged Instrument") {
+                        //Show the instrument data.
+                        int type = file.data[0].records[tree.SelectedNode.Parent.Index].fRecord;
+                        fRecordBox.SelectedIndex = type;
+                        switch (type) {
 
-                                //Show the basic info.
+                            case 16:
+
+                                hideAllThings();
+
+                                basicInfoRangedPanel.SendToBack();
                                 basicInfoRangedPanel.Show();
+                                noInfoPanel.SendToBack();
 
-                                //Set values.
-                                swarNumberBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].swarNumber;
-                                swavNumberBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].swavNumber;
-                                attackRateBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].attackRate;
-                                decayRateBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].decayRate;
-                                sustainRateBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].sustainLevel;
-                                releaseRateBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].releaseRate;
-                                panBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].pan;
-                                noteNumberBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].noteNumber;
-                                unknownBoxRanged.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].unknown;
+                                attackRateBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].attackRate;
+                                decayRateBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].decayRate;
+                                panBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].pan;
+                                sustainRateBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].sustainLevel;
+                                releaseRateBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].releaseRate;
+                                noteNumberBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].noteNumber;
+                                unknownBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].unknown;
+                                swarNumberBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].swarNumber;
+                                swavNumberBoxRanged.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index].swavNumber;
 
-                            } else if (tree.SelectedNode.Parent.Text == "Regional Instrument") {
+                                break;
 
-                                //Show the basic info.
+                            case 17:
+
+                                hideAllThings();
+
                                 basicInfoRegionalPanel.Show();
 
-                                //Set values.
-                                swarNumberBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].swarNumber;
-                                swavNumberBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].swavNumber;
-                                attackRateBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].attackRate;
-                                decayRateBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].decayRate;
-                                sustainRateBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].sustainLevel;
-                                releaseRateBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].releaseRate;
-                                panBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].pan;
-                                noteNumberBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].noteNumber;
-                                unknownBoxRegional.Value = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].unknown;
+                                attackRateBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].attackRate;
+                                decayRateBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].decayRate;
+                                panBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].pan;
+                                sustainRateBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].sustainLevel;
+                                releaseRateBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].releaseRate;
+                                noteNumberBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].noteNumber;
+                                unknownBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].unknown;
+                                swarNumberBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].swarNumber;
+                                swavNumberBoxRegional.Value = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index].swavNumber;
 
-                            }
+                                break;
 
                         }
 
                     }
 
-                } else { hideAllThings(); }
+                }
+                else
+                {
+
+                    nodeParent.Text = "Node's parent is null!";
+
+                }
 
             }
             else {
 
-                hideAllThings();
+                nodeSelected.Text = "No node selected!";
 
             }
 
@@ -474,13 +509,22 @@ namespace NitroStudio
         //Hide all things
         public void hideAllThings() {
 
-            fRecordPanel.Hide();
             universalPanel.Hide();
             rangedPanel.Hide();
             regionedPanel.Hide();
             basicInfoRangedPanel.Hide();
             basicInfoRegionalPanel.Hide();
             noInfoPanel.Show();
+            changeInstrumentPanel.Hide();
+            changeInstrumentPanel.SendToBack();
+            noInfoPanel.SendToBack();
+
+        }
+
+        public void showInstrumentChanger() {
+
+            changeInstrumentPanel.SendToBack();
+            changeInstrumentPanel.Show();
 
         }
 
@@ -499,7 +543,7 @@ namespace NitroStudio
             if (tree.SelectedNode != null) {
 
                 //Universal Instrument.
-                if (tree.SelectedNode.Text.StartsWith("Universal"))
+                if (tree.SelectedNode.Text.Contains("Universal") || tree.SelectedNode.Text.Contains("Mystery")) 
                 {
 
                     //Show stuff.
@@ -507,41 +551,41 @@ namespace NitroStudio
 
                     //Set basic instrument stuff.
                     emulatorInfo = new sbnkFile.basicInstrumentStuff();
-                    emulatorInfo.attackRate = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.attackRate;
-                    emulatorInfo.decayRate = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.decayRate;
-                    emulatorInfo.swarNumber = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.swarNumber;
-                    emulatorInfo.swavNumber = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.swavNumber;
-                    emulatorInfo.sustainLevel = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.sustainLevel;
-                    emulatorInfo.releaseRate = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.releaseRate;
-                    emulatorInfo.pan = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.pan;
-                    emulatorInfo.noteNumber = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA.noteNumber;
+                    emulatorInfo.attackRate = file.data[0].records[tree.SelectedNode.Index].instrumentA.attackRate;
+                    emulatorInfo.decayRate = file.data[0].records[tree.SelectedNode.Index].instrumentA.decayRate;
+                    emulatorInfo.swarNumber = file.data[0].records[tree.SelectedNode.Index].instrumentA.swarNumber;
+                    emulatorInfo.swavNumber = file.data[0].records[tree.SelectedNode.Index].instrumentA.swavNumber;
+                    emulatorInfo.sustainLevel = file.data[0].records[tree.SelectedNode.Index].instrumentA.sustainLevel;
+                    emulatorInfo.releaseRate = file.data[0].records[tree.SelectedNode.Index].instrumentA.releaseRate;
+                    emulatorInfo.pan = file.data[0].records[tree.SelectedNode.Index].instrumentA.pan;
+                    emulatorInfo.noteNumber = file.data[0].records[tree.SelectedNode.Index].instrumentA.noteNumber;
                     emulatorInfo.unknown = 1;
 
                     doInstrumentStuff();
 
                 }
                 //Regional
-                else if (tree.SelectedNode.Text.StartsWith("Region") && !tree.SelectedNode.Text.StartsWith("Regional"))
+                else if (tree.SelectedNode.Text.Contains("Region") && !tree.SelectedNode.Text.Contains("Regional"))
                 {
 
                     //Show stuff.
                     intrumentPanel.Show();
 
                     //Get stuff.
-                    emulatorInfo = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index];
+                    emulatorInfo = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index];
 
                     doInstrumentStuff();
 
                 }
                 //Ranged
-                else if (tree.SelectedNode.Text.StartsWith("Key"))
+                else if (tree.SelectedNode.Text.Contains("Key"))
                 {
 
                     //Show stuff.
                     intrumentPanel.Show();
 
                     //Get stuff.
-                    emulatorInfo = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index];
+                    emulatorInfo = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index];
 
                     doInstrumentStuff();
 
@@ -940,103 +984,103 @@ namespace NitroStudio
         {
 
             //See if correct node.
-            if (tree.SelectedNode.Text.EndsWith("%PLACEHOLDER%") || tree.SelectedNode.Text.EndsWith("Record"))
+            if (tree.SelectedNode != null)
             {
-                file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].fRecord = (byte)fRecordBox.SelectedIndex;
-
-                if (file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].fRecord < 16 && file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].fRecord != 0)
+                if (tree.SelectedNode.Parent != null)
                 {
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA = new sbnkFile.sbnkInstrumentLessThan16();
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA.swarNumber = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA.swavNumber = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA.attackRate = 127;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA.decayRate = 127;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA.sustainLevel = 127;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA.releaseRate = 127;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA.noteNumber = 64;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentA.pan = 64;
-
-
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].isPlaceholder = false;
-                    try
+                    if (tree.SelectedNode.Parent.Parent == null)
                     {
-                        tree.SelectedNode.Nodes.RemoveAt(0);
-                        tree.SelectedNode.Nodes.Add("Universal Instrument");
-                        updateNodes();
-                    }
-                    catch
-                    {
-                        tree.SelectedNode.Nodes.Add("Universal Instrument");
-                        updateNodes();
+                        file.data[0].records[tree.SelectedNode.Index].fRecord = (byte)fRecordBox.SelectedIndex;
+
+                        if (file.data[0].records[tree.SelectedNode.Index].fRecord < 16 && file.data[0].records[tree.SelectedNode.Index].fRecord != 0)
+                        {
+
+                            /*
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA = new sbnkFile.sbnkInstrumentLessThan16();
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA.swarNumber = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA.swavNumber = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA.attackRate = 127;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA.decayRate = 127;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA.sustainLevel = 127;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA.releaseRate = 127;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA.noteNumber = 64;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentA.pan = 64;
+                            */
+
+                            file.data[0].records[tree.SelectedNode.Index].isPlaceholder = false;
+                            updateNodes();
+
+                        }
+                        else if (file.data[0].records[tree.SelectedNode.Index].fRecord == 0)
+                        {
+
+                            foreach (TreeNode n in tree.SelectedNode.Nodes)
+                            {
+                                tree.SelectedNode.Nodes.RemoveAt(0);
+                            }
+
+                            file.data[0].records[tree.SelectedNode.Index].isPlaceholder = true;
+
+                            updateNodes();
+
+                        }
+                        else if (file.data[0].records[tree.SelectedNode.Index].fRecord == 16)
+                        {
+
+                            foreach (TreeNode n in tree.SelectedNode.Nodes)
+                            {
+                                tree.SelectedNode.Nodes.RemoveAt(0);
+                            }
+
+                            file.data[0].records[tree.SelectedNode.Index].isPlaceholder = false;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentB = new sbnkFile.sbnkInstrumentEquals16();
+                            file.data[0].records[tree.SelectedNode.Index].instrumentB.lowerNote = 64;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentB.upperNote = 64;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentB.stuff = new List<sbnkFile.basicInstrumentStuff>();
+
+                            //tree.SelectedNode.Nodes.Add("Ranged Instrument");
+
+                            sbnkFile.basicInstrumentStuff b = new sbnkFile.basicInstrumentStuff();
+                            b.attackRate = 127;
+                            b.decayRate = 127;
+                            b.noteNumber = 64;
+                            b.pan = 64;
+                            b.sustainLevel = 127;
+                            b.releaseRate = 127;
+                            b.unknown = 1;
+                            b.swarNumber = 0;
+                            b.swavNumber = 0;
+
+                            file.data[0].records[tree.SelectedNode.Index].instrumentB.stuff.Add(b);
+                            updateNodes();
+
+                        }
+                        else
+                        {
+
+                            foreach (TreeNode n in tree.SelectedNode.Nodes)
+                            {
+                                tree.SelectedNode.Nodes.RemoveAt(0);
+                            }
+
+                            file.data[0].records[tree.SelectedNode.Index].isPlaceholder = false;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC = new sbnkFile.sbnkInstrumentGreaterThan16();
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.region0 = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.region1 = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.region2 = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.region3 = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.region4 = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.region5 = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.region6 = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.region7 = 0;
+                            file.data[0].records[tree.SelectedNode.Index].instrumentC.stuff = new List<sbnkFile.basicInstrumentStuff>();
+
+                            updateNodes();
+
+                        }
+
                     }
                 }
-                else if (file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].fRecord == 0)
-                {
-
-                    foreach (TreeNode n in tree.SelectedNode.Nodes)
-                    {
-                        tree.SelectedNode.Nodes.RemoveAt(0);
-                    }
-
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].isPlaceholder = true;
-
-                    updateNodes();
-
-                }
-                else if (file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].fRecord == 16)
-                {
-
-                    foreach (TreeNode n in tree.SelectedNode.Nodes)
-                    {
-                        tree.SelectedNode.Nodes.RemoveAt(0);
-                    }
-
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].isPlaceholder = false;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentB = new sbnkFile.sbnkInstrumentEquals16();
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentB.lowerNote = 64;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentB.upperNote = 64;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentB.stuff = new List<sbnkFile.basicInstrumentStuff>();
-
-                    tree.SelectedNode.Nodes.Add("Ranged Instrument");
-
-                    sbnkFile.basicInstrumentStuff b = new sbnkFile.basicInstrumentStuff();
-                    b.attackRate = 127;
-                    b.decayRate = 127;
-                    b.noteNumber = 64;
-                    b.pan = 64;
-                    b.sustainLevel = 127;
-                    b.releaseRate = 127;
-                    b.unknown = 1;
-                    b.swarNumber = 0;
-                    b.swavNumber = 0;
-
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentB.stuff.Add(b);
-                    updateNodes();
-
-                }
-                else {
-
-                    foreach (TreeNode n in tree.SelectedNode.Nodes)
-                    {
-                        tree.SelectedNode.Nodes.RemoveAt(0);
-                    }
-
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].isPlaceholder = false;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC = new sbnkFile.sbnkInstrumentGreaterThan16();
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.region0 = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.region1 = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.region2 = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.region3 = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.region4 = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.region5 = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.region6 = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.region7 = 0;
-                    file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index].instrumentC.stuff = new List<sbnkFile.basicInstrumentStuff>();
-
-                    updateNodes();
-
-                }
-
             }
 
         }
@@ -1045,12 +1089,12 @@ namespace NitroStudio
         private void setRangedButton_Click(object sender, EventArgs e)
         {
             //See if correct.
-            if (tree.SelectedNode.Text.EndsWith("Ranged Instrument")) {
+            if (tree.SelectedNode.Text.Contains("Ranged Instrument")) {
 
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentB.lowerNote = (byte)lowerNoteBoxRanged.Value;
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentB.upperNote = (byte)upperNoteBoxRanged.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentB.lowerNote = (byte)lowerNoteBoxRanged.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentB.upperNote = (byte)upperNoteBoxRanged.Value;
 
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentB.stuff = new List<sbnkFile.basicInstrumentStuff>();
+                file.data[0].records[tree.SelectedNode.Index].instrumentB.stuff = new List<sbnkFile.basicInstrumentStuff>();
 
                 for (int i = (int)lowerNoteBoxRanged.Value; i <= (int)upperNoteBoxRanged.Value; i++) {
                     sbnkFile.basicInstrumentStuff b = new sbnkFile.basicInstrumentStuff();
@@ -1065,7 +1109,7 @@ namespace NitroStudio
                     b.swarNumber = 0;
                     b.swavNumber = 0;
 
-                    file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentB.stuff.Add(b);
+                    file.data[0].records[tree.SelectedNode.Index].instrumentB.stuff.Add(b);
                 }
 
                 updateNodes();
@@ -1078,21 +1122,21 @@ namespace NitroStudio
         private void createNewRegionsButton_Click(object sender, EventArgs e)
         {
             //See if correct.
-            if (tree.SelectedNode.Text.EndsWith("Regional Instrument"))
+            if (tree.SelectedNode.Text.Contains("Regional Instrument"))
             {
 
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region0 = (byte)region0Box.Value;
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region1 = (byte)region1Box.Value;
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region2 = (byte)region2Box.Value;
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region3 = (byte)region3Box.Value;
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region4 = (byte)region4Box.Value;
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region5 = (byte)region5Box.Value;
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region6 = (byte)region6Box.Value;
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.region7 = (byte)region7Box.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.region0 = (byte)region0Box.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.region1 = (byte)region1Box.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.region2 = (byte)region2Box.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.region3 = (byte)region3Box.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.region4 = (byte)region4Box.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.region5 = (byte)region5Box.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.region6 = (byte)region6Box.Value;
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.region7 = (byte)region7Box.Value;
 
-                file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.stuff = new List<sbnkFile.basicInstrumentStuff>();
+                file.data[0].records[tree.SelectedNode.Index].instrumentC.stuff = new List<sbnkFile.basicInstrumentStuff>();
 
-                sbnkFile.sbnkInstrumentGreaterThan16 a = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC;
+                sbnkFile.sbnkInstrumentGreaterThan16 a = file.data[0].records[tree.SelectedNode.Index].instrumentC;
 
 
                 //Get count.
@@ -1170,7 +1214,7 @@ namespace NitroStudio
                     b.swarNumber = 0;
                     b.swavNumber = 0;
 
-                    file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentC.stuff.Add(b);
+                    file.data[0].records[tree.SelectedNode.Index].instrumentC.stuff.Add(b);
                 }
 
                 updateNodes();
@@ -1183,7 +1227,7 @@ namespace NitroStudio
         {
             doEmulatorStuff();
 
-            sbnkFile.basicInstrumentStuff f = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index];
+            sbnkFile.basicInstrumentStuff f = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index];
 
             f.attackRate = (byte)attackRateBoxRanged.Value;
             f.decayRate = (byte)decayRateBoxRanged.Value;
@@ -1195,7 +1239,7 @@ namespace NitroStudio
             f.noteNumber = (byte)noteNumberBoxRanged.Value;
             f.unknown = (byte)unknownBoxRanged.Value;
 
-            file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index] = f;
+            file.data[0].records[tree.SelectedNode.Parent.Index].instrumentB.stuff[tree.SelectedNode.Index] = f;
         }
 
         //Update Regional Data.
@@ -1203,7 +1247,7 @@ namespace NitroStudio
         {
             doEmulatorStuff();
 
-            sbnkFile.basicInstrumentStuff f = file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index];
+            sbnkFile.basicInstrumentStuff f = file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index];
 
             f.attackRate = (byte)attackRateBoxRegional.Value;
             f.decayRate = (byte)decayRateBoxRegional.Value;
@@ -1215,7 +1259,7 @@ namespace NitroStudio
             f.noteNumber = (byte)noteNumberBoxRegional.Value;
             f.unknown = (byte)unknownBoxRegional.Value;
 
-            file.data[tree.SelectedNode.Parent.Parent.Parent.Index].records[tree.SelectedNode.Parent.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index] = f;
+            file.data[0].records[tree.SelectedNode.Parent.Index].instrumentC.stuff[tree.SelectedNode.Index] = f;
         }
 
         //Update Universal Data.
@@ -1223,18 +1267,21 @@ namespace NitroStudio
         {
             doEmulatorStuff();
 
-            sbnkFile.sbnkInstrumentLessThan16 f = file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA;
+            if (!file.data[0].records[tree.SelectedNode.Index].isPlaceholder)
+            {
+                sbnkFile.sbnkInstrumentLessThan16 f = file.data[0].records[tree.SelectedNode.Index].instrumentA;
 
-            f.attackRate = (byte)attackRateBoxUniversal.Value;
-            f.decayRate = (byte)decayRateBoxUniversal.Value;
-            f.swarNumber = (UInt16)swarBoxUniversal.Value;
-            f.swavNumber = (UInt16)swavNumberBoxUniversal.Value;
-            f.sustainLevel = (byte)sustainRateBoxUniversal.Value;
-            f.releaseRate = (byte)releaseRateBoxUniversal.Value;
-            f.pan = (byte)panBoxUniversal.Value;
-            f.noteNumber = (byte)noteNumberBoxUniversal.Value;
+                f.attackRate = (byte)attackRateBoxUniversal.Value;
+                f.decayRate = (byte)decayRateBoxUniversal.Value;
+                f.swarNumber = (UInt16)swarBoxUniversal.Value;
+                f.swavNumber = (UInt16)swavNumberBoxUniversal.Value;
+                f.sustainLevel = (byte)sustainRateBoxUniversal.Value;
+                f.releaseRate = (byte)releaseRateBoxUniversal.Value;
+                f.pan = (byte)panBoxUniversal.Value;
+                f.noteNumber = (byte)noteNumberBoxUniversal.Value;
 
-            file.data[tree.SelectedNode.Parent.Parent.Index].records[tree.SelectedNode.Parent.Index].instrumentA = f;
+                file.data[0].records[tree.SelectedNode.Index].instrumentA = f;
+            }
 
         }
 
@@ -1272,7 +1319,7 @@ namespace NitroStudio
 
         private void addRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            List<sbnkFile.sbnkInstrumentRecord> r = file.data[tree.SelectedNode.Index].records.ToList();
+            List<sbnkFile.sbnkInstrumentRecord> r = file.data[0].records.ToList();
             sbnkFile.sbnkInstrumentRecord s = new sbnkFile.sbnkInstrumentRecord();
             s.fRecord = 0;
             s.isPlaceholder = true;
@@ -1313,7 +1360,7 @@ namespace NitroStudio
             int parentIndex = tree.SelectedNode.Parent.Index;
             int index = tree.SelectedNode.Index;
 
-            List<sbnkFile.sbnkInstrumentRecord> r = file.data[parentIndex].records.ToList();
+            List<sbnkFile.sbnkInstrumentRecord> r = file.data[0].records.ToList();
 
             sbnkFile.sbnkInstrumentRecord s = new sbnkFile.sbnkInstrumentRecord();
             s.fRecord = 0;
@@ -1324,7 +1371,7 @@ namespace NitroStudio
                 r.Insert(index, s);
             }
 
-            file.data[parentIndex].records = r.ToArray();
+            file.data[0].records = r.ToArray();
             updateNodes();
         }
 
@@ -1336,7 +1383,7 @@ namespace NitroStudio
             int parentIndex = tree.SelectedNode.Parent.Index;
             int index = tree.SelectedNode.Index;
 
-            List<sbnkFile.sbnkInstrumentRecord> r = file.data[parentIndex].records.ToList();
+            List<sbnkFile.sbnkInstrumentRecord> r = file.data[0].records.ToList();
 
             sbnkFile.sbnkInstrumentRecord s = new sbnkFile.sbnkInstrumentRecord();
             s.fRecord = 0;
@@ -1347,31 +1394,31 @@ namespace NitroStudio
                 r.Insert(index + 1, s);
             }
 
-            file.data[parentIndex].records = r.ToArray();
+            file.data[0].records = r.ToArray();
             updateNodes();
         }
 
         private void moveUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (tree.SelectedNode.Index != 0) {
-                sbnkFile.sbnkInstrumentRecord current = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index];
-                sbnkFile.sbnkInstrumentRecord above = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index - 1];
+                sbnkFile.sbnkInstrumentRecord current = file.data[0].records[tree.SelectedNode.Index];
+                sbnkFile.sbnkInstrumentRecord above = file.data[0].records[tree.SelectedNode.Index - 1];
 
-                file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index - 1] = current;
-                file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index] = above;
+                file.data[0].records[tree.SelectedNode.Index - 1] = current;
+                file.data[0].records[tree.SelectedNode.Index] = above;
                 updateNodes();
             }
         }
 
         private void moveDownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (tree.SelectedNode.Index != file.data[tree.SelectedNode.Parent.Index].records.Count() - 1)
+            if (tree.SelectedNode.Index != file.data[0].records.Count() - 1)
             {
-                sbnkFile.sbnkInstrumentRecord current = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index];
-                sbnkFile.sbnkInstrumentRecord below = file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index + 1];
+                sbnkFile.sbnkInstrumentRecord current = file.data[0].records[tree.SelectedNode.Index];
+                sbnkFile.sbnkInstrumentRecord below = file.data[0].records[tree.SelectedNode.Index + 1];
 
-                file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index + 1] = current;
-                file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index] = below;
+                file.data[0].records[tree.SelectedNode.Index + 1] = current;
+                file.data[0].records[tree.SelectedNode.Index] = below;
                 updateNodes();
             }
         }
@@ -1379,7 +1426,7 @@ namespace NitroStudio
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             nistFile n = new nistFile();
-            n.loadRecord(file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index]);
+            n.loadRecord(file.data[0].records[tree.SelectedNode.Index]);
 
             SaveFileDialog s = new SaveFileDialog();
             s.RestoreDirectory = true;
@@ -1405,7 +1452,7 @@ namespace NitroStudio
             {
                 nistFile n = new nistFile();
                 n.load(File.ReadAllBytes(o.FileName));
-                file.data[tree.SelectedNode.Parent.Index].records[tree.SelectedNode.Index] = n.toRecord();
+                file.data[0].records[tree.SelectedNode.Index] = n.toRecord();
                 updateNodes();
             }
 
@@ -1423,16 +1470,13 @@ namespace NitroStudio
 
         private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            List<sbnkFile.sbnkInstrumentRecord> s = file.data[tree.SelectedNode.Parent.Index].records.ToList();
+            List<sbnkFile.sbnkInstrumentRecord> s = file.data[0].records.ToList();
             s.RemoveAt(tree.SelectedNode.Index);
-            file.data[tree.SelectedNode.Parent.Index].records = s.ToArray();
+            file.data[0].records = s.ToArray();
             updateNodes();
         }
 
         #endregion
-
-
-
 
 
         //Nitro Instrument (*.nist) Specification.
@@ -1790,6 +1834,33 @@ namespace NitroStudio
 
         }
 
-        
+        private void changeInstrument_Click_1(object sender, EventArgs e)
+        {
+            changeInstrument_Click(sender, e);
+        }
+
+        private void resetToDefaultsUniversal_Click(object sender, EventArgs e)
+        {
+            sbnkFile.sbnkInstrumentLessThan16 f = file.data[0].records[tree.SelectedNode.Index].instrumentA;
+            f.swarNumber = 0;
+            f.swavNumber = 0;
+            f.attackRate = 127;
+            f.decayRate = 127;
+            f.sustainLevel = 127;
+            f.releaseRate = 127;
+            f.noteNumber = 64;
+            f.pan = 64;
+
+            swarBoxUniversal.Value = 0;
+            swavNumberBoxUniversal.Value = 0;
+            attackRateBoxUniversal.Value = 127;
+            decayRateBoxUniversal.Value = 127;
+            sustainRateBoxUniversal.Value = 127;
+            releaseRateBoxUniversal.Value = 127;
+            noteNumberBoxUniversal.Value = 64;
+            panBoxUniversal.Value = 64;
+            file.data[0].records[tree.SelectedNode.Index].instrumentA = f;
+
+        }
     }
 }

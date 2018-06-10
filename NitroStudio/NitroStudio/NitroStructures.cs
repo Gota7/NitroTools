@@ -1627,12 +1627,12 @@ namespace NitroFileLoader
 			Directory.CreateDirectory(path);
 
 			//Write each file.
-			for (int i = 0; i < data.Length; i++) {
+			for (int i = 0; i < 1; i++) {
 
-				Directory.CreateDirectory (path + "/Entry_" + i.ToString("D3"));
+				//Directory.CreateDirectory (path + "/Entry_" + i.ToString("D3"));
 				for (int j = 0; j < data [i].files.Length; j++) {
 				
-					File.WriteAllBytes(path + "/Entry_" + i.ToString("D3") + "/Sound_" + j.ToString("D4") + ".swav", data[i].files[j]);
+					File.WriteAllBytes(path + "/Sound_" + j.ToString("D4") + ".swav", data[i].files[j]);
 				
 				}
 
@@ -1649,10 +1649,10 @@ namespace NitroFileLoader
 		
 			string[] directoryNames = Directory.EnumerateDirectories (path).ToArray();
 
-			data = new swarData[directoryNames.Length];
-			for (int i = 0; i < directoryNames.Length; i++) {
+			data = new swarData[1];
+			for (int i = 0; i < 1; i++) {
 			
-				string[] fileNames = Directory.EnumerateFiles (directoryNames [i]).ToArray();
+				string[] fileNames = Directory.EnumerateFiles (path).ToArray();
 				List<byte[]> files = new List<byte[]> ();
 				for (int j = 0; j < fileNames.Length; j++) {
 				
@@ -2565,7 +2565,7 @@ namespace NitroFileLoader
 				//Get correct info.
 				for (int j = 0; j < infoFile.sseqData.Count(); j++) {
 					if ((int)infoFile.sseqData [j].fileId == i) {		
-						File.WriteAllBytes (path + "/Sequence/" + i.ToString ("D3") + symbFile.sseqStrings [j].name + ".sseq", files.sseqFiles[i]);
+						File.WriteAllBytes (path + "/Sequence/" + i.ToString ("D3") + "_" + symbFile.sseqStrings [j].name + ".sseq", files.sseqFiles[i]);
 						break;
 					}
 				}
@@ -2576,7 +2576,7 @@ namespace NitroFileLoader
 				//Get correct info.
 				for (int j = 0; j < infoFile.seqArcData.Count(); j++) {
 					if ((int)infoFile.seqArcData [j].fileId == i + files.sseqFiles.Count()) {		
-						File.WriteAllBytes (path + "/Sequence Archive/" + i.ToString ("D3") + symbFile.seqArcStrings [j].name + ".ssar", files.seqArcFiles[i]);
+						File.WriteAllBytes (path + "/Sequence Archive/" + i.ToString ("D3") + "_" + symbFile.seqArcStrings [j].name + ".ssar", files.seqArcFiles[i]);
 						break;
 					}
 				}
@@ -2587,7 +2587,7 @@ namespace NitroFileLoader
 				//Get correct info.
 				for (int j = 0; j < infoFile.bankData.Count(); j++) {
 					if ((int)infoFile.bankData [j].fileId == i + files.sseqFiles.Count() + files.seqArcFiles.Count()) {		
-						File.WriteAllBytes (path + "/Bank/" + i.ToString ("D3") + symbFile.bankStrings [j].name + ".sbnk", files.bankFiles[i]);
+						File.WriteAllBytes (path + "/Bank/" + i.ToString ("D3") + "_" + symbFile.bankStrings [j].name + ".sbnk", files.bankFiles[i]);
 						break;
 					}
 				}
@@ -2598,7 +2598,7 @@ namespace NitroFileLoader
 				//Get correct info.
 				for (int j = 0; j < infoFile.waveData.Count(); j++) {
 					if ((int)infoFile.waveData [j].fileId == i + files.sseqFiles.Count() + files.seqArcFiles.Count() + files.bankFiles.Count()) {		
-						File.WriteAllBytes (path + "/Wave Archive/" + i.ToString ("D3") + symbFile.waveStrings [j].name + ".swar", files.waveFiles[i]);
+						File.WriteAllBytes (path + "/Wave Archive/" + i.ToString ("D3") + "_" + symbFile.waveStrings [j].name + ".swar", files.waveFiles[i]);
 						break;
 					}
 				}
@@ -2610,7 +2610,7 @@ namespace NitroFileLoader
 				//Get correct info.
 				for (int j = 0; j < infoFile.strmData.Count(); j++) {
 					if ((int)infoFile.strmData [j].fileId == i + files.sseqFiles.Count() + files.seqArcFiles.Count() + files.bankFiles.Count() + files.waveFiles.Count()) {		
-						File.WriteAllBytes (path + "/Stream/" + i.ToString ("D3") + symbFile.strmStrings [j].name + ".strm", files.strmFiles[i]);
+						File.WriteAllBytes (path + "/Stream/" + i.ToString ("D3") + "_" + symbFile.strmStrings [j].name + ".strm", files.strmFiles[i]);
 						break;
 					}
 				}

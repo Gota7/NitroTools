@@ -80,6 +80,9 @@
             this.addToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.expandToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.status = new System.Windows.Forms.StatusStrip();
+            this.bytesSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.soundSelected = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -95,6 +98,7 @@
             this.soundMenu.SuspendLayout();
             this.blockMenu.SuspendLayout();
             this.bigMenu.SuspendLayout();
+            this.status.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -113,7 +117,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tree);
-            this.splitContainer1.Size = new System.Drawing.Size(712, 393);
+            this.splitContainer1.Size = new System.Drawing.Size(712, 371);
             this.splitContainer1.SplitterDistance = 208;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -138,7 +142,7 @@
             this.swavGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.swavGroup.Location = new System.Drawing.Point(0, 0);
             this.swavGroup.Name = "swavGroup";
-            this.swavGroup.Size = new System.Drawing.Size(206, 391);
+            this.swavGroup.Size = new System.Drawing.Size(206, 369);
             this.swavGroup.TabIndex = 0;
             this.swavGroup.Visible = false;
             // 
@@ -146,9 +150,9 @@
             // 
             this.loopPlaybackCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.loopPlaybackCheckbox.Location = new System.Drawing.Point(3, 330);
+            this.loopPlaybackCheckbox.Location = new System.Drawing.Point(3, 313);
             this.loopPlaybackCheckbox.Name = "loopPlaybackCheckbox";
-            this.loopPlaybackCheckbox.Size = new System.Drawing.Size(200, 24);
+            this.loopPlaybackCheckbox.Size = new System.Drawing.Size(200, 19);
             this.loopPlaybackCheckbox.TabIndex = 15;
             this.loopPlaybackCheckbox.Text = "Loop Sound";
             this.loopPlaybackCheckbox.UseVisualStyleBackColor = true;
@@ -170,7 +174,7 @@
             // 
             this.soundPlayerDeluxeTM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.soundPlayerDeluxeTM.Location = new System.Drawing.Point(5, 308);
+            this.soundPlayerDeluxeTM.Location = new System.Drawing.Point(5, 295);
             this.soundPlayerDeluxeTM.Name = "soundPlayerDeluxeTM";
             this.soundPlayerDeluxeTM.Size = new System.Drawing.Size(198, 19);
             this.soundPlayerDeluxeTM.TabIndex = 16;
@@ -185,7 +189,7 @@
             this.tableLayoutPanel1.Controls.Add(this.playSoundPlaybackBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.stopSoundPlaybackBox, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 357);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 335);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -383,7 +387,7 @@
             this.noInfoLabelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noInfoLabelPanel.Location = new System.Drawing.Point(0, 0);
             this.noInfoLabelPanel.Name = "noInfoLabelPanel";
-            this.noInfoLabelPanel.Size = new System.Drawing.Size(206, 391);
+            this.noInfoLabelPanel.Size = new System.Drawing.Size(206, 369);
             this.noInfoLabelPanel.TabIndex = 13;
             // 
             // noInfoLabel
@@ -393,7 +397,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.noInfoLabel.Location = new System.Drawing.Point(-1, 0);
             this.noInfoLabel.Name = "noInfoLabel";
-            this.noInfoLabel.Size = new System.Drawing.Size(231, 391);
+            this.noInfoLabel.Size = new System.Drawing.Size(231, 369);
             this.noInfoLabel.TabIndex = 0;
             this.noInfoLabel.Text = "No Valid Info Selected!";
             this.noInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -410,7 +414,7 @@
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
             this.tree.SelectedImageIndex = 0;
-            this.tree.Size = new System.Drawing.Size(498, 391);
+            this.tree.Size = new System.Drawing.Size(498, 369);
             this.tree.TabIndex = 0;
             this.tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseClick);
             this.tree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.onNodeDoubleClick);
@@ -420,7 +424,7 @@
             // 
             this.icons.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("icons.ImageStream")));
             this.icons.TransparentColor = System.Drawing.Color.Transparent;
-            this.icons.Images.SetKeyName(0, "FILES.png");
+            this.icons.Images.SetKeyName(0, "waveArchive.png");
             this.icons.Images.SetKeyName(1, "wave.png");
             // 
             // menu
@@ -637,6 +641,29 @@
             this.collapseToolStripMenuItem1.Text = "Collapse";
             this.collapseToolStripMenuItem1.Click += new System.EventHandler(this.collapseToolStripMenuItem1_Click);
             // 
+            // status
+            // 
+            this.status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bytesSelected,
+            this.soundSelected});
+            this.status.Location = new System.Drawing.Point(0, 395);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(712, 22);
+            this.status.TabIndex = 12;
+            this.status.Text = "status";
+            // 
+            // bytesSelected
+            // 
+            this.bytesSelected.Name = "bytesSelected";
+            this.bytesSelected.Size = new System.Drawing.Size(103, 17);
+            this.bytesSelected.Text = "No bytes selected!";
+            // 
+            // soundSelected
+            // 
+            this.soundSelected.Name = "soundSelected";
+            this.soundSelected.Size = new System.Drawing.Size(108, 17);
+            this.soundSelected.Text = "No sound selected!";
+            // 
             // SwarEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -644,6 +671,7 @@
             this.ClientSize = new System.Drawing.Size(712, 417);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menu);
+            this.Controls.Add(this.status);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SwarEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -665,6 +693,8 @@
             this.soundMenu.ResumeLayout(false);
             this.blockMenu.ResumeLayout(false);
             this.bigMenu.ResumeLayout(false);
+            this.status.ResumeLayout(false);
+            this.status.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -721,5 +751,8 @@
         private System.Windows.Forms.ToolStripMenuItem collapseToolStripMenuItem1;
         private System.Windows.Forms.Button updateDataButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.StatusStrip status;
+        private System.Windows.Forms.ToolStripStatusLabel bytesSelected;
+        private System.Windows.Forms.ToolStripStatusLabel soundSelected;
     }
 }

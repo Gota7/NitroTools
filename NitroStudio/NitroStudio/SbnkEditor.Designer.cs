@@ -119,12 +119,11 @@
             this.lowerNoteLabelRanged = new System.Windows.Forms.Label();
             this.lowerNoteBoxRanged = new System.Windows.Forms.NumericUpDown();
             this.setRangedButton = new System.Windows.Forms.Button();
-            this.fRecordPanel = new System.Windows.Forms.Panel();
-            this.changeInstrument = new System.Windows.Forms.Button();
-            this.fRecordBox = new System.Windows.Forms.ComboBox();
-            this.fRecordLabel = new System.Windows.Forms.Label();
             this.noInfoPanel = new System.Windows.Forms.Panel();
             this.noInfoLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.changeInstrument = new System.Windows.Forms.Button();
+            this.fRecordBox = new System.Windows.Forms.ComboBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tree = new System.Windows.Forms.TreeView();
             this.icons = new System.Windows.Forms.ImageList(this.components);
@@ -154,7 +153,6 @@
             this.addRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expandToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recordMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addAboveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addBelowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -165,6 +163,12 @@
             this.expandToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.nodeSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.nodeParent = new System.Windows.Forms.ToolStripStatusLabel();
+            this.resetToDefaultsUniversal = new System.Windows.Forms.Button();
+            this.changeInstrumentPanel = new System.Windows.Forms.Panel();
+            this.fRecordLabel = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -216,8 +220,8 @@
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upperNoteBoxRanged)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowerNoteBoxRanged)).BeginInit();
-            this.fRecordPanel.SuspendLayout();
             this.noInfoPanel.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -228,6 +232,8 @@
             this.bigMenu.SuspendLayout();
             this.blockMenu.SuspendLayout();
             this.recordMenu.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.changeInstrumentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -249,7 +255,7 @@
             this.saveAsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(94, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "File";
             // 
             // newBetaToolStripMenuItem
@@ -303,16 +309,16 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.universalPanel);
             this.splitContainer1.Panel1.Controls.Add(this.basicInfoRegionalPanel);
-            this.splitContainer1.Panel1.Controls.Add(this.basicInfoRangedPanel);
             this.splitContainer1.Panel1.Controls.Add(this.regionedPanel);
+            this.splitContainer1.Panel1.Controls.Add(this.changeInstrumentPanel);
+            this.splitContainer1.Panel1.Controls.Add(this.basicInfoRangedPanel);
             this.splitContainer1.Panel1.Controls.Add(this.rangedPanel);
-            this.splitContainer1.Panel1.Controls.Add(this.fRecordPanel);
             this.splitContainer1.Panel1.Controls.Add(this.noInfoPanel);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(728, 411);
+            this.splitContainer1.Size = new System.Drawing.Size(728, 389);
             this.splitContainer1.SplitterDistance = 241;
             this.splitContainer1.TabIndex = 13;
             // 
@@ -320,9 +326,9 @@
             // 
             this.universalPanel.Controls.Add(this.tableLayoutPanel1);
             this.universalPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.universalPanel.Location = new System.Drawing.Point(0, 0);
+            this.universalPanel.Location = new System.Drawing.Point(0, 83);
             this.universalPanel.Name = "universalPanel";
-            this.universalPanel.Size = new System.Drawing.Size(239, 409);
+            this.universalPanel.Size = new System.Drawing.Size(239, 304);
             this.universalPanel.TabIndex = 3;
             this.universalPanel.Visible = false;
             // 
@@ -331,6 +337,7 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.resetToDefaultsUniversal, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.updateDataUniversal, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.panBoxUniversal, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.noteNumberBoxUniversal, 0, 7);
@@ -362,7 +369,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 409);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 304);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // updateDataUniversal
@@ -572,9 +579,9 @@
             // 
             this.basicInfoRegionalPanel.Controls.Add(this.tableLayoutPanel4);
             this.basicInfoRegionalPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.basicInfoRegionalPanel.Location = new System.Drawing.Point(0, 0);
+            this.basicInfoRegionalPanel.Location = new System.Drawing.Point(0, 83);
             this.basicInfoRegionalPanel.Name = "basicInfoRegionalPanel";
-            this.basicInfoRegionalPanel.Size = new System.Drawing.Size(239, 409);
+            this.basicInfoRegionalPanel.Size = new System.Drawing.Size(239, 304);
             this.basicInfoRegionalPanel.TabIndex = 8;
             this.basicInfoRegionalPanel.Visible = false;
             // 
@@ -617,7 +624,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(239, 409);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(239, 304);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // panBoxRegional
@@ -853,7 +860,7 @@
             this.basicInfoRangedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.basicInfoRangedPanel.Location = new System.Drawing.Point(0, 0);
             this.basicInfoRangedPanel.Name = "basicInfoRangedPanel";
-            this.basicInfoRangedPanel.Size = new System.Drawing.Size(239, 409);
+            this.basicInfoRangedPanel.Size = new System.Drawing.Size(239, 387);
             this.basicInfoRangedPanel.TabIndex = 7;
             this.basicInfoRangedPanel.Visible = false;
             // 
@@ -896,7 +903,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(239, 409);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(239, 387);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // panBoxRanged
@@ -1132,9 +1139,9 @@
             this.regionedPanel.Controls.Add(this.table);
             this.regionedPanel.Controls.Add(this.regionsLabelRegional);
             this.regionedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.regionedPanel.Location = new System.Drawing.Point(0, 0);
+            this.regionedPanel.Location = new System.Drawing.Point(0, 83);
             this.regionedPanel.Name = "regionedPanel";
-            this.regionedPanel.Size = new System.Drawing.Size(239, 409);
+            this.regionedPanel.Size = new System.Drawing.Size(239, 304);
             this.regionedPanel.TabIndex = 6;
             this.regionedPanel.Visible = false;
             // 
@@ -1294,7 +1301,7 @@
             this.rangedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rangedPanel.Location = new System.Drawing.Point(0, 0);
             this.rangedPanel.Name = "rangedPanel";
-            this.rangedPanel.Size = new System.Drawing.Size(239, 409);
+            this.rangedPanel.Size = new System.Drawing.Size(239, 387);
             this.rangedPanel.TabIndex = 5;
             this.rangedPanel.Visible = false;
             // 
@@ -1317,7 +1324,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(239, 409);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(239, 387);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // upperNoteBoxRanged
@@ -1376,43 +1383,64 @@
             this.setRangedButton.UseVisualStyleBackColor = true;
             this.setRangedButton.Click += new System.EventHandler(this.setRangedButton_Click);
             // 
-            // fRecordPanel
+            // noInfoPanel
             // 
-            this.fRecordPanel.Controls.Add(this.changeInstrument);
-            this.fRecordPanel.Controls.Add(this.fRecordBox);
-            this.fRecordPanel.Controls.Add(this.fRecordLabel);
-            this.fRecordPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fRecordPanel.Location = new System.Drawing.Point(0, 0);
-            this.fRecordPanel.Name = "fRecordPanel";
-            this.fRecordPanel.Size = new System.Drawing.Size(239, 409);
-            this.fRecordPanel.TabIndex = 4;
-            this.fRecordPanel.Visible = false;
+            this.noInfoPanel.Controls.Add(this.noInfoLabel);
+            this.noInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.noInfoPanel.Location = new System.Drawing.Point(0, 0);
+            this.noInfoPanel.Name = "noInfoPanel";
+            this.noInfoPanel.Size = new System.Drawing.Size(239, 387);
+            this.noInfoPanel.TabIndex = 0;
+            // 
+            // noInfoLabel
+            // 
+            this.noInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.noInfoLabel.Location = new System.Drawing.Point(0, 0);
+            this.noInfoLabel.Name = "noInfoLabel";
+            this.noInfoLabel.Size = new System.Drawing.Size(239, 387);
+            this.noInfoLabel.TabIndex = 0;
+            this.noInfoLabel.Text = "No Valid Info Selected!";
+            this.noInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.changeInstrument, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.fRecordBox, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 23);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(239, 65);
+            this.tableLayoutPanel6.TabIndex = 12;
             // 
             // changeInstrument
             // 
-            this.changeInstrument.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.changeInstrument.Location = new System.Drawing.Point(3, 42);
+            this.changeInstrument.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.changeInstrument.Location = new System.Drawing.Point(3, 31);
             this.changeInstrument.Name = "changeInstrument";
-            this.changeInstrument.Size = new System.Drawing.Size(233, 23);
-            this.changeInstrument.TabIndex = 2;
+            this.changeInstrument.Size = new System.Drawing.Size(233, 22);
+            this.changeInstrument.TabIndex = 12;
             this.changeInstrument.Text = "Change Instrument";
             this.changeInstrument.UseVisualStyleBackColor = true;
-            this.changeInstrument.Click += new System.EventHandler(this.changeInstrument_Click);
+            this.changeInstrument.Click += new System.EventHandler(this.changeInstrument_Click_1);
             // 
             // fRecordBox
             // 
-            this.fRecordBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fRecordBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fRecordBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.fRecordBox.FormattingEnabled = true;
             this.fRecordBox.Items.AddRange(new object[] {
-            "0 - Placeholder",
-            "1 - Universal",
-            "2 - 8-Bit",
-            "3 - Universal?",
-            "4 - Universal?",
-            "5 - INVALID",
+            "0 - Placeholder (NULL)",
+            "1 - Universal (PCM)",
+            "2 - 8-Bit (PSG)",
+            "3 - White Noise (NOISE)",
+            "4 - INVALID",
+            "5 - Mystery (NULL?)",
             "6 - INVALID",
             "7 - INVALID",
             "8 - INVALID",
@@ -1423,41 +1451,12 @@
             "13 - INVALID",
             "14 - INVALID",
             "15 - INVALID",
-            "16 - Ranged",
-            "17 - Regional"});
-            this.fRecordBox.Location = new System.Drawing.Point(3, 16);
+            "16 - Ranged (DRUM SET)",
+            "17 - Regional (KEY SPLIT)"});
+            this.fRecordBox.Location = new System.Drawing.Point(3, 3);
             this.fRecordBox.Name = "fRecordBox";
             this.fRecordBox.Size = new System.Drawing.Size(233, 21);
-            this.fRecordBox.TabIndex = 1;
-            // 
-            // fRecordLabel
-            // 
-            this.fRecordLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fRecordLabel.Location = new System.Drawing.Point(0, 0);
-            this.fRecordLabel.Name = "fRecordLabel";
-            this.fRecordLabel.Size = new System.Drawing.Size(239, 13);
-            this.fRecordLabel.TabIndex = 0;
-            this.fRecordLabel.Text = "Instrument Type:";
-            this.fRecordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // noInfoPanel
-            // 
-            this.noInfoPanel.Controls.Add(this.noInfoLabel);
-            this.noInfoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.noInfoPanel.Location = new System.Drawing.Point(0, 0);
-            this.noInfoPanel.Name = "noInfoPanel";
-            this.noInfoPanel.Size = new System.Drawing.Size(239, 409);
-            this.noInfoPanel.TabIndex = 0;
-            // 
-            // noInfoLabel
-            // 
-            this.noInfoLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.noInfoLabel.Location = new System.Drawing.Point(0, 0);
-            this.noInfoLabel.Name = "noInfoLabel";
-            this.noInfoLabel.Size = new System.Drawing.Size(239, 409);
-            this.noInfoLabel.TabIndex = 0;
-            this.noInfoLabel.Text = "No Valid Info Selected!";
-            this.noInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.fRecordBox.TabIndex = 11;
             // 
             // splitContainer2
             // 
@@ -1474,7 +1473,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.intrumentPanel);
             this.splitContainer2.Panel2.Controls.Add(this.noInstrumentPanel);
-            this.splitContainer2.Size = new System.Drawing.Size(483, 411);
+            this.splitContainer2.Size = new System.Drawing.Size(483, 389);
             this.splitContainer2.SplitterDistance = 312;
             this.splitContainer2.TabIndex = 1;
             // 
@@ -1492,7 +1491,7 @@
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
             this.tree.SelectedImageIndex = 0;
-            this.tree.Size = new System.Drawing.Size(310, 409);
+            this.tree.Size = new System.Drawing.Size(310, 387);
             this.tree.TabIndex = 0;
             this.tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseClick);
             this.tree.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tree_NodeKey);
@@ -1507,6 +1506,10 @@
             this.icons.Images.SetKeyName(3, "record.png");
             this.icons.Images.SetKeyName(4, "sseq.png");
             this.icons.Images.SetKeyName(5, "blank.png");
+            this.icons.Images.SetKeyName(6, "psg.png");
+            this.icons.Images.SetKeyName(7, "whiteNoise.png");
+            this.icons.Images.SetKeyName(8, "ranged.png");
+            this.icons.Images.SetKeyName(9, "regional.png");
             // 
             // intrumentPanel
             // 
@@ -1523,7 +1526,7 @@
             this.intrumentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.intrumentPanel.Location = new System.Drawing.Point(0, 0);
             this.intrumentPanel.Name = "intrumentPanel";
-            this.intrumentPanel.Size = new System.Drawing.Size(165, 409);
+            this.intrumentPanel.Size = new System.Drawing.Size(165, 387);
             this.intrumentPanel.TabIndex = 2;
             this.intrumentPanel.Visible = false;
             // 
@@ -1532,7 +1535,7 @@
             this.loopBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loopBox.Enabled = false;
-            this.loopBox.Location = new System.Drawing.Point(3, 331);
+            this.loopBox.Location = new System.Drawing.Point(3, 309);
             this.loopBox.Name = "loopBox";
             this.loopBox.Size = new System.Drawing.Size(159, 17);
             this.loopBox.TabIndex = 9;
@@ -1544,7 +1547,7 @@
             this.stopButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.stopButton.Enabled = false;
-            this.stopButton.Location = new System.Drawing.Point(3, 383);
+            this.stopButton.Location = new System.Drawing.Point(3, 361);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(159, 23);
             this.stopButton.TabIndex = 8;
@@ -1557,7 +1560,7 @@
             this.originalButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.originalButton.Enabled = false;
-            this.originalButton.Location = new System.Drawing.Point(3, 354);
+            this.originalButton.Location = new System.Drawing.Point(3, 332);
             this.originalButton.Name = "originalButton";
             this.originalButton.Size = new System.Drawing.Size(159, 23);
             this.originalButton.TabIndex = 7;
@@ -1570,7 +1573,7 @@
             this.moddedButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.moddedButton.Enabled = false;
-            this.moddedButton.Location = new System.Drawing.Point(4, 273);
+            this.moddedButton.Location = new System.Drawing.Point(4, 251);
             this.moddedButton.Name = "moddedButton";
             this.moddedButton.Size = new System.Drawing.Size(159, 23);
             this.moddedButton.TabIndex = 6;
@@ -1583,7 +1586,7 @@
             // 
             this.soundPlayerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.soundPlayerLabel.Location = new System.Drawing.Point(3, 299);
+            this.soundPlayerLabel.Location = new System.Drawing.Point(3, 277);
             this.soundPlayerLabel.Name = "soundPlayerLabel";
             this.soundPlayerLabel.Size = new System.Drawing.Size(159, 23);
             this.soundPlayerLabel.TabIndex = 5;
@@ -1720,7 +1723,7 @@
             this.noInstrumentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noInstrumentPanel.Location = new System.Drawing.Point(0, 0);
             this.noInstrumentPanel.Name = "noInstrumentPanel";
-            this.noInstrumentPanel.Size = new System.Drawing.Size(165, 409);
+            this.noInstrumentPanel.Size = new System.Drawing.Size(165, 387);
             this.noInstrumentPanel.TabIndex = 0;
             // 
             // noInstrumentLabel
@@ -1728,7 +1731,7 @@
             this.noInstrumentLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noInstrumentLabel.Location = new System.Drawing.Point(0, 0);
             this.noInstrumentLabel.Name = "noInstrumentLabel";
-            this.noInstrumentLabel.Size = new System.Drawing.Size(165, 409);
+            this.noInstrumentLabel.Size = new System.Drawing.Size(165, 387);
             this.noInstrumentLabel.TabIndex = 0;
             this.noInstrumentLabel.Text = "No Valid Instrument Data Selected!";
             this.noInstrumentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1771,10 +1774,9 @@
             this.blockMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addRecordToolStripMenuItem,
             this.expandToolStripMenuItem1,
-            this.collapseToolStripMenuItem1,
-            this.deleteToolStripMenuItem});
+            this.collapseToolStripMenuItem1});
             this.blockMenu.Name = "blockMenu";
-            this.blockMenu.Size = new System.Drawing.Size(120, 92);
+            this.blockMenu.Size = new System.Drawing.Size(181, 92);
             // 
             // addRecordToolStripMenuItem
             // 
@@ -1799,14 +1801,6 @@
             this.collapseToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
             this.collapseToolStripMenuItem1.Text = "Collapse";
             this.collapseToolStripMenuItem1.Click += new System.EventHandler(this.collapseToolStripMenuItem1_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // recordMenu
             // 
@@ -1895,6 +1889,61 @@
             this.deleteToolStripMenuItem1.Text = "Delete";
             this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nodeSelected,
+            this.nodeParent});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 413);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(728, 22);
+            this.statusStrip1.TabIndex = 14;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // nodeSelected
+            // 
+            this.nodeSelected.Name = "nodeSelected";
+            this.nodeSelected.Size = new System.Drawing.Size(102, 17);
+            this.nodeSelected.Text = "No node selected!";
+            // 
+            // nodeParent
+            // 
+            this.nodeParent.Name = "nodeParent";
+            this.nodeParent.Size = new System.Drawing.Size(118, 17);
+            this.nodeParent.Text = "Node\'s parent is null!";
+            // 
+            // resetToDefaultsUniversal
+            // 
+            this.resetToDefaultsUniversal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.resetToDefaultsUniversal.Location = new System.Drawing.Point(3, 183);
+            this.resetToDefaultsUniversal.Name = "resetToDefaultsUniversal";
+            this.resetToDefaultsUniversal.Size = new System.Drawing.Size(113, 24);
+            this.resetToDefaultsUniversal.TabIndex = 16;
+            this.resetToDefaultsUniversal.Text = "Reset To Defaults";
+            this.resetToDefaultsUniversal.UseVisualStyleBackColor = true;
+            this.resetToDefaultsUniversal.Click += new System.EventHandler(this.resetToDefaultsUniversal_Click);
+            // 
+            // changeInstrumentPanel
+            // 
+            this.changeInstrumentPanel.Controls.Add(this.tableLayoutPanel6);
+            this.changeInstrumentPanel.Controls.Add(this.fRecordLabel);
+            this.changeInstrumentPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.changeInstrumentPanel.Location = new System.Drawing.Point(0, 0);
+            this.changeInstrumentPanel.Name = "changeInstrumentPanel";
+            this.changeInstrumentPanel.Size = new System.Drawing.Size(239, 83);
+            this.changeInstrumentPanel.TabIndex = 13;
+            this.changeInstrumentPanel.Visible = false;
+            // 
+            // fRecordLabel
+            // 
+            this.fRecordLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fRecordLabel.Location = new System.Drawing.Point(0, 0);
+            this.fRecordLabel.Name = "fRecordLabel";
+            this.fRecordLabel.Size = new System.Drawing.Size(239, 23);
+            this.fRecordLabel.TabIndex = 13;
+            this.fRecordLabel.Text = "Instrument Type:";
+            this.fRecordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // SbnkEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1902,6 +1951,7 @@
             this.ClientSize = new System.Drawing.Size(728, 435);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menu);
+            this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SbnkEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -1962,8 +2012,8 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.upperNoteBoxRanged)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowerNoteBoxRanged)).EndInit();
-            this.fRecordPanel.ResumeLayout(false);
             this.noInfoPanel.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -1974,6 +2024,9 @@
             this.bigMenu.ResumeLayout(false);
             this.blockMenu.ResumeLayout(false);
             this.recordMenu.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.changeInstrumentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1994,9 +2047,6 @@
         private System.Windows.Forms.Panel noInfoPanel;
         private System.Windows.Forms.Label noInfoLabel;
         private System.Windows.Forms.Panel universalPanel;
-        private System.Windows.Forms.Panel fRecordPanel;
-        private System.Windows.Forms.ComboBox fRecordBox;
-        private System.Windows.Forms.Label fRecordLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label swavNumberUniversal;
         private System.Windows.Forms.Label swarLabelUniversal;
@@ -2073,7 +2123,6 @@
         private System.Windows.Forms.NumericUpDown swarNumberBoxRegional;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown unknownBoxRegional;
-        private System.Windows.Forms.Button changeInstrument;
         private System.Windows.Forms.Button updateRangedButton;
         private System.Windows.Forms.Button updateButtonRegional;
         private System.Windows.Forms.Button updateDataUniversal;
@@ -2086,7 +2135,6 @@
         private System.Windows.Forms.ToolStripMenuItem addRecordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem expandToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem collapseToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addAboveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addBelowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem moveUpToolStripMenuItem;
@@ -2115,5 +2163,14 @@
         private System.Windows.Forms.CheckBox loopBox;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Button changeInstrument;
+        private System.Windows.Forms.ComboBox fRecordBox;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel nodeSelected;
+        private System.Windows.Forms.ToolStripStatusLabel nodeParent;
+        private System.Windows.Forms.Button resetToDefaultsUniversal;
+        private System.Windows.Forms.Panel changeInstrumentPanel;
+        private System.Windows.Forms.Label fRecordLabel;
     }
 }

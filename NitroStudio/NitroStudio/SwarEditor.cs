@@ -64,24 +64,23 @@ namespace NitroStudio
                 tree.Nodes[0].Nodes.RemoveAt(0);
             }
             tree.SelectedNode = tree.Nodes[0];
+            tree.Nodes[0].ContextMenuStrip = blockMenu;
 
-            for (int i = 0; i < file.data.Length; i++) {
+            for (int i = 0; i < 1; i++) {
 
                 //Add nodes.
-                tree.Nodes[0].Nodes.Add("Block " + i);
+                //tree.Nodes[0].Nodes.Add("Block " + i);
 
                 for (int j = 0; j < file.data[i].files.Length; j++) {
 
-                    tree.Nodes[0].Nodes[i].Nodes.Add("Sound " + j, "Sound " + j, 1, 1);
-                    tree.Nodes[0].Nodes[i].LastNode.ContextMenuStrip = soundMenu;
+                    tree.Nodes[0].Nodes.Add("Sound " + j, "Sound " + j, 1, 1);
+                    tree.Nodes[0].LastNode.ContextMenuStrip = soundMenu;
 
                 }
 
-                tree.Nodes[0].Nodes[i].ContextMenuStrip = blockMenu;
-
             }
 
-            tree.Nodes[0].ContextMenuStrip = bigMenu;
+            //tree.Nodes[0].ContextMenuStrip = bigMenu;
 
             //Restore the nodes if they exist.
             if (expandedNodes.Count > 0)
@@ -212,9 +211,9 @@ namespace NitroStudio
                 if (f.FilterIndex == 1)
                 {
 
-                    List<byte[]> files = file.data[tree.SelectedNode.Parent.Index].files.ToList();
+                    List<byte[]> files = file.data[0].files.ToList();
                     files.Insert(tree.SelectedNode.Index, File.ReadAllBytes(f.FileName));
-                    file.data[tree.SelectedNode.Parent.Index].files = files.ToArray();
+                    file.data[0].files = files.ToArray();
 
                     file.fixOffsets();
                     updateNodes();
@@ -234,9 +233,9 @@ namespace NitroStudio
                     p.Start();
                     p.WaitForExit();
 
-                    List<byte[]> files = file.data[tree.SelectedNode.Parent.Index].files.ToList();
+                    List<byte[]> files = file.data[0].files.ToList();
                     files.Insert(tree.SelectedNode.Index, File.ReadAllBytes("Data\\Tools\\tmp.swav"));
-                    file.data[tree.SelectedNode.Parent.Index].files = files.ToArray();
+                    file.data[0].files = files.ToArray();
 
                     File.Delete("Data\\Tools\\tmp.swav");
                     File.Delete("Data\\Tools\\tmp.wav");
@@ -262,11 +261,11 @@ namespace NitroStudio
                 if (f.FilterIndex == 1)
                 {
 
-                    List<byte[]> files = file.data[tree.SelectedNode.Parent.Index].files.ToList();
+                    List<byte[]> files = file.data[0].files.ToList();
 
                     files.Insert(tree.SelectedNode.Index + 1, File.ReadAllBytes(f.FileName));
                 
-                    file.data[tree.SelectedNode.Parent.Index].files = files.ToArray();
+                    file.data[0].files = files.ToArray();
 
                     file.fixOffsets();
                     updateNodes();
@@ -286,9 +285,9 @@ namespace NitroStudio
                     p.Start();
                     p.WaitForExit();
 
-                    List<byte[]> files = file.data[tree.SelectedNode.Parent.Index].files.ToList();
+                    List<byte[]> files = file.data[0].files.ToList();
                     files.Insert(tree.SelectedNode.Index + 1, File.ReadAllBytes("Data\\Tools\\tmp.swav"));
-                    file.data[tree.SelectedNode.Parent.Index].files = files.ToArray();
+                    file.data[0].files = files.ToArray();
 
                     File.Delete("Data\\Tools\\tmp.swav");
                     File.Delete("Data\\Tools\\tmp.wav");
@@ -316,10 +315,10 @@ namespace NitroStudio
 
                 if (f.FilterIndex == 1)
                 {
-                    File.WriteAllBytes(f.FileName, file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index]);
+                    File.WriteAllBytes(f.FileName, file.data[0].files[tree.SelectedNode.Index]);
                 }
                 else {
-                    File.WriteAllBytes("Data\\Tools\\tmp.swav", file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index]);
+                    File.WriteAllBytes("Data\\Tools\\tmp.swav", file.data[0].files[tree.SelectedNode.Index]);
 
                     //Convert file.
                     Process p = new Process();
@@ -353,7 +352,7 @@ namespace NitroStudio
                 if (f.FilterIndex == 1)
                 {
 
-                    file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index] = File.ReadAllBytes(f.FileName);
+                    file.data[0].files[tree.SelectedNode.Index] = File.ReadAllBytes(f.FileName);
 
                 }
                 else {
@@ -369,7 +368,7 @@ namespace NitroStudio
                     p.Start();
                     p.WaitForExit();
 
-                    file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index] = File.ReadAllBytes("Data\\Tools\\tmp.swav");
+                    file.data[0].files[tree.SelectedNode.Index] = File.ReadAllBytes("Data\\Tools\\tmp.swav");
                     File.Delete("Data\\Tools\\tmp.swav");
                     File.Delete("Data\\Tools\\tmp.wav");
 
@@ -381,9 +380,9 @@ namespace NitroStudio
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            List<byte[]> f = file.data[tree.SelectedNode.Parent.Index].files.ToList();
+            List<byte[]> f = file.data[0].files.ToList();
             f.RemoveAt(tree.SelectedNode.Index);
-            file.data[tree.SelectedNode.Parent.Index].files = f.ToArray();
+            file.data[0].files = f.ToArray();
             file.fixOffsets();
             updateNodes();
         }
@@ -432,8 +431,11 @@ namespace NitroStudio
 
                 if (tree.SelectedNode.Parent != null) {
 
-                    if (tree.SelectedNode.Parent.Parent != null && tree.SelectedNode.Text.StartsWith("Sound"))
+                    if (tree.SelectedNode.Text.StartsWith("Sound"))
                     {
+
+                        soundSelected.Text = "Sound: " + tree.SelectedNode.Index;
+                        bytesSelected.Text = file.data[0].files[tree.SelectedNode.Index].Length + " bytes.";
 
                         //Hide no info label.
                         noInfoLabel.Hide();
@@ -443,7 +445,7 @@ namespace NitroStudio
 
                         //Get info.
                         currentSwavFile = new swavFile();
-                        currentSwavFile.load(file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index]);
+                        currentSwavFile.load(file.data[0].files[tree.SelectedNode.Index]);
 
                         typeBox.SelectedIndex = currentSwavFile.data[0].info.waveType;
                         if ((int)currentSwavFile.data[0].info.loopFlag == 0) { loopBox.Checked = false;  } else { loopBox.Checked = true; }
@@ -462,6 +464,9 @@ namespace NitroStudio
                         //Show no info label.
                         noInfoLabel.Show();
 
+                        soundSelected.Text = "No sound selected!";
+                        bytesSelected.Text = "No bytes selected!";
+
                     }
 
                 }
@@ -473,6 +478,9 @@ namespace NitroStudio
 
                     //Show no info label.
                     noInfoLabel.Show();
+
+                    soundSelected.Text = "No sound selected!";
+                    bytesSelected.Text = "No bytes selected!";
 
                 }
 
@@ -497,7 +505,7 @@ namespace NitroStudio
             currentSwavFile.data[0].info.loopOffset = (UInt16)loopOffsetBox.Value;
             currentSwavFile.data[0].info.nonLoopLength = (UInt32)nonLoopLengthBox.Value;
 
-            file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index] = currentSwavFile.toBytes();
+            file.data[0].files[tree.SelectedNode.Index] = currentSwavFile.toBytes();
             tree.SelectedNode = tree.SelectedNode;
             */
         }
@@ -511,7 +519,7 @@ namespace NitroStudio
         {
             //Set info.
             currentSwavFile = new swavFile();
-            currentSwavFile.load(file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index]);
+            currentSwavFile.load(file.data[0].files[tree.SelectedNode.Index]);
 
             currentSwavFile.data[0].info.waveType = (byte)typeBox.SelectedIndex;
             if (loopBox.Checked) { currentSwavFile.data[0].info.loopFlag = 1; } else { currentSwavFile.data[0].info.loopFlag = 0; }
@@ -520,7 +528,7 @@ namespace NitroStudio
             currentSwavFile.data[0].info.loopOffset = (UInt16)loopOffsetBox.Value;
             currentSwavFile.data[0].info.nonLoopLength = (UInt32)nonLoopLengthBox.Value;
 
-            file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index] = currentSwavFile.toBytes();
+            file.data[0].files[tree.SelectedNode.Index] = currentSwavFile.toBytes();
             tree.SelectedNode = tree.SelectedNode;
             doInfoStuff();
         }
@@ -548,7 +556,7 @@ namespace NitroStudio
         private void playSoundPlaybackBox_Click(object sender, EventArgs e)
         {
             //Convert swav to wav.
-            File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", file.data[tree.SelectedNode.Parent.Index].files[tree.SelectedNode.Index]);
+            File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", file.data[0].files[tree.SelectedNode.Index]);
 
             Process p2 = new Process();
             p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\swav2wav.exe\"";
@@ -614,7 +622,7 @@ namespace NitroStudio
 
                         int index = tree.SelectedNode.Index;
 
-                        ByteViewerForm f = new ByteViewerForm(file.data[tree.SelectedNode.Parent.Index].files[index], tree.SelectedNode.Text);
+                        ByteViewerForm f = new ByteViewerForm(file.data[0].files[index], tree.SelectedNode.Text);
                         f.Show();
 
                     }

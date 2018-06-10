@@ -677,6 +677,30 @@ namespace NitroStudio
 
         public void doInfoPanelStuff() {
 
+            if (fileOpen)
+            {
+                if (tree.SelectedNode != null)
+                {
+                    nodeSelected.Text = "Node: " + tree.SelectedNode.Text + ";";
+                    if (tree.SelectedNode.Parent != null) {
+                        parentNodeSelected.Text = "Parent Node: " + tree.SelectedNode.Parent.Text;
+                    }
+                    else
+                    {
+                        parentNodeSelected.Text = "Node's parent is null!";
+                    }
+                }
+                else
+                {
+                    nodeSelected.Text = "No node selected!";
+                    parentNodeSelected.Text = "Node's parent is null!";
+                }
+            }
+            else {
+                nodeSelected.Text = "No node selected!";
+                parentNodeSelected.Text = "Node's parent is null!";
+            }
+
             if (tree.SelectedNode.Parent != null)
             {
 
@@ -708,6 +732,13 @@ namespace NitroStudio
                         }
 
                         //Show nEntry.
+                        /*
+                            0 - SSEQ
+                            1 - SBNK
+                            2 - SWAR
+                            3 - SSAR
+                            WTF - Other
+                        */
                         if (typeGroupBox.SelectedIndex == 0)
                         {
                             foreach (TreeNode n in tree.Nodes[0].Nodes)
@@ -715,6 +746,10 @@ namespace NitroStudio
                                 nEntryBox.Items.Add(n.Text);
                             }
                             nEntryBox.SelectedIndex = (int)sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].nEntry;
+                            ssarBoxLoad.Enabled = false;
+                            sseqBoxLoad.Enabled = true;
+                            sbnkBoxLoad.Enabled = true;
+                            swarBoxLoad.Enabled = true;
                         }
                         if (typeGroupBox.SelectedIndex == 1)
                         {
@@ -723,6 +758,10 @@ namespace NitroStudio
                                 nEntryBox.Items.Add(n.Text);
                             }
                             nEntryBox.SelectedIndex = (int)sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].nEntry;
+                            ssarBoxLoad.Enabled = false;
+                            sseqBoxLoad.Enabled = false;
+                            sbnkBoxLoad.Enabled = true;
+                            swarBoxLoad.Enabled = true;
                         }
                         if (typeGroupBox.SelectedIndex == 2)
                         {
@@ -731,6 +770,10 @@ namespace NitroStudio
                                 nEntryBox.Items.Add(n.Text);
                             }
                             nEntryBox.SelectedIndex = (int)sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].nEntry;
+                            ssarBoxLoad.Enabled = false;
+                            sseqBoxLoad.Enabled = false;
+                            sbnkBoxLoad.Enabled = false;
+                            swarBoxLoad.Enabled = true;
                         }
                         if (typeGroupBox.SelectedIndex == 3)
                         {
@@ -739,10 +782,24 @@ namespace NitroStudio
                                 nEntryBox.Items.Add(n.Text);
                             }
                             nEntryBox.SelectedIndex = (int)sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].nEntry;
+                            ssarBoxLoad.Enabled = true;
+                            sseqBoxLoad.Enabled = false;
+                            sbnkBoxLoad.Enabled = false;
+                            swarBoxLoad.Enabled = false;
+                        }
+                        if (typeGroupBox.SelectedIndex == 4) {
+                            ssarBoxLoad.Enabled = true;
+                            sseqBoxLoad.Enabled = true;
+                            sbnkBoxLoad.Enabled = true;
+                            swarBoxLoad.Enabled = true;
                         }
 
                         //Load flag.
-                        loadFlagGroupBox.Value = sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag;
+                        int loadFlag = sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag;
+                        if ((loadFlag & 0b1) == 0b1) { sseqBoxLoad.Checked = true; } else { sseqBoxLoad.Checked = false; }
+                        if ((loadFlag & 0b10) == 0b10) { sbnkBoxLoad.Checked = true; } else { sbnkBoxLoad.Checked = false; }
+                        if ((loadFlag & 0b100) == 0b100) { swarBoxLoad.Checked = true; } else { swarBoxLoad.Checked = false; }
+                        if ((loadFlag & 0b1000) == 0b1000) { ssarBoxLoad.Checked = true; } else { ssarBoxLoad.Checked = false; }
 
                     }
 
@@ -1139,48 +1196,46 @@ namespace NitroStudio
                     {
 
                         placeholderBox.Checked = false;
+                        typeBox.Items.Clear();
+                        typeBox.Items.Add("Mono");
+                        typeBox.Items.Add("Stereo");
+                        channel0Box.Enabled = true;
+                        channel0.Enabled = true;
 
                         //Set values.
-                        v0.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v0;
-                        v1.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v1;
-                        v2.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v2;
-                        v3.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v3;
-                        v4.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v4;
-                        v5.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v5;
-                        v6.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v6;
-                        v7.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v7;
-                        v8.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v8;
-                        v9.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v9;
-                        v10.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v10;
-                        v11.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v11;
-                        v12.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v12;
-                        v13.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v13;
-                        v14.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v14;
-                        v15.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v15;
-                        count.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].count;
+                        if (sdat.infoFile.player2Data[tree.SelectedNode.Index].count == 1)
+                        {
+                            typeBox.SelectedIndex = 0;
+                            channel0.Text = "Channel:";
+                            channel1.Text = "NULL:";
+                            channel0Box.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v0;
+                            channel1Box.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v1;
+                            channel1.Enabled = false;
+                            channel1Box.Enabled = false;
+                        }
+                        else {
+                            typeBox.SelectedIndex = 1;
+                            channel0.Text = "Left Channel:";
+                            channel1.Text = "Right Channel:";
+                            channel0Box.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v0;
+                            channel1Box.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v1;
+                            channel1.Enabled = true;
+                            channel1Box.Enabled = true;
+                        }
                     }
                     else {
 
                         placeholderBox.Checked = true;
+                        typeBox.Items.Clear();
+                        typeBox.Items.Add("NULL");
+                        typeBox.SelectedIndex = 0;
 
                         //Set values.
-                        v0.Value = 0;
-                        v1.Value = 0;
-                        v2.Value = 0;
-                        v3.Value = 0;
-                        v4.Value = 0;
-                        v5.Value = 0;
-                        v6.Value = 0;
-                        v7.Value = 0;
-                        v8.Value = 0;
-                        v9.Value = 0;
-                        v10.Value = 0;
-                        v11.Value = 0;
-                        v12.Value = 0;
-                        v13.Value = 0;
-                        v14.Value = 0;
-                        v15.Value = 0;
-                        count.Value = 0;
+                        channel0Box.Enabled = false;
+                        channel0.Enabled = false;
+                        channel0.Text = "NULL";
+                        channel0Box.Value = 0xFF;
+                        channel1Box.Value = 0xFF;
 
                     }
                 }
@@ -1450,6 +1505,8 @@ namespace NitroStudio
                         sdat.infoFile.groupData[tree.SelectedNode.Index].isPlaceHolder = false;
                         sdat.symbFile.groupStrings[tree.SelectedNode.Index].isPlaceHolder = false;
 
+                        sdat.symbFile.groupStrings[tree.SelectedNode.Index].name = "Unknown_Name";
+
                         sdat.infoFile.groupData[tree.SelectedNode.Index].count = 0;
                         sdat.infoFile.groupData[tree.SelectedNode.Index].subInfo = new List<GroupSubData>();
                     }
@@ -1460,8 +1517,10 @@ namespace NitroStudio
                         sdat.infoFile.player2Data[tree.SelectedNode.Index].isPlaceHolder = false;
                         sdat.symbFile.player2Strings[tree.SelectedNode.Index].isPlaceHolder = false;
 
-                        sdat.infoFile.player2Data[tree.SelectedNode.Index].count = 0;
-                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v0 = 255;
+                        sdat.symbFile.player2Strings[tree.SelectedNode.Index].name = "Unknown_Name";
+
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].count = 1;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v0 = 0;
                         sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 = 255;
                         sdat.infoFile.player2Data[tree.SelectedNode.Index].v2 = 255;
                         sdat.infoFile.player2Data[tree.SelectedNode.Index].v3 = 255;
@@ -1484,6 +1543,8 @@ namespace NitroStudio
                     {
                         sdat.infoFile.strmData[tree.SelectedNode.Index].isPlaceHolder = false;
                         sdat.symbFile.strmStrings[tree.SelectedNode.Index].isPlaceHolder = false;
+
+                        sdat.symbFile.strmStrings[tree.SelectedNode.Index].name = "Unknown_Name";
 
                         sdat.infoFile.strmData[tree.SelectedNode.Index].fileId = 0;
                         sdat.infoFile.strmData[tree.SelectedNode.Index].player = 0;
@@ -1563,7 +1624,13 @@ namespace NitroStudio
 
 
         public void onTypeChanged(object sender, EventArgs e) {
-
+            /*
+                            0 - SSEQ
+                            1 - SBNK
+                            2 - SWAR
+                            3 - SSAR
+                            WTF - Other
+            */
             if (tree.SelectedNode.Parent != null && tree.SelectedNode.Parent.Parent != null)
             {
                 if (tree.SelectedNode.Parent.Parent.Index == 5)
@@ -1571,23 +1638,33 @@ namespace NitroStudio
                     sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].type = (byte)typeGroupBox.SelectedIndex;
 
                     int imageIndex = 0;
+                    int flags = sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag;
 
                     switch (sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].type) {
 
                         case 0:
                             imageIndex = 0;
+                            if ((flags & 0b1000) == 0b1000) { flags -= 0b1000; }
                             break;
 
                         case 1:
                             imageIndex = 2;
+                            if ((flags & 0b1000) == 0b1000) { flags -= 0b1000; }
+                            if ((flags & 0b1) == 0b1) { flags -= 0b1; }
                             break;
 
                         case 2:
                             imageIndex = 3;
+                            if ((flags & 0b1000) == 0b1000) { flags -= 0b1000; }
+                            if ((flags & 0b1) == 0b1) { flags -= 0b1; }
+                            if ((flags & 0b10) == 0b10) { flags -= 0b10; }
                             break;
 
                         case 3:
                             imageIndex = 1;
+                            if ((flags & 0b100) == 0b100) { flags -= 0b100; }
+                            if ((flags & 0b1) == 0b1) { flags -= 0b1; }
+                            if ((flags & 0b10) == 0b10) { flags -= 0b10; }
                             break;
 
                         case 4:
@@ -1595,6 +1672,7 @@ namespace NitroStudio
                             break;
 
                     }
+                    sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag = (byte)flags;
 
                     tree.Nodes[5].Nodes[tree.SelectedNode.Parent.Index].Nodes[tree.SelectedNode.Index].ImageIndex = imageIndex;
                     tree.Nodes[5].Nodes[tree.SelectedNode.Parent.Index].Nodes[tree.SelectedNode.Index].SelectedImageIndex = imageIndex;
@@ -1614,19 +1692,6 @@ namespace NitroStudio
                 }
             }
         }
-
-        public void onLoadFlagChanged(object sender, EventArgs e)
-        {
-
-            if (tree.SelectedNode.Parent != null && tree.SelectedNode.Parent.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Parent.Index == 5)
-                {
-                    sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag = (byte)loadFlagGroupBox.Value;
-                }
-            }
-        }
-
 
         public void onSequenceMaxChanged(object sender, EventArgs e) {
 
@@ -1896,181 +1961,13 @@ namespace NitroStudio
 
         }
 
-
-
-        private void v0_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v0 = (byte)v0.Value;
-                }
-            }
-
-        }
-
-        private void v1_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 = (byte)v1.Value;
-                }
-            }
-        }
-
-        private void v2_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v2 = (byte)v2.Value;
-                }
-            }
-        }
-
-        private void v3_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v3 = (byte)v3.Value;
-                }
-            }
-        }
-
-        private void v4_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v4 = (byte)v4.Value;
-                }
-            }
-        }
-
-        private void v5_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v5 = (byte)v5.Value;
-                }
-            }
-        }
-
-        private void v6_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v6 = (byte)v6.Value;
-                }
-            }
-        }
-
-        private void v7_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v7 = (byte)v7.Value;
-                }
-            }
-        }
-
-        private void v8_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v8 = (byte)v8.Value;
-                }
-            }
-        }
-
-        private void v9_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v9 = (byte)v9.Value;
-                }
-            }
-        }
-
-        private void v10_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v10 = (byte)v10.Value;
-                }
-            }
-        }
-
-        private void v11_ValueChanged(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v11 = (byte)v11.Value;
-                }
-            }
-        }
-
-        private void v12_ValueChanged_1(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v12 = (byte)v12.Value;
-                }
-            }
-        }
-
-        private void v13_ValueChanged_1(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v13 = (byte)v13.Value;
-                }
-            }
-        }
-
-        private void v14_ValueChanged_1(object sender, EventArgs e)
-        {
-            if (tree.SelectedNode.Parent != null)
-            {
-                if (tree.SelectedNode.Parent.Index == 6)
-                {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v14 = (byte)v14.Value;
-                }
-            }
-        }
-
         private void v15_ValueChanged(object sender, EventArgs e)
         {
             if (tree.SelectedNode.Parent != null)
             {
                 if (tree.SelectedNode.Parent.Index == 6)
                 {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v15 = (byte)v15.Value;
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].v0 = (byte)channel0Box.Value;
                 }
             }
         }
@@ -2081,7 +1978,161 @@ namespace NitroStudio
             {
                 if (tree.SelectedNode.Parent.Index == 6)
                 {
-                    sdat.infoFile.player2Data[tree.SelectedNode.Index].count = (byte)count.Value;
+                    if (sdat.infoFile.player2Data[tree.SelectedNode.Index].count > 1)
+                    {
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 = (byte)channel1Box.Value;
+                    }
+                    else {
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 = 0xFF;
+                    }
+                }
+            }
+        }
+
+
+
+        private void typeBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (tree.SelectedNode.Parent.Index == 6)
+                {
+                    sdat.infoFile.player2Data[tree.SelectedNode.Index].count = (byte)(typeBox.SelectedIndex + 1);
+                    if (typeBox.SelectedIndex == 0)
+                    {
+                        //sdat.infoFile.player2Data[tree.SelectedNode.Index].v0 = (byte)channel0Box.Value;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v2 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v3 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v4 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v5 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v6 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v7 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v8 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v9 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v10 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v11 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v12 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v13 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v14 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v15 = 0xFF;
+                        channel0.Text = "Channel:";
+                        channel1.Text = "NULL:";
+                        channel1Box.Value = 0xFF;
+                        channel1Box.Enabled = false;
+                        channel1.Enabled = false;
+                    }
+                    else
+                    {
+                        //sdat.infoFile.player2Data[tree.SelectedNode.Index].v0 = (byte)channel0Box.Value;
+                        if (sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 == 0xFF) { sdat.infoFile.player2Data[tree.SelectedNode.Index].v1 = (byte)(sdat.infoFile.player2Data[tree.SelectedNode.Index].v0+1); channel1Box.Value = sdat.infoFile.player2Data[tree.SelectedNode.Index].v1; }
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v2 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v3 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v4 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v5 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v6 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v7 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v8 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v9 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v10 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v11 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v12 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v13 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v14 = 0xFF;
+                        sdat.infoFile.player2Data[tree.SelectedNode.Index].v15 = 0xFF;
+                        channel0.Text = "Left Channel:";
+                        channel1.Text = "Right Channel:";
+                        channel1Box.Enabled = true;
+                        channel1.Enabled = true;
+                    }
+                }
+            }
+        }
+
+        //SWAR Load.
+        private void swarBoxLoad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode != null)
+            {
+                if (tree.SelectedNode.Parent != null)
+                {
+                    if (tree.SelectedNode.Parent.Parent != null)
+                    {
+                        if (swarBoxLoad.Checked)
+                        {
+                            if ((sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag & 0b100) != 0b100) { sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag += 0b100; }
+                        }
+                        else
+                        {
+                            if ((sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag & 0b100) == 0b100) { sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag -= 0b100; }
+                        }
+                    }
+                }
+            }
+        }
+
+        //SBNK Load.
+        private void sbnkBoxLoad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode != null)
+            {
+                if (tree.SelectedNode.Parent != null)
+                {
+                    if (tree.SelectedNode.Parent.Parent != null)
+                    {
+                        if (sbnkBoxLoad.Checked)
+                        {
+                            if ((sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag & 0b10) != 0b10) { sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag += 0b10; }
+                        }
+                        else
+                        {
+                            if ((sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag & 0b10) == 0b10) { sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag -= 0b10; }
+                        }
+                    }
+                }
+            }
+        }
+
+        //SSEQ Load.
+        private void sseqBoxLoad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode != null)
+            {
+                if (tree.SelectedNode.Parent != null)
+                {
+                    if (tree.SelectedNode.Parent.Parent != null)
+                    {
+                        if (sseqBoxLoad.Checked)
+                        {
+                            if ((sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag & 0b1) != 0b1) { sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag += 0b1; }
+                        }
+                        else
+                        {
+                            if ((sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag & 0b1) == 0b1) { sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag -= 0b1; }
+                        }
+                    }
+                }
+            }
+        }
+
+        //SSAR Load.
+        private void ssarBoxLoad_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode != null)
+            {
+                if (tree.SelectedNode.Parent != null)
+                {
+                    if (tree.SelectedNode.Parent.Parent != null)
+                    {
+                        if (ssarBoxLoad.Checked)
+                        {
+                            if ((sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag & 0b1000) != 0b1000) { sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag += 0b1000; }
+                        }
+                        else
+                        {
+                            if ((sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag & 0b1000) == 0b1000) { sdat.infoFile.groupData[tree.SelectedNode.Parent.Index].subInfo[tree.SelectedNode.Index].loadFlag -= 0b1000; }
+                        }
+                    }
                 }
             }
         }
@@ -3527,6 +3578,251 @@ namespace NitroStudio
             tree.SelectedNode.Collapse();
         }
 
+        //Export
+        private void exportToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            int fileId = -1;
+            string ending = "";
+            if (tree.SelectedNode != null) {
+                if (tree.SelectedNode.Parent != null) {
+                    switch (tree.SelectedNode.Parent.Index) {
+                        case 0:
+                            fileId = (int)sdat.infoFile.sseqData[tree.SelectedNode.Index].fileId;
+                            ending = ".sseq";
+                            break;
+                        case 1:
+                            fileId = (int)sdat.infoFile.seqArcData[tree.SelectedNode.Index].fileId;
+                            fileId -= sdat.files.sseqFiles.Count();
+                            ending = ".ssar";
+                            break;
+                        case 2:
+                            fileId = (int)sdat.infoFile.bankData[tree.SelectedNode.Index].fileId;
+                            fileId -= (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count());
+                            ending = ".sbnk";
+                            break;
+                        case 3:
+                            fileId = (int)sdat.infoFile.waveData[tree.SelectedNode.Index].fileId;
+                            fileId -= (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count() + sdat.files.bankFiles.Count());
+                            ending = ".swar";
+                            break;
+                        case 7:
+                            fileId = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId;
+                            fileId -= (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count() + sdat.files.bankFiles.Count() + sdat.files.waveFiles.Count());
+                            ending = ".strm";
+                            break;
+                        default:
+                            MessageBox.Show("This has no file!");
+                            break;
+                    }
+                }
+            }
+
+            if (fileId != -1)
+            {
+                //Strings for exporting files.
+                string sseq2midi = "MID Sequence File |*.mid";
+                string strm2wav = "PCM Wave |*.wav";
+
+                //Node title.
+                string name = tree.SelectedNode.Text + ending;
+                string rootName = Path.GetFileNameWithoutExtension(name);
+
+                //Ending.       
+                string newFileEnding = ".mid";
+
+                //Export Any File.
+                string fileExportString = "Misc. Nitro Sound File |*" + ending;
+                int filterIndex = 1;
+
+                if (ending == ".sseq") { fileExportString += "|" + sseq2midi; filterIndex++; newFileEnding = ".mid"; }
+                if (ending == ".strm") { fileExportString += "|" + strm2wav; filterIndex++; newFileEnding = ".wav"; }
+
+
+
+                //Save file dialog.
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.InitialDirectory = previousPath;
+                saveFileDialog1.Title = "Export File";
+                saveFileDialog1.CheckPathExists = true;
+                saveFileDialog1.Filter = fileExportString;
+                saveFileDialog1.FilterIndex = filterIndex;
+                saveFileDialog1.FileName = rootName.Split(' ')[1];
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    //Normal export.
+                    if (saveFileDialog1.FilterIndex == 1)
+                    {
+                        if (ending == ".sseq") File.WriteAllBytes(saveFileDialog1.FileName, sdat.files.sseqFiles[fileId]);
+                        if (ending == ".ssar") File.WriteAllBytes(saveFileDialog1.FileName, sdat.files.seqArcFiles[fileId]);
+                        if (ending == ".sbnk") File.WriteAllBytes(saveFileDialog1.FileName, sdat.files.bankFiles[fileId]);
+                        if (ending == ".swar") File.WriteAllBytes(saveFileDialog1.FileName, sdat.files.waveFiles[fileId]);
+                        if (ending == ".strm") File.WriteAllBytes(saveFileDialog1.FileName, sdat.files.strmFiles[fileId]);
+                    }
+                    else
+                    {
+
+                        //Get the file.
+                        if (ending == ".sseq") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.sseqFiles[fileId]);
+                        if (ending == ".strm") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.strmFiles[fileId]);
+
+                        string infoArguments = "tmp";
+                        Process p2 = new Process();
+                        if (ending == ".sseq") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\sseq2midi.exe\"";
+                        if (ending == ".strm") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\"";
+                        p2.StartInfo.Arguments = infoArguments;
+                        p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
+                        p2.Start();
+                        p2.WaitForExit();
+                        Directory.SetCurrentDirectory(nitroPath);
+
+                        //Export the new file.
+                        if (ending == ".sseq") File.Copy(nitroPath + "\\Data\\Tools\\tmp.mid", saveFileDialog1.FileName, true);
+                        if (ending == ".strm") File.Copy(nitroPath + "\\Data\\Tools\\tmp.wav", saveFileDialog1.FileName, true);
+
+                        //Delete useless files.
+                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools\\");
+                        File.Delete("tmp");
+                        if (ending == ".sseq") { File.Delete("tmp.mid"); }
+                        if (ending == ".strm") { File.Delete("tmp.wav"); }
+                        Directory.SetCurrentDirectory(nitroPath);
+
+                    }
+                }
+            }
+        }
+
+        //Replace
+        private void replaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            int fileId = -1;
+            string ending = "";
+            if (tree.SelectedNode != null)
+            {
+                if (tree.SelectedNode.Parent != null)
+                {
+                    switch (tree.SelectedNode.Parent.Index)
+                    {
+                        case 0:
+                            fileId = (int)sdat.infoFile.sseqData[tree.SelectedNode.Index].fileId;
+                            ending = ".sseq";
+                            break;
+                        case 1:
+                            fileId = (int)sdat.infoFile.seqArcData[tree.SelectedNode.Index].fileId;
+                            fileId -= sdat.files.sseqFiles.Count();
+                            ending = ".ssar";
+                            break;
+                        case 2:
+                            fileId = (int)sdat.infoFile.bankData[tree.SelectedNode.Index].fileId;
+                            fileId -= (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count());
+                            ending = ".sbnk";
+                            break;
+                        case 3:
+                            fileId = (int)sdat.infoFile.waveData[tree.SelectedNode.Index].fileId;
+                            fileId -= (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count() + sdat.files.bankFiles.Count());
+                            ending = ".swar";
+                            break;
+                        case 7:
+                            fileId = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId;
+                            fileId -= (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count() + sdat.files.bankFiles.Count() + sdat.files.waveFiles.Count());
+                            ending = ".strm";
+                            break;
+                        default:
+                            MessageBox.Show("This has no file!");
+                            break;
+                    }
+                }
+            }
+
+            //Node title.
+            string name = tree.SelectedNode.Text + ending;
+            string rootName = Path.GetFileNameWithoutExtension(name);
+
+            string filter = "Supported Files|*.sseq;*.mid|Sound Sequence|*.sseq|MIDI Sequence|*.mid";
+
+            //Change ending.
+            if (ending == ".ssar") { filter = "Sequence Archive|*.ssar"; }
+            if (ending == ".sbnk") { filter = "Sound Bank|*.sbnk"; }
+            if (ending == ".swar") { filter = "Wave Archive|*.swar"; }
+            if (ending == ".strm") { filter = "Supported Files|*.strm;*.wav|Stream|*.strm|PCM Wave|*.wav"; }
+
+            if (fileId != -1) {
+            OpenFileDialog f = new OpenFileDialog();
+            f.Filter = filter;
+            f.Title = "Open A Sound File";
+            f.RestoreDirectory = true;
+            f.ShowDialog();
+
+                if (f.FileName != "")
+                {
+
+                    if (ending == ".sseq" || ending == ".strm")
+                    {
+
+                        if (ending == ".sseq")
+                        {
+
+                            if (f.FileName.EndsWith(".mid")) { f.FilterIndex = 2; }
+                            if (f.FileName.EndsWith(".sseq")) { f.FilterIndex = 1; }
+
+                        }
+                        else
+                        {
+
+                            if (f.FileName.EndsWith(".wav")) { f.FilterIndex = 2; }
+                            if (f.FileName.EndsWith(".strm")) { f.FilterIndex = 1; }
+
+                        }
+
+                    }
+
+                    if (f.FilterIndex == 1)
+                    {
+
+                        if (ending == ".sseq") { sdat.files.sseqFiles[fileId] = File.ReadAllBytes(f.FileName); }
+                        if (ending == ".seqArc") { sdat.files.seqArcFiles[fileId] = File.ReadAllBytes(f.FileName); }
+                        if (ending == ".sbnk") { sdat.files.bankFiles[fileId] = File.ReadAllBytes(f.FileName); }
+                        if (ending == ".swar") { sdat.files.waveFiles[fileId] = File.ReadAllBytes(f.FileName); }
+                        if (ending == ".strm") { sdat.files.strmFiles[fileId] = File.ReadAllBytes(f.FileName); }
+
+                    }
+                    else
+                    {
+
+                        //Copy file to tmp.
+                        File.Copy(f.FileName, nitroPath + "\\Data\\Tools\\tmp", true);
+
+                        //New process conversion.
+                        Process p2 = new Process();
+                        string infoArguments = "";
+                        if (ending == ".sseq") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\midi2sseq.exe\""; infoArguments = "tmp tmp.sseq"; }
+                        if (ending == ".strm") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\wav2strm.exe\""; infoArguments = "tmp"; }
+                        p2.StartInfo.Arguments = infoArguments;
+                        if (ending == ".strm") { p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; }
+                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
+                        p2.Start();
+                        p2.WaitForExit();
+
+                        if (ending == ".sseq") { sdat.files.sseqFiles[fileId] = File.ReadAllBytes("tmp.sseq"); }
+                        if (ending == ".strm") { sdat.files.strmFiles[fileId] = File.ReadAllBytes("tmp.strm"); }
+
+                        //Delete the files.
+                        File.Delete("tmp");
+                        if (ending == ".sseq") { File.Delete("tmp.sseq"); }
+                        if (ending == ".strm") { File.Delete("tmp.strm"); }
+
+
+                        Directory.SetCurrentDirectory(nitroPath);
+
+
+                    }
+                }
+
+            }
+        }
         #endregion NodeMenu
 
 
@@ -4588,6 +4884,11 @@ namespace NitroStudio
             if (sseqPlayer != null) { sseqPlayer.Stop();}
 
         }
+
+
+
+
+
 
 
 
