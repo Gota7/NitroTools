@@ -41,6 +41,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.universalPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.resetToDefaultsUniversal = new System.Windows.Forms.Button();
             this.updateDataUniversal = new System.Windows.Forms.Button();
             this.panBoxUniversal = new System.Windows.Forms.NumericUpDown();
             this.noteNumberBoxUniversal = new System.Windows.Forms.NumericUpDown();
@@ -79,6 +80,23 @@
             this.unknownBoxRegional = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.updateButtonRegional = new System.Windows.Forms.Button();
+            this.regionedPanel = new System.Windows.Forms.Panel();
+            this.createNewRegionsButton = new System.Windows.Forms.Button();
+            this.table = new System.Windows.Forms.TableLayoutPanel();
+            this.region7Box = new System.Windows.Forms.NumericUpDown();
+            this.region6Box = new System.Windows.Forms.NumericUpDown();
+            this.region5Box = new System.Windows.Forms.NumericUpDown();
+            this.region4Box = new System.Windows.Forms.NumericUpDown();
+            this.region3Box = new System.Windows.Forms.NumericUpDown();
+            this.region2Box = new System.Windows.Forms.NumericUpDown();
+            this.region1Box = new System.Windows.Forms.NumericUpDown();
+            this.region0Box = new System.Windows.Forms.NumericUpDown();
+            this.regionsLabelRegional = new System.Windows.Forms.Label();
+            this.changeInstrumentPanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.changeInstrument = new System.Windows.Forms.Button();
+            this.fRecordBox = new System.Windows.Forms.ComboBox();
+            this.fRecordLabel = new System.Windows.Forms.Label();
             this.basicInfoRangedPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.panBoxRanged = new System.Windows.Forms.NumericUpDown();
@@ -100,18 +118,6 @@
             this.unknownLabelRanged = new System.Windows.Forms.Label();
             this.unknownBoxRanged = new System.Windows.Forms.NumericUpDown();
             this.updateRangedButton = new System.Windows.Forms.Button();
-            this.regionedPanel = new System.Windows.Forms.Panel();
-            this.createNewRegionsButton = new System.Windows.Forms.Button();
-            this.table = new System.Windows.Forms.TableLayoutPanel();
-            this.region7Box = new System.Windows.Forms.NumericUpDown();
-            this.region6Box = new System.Windows.Forms.NumericUpDown();
-            this.region5Box = new System.Windows.Forms.NumericUpDown();
-            this.region4Box = new System.Windows.Forms.NumericUpDown();
-            this.region3Box = new System.Windows.Forms.NumericUpDown();
-            this.region2Box = new System.Windows.Forms.NumericUpDown();
-            this.region1Box = new System.Windows.Forms.NumericUpDown();
-            this.region0Box = new System.Windows.Forms.NumericUpDown();
-            this.regionsLabelRegional = new System.Windows.Forms.Label();
             this.rangedPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.upperNoteBoxRanged = new System.Windows.Forms.NumericUpDown();
@@ -121,9 +127,6 @@
             this.setRangedButton = new System.Windows.Forms.Button();
             this.noInfoPanel = new System.Windows.Forms.Panel();
             this.noInfoLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.changeInstrument = new System.Windows.Forms.Button();
-            this.fRecordBox = new System.Windows.Forms.ComboBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tree = new System.Windows.Forms.TreeView();
             this.icons = new System.Windows.Forms.ImageList(this.components);
@@ -166,9 +169,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.nodeSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.nodeParent = new System.Windows.Forms.ToolStripStatusLabel();
-            this.resetToDefaultsUniversal = new System.Windows.Forms.Button();
-            this.changeInstrumentPanel = new System.Windows.Forms.Panel();
-            this.fRecordLabel = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -195,6 +195,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.swavNumberBoxRegional)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swarNumberBoxRegional)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unknownBoxRegional)).BeginInit();
+            this.regionedPanel.SuspendLayout();
+            this.table.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.region7Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region6Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region5Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region4Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region3Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region2Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region1Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region0Box)).BeginInit();
+            this.changeInstrumentPanel.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.basicInfoRangedPanel.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panBoxRanged)).BeginInit();
@@ -206,22 +218,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.swavNumberBoxRanged)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.swarNumberBoxRanged)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unknownBoxRanged)).BeginInit();
-            this.regionedPanel.SuspendLayout();
-            this.table.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.region7Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region6Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region5Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region4Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region3Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region2Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region1Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region0Box)).BeginInit();
             this.rangedPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.upperNoteBoxRanged)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowerNoteBoxRanged)).BeginInit();
             this.noInfoPanel.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -233,7 +234,6 @@
             this.blockMenu.SuspendLayout();
             this.recordMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.changeInstrumentPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
@@ -371,6 +371,17 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(239, 304);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // resetToDefaultsUniversal
+            // 
+            this.resetToDefaultsUniversal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.resetToDefaultsUniversal.Location = new System.Drawing.Point(3, 183);
+            this.resetToDefaultsUniversal.Name = "resetToDefaultsUniversal";
+            this.resetToDefaultsUniversal.Size = new System.Drawing.Size(113, 24);
+            this.resetToDefaultsUniversal.TabIndex = 16;
+            this.resetToDefaultsUniversal.Text = "Reset To Defaults";
+            this.resetToDefaultsUniversal.UseVisualStyleBackColor = true;
+            this.resetToDefaultsUniversal.Click += new System.EventHandler(this.resetToDefaultsUniversal_Click);
             // 
             // updateDataUniversal
             // 
@@ -854,6 +865,245 @@
             this.updateButtonRegional.UseVisualStyleBackColor = true;
             this.updateButtonRegional.Click += new System.EventHandler(this.updateButtonRegional_Click);
             // 
+            // regionedPanel
+            // 
+            this.regionedPanel.Controls.Add(this.createNewRegionsButton);
+            this.regionedPanel.Controls.Add(this.table);
+            this.regionedPanel.Controls.Add(this.regionsLabelRegional);
+            this.regionedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.regionedPanel.Location = new System.Drawing.Point(0, 83);
+            this.regionedPanel.Name = "regionedPanel";
+            this.regionedPanel.Size = new System.Drawing.Size(239, 304);
+            this.regionedPanel.TabIndex = 6;
+            this.regionedPanel.Visible = false;
+            // 
+            // createNewRegionsButton
+            // 
+            this.createNewRegionsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.createNewRegionsButton.Location = new System.Drawing.Point(3, 127);
+            this.createNewRegionsButton.Name = "createNewRegionsButton";
+            this.createNewRegionsButton.Size = new System.Drawing.Size(233, 23);
+            this.createNewRegionsButton.TabIndex = 2;
+            this.createNewRegionsButton.Text = "Create New Regions";
+            this.createNewRegionsButton.UseVisualStyleBackColor = true;
+            this.createNewRegionsButton.Click += new System.EventHandler(this.createNewRegionsButton_Click);
+            // 
+            // table
+            // 
+            this.table.ColumnCount = 2;
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.table.Controls.Add(this.region7Box, 1, 3);
+            this.table.Controls.Add(this.region6Box, 0, 3);
+            this.table.Controls.Add(this.region5Box, 1, 2);
+            this.table.Controls.Add(this.region4Box, 0, 2);
+            this.table.Controls.Add(this.region3Box, 1, 1);
+            this.table.Controls.Add(this.region2Box, 0, 1);
+            this.table.Controls.Add(this.region1Box, 1, 0);
+            this.table.Controls.Add(this.region0Box, 0, 0);
+            this.table.Dock = System.Windows.Forms.DockStyle.Top;
+            this.table.Location = new System.Drawing.Point(0, 23);
+            this.table.Name = "table";
+            this.table.RowCount = 4;
+            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.table.Size = new System.Drawing.Size(239, 100);
+            this.table.TabIndex = 0;
+            // 
+            // region7Box
+            // 
+            this.region7Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.region7Box.Location = new System.Drawing.Point(122, 78);
+            this.region7Box.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.region7Box.Name = "region7Box";
+            this.region7Box.Size = new System.Drawing.Size(114, 20);
+            this.region7Box.TabIndex = 7;
+            // 
+            // region6Box
+            // 
+            this.region6Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.region6Box.Location = new System.Drawing.Point(3, 78);
+            this.region6Box.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.region6Box.Name = "region6Box";
+            this.region6Box.Size = new System.Drawing.Size(113, 20);
+            this.region6Box.TabIndex = 6;
+            // 
+            // region5Box
+            // 
+            this.region5Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.region5Box.Location = new System.Drawing.Point(122, 53);
+            this.region5Box.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.region5Box.Name = "region5Box";
+            this.region5Box.Size = new System.Drawing.Size(114, 20);
+            this.region5Box.TabIndex = 5;
+            // 
+            // region4Box
+            // 
+            this.region4Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.region4Box.Location = new System.Drawing.Point(3, 53);
+            this.region4Box.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.region4Box.Name = "region4Box";
+            this.region4Box.Size = new System.Drawing.Size(113, 20);
+            this.region4Box.TabIndex = 4;
+            // 
+            // region3Box
+            // 
+            this.region3Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.region3Box.Location = new System.Drawing.Point(122, 28);
+            this.region3Box.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.region3Box.Name = "region3Box";
+            this.region3Box.Size = new System.Drawing.Size(114, 20);
+            this.region3Box.TabIndex = 3;
+            // 
+            // region2Box
+            // 
+            this.region2Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.region2Box.Location = new System.Drawing.Point(3, 28);
+            this.region2Box.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.region2Box.Name = "region2Box";
+            this.region2Box.Size = new System.Drawing.Size(113, 20);
+            this.region2Box.TabIndex = 2;
+            // 
+            // region1Box
+            // 
+            this.region1Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.region1Box.Location = new System.Drawing.Point(122, 3);
+            this.region1Box.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.region1Box.Name = "region1Box";
+            this.region1Box.Size = new System.Drawing.Size(114, 20);
+            this.region1Box.TabIndex = 1;
+            // 
+            // region0Box
+            // 
+            this.region0Box.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.region0Box.Location = new System.Drawing.Point(3, 3);
+            this.region0Box.Maximum = new decimal(new int[] {
+            127,
+            0,
+            0,
+            0});
+            this.region0Box.Name = "region0Box";
+            this.region0Box.Size = new System.Drawing.Size(113, 20);
+            this.region0Box.TabIndex = 0;
+            // 
+            // regionsLabelRegional
+            // 
+            this.regionsLabelRegional.Dock = System.Windows.Forms.DockStyle.Top;
+            this.regionsLabelRegional.Location = new System.Drawing.Point(0, 0);
+            this.regionsLabelRegional.Name = "regionsLabelRegional";
+            this.regionsLabelRegional.Size = new System.Drawing.Size(239, 23);
+            this.regionsLabelRegional.TabIndex = 1;
+            this.regionsLabelRegional.Text = "Regions:";
+            this.regionsLabelRegional.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // changeInstrumentPanel
+            // 
+            this.changeInstrumentPanel.Controls.Add(this.tableLayoutPanel6);
+            this.changeInstrumentPanel.Controls.Add(this.fRecordLabel);
+            this.changeInstrumentPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.changeInstrumentPanel.Location = new System.Drawing.Point(0, 0);
+            this.changeInstrumentPanel.Name = "changeInstrumentPanel";
+            this.changeInstrumentPanel.Size = new System.Drawing.Size(239, 83);
+            this.changeInstrumentPanel.TabIndex = 13;
+            this.changeInstrumentPanel.Visible = false;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.changeInstrument, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.fRecordBox, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 23);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(239, 65);
+            this.tableLayoutPanel6.TabIndex = 12;
+            // 
+            // changeInstrument
+            // 
+            this.changeInstrument.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.changeInstrument.Location = new System.Drawing.Point(3, 31);
+            this.changeInstrument.Name = "changeInstrument";
+            this.changeInstrument.Size = new System.Drawing.Size(233, 22);
+            this.changeInstrument.TabIndex = 12;
+            this.changeInstrument.Text = "Change Instrument";
+            this.changeInstrument.UseVisualStyleBackColor = true;
+            this.changeInstrument.Click += new System.EventHandler(this.changeInstrument_Click_1);
+            // 
+            // fRecordBox
+            // 
+            this.fRecordBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fRecordBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fRecordBox.FormattingEnabled = true;
+            this.fRecordBox.Items.AddRange(new object[] {
+            "0 - Placeholder (NULL)",
+            "1 - Universal (PCM)",
+            "2 - 8-Bit (PSG)",
+            "3 - White Noise (NOISE)",
+            "4 - Direct PCM",
+            "5 - Blank (NULL)",
+            "6 - INVALID",
+            "7 - INVALID",
+            "8 - INVALID",
+            "9 - INVALID",
+            "10 - INVALID",
+            "11 - INVALID",
+            "12 - INVALID",
+            "13 - INVALID",
+            "14 - INVALID",
+            "15 - INVALID",
+            "16 - Ranged (DRUM SET)",
+            "17 - Regional (KEY SPLIT)"});
+            this.fRecordBox.Location = new System.Drawing.Point(3, 3);
+            this.fRecordBox.Name = "fRecordBox";
+            this.fRecordBox.Size = new System.Drawing.Size(233, 21);
+            this.fRecordBox.TabIndex = 11;
+            // 
+            // fRecordLabel
+            // 
+            this.fRecordLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fRecordLabel.Location = new System.Drawing.Point(0, 0);
+            this.fRecordLabel.Name = "fRecordLabel";
+            this.fRecordLabel.Size = new System.Drawing.Size(239, 23);
+            this.fRecordLabel.TabIndex = 13;
+            this.fRecordLabel.Text = "Instrument Type:";
+            this.fRecordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // basicInfoRangedPanel
             // 
             this.basicInfoRangedPanel.Controls.Add(this.tableLayoutPanel3);
@@ -1133,168 +1383,6 @@
             this.updateRangedButton.UseVisualStyleBackColor = true;
             this.updateRangedButton.Click += new System.EventHandler(this.updateRangedButton_Click);
             // 
-            // regionedPanel
-            // 
-            this.regionedPanel.Controls.Add(this.createNewRegionsButton);
-            this.regionedPanel.Controls.Add(this.table);
-            this.regionedPanel.Controls.Add(this.regionsLabelRegional);
-            this.regionedPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.regionedPanel.Location = new System.Drawing.Point(0, 83);
-            this.regionedPanel.Name = "regionedPanel";
-            this.regionedPanel.Size = new System.Drawing.Size(239, 304);
-            this.regionedPanel.TabIndex = 6;
-            this.regionedPanel.Visible = false;
-            // 
-            // createNewRegionsButton
-            // 
-            this.createNewRegionsButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.createNewRegionsButton.Location = new System.Drawing.Point(3, 127);
-            this.createNewRegionsButton.Name = "createNewRegionsButton";
-            this.createNewRegionsButton.Size = new System.Drawing.Size(233, 23);
-            this.createNewRegionsButton.TabIndex = 2;
-            this.createNewRegionsButton.Text = "Create New Regions";
-            this.createNewRegionsButton.UseVisualStyleBackColor = true;
-            this.createNewRegionsButton.Click += new System.EventHandler(this.createNewRegionsButton_Click);
-            // 
-            // table
-            // 
-            this.table.ColumnCount = 2;
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.table.Controls.Add(this.region7Box, 1, 3);
-            this.table.Controls.Add(this.region6Box, 0, 3);
-            this.table.Controls.Add(this.region5Box, 1, 2);
-            this.table.Controls.Add(this.region4Box, 0, 2);
-            this.table.Controls.Add(this.region3Box, 1, 1);
-            this.table.Controls.Add(this.region2Box, 0, 1);
-            this.table.Controls.Add(this.region1Box, 1, 0);
-            this.table.Controls.Add(this.region0Box, 0, 0);
-            this.table.Dock = System.Windows.Forms.DockStyle.Top;
-            this.table.Location = new System.Drawing.Point(0, 23);
-            this.table.Name = "table";
-            this.table.RowCount = 4;
-            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.table.Size = new System.Drawing.Size(239, 100);
-            this.table.TabIndex = 0;
-            // 
-            // region7Box
-            // 
-            this.region7Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.region7Box.Location = new System.Drawing.Point(122, 78);
-            this.region7Box.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.region7Box.Name = "region7Box";
-            this.region7Box.Size = new System.Drawing.Size(114, 20);
-            this.region7Box.TabIndex = 7;
-            // 
-            // region6Box
-            // 
-            this.region6Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.region6Box.Location = new System.Drawing.Point(3, 78);
-            this.region6Box.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.region6Box.Name = "region6Box";
-            this.region6Box.Size = new System.Drawing.Size(113, 20);
-            this.region6Box.TabIndex = 6;
-            // 
-            // region5Box
-            // 
-            this.region5Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.region5Box.Location = new System.Drawing.Point(122, 53);
-            this.region5Box.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.region5Box.Name = "region5Box";
-            this.region5Box.Size = new System.Drawing.Size(114, 20);
-            this.region5Box.TabIndex = 5;
-            // 
-            // region4Box
-            // 
-            this.region4Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.region4Box.Location = new System.Drawing.Point(3, 53);
-            this.region4Box.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.region4Box.Name = "region4Box";
-            this.region4Box.Size = new System.Drawing.Size(113, 20);
-            this.region4Box.TabIndex = 4;
-            // 
-            // region3Box
-            // 
-            this.region3Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.region3Box.Location = new System.Drawing.Point(122, 28);
-            this.region3Box.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.region3Box.Name = "region3Box";
-            this.region3Box.Size = new System.Drawing.Size(114, 20);
-            this.region3Box.TabIndex = 3;
-            // 
-            // region2Box
-            // 
-            this.region2Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.region2Box.Location = new System.Drawing.Point(3, 28);
-            this.region2Box.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.region2Box.Name = "region2Box";
-            this.region2Box.Size = new System.Drawing.Size(113, 20);
-            this.region2Box.TabIndex = 2;
-            // 
-            // region1Box
-            // 
-            this.region1Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.region1Box.Location = new System.Drawing.Point(122, 3);
-            this.region1Box.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.region1Box.Name = "region1Box";
-            this.region1Box.Size = new System.Drawing.Size(114, 20);
-            this.region1Box.TabIndex = 1;
-            // 
-            // region0Box
-            // 
-            this.region0Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.region0Box.Location = new System.Drawing.Point(3, 3);
-            this.region0Box.Maximum = new decimal(new int[] {
-            127,
-            0,
-            0,
-            0});
-            this.region0Box.Name = "region0Box";
-            this.region0Box.Size = new System.Drawing.Size(113, 20);
-            this.region0Box.TabIndex = 0;
-            // 
-            // regionsLabelRegional
-            // 
-            this.regionsLabelRegional.Dock = System.Windows.Forms.DockStyle.Top;
-            this.regionsLabelRegional.Location = new System.Drawing.Point(0, 0);
-            this.regionsLabelRegional.Name = "regionsLabelRegional";
-            this.regionsLabelRegional.Size = new System.Drawing.Size(239, 23);
-            this.regionsLabelRegional.TabIndex = 1;
-            this.regionsLabelRegional.Text = "Regions:";
-            this.regionsLabelRegional.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // rangedPanel
             // 
             this.rangedPanel.Controls.Add(this.tableLayoutPanel2);
@@ -1402,62 +1490,6 @@
             this.noInfoLabel.Text = "No Valid Info Selected!";
             this.noInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.Controls.Add(this.changeInstrument, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.fRecordBox, 0, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 23);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 3;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(239, 65);
-            this.tableLayoutPanel6.TabIndex = 12;
-            // 
-            // changeInstrument
-            // 
-            this.changeInstrument.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.changeInstrument.Location = new System.Drawing.Point(3, 31);
-            this.changeInstrument.Name = "changeInstrument";
-            this.changeInstrument.Size = new System.Drawing.Size(233, 22);
-            this.changeInstrument.TabIndex = 12;
-            this.changeInstrument.Text = "Change Instrument";
-            this.changeInstrument.UseVisualStyleBackColor = true;
-            this.changeInstrument.Click += new System.EventHandler(this.changeInstrument_Click_1);
-            // 
-            // fRecordBox
-            // 
-            this.fRecordBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fRecordBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.fRecordBox.FormattingEnabled = true;
-            this.fRecordBox.Items.AddRange(new object[] {
-            "0 - Placeholder (NULL)",
-            "1 - Universal (PCM)",
-            "2 - 8-Bit (PSG)",
-            "3 - White Noise (NOISE)",
-            "4 - INVALID",
-            "5 - Mystery (NULL?)",
-            "6 - INVALID",
-            "7 - INVALID",
-            "8 - INVALID",
-            "9 - INVALID",
-            "10 - INVALID",
-            "11 - INVALID",
-            "12 - INVALID",
-            "13 - INVALID",
-            "14 - INVALID",
-            "15 - INVALID",
-            "16 - Ranged (DRUM SET)",
-            "17 - Regional (KEY SPLIT)"});
-            this.fRecordBox.Location = new System.Drawing.Point(3, 3);
-            this.fRecordBox.Name = "fRecordBox";
-            this.fRecordBox.Size = new System.Drawing.Size(233, 21);
-            this.fRecordBox.TabIndex = 11;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -1510,6 +1542,7 @@
             this.icons.Images.SetKeyName(7, "whiteNoise.png");
             this.icons.Images.SetKeyName(8, "ranged.png");
             this.icons.Images.SetKeyName(9, "regional.png");
+            this.icons.Images.SetKeyName(10, "wave.png");
             // 
             // intrumentPanel
             // 
@@ -1776,7 +1809,7 @@
             this.expandToolStripMenuItem1,
             this.collapseToolStripMenuItem1});
             this.blockMenu.Name = "blockMenu";
-            this.blockMenu.Size = new System.Drawing.Size(181, 92);
+            this.blockMenu.Size = new System.Drawing.Size(120, 70);
             // 
             // addRecordToolStripMenuItem
             // 
@@ -1912,38 +1945,6 @@
             this.nodeParent.Size = new System.Drawing.Size(118, 17);
             this.nodeParent.Text = "Node\'s parent is null!";
             // 
-            // resetToDefaultsUniversal
-            // 
-            this.resetToDefaultsUniversal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.resetToDefaultsUniversal.Location = new System.Drawing.Point(3, 183);
-            this.resetToDefaultsUniversal.Name = "resetToDefaultsUniversal";
-            this.resetToDefaultsUniversal.Size = new System.Drawing.Size(113, 24);
-            this.resetToDefaultsUniversal.TabIndex = 16;
-            this.resetToDefaultsUniversal.Text = "Reset To Defaults";
-            this.resetToDefaultsUniversal.UseVisualStyleBackColor = true;
-            this.resetToDefaultsUniversal.Click += new System.EventHandler(this.resetToDefaultsUniversal_Click);
-            // 
-            // changeInstrumentPanel
-            // 
-            this.changeInstrumentPanel.Controls.Add(this.tableLayoutPanel6);
-            this.changeInstrumentPanel.Controls.Add(this.fRecordLabel);
-            this.changeInstrumentPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.changeInstrumentPanel.Location = new System.Drawing.Point(0, 0);
-            this.changeInstrumentPanel.Name = "changeInstrumentPanel";
-            this.changeInstrumentPanel.Size = new System.Drawing.Size(239, 83);
-            this.changeInstrumentPanel.TabIndex = 13;
-            this.changeInstrumentPanel.Visible = false;
-            // 
-            // fRecordLabel
-            // 
-            this.fRecordLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.fRecordLabel.Location = new System.Drawing.Point(0, 0);
-            this.fRecordLabel.Name = "fRecordLabel";
-            this.fRecordLabel.Size = new System.Drawing.Size(239, 23);
-            this.fRecordLabel.TabIndex = 13;
-            this.fRecordLabel.Text = "Instrument Type:";
-            this.fRecordLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // SbnkEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1986,6 +1987,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.swavNumberBoxRegional)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swarNumberBoxRegional)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unknownBoxRegional)).EndInit();
+            this.regionedPanel.ResumeLayout(false);
+            this.table.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.region7Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region6Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region5Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region4Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region3Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region2Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region1Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.region0Box)).EndInit();
+            this.changeInstrumentPanel.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.basicInfoRangedPanel.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
@@ -1998,22 +2011,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.swavNumberBoxRanged)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.swarNumberBoxRanged)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unknownBoxRanged)).EndInit();
-            this.regionedPanel.ResumeLayout(false);
-            this.table.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.region7Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region6Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region5Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region4Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region3Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region2Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region1Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.region0Box)).EndInit();
             this.rangedPanel.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.upperNoteBoxRanged)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowerNoteBoxRanged)).EndInit();
             this.noInfoPanel.ResumeLayout(false);
-            this.tableLayoutPanel6.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -2026,7 +2028,6 @@
             this.recordMenu.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.changeInstrumentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

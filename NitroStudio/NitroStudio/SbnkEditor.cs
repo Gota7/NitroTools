@@ -163,9 +163,14 @@ namespace NitroStudio
                             tree.Nodes[0].Nodes.Add("[" + j + "] " + "White Noise Instrument", "[" + j + "] " + "White Noise Instrument", 7, 7);
                         }
 
+                        else if (file.data[i].records[j].fRecord == 4)
+                        {
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "Direct PCM Instrument", "[" + j + "] " + "Direct PCM Instrument", 10, 10);
+                        }
+
                         else if (file.data[i].records[j].fRecord == 5)
                         {
-                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "Mystery Instrument", "[" + j + "] " + "Mystery Instrument", 5, 5);
+                            tree.Nodes[0].Nodes.Add("[" + j + "] " + "Blank Instrument", "[" + j + "] " + "Blank Instrument", 5, 5);
                         }
 
                         else if (file.data[i].records[j].fRecord == 1)
@@ -396,6 +401,25 @@ namespace NitroStudio
                                 panBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.pan;
                                 releaseRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.releaseRate;
                                 sustainRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.sustainLevel;
+                                break;
+
+                            case 4:
+                                universalPanel.Show();
+                                showInstrumentChanger();
+
+                                swavNumberUniversal.Text = "Swav Number:";
+                                swavNumberUniversal.Enabled = true;
+                                swavNumberBoxUniversal.Enabled = true;
+                                swarBoxUniversal.Enabled = true;
+                                swarLabelUniversal.Enabled = true;
+                                swarBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swarNumber;
+                                attackRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.attackRate;
+                                decayRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.decayRate;
+                                noteNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.noteNumber;
+                                panBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.pan;
+                                releaseRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.releaseRate;
+                                sustainRateBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.sustainLevel;
+                                swavNumberBoxUniversal.Value = file.data[0].records[tree.SelectedNode.Index].instrumentA.swavNumber;
                                 break;
 
                             case 16:
