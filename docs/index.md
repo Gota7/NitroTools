@@ -11,6 +11,11 @@ Nitro Studio is probably what you came here for.
 
 [InfoTool](https://github.com/Gota7/NitroTools/raw/master/InfoTool/InfoTool/bin/Debug/InfoTool.exe) - Editor for info.bin
 
+# Special Thanks
+Eugene - Overall support and ideas for new features, a lot of Nitro Studio's conviences are because of him.
+Gericom - For generously allowing me to use some of his tools for SSEQ playback and IMA-ADPCM encoding. He also helped me understand how parts of the stream works.
+RoadrunnerWMC - For taking the time to answer some of my questions about the SDAT, giving me a pretty solid understanding of jow things work.
+
 # Credits
 Nintendo, Tools.
 Gericom, NitroLib, SSEQ Players.
