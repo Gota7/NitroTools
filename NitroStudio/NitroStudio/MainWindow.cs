@@ -14,6 +14,7 @@ using SymbTool2;
 using InfoTool2;
 using NitroFileLoader;
 using LibNitro;
+using SoundNStream;
 
 namespace NitroStudio
 {
@@ -2649,18 +2650,18 @@ namespace NitroStudio
                             {
                                 //Convert STRM to .wav
                                 sdat.fixOffsets();
-                                File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.strm", sdat.files.files[(int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId]);
-                                string infoArguments = "tmp.strm";
-                                Process p2 = new Process();
-                                p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\"";
-                                p2.StartInfo.Arguments = infoArguments;
-                                p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                                Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
-                                p2.Start();
-                                p2.WaitForExit();
-                                Directory.SetCurrentDirectory(nitroPath);
 
-                                StrmPlayer s = new StrmPlayer(nitroPath + "/Data/Tools/tmp.wav");
+                                string convPath = "tmp0.wav";
+                                bool exists = true;
+                                int existsCounter = 0;
+                                while (exists) {
+                                    if (File.Exists(nitroPath + "/Data/Tools/tmp" + existsCounter + ".wav")) { existsCounter += 1; } else { exists = false; }
+                                }
+                                convPath = "tmp" + existsCounter + ".wav";
+                                strm ss = new strm();
+                                ss.load(sdat.files.files[(int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId]);
+                                File.WriteAllBytes(nitroPath + "/Data/Tools/" + convPath, ss.toRIFF().toBytes());
+                                StrmPlayer s = new StrmPlayer(nitroPath + "/Data/Tools/" + convPath);
                                 s.Show();
                             }
 
@@ -2706,18 +2707,20 @@ namespace NitroStudio
                         {
 
                             //Convert STRM to .wav
-                            File.WriteAllBytes(nitroPath+"/Data/Tools/tmp.strm", sdat.files.strmFiles[tree.SelectedNode.Index]);
-                            string infoArguments = "tmp.strm";
-                            Process p2 = new Process();
-                            p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\"";
-                            p2.StartInfo.Arguments = infoArguments;
-                            p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                            Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
-                            p2.Start();
-                            p2.WaitForExit();
-                            Directory.SetCurrentDirectory(nitroPath);
+                            sdat.fixOffsets();
 
-                            StrmPlayer s = new StrmPlayer(nitroPath+"/Data/Tools/tmp.wav");
+                            string convPath = "tmp0.wav";
+                            bool exists = true;
+                            int existsCounter = 0;
+                            while (exists)
+                            {
+                                if (File.Exists(nitroPath + "/Data/Tools/tmp" + existsCounter + ".wav")) { existsCounter += 1; } else { exists = false; }
+                            }
+                            convPath = "tmp" + existsCounter + ".wav";
+                            strm ss = new strm();
+                            ss.load(sdat.files.strmFiles[tree.SelectedNode.Index]);
+                            File.WriteAllBytes(nitroPath + "/Data/Tools/" + convPath, ss.toRIFF().toBytes());
+                            StrmPlayer s = new StrmPlayer(nitroPath + "/Data/Tools/" + convPath);
                             s.Show();
 
                         }
@@ -3663,30 +3666,43 @@ namespace NitroStudio
                     else
                     {
 
-                        //Get the file.
-                        if (ending == ".sseq") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.sseqFiles[fileId]);
-                        if (ending == ".strm") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.strmFiles[fileId]);
+                        if (ending == ".strm")
+                        {
 
-                        string infoArguments = "tmp";
-                        Process p2 = new Process();
-                        if (ending == ".sseq") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\sseq2midi.exe\"";
-                        if (ending == ".strm") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\"";
-                        p2.StartInfo.Arguments = infoArguments;
-                        p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
-                        p2.Start();
-                        p2.WaitForExit();
-                        Directory.SetCurrentDirectory(nitroPath);
+                            strm s = new strm();
+                            s.load(sdat.files.strmFiles[fileId]);
+                            bool loop = false;
+                            if (s.head.loop == 1) { loop = true; }
+                            File.WriteAllBytes(saveFileDialog1.FileName, s.toRIFF().toBytes(true, loop));
 
-                        //Export the new file.
-                        if (ending == ".sseq") File.Copy(nitroPath + "\\Data\\Tools\\tmp.mid", saveFileDialog1.FileName, true);
-                        if (ending == ".strm") File.Copy(nitroPath + "\\Data\\Tools\\tmp.wav", saveFileDialog1.FileName, true);
+                        } else {
 
-                        //Delete useless files.
-                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools\\");
-                        File.Delete("tmp");
-                        if (ending == ".sseq") { File.Delete("tmp.mid"); }
-                        if (ending == ".strm") { File.Delete("tmp.wav"); }
+                            //Get the file.
+                            if (ending == ".sseq") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.sseqFiles[fileId]);
+                            //if (ending == ".strm") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.strmFiles[fileId]);
+
+                            string infoArguments = "tmp";
+                            Process p2 = new Process();
+                            if (ending == ".sseq") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\sseq2midi.exe\"";
+                            //if (ending == ".strm") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\"";
+                            p2.StartInfo.Arguments = infoArguments;
+                            p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                            Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
+                            p2.Start();
+                            p2.WaitForExit();
+                            Directory.SetCurrentDirectory(nitroPath);
+
+                            //Export the new file.
+                            if (ending == ".sseq") File.Copy(nitroPath + "\\Data\\Tools\\tmp.mid", saveFileDialog1.FileName, true);
+                            //if (ending == ".strm") File.Copy(nitroPath + "\\Data\\Tools\\tmp.wav", saveFileDialog1.FileName, true);
+
+                            //Delete useless files.
+                            Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools\\");
+                            File.Delete("tmp");
+                            if (ending == ".sseq") { File.Delete("tmp.mid"); }
+                            //if (ending == ".strm") { File.Delete("tmp.wav"); }
+
+                        }
                         Directory.SetCurrentDirectory(nitroPath);
 
                     }
@@ -3792,28 +3808,40 @@ namespace NitroStudio
                     else
                     {
 
-                        //Copy file to tmp.
-                        File.Copy(f.FileName, nitroPath + "\\Data\\Tools\\tmp", true);
+                        if (ending == ".strm")
+                        {
 
-                        //New process conversion.
-                        Process p2 = new Process();
-                        string infoArguments = "";
-                        if (ending == ".sseq") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\midi2sseq.exe\""; infoArguments = "tmp tmp.sseq"; }
-                        if (ending == ".strm") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\wav2strm.exe\""; infoArguments = "tmp"; }
-                        p2.StartInfo.Arguments = infoArguments;
-                        if (ending == ".strm") { p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; }
-                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
-                        p2.Start();
-                        p2.WaitForExit();
+                            RIFF r = new RIFF();
+                            r.load(File.ReadAllBytes(f.FileName));
+                            sdat.files.strmFiles[fileId] = r.toStrm().toBytes();
 
-                        if (ending == ".sseq") { sdat.files.sseqFiles[fileId] = File.ReadAllBytes("tmp.sseq"); }
-                        if (ending == ".strm") { sdat.files.strmFiles[fileId] = File.ReadAllBytes("tmp.strm"); }
+                        }
+                        else
+                        {
 
-                        //Delete the files.
-                        File.Delete("tmp");
-                        if (ending == ".sseq") { File.Delete("tmp.sseq"); }
-                        if (ending == ".strm") { File.Delete("tmp.strm"); }
+                            //Copy file to tmp.
+                            File.Copy(f.FileName, nitroPath + "\\Data\\Tools\\tmp", true);
 
+                            //New process conversion.
+                            Process p2 = new Process();
+                            string infoArguments = "";
+                            if (ending == ".sseq") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\midi2sseq.exe\""; infoArguments = "tmp tmp.sseq"; }
+                            //if (ending == ".strm") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\wav2strm.exe\""; infoArguments = "tmp"; }
+                            p2.StartInfo.Arguments = infoArguments;
+                            //if (ending == ".strm") { p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; }
+                            Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
+                            p2.Start();
+                            p2.WaitForExit();
+
+                            if (ending == ".sseq") { sdat.files.sseqFiles[fileId] = File.ReadAllBytes("tmp.sseq"); }
+                            //if (ending == ".strm") { sdat.files.strmFiles[fileId] = File.ReadAllBytes("tmp.strm"); }
+
+                            //Delete the files.
+                            File.Delete("tmp");
+                            if (ending == ".sseq") { File.Delete("tmp.sseq"); }
+                            //if (ending == ".strm") { File.Delete("tmp.strm"); }
+
+                        }
 
                         Directory.SetCurrentDirectory(nitroPath);
 
@@ -3917,31 +3945,41 @@ namespace NitroStudio
                     if (ending == ".strm") File.WriteAllBytes(saveFileDialog1.FileName, sdat.files.strmFiles[tree.SelectedNode.Index]);
                 }
                 else {
-                    
+
                     //Get the file.
-                    if (ending == ".sseq") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.sseqFiles[tree.SelectedNode.Index]);
-                    if (ending == ".strm") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.strmFiles[tree.SelectedNode.Index]);
+                    if (ending == ".strm")
+                    {
 
-                    string infoArguments = "tmp";
-                    Process p2 = new Process();
-                    if (ending == ".sseq") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\sseq2midi.exe\"";
-                    if (ending == ".strm") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\strm2wav.exe\"";
-                    p2.StartInfo.Arguments = infoArguments;
-                    p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
-                    p2.Start();
-                    p2.WaitForExit();
-                    Directory.SetCurrentDirectory(nitroPath);
+                        strm s = new strm();
+                        s.load(sdat.files.strmFiles[tree.SelectedNode.Index]);
+                        bool loop = false;
+                        if (s.head.loop == 1) { loop = true; }
+                        File.WriteAllBytes(saveFileDialog1.FileName, s.toRIFF().toBytes(true, loop));
 
-                    //Export the new file.
-                    if(ending == ".sseq") File.Copy(nitroPath + "\\Data\\Tools\\tmp.mid", saveFileDialog1.FileName, true);
-                    if(ending == ".strm") File.Copy(nitroPath + "\\Data\\Tools\\tmp.wav", saveFileDialog1.FileName, true);
+                    }
+                    else
+                    {
+                        if (ending == ".sseq") File.WriteAllBytes(nitroPath + "\\Data\\Tools\\tmp", sdat.files.sseqFiles[tree.SelectedNode.Index]);
 
-                    //Delete useless files.
-                    Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools\\");
-                    File.Delete("tmp");
-                    if (ending == ".sseq") { File.Delete("tmp.mid"); }
-                    if (ending == ".strm") { File.Delete("tmp.wav"); }
+                        string infoArguments = "tmp";
+                        Process p2 = new Process();
+                        if (ending == ".sseq") p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\sseq2midi.exe\"";
+                        p2.StartInfo.Arguments = infoArguments;
+                        p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
+                        p2.Start();
+                        p2.WaitForExit();
+                        Directory.SetCurrentDirectory(nitroPath);
+
+                        //Export the new file.
+                        if (ending == ".sseq") File.Copy(nitroPath + "\\Data\\Tools\\tmp.mid", saveFileDialog1.FileName, true);
+
+                        //Delete useless files.
+                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools\\");
+                        File.Delete("tmp");
+                        if (ending == ".sseq") { File.Delete("tmp.mid"); }
+
+                    }
                     Directory.SetCurrentDirectory(nitroPath);
                     
                 }
@@ -4112,28 +4150,39 @@ namespace NitroStudio
                 }
                 else {
 
-                    //Copy file to tmp.
-                    File.Copy(f.FileName, nitroPath + "\\Data\\Tools\\tmp", true);
+                    if (ending == ".strm")
+                    {
 
-                    //New process conversion.
-                    Process p2 = new Process();
-                    string infoArguments = "";
-                    if (ending == ".sseq") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\midi2sseq.exe\""; infoArguments = "tmp tmp.sseq"; }
-                    if (ending == ".strm") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\wav2strm.exe\""; infoArguments = "tmp"; }
-                    p2.StartInfo.Arguments = infoArguments;
-                    if (ending == ".strm") { p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; }
-                    Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
-                    p2.Start();
-                    p2.WaitForExit();
+                        RIFF r = new RIFF();
+                        r.load(File.ReadAllBytes(f.FileName));
+                        sdat.files.strmFiles[tree.SelectedNode.Index] = r.toStrm().toBytes();
 
-                    if (ending == ".sseq") { sdat.files.sseqFiles[tree.SelectedNode.Index] = File.ReadAllBytes("tmp.sseq"); }
-                    if (ending == ".strm") { sdat.files.strmFiles[tree.SelectedNode.Index] = File.ReadAllBytes("tmp.strm"); }
+                    }
+                    else
+                    {
 
-                    //Delete the files.
-                    File.Delete("tmp");
-                    if (ending == ".sseq") { File.Delete("tmp.sseq"); }
-                    if (ending == ".strm") { File.Delete("tmp.strm"); }
+                        //Copy file to tmp.
+                        File.Copy(f.FileName, nitroPath + "\\Data\\Tools\\tmp", true);
 
+                        //New process conversion.
+                        Process p2 = new Process();
+                        string infoArguments = "";
+                        if (ending == ".sseq") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\midi2sseq.exe\""; infoArguments = "tmp tmp.sseq"; }
+                        //if (ending == ".strm") { p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\wav2strm.exe\""; infoArguments = "tmp"; }
+                        p2.StartInfo.Arguments = infoArguments;
+                        //if (ending == ".strm") { p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden; }
+                        Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
+                        p2.Start();
+                        p2.WaitForExit();
+
+                        if (ending == ".sseq") { sdat.files.sseqFiles[tree.SelectedNode.Index] = File.ReadAllBytes("tmp.sseq"); }
+                        //if (ending == ".strm") { sdat.files.strmFiles[tree.SelectedNode.Index] = File.ReadAllBytes("tmp.strm"); }
+
+                        //Delete the files.
+                        File.Delete("tmp");
+                        if (ending == ".sseq") { File.Delete("tmp.sseq"); }
+                        //if (ending == ".strm") { File.Delete("tmp.strm"); }
+                    }
                     
                     Directory.SetCurrentDirectory(nitroPath);
 

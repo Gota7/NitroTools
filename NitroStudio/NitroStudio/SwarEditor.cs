@@ -13,6 +13,10 @@ using System.Diagnostics;
 using Syroot.BinaryData;
 using System.Media;
 using System.ComponentModel.Design;
+using NAudio.Wave;
+using SoundNStream;
+using NAudio.Wave.SampleProviders;
+using System.Threading;
 
 namespace NitroStudio
 {
@@ -26,7 +30,12 @@ namespace NitroStudio
         swavFile currentSwavFile;
 
         //Sound player.
-        SoundPlayer player;
+        public WaveOutEvent player;
+        public IWaveProvider playerFile;
+        public WaveChannel32 waveChannel;
+        public WaveStream waveStream;
+        public byte[] swavFile;
+        swav loopRef = new swav();
 
         public SwarEditor(MainWindow parent, byte[] b, string name, int index)
         {
@@ -35,7 +44,6 @@ namespace NitroStudio
             //Load swar.
             file = new swarFile();
             file.load(b);
-            player = new SoundPlayer();
 
             //Change nodes.
             this.Text = name;
@@ -222,23 +230,13 @@ namespace NitroStudio
                 else
                 {
 
-                    //Copy file.
-                    File.Copy(f.FileName, "Data\\Tools\\tmp.wav", true);
-
-                    //Convert file.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\wav2swav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.wav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.Start();
-                    p.WaitForExit();
+                    //Make new swav.
+                    RIFF r = new RIFF();
+                    r.load(File.ReadAllBytes(f.FileName));
 
                     List<byte[]> files = file.data[0].files.ToList();
-                    files.Insert(tree.SelectedNode.Index, File.ReadAllBytes("Data\\Tools\\tmp.swav"));
+                    files.Insert(tree.SelectedNode.Index, r.toSwav().toBytes());
                     file.data[0].files = files.ToArray();
-
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Delete("Data\\Tools\\tmp.wav");
 
                     file.fixOffsets();
                     updateNodes();
@@ -274,23 +272,13 @@ namespace NitroStudio
                 else
                 {
 
-                    //Copy file.
-                    File.Copy(f.FileName, "Data\\Tools\\tmp.wav", true);
-
-                    //Convert file.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\wav2swav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.wav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.Start();
-                    p.WaitForExit();
+                    //Make new swav.
+                    RIFF r = new RIFF();
+                    r.load(File.ReadAllBytes(f.FileName));
 
                     List<byte[]> files = file.data[0].files.ToList();
-                    files.Insert(tree.SelectedNode.Index + 1, File.ReadAllBytes("Data\\Tools\\tmp.swav"));
+                    files.Insert(tree.SelectedNode.Index + 1, r.toSwav().toBytes());
                     file.data[0].files = files.ToArray();
-
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Delete("Data\\Tools\\tmp.wav");
 
                     file.fixOffsets();
                     updateNodes();
@@ -318,19 +306,11 @@ namespace NitroStudio
                     File.WriteAllBytes(f.FileName, file.data[0].files[tree.SelectedNode.Index]);
                 }
                 else {
-                    File.WriteAllBytes("Data\\Tools\\tmp.swav", file.data[0].files[tree.SelectedNode.Index]);
-
-                    //Convert file.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.Start();
-                    p.WaitForExit();
-
-                    if (File.Exists(f.FileName)) { File.Delete(f.FileName); }
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Move("Data\\Tools\\tmp.wav", f.FileName);
+                    swav s = new swav();
+                    s.load(file.data[0].files[tree.SelectedNode.Index]);
+                    bool includeLoop = false;
+                    if (s.data.info.loopFlag == 1) { includeLoop = true; }
+                    File.WriteAllBytes(f.FileName, s.toRIFF().toBytes(true, includeLoop));
                 }
             }
         }
@@ -357,20 +337,10 @@ namespace NitroStudio
                 }
                 else {
 
-                    //Copy file.
-                    File.Copy(f.FileName, "Data\\Tools\\tmp.wav", true);
-
-                    //Convert file.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\wav2swav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.wav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.Start();
-                    p.WaitForExit();
-
-                    file.data[0].files[tree.SelectedNode.Index] = File.ReadAllBytes("Data\\Tools\\tmp.swav");
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Delete("Data\\Tools\\tmp.wav");
+                    //Make new swav.
+                    RIFF r = new RIFF();
+                    r.load(File.ReadAllBytes(f.FileName));
+                    file.data[0].files[tree.SelectedNode.Index] = r.toSwav().toBytes();
 
                 }
 
@@ -555,54 +525,90 @@ namespace NitroStudio
 
         private void playSoundPlaybackBox_Click(object sender, EventArgs e)
         {
-            //Convert swav to wav.
-            File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", file.data[0].files[tree.SelectedNode.Index]);
 
-            Process p2 = new Process();
-            p2.StartInfo.FileName = "\"" + nitroPath + "\\Data\\Tools\\swav2wav.exe\"";
-            p2.StartInfo.Arguments = "tmp.swav";
-            p2.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools");
-            p2.Start();
-            p2.WaitForExit();
-            Directory.SetCurrentDirectory(nitroPath);
-
-            //Play the sound.
             try
             {
-                player = new SoundPlayer(nitroPath + "/Data/Tools/tmp.wav");
-                if (loopPlaybackCheckbox.Checked)
-                {
-                    player.PlayLooping();
-                }
-                else
-                {
-                    player.Play();
+                player.Stop();
+                player.Dispose();
+                
+            }
+            catch { }
 
-                    //Delete file.
-                    File.Delete(nitroPath + "/Data/Tools/tmp.wav");
-                    File.Delete(nitroPath + "/Data/Tools/tmp.swav");
+            try
+            {
+                waveStream.Dispose();
+                waveChannel.Dispose();
 
-                }
-            } catch { }
+            }
+            catch { }
+
+            //Convert swav to wav.
+            swav s = new swav();
+            swavFile = file.data[0].files[tree.SelectedNode.Index];
+            s.load(swavFile);
+            player = new WaveOutEvent();
+            waveStream = new WaveFileReader(new MemoryStream(s.toRIFF().toBytes()));
+            waveChannel = new WaveChannel32(waveStream);
+            waveChannel.Volume = (float)volume.Value * (float).01;
+            player.Init(waveChannel);
+            player.Play();
+            //loopRef = s;
+            s.data.info.loopFlag = 0;
+            if (s.data.info.loopFlag == 1) { player.PlaybackStopped += new EventHandler(loopSound); } else { player.PlaybackStopped += new EventHandler(stopSoundPlaybackBox_Click); }
+            if (s.data.info.loopFlag != 1) { Thread.Sleep(500); }
             
+
         }
 
         //Stop sound.
         private void stopSoundPlaybackBox_Click(object sender, EventArgs e)
         {
+
             try
             {
-
                 //Stop sound.
                 player.Stop();
+                player.Dispose();
+            }
+            catch { }
 
-                //Delete file.
-                File.Delete(nitroPath + "/Data/Tools/tmp.wav");
-                File.Delete(nitroPath + "/Data/Tools/tmp.swav");
+            try
+            {
+                waveStream.Dispose();
+                waveChannel.Dispose();
+
             }
             catch { }
         }
+
+
+        public void loopSound(object sender, EventArgs e) {
+
+            try
+            {
+                switch (loopRef.data.info.waveType)
+                {
+
+                    case 0:
+                        waveChannel.Position = loopRef.data.info.nloopOffset * 4;
+                        break;
+
+                    case 1:
+                        waveChannel.Position = loopRef.data.info.nloopOffset * 2;
+                        break;
+
+                    case 2:
+                        waveChannel.Position = loopRef.data.info.nloopOffset * 8;
+                        break;
+
+                }
+            }
+            catch { }
+
+            playSoundPlaybackBox_Click(sender, e);
+
+        }
+
         #endregion
 
 
@@ -709,23 +715,13 @@ namespace NitroStudio
                 else
                 {
 
-                    //Copy file.
-                    File.Copy(f.FileName, "Data\\Tools\\tmp.wav", true);
-
-                    //Convert file.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\wav2swav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.wav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.Start();
-                    p.WaitForExit();
+                    //Soundout.
+                    RIFF r = new RIFF();
+                    r.load(File.ReadAllBytes(f.FileName));
 
                     List<byte[]> files = file.data[tree.SelectedNode.Index].files.ToList();
-                    files.Add(File.ReadAllBytes("Data\\Tools\\tmp.swav"));
+                    files.Add(r.toSwav().toBytes());
                     file.data[tree.SelectedNode.Index].files = files.ToArray();
-
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Delete("Data\\Tools\\tmp.wav");
 
                     file.fixOffsets();
                     updateNodes();
@@ -805,12 +801,18 @@ namespace NitroStudio
         //On Close.
         public void onClose(object sender, System.EventArgs e) {
 
-            player.Stop();
+            try
+            {
+                player.Stop();
+                player.Dispose();
+            }
+            catch { }
 
             try
             {
-                File.Delete("Data\\Tools\\tmp.swav");
-                File.Delete("Data\\Tools\\tmp.wav");
+                waveStream.Dispose();
+                waveChannel.Dispose();
+
             }
             catch { }
 

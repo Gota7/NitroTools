@@ -33,7 +33,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SwarEditor));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.swavGroup = new System.Windows.Forms.Panel();
-            this.loopPlaybackCheckbox = new System.Windows.Forms.CheckBox();
             this.updateDataButton = new System.Windows.Forms.Button();
             this.soundPlayerDeluxeTM = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -83,6 +82,8 @@
             this.status = new System.Windows.Forms.StatusStrip();
             this.bytesSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.soundSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.volume = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -99,6 +100,7 @@
             this.blockMenu.SuspendLayout();
             this.bigMenu.SuspendLayout();
             this.status.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volume)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -117,13 +119,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tree);
-            this.splitContainer1.Size = new System.Drawing.Size(712, 371);
-            this.splitContainer1.SplitterDistance = 208;
+            this.splitContainer1.Size = new System.Drawing.Size(726, 416);
+            this.splitContainer1.SplitterDistance = 212;
             this.splitContainer1.TabIndex = 0;
             // 
             // swavGroup
             // 
-            this.swavGroup.Controls.Add(this.loopPlaybackCheckbox);
+            this.swavGroup.Controls.Add(this.label1);
+            this.swavGroup.Controls.Add(this.volume);
             this.swavGroup.Controls.Add(this.updateDataButton);
             this.swavGroup.Controls.Add(this.soundPlayerDeluxeTM);
             this.swavGroup.Controls.Add(this.tableLayoutPanel1);
@@ -142,21 +145,9 @@
             this.swavGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.swavGroup.Location = new System.Drawing.Point(0, 0);
             this.swavGroup.Name = "swavGroup";
-            this.swavGroup.Size = new System.Drawing.Size(206, 369);
+            this.swavGroup.Size = new System.Drawing.Size(210, 414);
             this.swavGroup.TabIndex = 0;
             this.swavGroup.Visible = false;
-            // 
-            // loopPlaybackCheckbox
-            // 
-            this.loopPlaybackCheckbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.loopPlaybackCheckbox.Location = new System.Drawing.Point(3, 313);
-            this.loopPlaybackCheckbox.Name = "loopPlaybackCheckbox";
-            this.loopPlaybackCheckbox.Size = new System.Drawing.Size(200, 19);
-            this.loopPlaybackCheckbox.TabIndex = 15;
-            this.loopPlaybackCheckbox.Text = "Loop Sound";
-            this.loopPlaybackCheckbox.UseVisualStyleBackColor = true;
-            this.loopPlaybackCheckbox.CheckedChanged += new System.EventHandler(this.loopPlaybackCheckbox_CheckedChanged);
             // 
             // updateDataButton
             // 
@@ -164,7 +155,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.updateDataButton.Location = new System.Drawing.Point(3, 243);
             this.updateDataButton.Name = "updateDataButton";
-            this.updateDataButton.Size = new System.Drawing.Size(200, 23);
+            this.updateDataButton.Size = new System.Drawing.Size(204, 23);
             this.updateDataButton.TabIndex = 19;
             this.updateDataButton.Text = "Update Data:";
             this.updateDataButton.UseVisualStyleBackColor = true;
@@ -174,9 +165,9 @@
             // 
             this.soundPlayerDeluxeTM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.soundPlayerDeluxeTM.Location = new System.Drawing.Point(5, 295);
+            this.soundPlayerDeluxeTM.Location = new System.Drawing.Point(5, 358);
             this.soundPlayerDeluxeTM.Name = "soundPlayerDeluxeTM";
-            this.soundPlayerDeluxeTM.Size = new System.Drawing.Size(198, 19);
+            this.soundPlayerDeluxeTM.Size = new System.Drawing.Size(202, 19);
             this.soundPlayerDeluxeTM.TabIndex = 16;
             this.soundPlayerDeluxeTM.Text = "Sound Player Deluxe™";
             this.soundPlayerDeluxeTM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -189,11 +180,11 @@
             this.tableLayoutPanel1.Controls.Add(this.playSoundPlaybackBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.stopSoundPlaybackBox, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 335);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 380);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(206, 34);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(210, 34);
             this.tableLayoutPanel1.TabIndex = 17;
             // 
             // playSoundPlaybackBox
@@ -202,7 +193,7 @@
             this.playSoundPlaybackBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playSoundPlaybackBox.Location = new System.Drawing.Point(3, 3);
             this.playSoundPlaybackBox.Name = "playSoundPlaybackBox";
-            this.playSoundPlaybackBox.Size = new System.Drawing.Size(97, 28);
+            this.playSoundPlaybackBox.Size = new System.Drawing.Size(99, 28);
             this.playSoundPlaybackBox.TabIndex = 13;
             this.playSoundPlaybackBox.Text = "Play Sound";
             this.playSoundPlaybackBox.UseVisualStyleBackColor = true;
@@ -212,9 +203,9 @@
             // 
             this.stopSoundPlaybackBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.stopSoundPlaybackBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stopSoundPlaybackBox.Location = new System.Drawing.Point(106, 3);
+            this.stopSoundPlaybackBox.Location = new System.Drawing.Point(108, 3);
             this.stopSoundPlaybackBox.Name = "stopSoundPlaybackBox";
-            this.stopSoundPlaybackBox.Size = new System.Drawing.Size(97, 28);
+            this.stopSoundPlaybackBox.Size = new System.Drawing.Size(99, 28);
             this.stopSoundPlaybackBox.TabIndex = 14;
             this.stopSoundPlaybackBox.Text = "Stop Sound";
             this.stopSoundPlaybackBox.UseVisualStyleBackColor = true;
@@ -231,7 +222,7 @@
             0,
             0});
             this.nonLoopLengthBox.Name = "nonLoopLengthBox";
-            this.nonLoopLengthBox.Size = new System.Drawing.Size(200, 20);
+            this.nonLoopLengthBox.Size = new System.Drawing.Size(204, 20);
             this.nonLoopLengthBox.TabIndex = 11;
             this.nonLoopLengthBox.ValueChanged += new System.EventHandler(this.onValueBoxChanged);
             // 
@@ -246,7 +237,7 @@
             0,
             0});
             this.loopOffsetBox.Name = "loopOffsetBox";
-            this.loopOffsetBox.Size = new System.Drawing.Size(200, 20);
+            this.loopOffsetBox.Size = new System.Drawing.Size(204, 20);
             this.loopOffsetBox.TabIndex = 10;
             this.loopOffsetBox.ValueChanged += new System.EventHandler(this.onValueBoxChanged);
             // 
@@ -261,7 +252,7 @@
             0,
             0});
             this.nTimeBox.Name = "nTimeBox";
-            this.nTimeBox.Size = new System.Drawing.Size(200, 20);
+            this.nTimeBox.Size = new System.Drawing.Size(204, 20);
             this.nTimeBox.TabIndex = 9;
             this.nTimeBox.ValueChanged += new System.EventHandler(this.onValueBoxChanged);
             // 
@@ -276,7 +267,7 @@
             0,
             0});
             this.samplingBox.Name = "samplingBox";
-            this.samplingBox.Size = new System.Drawing.Size(200, 20);
+            this.samplingBox.Size = new System.Drawing.Size(204, 20);
             this.samplingBox.TabIndex = 8;
             this.samplingBox.ValueChanged += new System.EventHandler(this.onValueBoxChanged);
             // 
@@ -287,7 +278,7 @@
             this.loopBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.loopBox.Location = new System.Drawing.Point(3, 66);
             this.loopBox.Name = "loopBox";
-            this.loopBox.Size = new System.Drawing.Size(200, 17);
+            this.loopBox.Size = new System.Drawing.Size(204, 17);
             this.loopBox.TabIndex = 7;
             this.loopBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.loopBox.UseVisualStyleBackColor = true;
@@ -299,7 +290,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nonLoopLengthLabel.Location = new System.Drawing.Point(3, 202);
             this.nonLoopLengthLabel.Name = "nonLoopLengthLabel";
-            this.nonLoopLengthLabel.Size = new System.Drawing.Size(200, 16);
+            this.nonLoopLengthLabel.Size = new System.Drawing.Size(204, 16);
             this.nonLoopLengthLabel.TabIndex = 6;
             this.nonLoopLengthLabel.Text = "Non Loop Length";
             this.nonLoopLengthLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -311,7 +302,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loopOffsetLabel.Location = new System.Drawing.Point(3, 164);
             this.loopOffsetLabel.Name = "loopOffsetLabel";
-            this.loopOffsetLabel.Size = new System.Drawing.Size(200, 12);
+            this.loopOffsetLabel.Size = new System.Drawing.Size(204, 12);
             this.loopOffsetLabel.TabIndex = 5;
             this.loopOffsetLabel.Text = "Loop Offset";
             this.loopOffsetLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -322,7 +313,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.nTimeLabel.Location = new System.Drawing.Point(2, 125);
             this.nTimeLabel.Name = "nTimeLabel";
-            this.nTimeLabel.Size = new System.Drawing.Size(201, 13);
+            this.nTimeLabel.Size = new System.Drawing.Size(205, 13);
             this.nTimeLabel.TabIndex = 4;
             this.nTimeLabel.Text = "nTime";
             this.nTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -333,7 +324,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.samplingLabel.Location = new System.Drawing.Point(3, 86);
             this.samplingLabel.Name = "samplingLabel";
-            this.samplingLabel.Size = new System.Drawing.Size(200, 13);
+            this.samplingLabel.Size = new System.Drawing.Size(204, 13);
             this.samplingLabel.TabIndex = 3;
             this.samplingLabel.Text = "Sampling Rate:";
             this.samplingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -345,7 +336,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.loopsLabel.Location = new System.Drawing.Point(3, 40);
             this.loopsLabel.Name = "loopsLabel";
-            this.loopsLabel.Size = new System.Drawing.Size(200, 23);
+            this.loopsLabel.Size = new System.Drawing.Size(204, 23);
             this.loopsLabel.TabIndex = 2;
             this.loopsLabel.Text = "Loop Flag:";
             this.loopsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -359,6 +350,7 @@
             "PCM16",
             "(IMA-)ADPCM"});
             this.typeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.typeBox.Enabled = false;
             this.typeBox.FormattingEnabled = true;
             this.typeBox.Items.AddRange(new object[] {
             "0 - PCM8",
@@ -366,7 +358,7 @@
             "2- (IMA-)ADPCM"});
             this.typeBox.Location = new System.Drawing.Point(3, 16);
             this.typeBox.Name = "typeBox";
-            this.typeBox.Size = new System.Drawing.Size(200, 21);
+            this.typeBox.Size = new System.Drawing.Size(204, 21);
             this.typeBox.TabIndex = 1;
             this.typeBox.SelectedIndexChanged += new System.EventHandler(this.onDropBoxChanged);
             // 
@@ -376,7 +368,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.typeLabel.Location = new System.Drawing.Point(3, 0);
             this.typeLabel.Name = "typeLabel";
-            this.typeLabel.Size = new System.Drawing.Size(200, 13);
+            this.typeLabel.Size = new System.Drawing.Size(204, 13);
             this.typeLabel.TabIndex = 0;
             this.typeLabel.Text = "Type:";
             this.typeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -387,7 +379,7 @@
             this.noInfoLabelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noInfoLabelPanel.Location = new System.Drawing.Point(0, 0);
             this.noInfoLabelPanel.Name = "noInfoLabelPanel";
-            this.noInfoLabelPanel.Size = new System.Drawing.Size(206, 369);
+            this.noInfoLabelPanel.Size = new System.Drawing.Size(210, 414);
             this.noInfoLabelPanel.TabIndex = 13;
             // 
             // noInfoLabel
@@ -397,7 +389,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.noInfoLabel.Location = new System.Drawing.Point(-1, 0);
             this.noInfoLabel.Name = "noInfoLabel";
-            this.noInfoLabel.Size = new System.Drawing.Size(231, 369);
+            this.noInfoLabel.Size = new System.Drawing.Size(235, 414);
             this.noInfoLabel.TabIndex = 0;
             this.noInfoLabel.Text = "No Valid Info Selected!";
             this.noInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -414,7 +406,7 @@
             this.tree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
             this.tree.SelectedImageIndex = 0;
-            this.tree.Size = new System.Drawing.Size(498, 369);
+            this.tree.Size = new System.Drawing.Size(508, 414);
             this.tree.TabIndex = 0;
             this.tree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tree_NodeMouseClick);
             this.tree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.onNodeDoubleClick);
@@ -434,7 +426,7 @@
             this.editToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(712, 24);
+            this.menu.Size = new System.Drawing.Size(726, 24);
             this.menu.TabIndex = 11;
             this.menu.Text = "menuStrip1";
             // 
@@ -646,9 +638,9 @@
             this.status.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bytesSelected,
             this.soundSelected});
-            this.status.Location = new System.Drawing.Point(0, 395);
+            this.status.Location = new System.Drawing.Point(0, 440);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(712, 22);
+            this.status.Size = new System.Drawing.Size(726, 22);
             this.status.TabIndex = 12;
             this.status.Text = "status";
             // 
@@ -664,11 +656,34 @@
             this.soundSelected.Size = new System.Drawing.Size(108, 17);
             this.soundSelected.Text = "No sound selected!";
             // 
+            // volume
+            // 
+            this.volume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volume.Location = new System.Drawing.Point(3, 310);
+            this.volume.Maximum = 100;
+            this.volume.Name = "volume";
+            this.volume.Size = new System.Drawing.Size(204, 45);
+            this.volume.TabIndex = 20;
+            this.volume.TickFrequency = 10;
+            this.volume.Value = 50;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(5, 288);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(202, 19);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Volume:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // SwarEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 417);
+            this.ClientSize = new System.Drawing.Size(726, 462);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.status);
@@ -682,6 +697,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.swavGroup.ResumeLayout(false);
+            this.swavGroup.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nonLoopLengthBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loopOffsetBox)).EndInit();
@@ -695,6 +711,7 @@
             this.bigMenu.ResumeLayout(false);
             this.status.ResumeLayout(false);
             this.status.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volume)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -742,7 +759,6 @@
         private System.Windows.Forms.ToolStripMenuItem collapseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.Button stopSoundPlaybackBox;
-        private System.Windows.Forms.CheckBox loopPlaybackCheckbox;
         private System.Windows.Forms.Button playSoundPlaybackBox;
         private System.Windows.Forms.Label soundPlayerDeluxeTM;
         private System.Windows.Forms.ContextMenuStrip bigMenu;
@@ -754,5 +770,7 @@
         private System.Windows.Forms.StatusStrip status;
         private System.Windows.Forms.ToolStripStatusLabel bytesSelected;
         private System.Windows.Forms.ToolStripStatusLabel soundSelected;
+        private System.Windows.Forms.TrackBar volume;
+        private System.Windows.Forms.Label label1;
     }
 }

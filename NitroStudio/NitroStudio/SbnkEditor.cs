@@ -9,8 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NitroFileLoader;
+using SoundNStream;
 using System.Media;
 using System.Diagnostics;
+using NAudio.Wave;
+using System.Threading;
 
 namespace NitroStudio
 {
@@ -25,7 +28,11 @@ namespace NitroStudio
         //Emulator variables.
         int bankId = 0;
         sbnkFile.basicInstrumentStuff emulatorInfo;
-        SoundPlayer player = new SoundPlayer();
+        WaveOutEvent player;
+        IWaveProvider playerFile;
+        public WaveChannel32 waveChannel;
+        public WaveStream waveStream;
+        byte[] swavFile;
 
         public SbnkEditor(MainWindow parent, byte[] b, string name, int index, int emulationIndex)
         {
@@ -729,190 +736,6 @@ namespace NitroStudio
         #endregion
 
 
-        //Extract wav stuff
-        #region waveButtons
-
-        private void createTempButton_Click(object sender, EventArgs e)
-        {
-
-            //Change Directory.
-            Directory.SetCurrentDirectory(nitroPath + "/Data/Temp");
-
-            //Create Folders.
-            Directory.CreateDirectory("0");
-            Directory.CreateDirectory("1");
-            Directory.CreateDirectory("2");
-            Directory.CreateDirectory("3");
-
-
-            //Extract the swavs.
-            Directory.SetCurrentDirectory(nitroPath);
-
-            //Dump swavs.
-            for (int i = 0; i < 4; i++) {
-                swarFile f = new swarFile();
-
-                if (i == 0 && parent.sdat.infoFile.bankData[bankId].wave0 != 0xFFFF)
-                {
-                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave0]);
-                    for (int j = 0; j < f.data[0].files.Count(); j++) {
-                        dumpSwav(i, j);
-                    }
-                }
-                if (i == 1 && parent.sdat.infoFile.bankData[bankId].wave1 != 0xFFFF)
-                {
-                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave1]);
-                    for (int j = 0; j < f.data[0].files.Count(); j++)
-                    {
-                        dumpSwav(i, j);
-                    }
-                }
-                if (i == 2 && parent.sdat.infoFile.bankData[bankId].wave2 != 0xFFFF)
-                {
-                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave2]);
-                    for (int j = 0; j < f.data[0].files.Count(); j++)
-                    {
-                        dumpSwav(i, j);
-                    }
-                }
-                if (i == 3 && parent.sdat.infoFile.bankData[bankId].wave3 != 0xFFFF)
-                {
-                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave3]);
-                    for (int j = 0; j < f.data[0].files.Count(); j++)
-                    {
-                        dumpSwav(i, j);
-                    }
-                }
-
-            }
-
-            createTempButton.Enabled = false;
-            deleteTempButton.Enabled = true;
-
-            originalButton.Enabled = true;
-            loopBox.Enabled = true;
-            moddedButton.Enabled = false;
-            stopButton.Enabled = true;
-        }
-
-        public void dumpSwav(int swar, int swav) {
-
-            //See if placeholder.
-            if (swar == 0) {
-                if (parent.sdat.infoFile.bankData[bankId].wave0 != 0xFFFF) {
-                    swarFile f = new swarFile();
-                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave0]);
-
-                    File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", f.data[0].files[swav]);
-
-                    //Convert.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    p.Start();
-                    p.WaitForExit();
-
-                    if (File.Exists("Data\\Temp\\0\\" + swav + ".wav")) { File.Delete("Data\\Temp\\0\\" + swav + ".wav"); }
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\0\\" + swav + ".wav");
-
-                }
-            }
-            if (swar == 1)
-            {
-                if (parent.sdat.infoFile.bankData[bankId].wave1 != 0xFFFF)
-                {
-                    swarFile f = new swarFile();
-                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave1]);
-
-                    File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", f.data[0].files[swav]);
-
-                    //Convert.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    p.Start();
-                    p.WaitForExit();
-
-                    if (File.Exists("Data\\Temp\\1\\" + swav + ".wav")) { File.Delete("Data\\Temp\\1\\" + swav + ".wav"); }
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\1\\" + swav + ".wav");
-                }
-            }
-            if (swar == 2)
-            {
-                if (parent.sdat.infoFile.bankData[bankId].wave2 != 0xFFFF)
-                {
-                    swarFile f = new swarFile();
-                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave2]);
-
-                    File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", f.data[0].files[swav]);
-
-                    //Convert.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    p.Start();
-                    p.WaitForExit();
-
-                    if (File.Exists("Data\\Temp\\2\\" + swav + ".wav")) { File.Delete("Data\\Temp\\2\\" + swav + ".wav"); }
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\2\\" + swav + ".wav");
-                }
-            }
-            if (swar == 3)
-            {
-                if (parent.sdat.infoFile.bankData[bankId].wave3 != 0xFFFF)
-                {
-                    swarFile f = new swarFile();
-                    f.load(parent.sdat.files.waveFiles[parent.sdat.infoFile.bankData[bankId].wave3]);
-
-                    File.WriteAllBytes(nitroPath + "/Data/Tools/tmp.swav", f.data[0].files[swav]);
-
-                    //Convert.
-                    Process p = new Process();
-                    p.StartInfo.FileName = "Data\\Tools\\swav2wav.exe";
-                    p.StartInfo.Arguments = "Data\\Tools\\tmp.swav";
-                    p.StartInfo.CreateNoWindow = true;
-                    p.Start();
-                    p.WaitForExit();
-
-                    if (File.Exists("Data\\Temp\\3\\" + swav + ".wav")) { File.Delete("Data\\Temp\\3\\" + swav + ".wav"); }
-                    File.Delete("Data\\Tools\\tmp.swav");
-                    File.Move("Data\\Tools\\tmp.wav", "Data\\Temp\\3\\" + swav + ".wav");
-                }
-            }
-
-        }
-
-        private void deleteTempButton_Click(object sender, EventArgs e)
-        {
-            //Delete everything.
-            Directory.SetCurrentDirectory(nitroPath + "/Data/Temp");
-            Directory.Delete("0", true);
-            Directory.Delete("1", true);
-            Directory.Delete("2", true);
-            Directory.Delete("3", true);
-            Directory.SetCurrentDirectory(nitroPath);
-
-            createTempButton.Enabled = true;
-            deleteTempButton.Enabled = false;
-
-            originalButton.Enabled = false;
-            loopBox.Enabled = false;
-            moddedButton.Enabled = false;
-            stopButton.Enabled = false;
-        }
-
-        #endregion
-
-
         //Sound Player Deluxe
         #region soundPlayerDeluxe
 
@@ -925,17 +748,98 @@ namespace NitroStudio
         {
             try
             {
-                player = new SoundPlayer("Data/Temp/" + emulatorInfo.swarNumber + "/" + emulatorInfo.swavNumber + ".wav");
-                if (loopBox.Checked) { player.PlayLooping(); } else { player.Play(); }
+                player.Stop();
+                player.Dispose();
+            }
+            catch { }
+
+            try
+            {
+                waveStream.Dispose();
+                waveChannel.Dispose();
+
+            }
+            catch { }
+
+            try
+            {
+                //Convert swav to wav.
+                swav s = new swav();
+                swarFile sw = new swarFile();
+
+                int waveFileId = 0;
+                switch (emulatorInfo.swarNumber)
+                {
+                    case 0:
+                        waveFileId = (int)parent.sdat.infoFile.waveData[parent.sdat.infoFile.bankData[bankEmulationBox.SelectedIndex].wave0].fileId;
+                        break;
+                    case 1:
+                        waveFileId = (int)parent.sdat.infoFile.waveData[parent.sdat.infoFile.bankData[bankEmulationBox.SelectedIndex].wave1].fileId;
+                        break;
+                    case 2:
+                        waveFileId = (int)parent.sdat.infoFile.waveData[parent.sdat.infoFile.bankData[bankEmulationBox.SelectedIndex].wave2].fileId;
+                        break;
+                    case 3:
+                        waveFileId = (int)parent.sdat.infoFile.waveData[parent.sdat.infoFile.bankData[bankEmulationBox.SelectedIndex].wave3].fileId;
+                        break;
+                }
+
+                parent.sdat.fixOffsets();
+                sw.load(parent.sdat.files.files[waveFileId]);
+                swavFile = sw.data[0].files[emulatorInfo.swavNumber];
+                s.load(swavFile);
+                player = new WaveOutEvent();
+                waveStream = new WaveFileReader(new MemoryStream(s.toRIFF().toBytes()));
+                waveChannel = new WaveChannel32(waveStream);
+                waveChannel.Volume = (float)volume.Value * (float).01;
+                player.Init(waveChannel);
+                player.Play();
+                //loopRef = s;
+                player.PlaybackStopped += new EventHandler(stopButton_Click);
+                Thread.Sleep(500);
             }
             catch {
-                MessageBox.Show("File not found! Are you emulating the wrong bank?", "Error!");
+                MessageBox.Show("SWAV or SWAR doesn't exist!");
             }
+
         }
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            player.Stop();
+            try
+            {
+                player.Stop();
+                player.Dispose();
+            }
+            catch { }
+
+            try
+            {
+                waveStream.Dispose();
+                waveChannel.Dispose();
+
+            }
+            catch { }
+        }
+
+
+        private void onClose(object sender, EventArgs e) {
+
+            try
+            {
+                player.Stop();
+                player.Dispose();
+            }
+            catch { }
+
+            try
+            {
+                waveStream.Dispose();
+                waveChannel.Dispose();
+
+            }
+            catch { }
+
         }
 
         #endregion

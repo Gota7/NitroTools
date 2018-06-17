@@ -131,13 +131,9 @@
             this.tree = new System.Windows.Forms.TreeView();
             this.icons = new System.Windows.Forms.ImageList(this.components);
             this.intrumentPanel = new System.Windows.Forms.Panel();
-            this.loopBox = new System.Windows.Forms.CheckBox();
             this.stopButton = new System.Windows.Forms.Button();
             this.originalButton = new System.Windows.Forms.Button();
-            this.moddedButton = new System.Windows.Forms.Button();
             this.soundPlayerLabel = new System.Windows.Forms.Label();
-            this.deleteTempButton = new System.Windows.Forms.Button();
-            this.createTempButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.swar4 = new System.Windows.Forms.ComboBox();
             this.swar3 = new System.Windows.Forms.ComboBox();
@@ -169,6 +165,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.nodeSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.nodeParent = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.volume = new System.Windows.Forms.TrackBar();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -176,6 +174,7 @@
             this.splitContainer1.SuspendLayout();
             this.universalPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onClose);
             ((System.ComponentModel.ISupportInitialize)(this.panBoxUniversal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteNumberBoxUniversal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.releaseRateBoxUniversal)).BeginInit();
@@ -234,6 +233,7 @@
             this.blockMenu.SuspendLayout();
             this.recordMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volume)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
@@ -1546,13 +1546,11 @@
             // 
             // intrumentPanel
             // 
-            this.intrumentPanel.Controls.Add(this.loopBox);
+            this.intrumentPanel.Controls.Add(this.label1);
+            this.intrumentPanel.Controls.Add(this.volume);
             this.intrumentPanel.Controls.Add(this.stopButton);
             this.intrumentPanel.Controls.Add(this.originalButton);
-            this.intrumentPanel.Controls.Add(this.moddedButton);
             this.intrumentPanel.Controls.Add(this.soundPlayerLabel);
-            this.intrumentPanel.Controls.Add(this.deleteTempButton);
-            this.intrumentPanel.Controls.Add(this.createTempButton);
             this.intrumentPanel.Controls.Add(this.tableLayoutPanel5);
             this.intrumentPanel.Controls.Add(this.bankEmulationBox);
             this.intrumentPanel.Controls.Add(this.bankEmulationLabel);
@@ -1563,23 +1561,10 @@
             this.intrumentPanel.TabIndex = 2;
             this.intrumentPanel.Visible = false;
             // 
-            // loopBox
-            // 
-            this.loopBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.loopBox.Enabled = false;
-            this.loopBox.Location = new System.Drawing.Point(3, 309);
-            this.loopBox.Name = "loopBox";
-            this.loopBox.Size = new System.Drawing.Size(159, 17);
-            this.loopBox.TabIndex = 9;
-            this.loopBox.Text = "Loop Sound";
-            this.loopBox.UseVisualStyleBackColor = true;
-            // 
             // stopButton
             // 
             this.stopButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.stopButton.Enabled = false;
             this.stopButton.Location = new System.Drawing.Point(3, 361);
             this.stopButton.Name = "stopButton";
             this.stopButton.Size = new System.Drawing.Size(159, 23);
@@ -1592,7 +1577,6 @@
             // 
             this.originalButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.originalButton.Enabled = false;
             this.originalButton.Location = new System.Drawing.Point(3, 332);
             this.originalButton.Name = "originalButton";
             this.originalButton.Size = new System.Drawing.Size(159, 23);
@@ -1601,55 +1585,16 @@
             this.originalButton.UseVisualStyleBackColor = true;
             this.originalButton.Click += new System.EventHandler(this.originalButton_Click);
             // 
-            // moddedButton
-            // 
-            this.moddedButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.moddedButton.Enabled = false;
-            this.moddedButton.Location = new System.Drawing.Point(4, 251);
-            this.moddedButton.Name = "moddedButton";
-            this.moddedButton.Size = new System.Drawing.Size(159, 23);
-            this.moddedButton.TabIndex = 6;
-            this.moddedButton.Text = "Play Modded";
-            this.moddedButton.UseVisualStyleBackColor = true;
-            this.moddedButton.Visible = false;
-            this.moddedButton.Click += new System.EventHandler(this.moddedButton_Click);
-            // 
             // soundPlayerLabel
             // 
             this.soundPlayerLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.soundPlayerLabel.Location = new System.Drawing.Point(3, 277);
+            this.soundPlayerLabel.Location = new System.Drawing.Point(3, 306);
             this.soundPlayerLabel.Name = "soundPlayerLabel";
             this.soundPlayerLabel.Size = new System.Drawing.Size(159, 23);
             this.soundPlayerLabel.TabIndex = 5;
             this.soundPlayerLabel.Text = "Sound Player Deluxe™";
             this.soundPlayerLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // deleteTempButton
-            // 
-            this.deleteTempButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteTempButton.Enabled = false;
-            this.deleteTempButton.Location = new System.Drawing.Point(3, 247);
-            this.deleteTempButton.Name = "deleteTempButton";
-            this.deleteTempButton.Size = new System.Drawing.Size(159, 23);
-            this.deleteTempButton.TabIndex = 4;
-            this.deleteTempButton.Text = "Delete Temp Wave Data";
-            this.deleteTempButton.UseVisualStyleBackColor = true;
-            this.deleteTempButton.Click += new System.EventHandler(this.deleteTempButton_Click);
-            // 
-            // createTempButton
-            // 
-            this.createTempButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.createTempButton.Location = new System.Drawing.Point(3, 218);
-            this.createTempButton.Name = "createTempButton";
-            this.createTempButton.Size = new System.Drawing.Size(159, 23);
-            this.createTempButton.TabIndex = 3;
-            this.createTempButton.Text = "Extract Temp Wave Data";
-            this.createTempButton.UseVisualStyleBackColor = true;
-            this.createTempButton.Click += new System.EventHandler(this.createTempButton_Click);
             // 
             // tableLayoutPanel5
             // 
@@ -1945,6 +1890,29 @@
             this.nodeParent.Size = new System.Drawing.Size(118, 17);
             this.nodeParent.Text = "Node\'s parent is null!";
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(6, 236);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(156, 19);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Volume:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // volume
+            // 
+            this.volume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volume.Location = new System.Drawing.Point(3, 258);
+            this.volume.Maximum = 100;
+            this.volume.Name = "volume";
+            this.volume.Size = new System.Drawing.Size(159, 45);
+            this.volume.TabIndex = 22;
+            this.volume.TickFrequency = 10;
+            this.volume.Value = 50;
+            // 
             // SbnkEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2021,6 +1989,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.intrumentPanel.ResumeLayout(false);
+            this.intrumentPanel.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.noInstrumentPanel.ResumeLayout(false);
             this.bigMenu.ResumeLayout(false);
@@ -2028,6 +1997,7 @@
             this.recordMenu.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volume)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2155,13 +2125,9 @@
         private System.Windows.Forms.ComboBox swar3;
         private System.Windows.Forms.ComboBox swar2;
         private System.Windows.Forms.ComboBox swar1;
-        private System.Windows.Forms.Button createTempButton;
-        private System.Windows.Forms.Button deleteTempButton;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button originalButton;
-        private System.Windows.Forms.Button moddedButton;
         private System.Windows.Forms.Label soundPlayerLabel;
-        private System.Windows.Forms.CheckBox loopBox;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
@@ -2173,5 +2139,7 @@
         private System.Windows.Forms.Button resetToDefaultsUniversal;
         private System.Windows.Forms.Panel changeInstrumentPanel;
         private System.Windows.Forms.Label fRecordLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar volume;
     }
 }

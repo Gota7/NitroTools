@@ -15,11 +15,13 @@ namespace NitroStudio
     {
 
         public string nitroPath = Application.StartupPath;
+        string path;
 
-        public StrmPlayer(string path)
+        public StrmPlayer(string path2)
         {
             InitializeComponent();
-            axWindowsMediaPlayer1.URL = path;
+            axWindowsMediaPlayer1.URL = path2;
+            path = path2;
         }
 
         private void axWindowsMediaPlayer1_Enter(object sender, EventArgs e)
@@ -30,8 +32,7 @@ namespace NitroStudio
         private void onClose(object sender, EventArgs e) {
             //Delete useless files.
             Directory.SetCurrentDirectory(nitroPath + "\\Data\\Tools\\");
-            File.Delete("tmp.strm");
-            File.Delete("tmp.wav");
+            File.Delete(path);
             Directory.SetCurrentDirectory(nitroPath);
         }
 
