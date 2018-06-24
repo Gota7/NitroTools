@@ -45,26 +45,31 @@ namespace NitroFileLoader
 			f.sseqRecord.offsets = br.ReadUInt32s ((int)f.sseqRecord.count);
 			f.sseqInfo = new NitroStructures.sseqInfo[(int)f.sseqRecord.count];
 			for (int i = 0; i < f.sseqRecord.count; i++) {
-			
-				//Set position.
-				br.Position = (int)f.sseqRecord.offsets[i];
 
-				f.sseqInfo [i].fileId = br.ReadUInt32 ();
-				f.sseqInfo [i].bank = br.ReadUInt16 ();
-				f.sseqInfo [i].volume = br.ReadByte ();
-				f.sseqInfo [i].channelPriority = br.ReadByte ();
-				f.sseqInfo [i].playerPriority = br.ReadByte ();
-				f.sseqInfo [i].playerNumber = br.ReadByte ();
-				f.sseqInfo [i].unknown1 = br.ReadByte ();
-				f.sseqInfo [i].unknown2 = br.ReadByte ();
-				f.sseqInfo [i].isPlaceHolder = false;
+                //If not null
+                if (f.sseqRecord.offsets[i] == 0)
+                {
 
-				//If not null
-				if (f.sseqRecord.offsets [i] == 0) {
+                    f.sseqInfo[i].isPlaceHolder = true;
 
-					f.sseqInfo [i].isPlaceHolder = true;
+                }
+                else
+                {
 
-				}
+                    //Set position.
+                    br.Position = (int)f.sseqRecord.offsets[i];
+
+                    f.sseqInfo[i].fileId = br.ReadUInt32();
+                    f.sseqInfo[i].bank = br.ReadUInt16();
+                    f.sseqInfo[i].volume = br.ReadByte();
+                    f.sseqInfo[i].channelPriority = br.ReadByte();
+                    f.sseqInfo[i].playerPriority = br.ReadByte();
+                    f.sseqInfo[i].playerNumber = br.ReadByte();
+                    f.sseqInfo[i].unknown1 = br.ReadByte();
+                    f.sseqInfo[i].unknown2 = br.ReadByte();
+                    f.sseqInfo[i].isPlaceHolder = false;
+
+                }
 			
 			}
 
@@ -76,18 +81,23 @@ namespace NitroFileLoader
 			f.seqArcInfo = new NitroStructures.seqArcInfo[(int)f.seqArcRecord.count];
 			for (int i = 0; i < f.seqArcRecord.count; i++) {
 
-				//Set position.
-				br.Position = (int)f.seqArcRecord.offsets[i];
+                //If not null
+                if (f.seqArcRecord.offsets[i] == 0)
+                {
 
-				f.seqArcInfo [i].fileId = br.ReadUInt32 ();
-				f.seqArcInfo [i].isPlaceHolder = false;
+                    f.seqArcInfo[i].isPlaceHolder = true;
 
-				//If not null
-				if (f.seqArcRecord.offsets [i] == 0) {
+                }
+                else
+                {
 
-					f.seqArcInfo [i].isPlaceHolder = true;
+                    //Set position.
+                    br.Position = (int)f.seqArcRecord.offsets[i];
 
-				}
+                    f.seqArcInfo[i].fileId = br.ReadUInt32();
+                    f.seqArcInfo[i].isPlaceHolder = false;
+
+                }
 
 			}
 
@@ -99,22 +109,27 @@ namespace NitroFileLoader
 			f.bankInfo = new NitroStructures.bankInfo[(int)f.bankRecord.count];
 			for (int i = 0; i < f.bankRecord.count; i++) {
 
-				//Set position.
-				br.Position = (int)f.bankRecord.offsets[i];
+                //If not null
+                if (f.bankRecord.offsets[i] == 0)
+                {
 
-				f.bankInfo [i].fileId = br.ReadUInt32 ();
-				f.bankInfo [i].wave0 = br.ReadUInt16 ();
-				f.bankInfo [i].wave1 = br.ReadUInt16 ();
-				f.bankInfo [i].wave2 = br.ReadUInt16 ();
-				f.bankInfo [i].wave3 = br.ReadUInt16 ();
-				f.bankInfo [i].isPlaceHolder = false;
+                    f.bankInfo[i].isPlaceHolder = true;
 
-				//If not null
-				if (f.bankRecord.offsets [i] == 0) {
+                }
+                else
+                {
 
-					f.bankInfo [i].isPlaceHolder = true;
+                    //Set position.
+                    br.Position = (int)f.bankRecord.offsets[i];
 
-				}
+                    f.bankInfo[i].fileId = br.ReadUInt32();
+                    f.bankInfo[i].wave0 = br.ReadUInt16();
+                    f.bankInfo[i].wave1 = br.ReadUInt16();
+                    f.bankInfo[i].wave2 = br.ReadUInt16();
+                    f.bankInfo[i].wave3 = br.ReadUInt16();
+                    f.bankInfo[i].isPlaceHolder = false;
+
+                }
 
 			}
 
@@ -126,18 +141,23 @@ namespace NitroFileLoader
 			f.waveInfo = new NitroStructures.waveInfo[(int)f.waveRecord.count];
 			for (int i = 0; i < f.waveRecord.count; i++) {
 
-				//Set position.
-				br.Position = (int)f.waveRecord.offsets[i];
+                //If not null
+                if (f.waveRecord.offsets[i] == 0)
+                {
 
-				f.waveInfo [i].fileId = br.ReadUInt32 ();
-				f.waveInfo [i].isPlaceHolder = false;
+                    f.waveInfo[i].isPlaceHolder = true;
 
-				//If not null
-				if (f.waveRecord.offsets [i] == 0) {
+                }
+                else
+                {
 
-					f.waveInfo [i].isPlaceHolder = true;
+                    //Set position.
+                    br.Position = (int)f.waveRecord.offsets[i];
 
-				}
+                    f.waveInfo[i].fileId = br.ReadUInt32();
+                    f.waveInfo[i].isPlaceHolder = false;
+
+                }
 
 			}
 
@@ -149,20 +169,25 @@ namespace NitroFileLoader
 			f.playerInfo = new NitroStructures.playerInfo[(int)f.playerRecord.count];
 			for (int i = 0; i < f.playerRecord.count; i++) {
 
-				//Set position.
-				br.Position = (int)f.playerRecord.offsets[i];
+                //If not null.
+                if (f.playerRecord.offsets[i] == 0)
+                {
 
-				f.playerInfo [i].seqMax = br.ReadUInt16();
-				f.playerInfo [i].channelFlag = br.ReadUInt16 ();
-				f.playerInfo [i].heapSize = br.ReadUInt32 ();
-				f.playerInfo [i].isPlaceHolder = false;
+                    f.playerInfo[i].isPlaceHolder = true;
 
-				//If not null.
-				if (f.playerRecord.offsets [i] == 0) {
+                }
+                else
+                {
 
-					f.playerInfo [i].isPlaceHolder = true;
+                    //Set position.
+                    br.Position = (int)f.playerRecord.offsets[i];
 
-				}
+                    f.playerInfo[i].seqMax = br.ReadUInt16();
+                    f.playerInfo[i].channelFlag = br.ReadUInt16();
+                    f.playerInfo[i].heapSize = br.ReadUInt32();
+                    f.playerInfo[i].isPlaceHolder = false;
+
+                }
 
 			}
 
@@ -174,32 +199,37 @@ namespace NitroFileLoader
 			f.groupInfo = new NitroStructures.groupInfo[(int)f.groupRecord.count];
 			for (int i = 0; i < f.groupRecord.count; i++) {
 
-				//Set position.
-				br.Position = (int)f.groupRecord.offsets[i];
+                //Check if placeholder.
+                if (f.groupRecord.offsets[i] == 0)
+                {
+                    f.groupInfo[i].isPlaceHolder = true;
+                }
+                else
+                {
 
-				//Read count.
-				f.groupInfo[i].count = br.ReadUInt32();
-				f.groupInfo [i].isPlaceHolder = false;
+                    //Set position.
+                    br.Position = (int)f.groupRecord.offsets[i];
 
-				//Get sub info.
-				f.groupInfo[i].subInfo = new NitroStructures.groupSubInfo[(int)f.groupInfo[i].count];
-				for (int j = 0; j < f.groupInfo[i].count; j++) {
+                    //Read count.
+                    f.groupInfo[i].count = br.ReadUInt32();
+                    f.groupInfo[i].isPlaceHolder = false;
 
-					//Now get the data.
-					f.groupInfo[i].subInfo[j].type = br.ReadByte();
-					f.groupInfo[i].subInfo[j].loadFlag = br.ReadByte();
-					f.groupInfo [i].subInfo [j].padding = br.ReadUInt16 ();
-					f.groupInfo [i].subInfo [j].nEntry = br.ReadUInt32 ();
+                    //Get sub info.
+                    f.groupInfo[i].subInfo = new NitroStructures.groupSubInfo[(int)f.groupInfo[i].count];
+                    for (int j = 0; j < f.groupInfo[i].count; j++)
+                    {
 
-					//Subgroups can't be placeholders, since there is not offset to it.
+                        //Now get the data.
+                        f.groupInfo[i].subInfo[j].type = br.ReadByte();
+                        f.groupInfo[i].subInfo[j].loadFlag = br.ReadByte();
+                        f.groupInfo[i].subInfo[j].padding = br.ReadUInt16();
+                        f.groupInfo[i].subInfo[j].nEntry = br.ReadUInt32();
 
-				}
+                        //Subgroups can't be placeholders, since there is not offset to it.
 
+                    }
 
-				//Check if placeholder.
-				if (f.groupRecord.offsets[i] == 0) {
-					f.groupInfo [i].isPlaceHolder = true;
-				}
+                }
 
 			}
 
@@ -211,35 +241,40 @@ namespace NitroFileLoader
 			f.player2Info = new NitroStructures.player2Info[(int)f.player2Record.count];
 			for (int i = 0; i < f.player2Record.count; i++) {
 
-				//Set position.
-				br.Position = (int)f.player2Record.offsets[i];
+                //If not null
+                if (f.player2Record.offsets[i] == 0)
+                {
 
-				f.player2Info [i].count = br.ReadByte ();
-				f.player2Info [i].v0 = br.ReadByte ();
-				f.player2Info [i].v1 = br.ReadByte ();
-				f.player2Info [i].v2 = br.ReadByte ();
-				f.player2Info [i].v3 = br.ReadByte ();
-				f.player2Info [i].v4 = br.ReadByte ();
-				f.player2Info [i].v5 = br.ReadByte ();
-				f.player2Info [i].v6 = br.ReadByte ();
-				f.player2Info [i].v7 = br.ReadByte ();
-				f.player2Info [i].v8 = br.ReadByte ();
-				f.player2Info [i].v9 = br.ReadByte ();
-				f.player2Info [i].v10 = br.ReadByte ();
-				f.player2Info [i].v11 = br.ReadByte ();
-				f.player2Info [i].v12 = br.ReadByte ();
-				f.player2Info [i].v13 = br.ReadByte ();
-				f.player2Info [i].v14 = br.ReadByte ();
-				f.player2Info [i].v15 = br.ReadByte ();
-				f.player2Info [i].reserved = br.ReadBytes (7);
-				f.player2Info [i].isPlaceHolder = false;
+                    f.player2Info[i].isPlaceHolder = true;
 
-				//If not null
-				if (f.player2Record.offsets [i] == 0) {
+                }
+                else
+                {
 
-					f.player2Info [i].isPlaceHolder = true;
+                    //Set position.
+                    br.Position = (int)f.player2Record.offsets[i];
 
-				}
+                    f.player2Info[i].count = br.ReadByte();
+                    f.player2Info[i].v0 = br.ReadByte();
+                    f.player2Info[i].v1 = br.ReadByte();
+                    f.player2Info[i].v2 = br.ReadByte();
+                    f.player2Info[i].v3 = br.ReadByte();
+                    f.player2Info[i].v4 = br.ReadByte();
+                    f.player2Info[i].v5 = br.ReadByte();
+                    f.player2Info[i].v6 = br.ReadByte();
+                    f.player2Info[i].v7 = br.ReadByte();
+                    f.player2Info[i].v8 = br.ReadByte();
+                    f.player2Info[i].v9 = br.ReadByte();
+                    f.player2Info[i].v10 = br.ReadByte();
+                    f.player2Info[i].v11 = br.ReadByte();
+                    f.player2Info[i].v12 = br.ReadByte();
+                    f.player2Info[i].v13 = br.ReadByte();
+                    f.player2Info[i].v14 = br.ReadByte();
+                    f.player2Info[i].v15 = br.ReadByte();
+                    f.player2Info[i].reserved = br.ReadBytes(7);
+                    f.player2Info[i].isPlaceHolder = false;
+
+                }
 
 			}
 
@@ -252,22 +287,27 @@ namespace NitroFileLoader
 			f.strmInfo = new NitroStructures.strmInfo[(int)f.strmRecord.count];
 			for (int i = 0; i < f.strmRecord.count; i++) {
 
-				//Set position.
-				br.Position = (int)f.strmRecord.offsets[i];
+                //If not null
+                if (f.strmRecord.offsets[i] == 0)
+                {
 
-				f.strmInfo [i].fileId = br.ReadUInt32 ();
-				f.strmInfo [i].volume = br.ReadByte ();
-				f.strmInfo [i].priority = br.ReadByte ();
-				f.strmInfo [i].player = br.ReadByte ();
-				f.strmInfo [i].reserved = br.ReadBytes (5);
-				f.strmInfo [i].isPlaceHolder = false;
+                    f.strmInfo[i].isPlaceHolder = true;
 
-				//If not null
-				if (f.strmRecord.offsets [i] == 0) {
+                }
+                else
+                {
 
-					f.strmInfo [i].isPlaceHolder = true;
+                    //Set position.
+                    br.Position = (int)f.strmRecord.offsets[i];
 
-				}
+                    f.strmInfo[i].fileId = br.ReadUInt32();
+                    f.strmInfo[i].volume = br.ReadByte();
+                    f.strmInfo[i].priority = br.ReadByte();
+                    f.strmInfo[i].player = br.ReadByte();
+                    f.strmInfo[i].reserved = br.ReadBytes(5);
+                    f.strmInfo[i].isPlaceHolder = false;
+
+                }
 
 			}
 
@@ -429,7 +469,7 @@ namespace NitroFileLoader
 			}
 
 
-			//Write group
+			//Write Group
 			bw.Write (f.groupRecord.count);
 			for (int i = 0; i < f.groupRecord.offsets.Length; i++) {
 
@@ -441,16 +481,20 @@ namespace NitroFileLoader
 
 			}
 			foreach (NitroStructures.groupInfo i in f.groupInfo) {
-			
-				bw.Write (i.count);
-				foreach (NitroStructures.groupSubInfo j in i.subInfo) {
-				
-					bw.Write (j.type);
-					bw.Write (j.loadFlag);
-					bw.Write (j.padding);
-					bw.Write (j.nEntry);
-				
-				}
+
+                if (!i.isPlaceHolder)
+                {
+                    bw.Write(i.count);
+                    foreach (NitroStructures.groupSubInfo j in i.subInfo)
+                    {
+
+                        bw.Write(j.type);
+                        bw.Write(j.loadFlag);
+                        bw.Write(j.padding);
+                        bw.Write(j.nEntry);
+
+                    }
+                }
 			
 			}
 

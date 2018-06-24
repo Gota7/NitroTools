@@ -289,7 +289,7 @@ namespace SoundNStream
 
                     //Cut off extra data.
                     loadPCMChannels();
-                    if (loop)
+                    if (loop && smpl.loopEnd != 0)
                     {
                         for (int i = 0; i < fmt.numChannels; i++)
                         {
@@ -323,7 +323,7 @@ namespace SoundNStream
 
                     //Cut off extra data.
                     loadPCMChannels();
-                    if (loop)
+                    if (loop && smpl.loopEnd != 0)
                     {
                         for (int i = 0; i < fmt.numChannels; i++)
                         {
@@ -422,7 +422,7 @@ namespace SoundNStream
                 loadPCMChannels();
 
                 //Cut off extra data.
-                if (loop)
+                if (loop && smpl.loopEnd != 0)
                 {
                     for (int i = 0; i < fmt.numChannels; i++)
                     {
@@ -454,7 +454,7 @@ namespace SoundNStream
                 loadPCMChannels();
 
                 //Cut off extra data.
-                if (loop)
+                if (loop && smpl.loopEnd != 0)
                 {
                     for (int i = 0; i < fmt.numChannels; i++)
                     {
