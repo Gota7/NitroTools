@@ -1088,6 +1088,7 @@ namespace NitroStudio
                     //Hide panel stuff.
                     hideAllPanelStuff();
                     placeHolderLayout.Show();
+                    swarPanel.Show();
 
                     //Check if placeholder.
                     if (!sdat.infoFile.waveData[tree.SelectedNode.Index].isPlaceHolder && !sdat.symbFile.waveStrings[tree.SelectedNode.Index].isPlaceHolder)
@@ -1100,7 +1101,14 @@ namespace NitroStudio
                         {
                             fileIdBox.Items.Add(fatFiles[i]);
                         }
-                        fileIdBox.SelectedIndex = (int)sdat.infoFile.waveData[tree.SelectedNode.Index].fileId;
+
+                        //Get real file ID.
+                        int fileID = (int)(sdat.infoFile.waveData[tree.SelectedNode.Index].fileId & 0x00FFFFFF);
+                        bool loadSingle = false;
+                        if ((sdat.infoFile.waveData[tree.SelectedNode.Index].fileId & 0xFF000000) == 0x01000000) { loadSingle = true; }
+                        loadIndividuallyBox.Checked = loadSingle;
+
+                        fileIdBox.SelectedIndex = fileID;
                         fileIdBox.Show();
 
                     }
@@ -1114,6 +1122,7 @@ namespace NitroStudio
                         fileIdBox.Items.Add("Null");
                         fileIdBox.SelectedIndex = 0;
                         fileIdBox.Show();
+                        loadIndividuallyBox.Checked = false;
 
                     }
 
@@ -1139,8 +1148,51 @@ namespace NitroStudio
 
                         //Update player viewer.
                         sequenceMaxBox.Value = sdat.infoFile.playerData[tree.SelectedNode.Index].seqMax;
-                        channelFlagBox.Value = sdat.infoFile.playerData[tree.SelectedNode.Index].channelFlag;
                         heapSizeBox.Value = sdat.infoFile.playerData[tree.SelectedNode.Index].heapSize;
+
+                        //Channel flags
+                        int channelFlags = sdat.infoFile.playerData[tree.SelectedNode.Index].channelFlag;
+                        if (channelFlags == 0)
+                        {
+
+                            alloc0.Checked = true;
+                            alloc1.Checked = true;
+                            alloc2.Checked = true;
+                            alloc3.Checked = true;
+                            alloc4.Checked = true;
+                            alloc5.Checked = true;
+                            alloc6.Checked = true;
+                            alloc7.Checked = true;
+                            alloc8.Checked = true;
+                            alloc9.Checked = true;
+                            alloc10.Checked = true;
+                            alloc11.Checked = true;
+                            alloc12.Checked = true;
+                            alloc13.Checked = true;
+                            alloc14.Checked = true;
+                            alloc15.Checked = true;
+
+                        }
+                        else {
+
+                            if ((channelFlags & 0b1) > 0) { alloc0.Checked = true; } else { alloc0.Checked = false; }
+                            if ((channelFlags & 0b10) > 0) { alloc1.Checked = true; } else { alloc1.Checked = false; }
+                            if ((channelFlags & 0b100) > 0) { alloc2.Checked = true; } else { alloc2.Checked = false; }
+                            if ((channelFlags & 0b1000) > 0) { alloc3.Checked = true; } else { alloc3.Checked = false; }
+                            if ((channelFlags & 0b10000) > 0) { alloc4.Checked = true; } else { alloc4.Checked = false; }
+                            if ((channelFlags & 0b100000) > 0) { alloc5.Checked = true; } else { alloc5.Checked = false; }
+                            if ((channelFlags & 0b1000000) > 0) { alloc6.Checked = true; } else { alloc6.Checked = false; }
+                            if ((channelFlags & 0b10000000) > 0) { alloc7.Checked = true; } else { alloc7.Checked = false; }
+                            if ((channelFlags & 0b100000000) > 0) { alloc8.Checked = true; } else { alloc8.Checked = false; }
+                            if ((channelFlags & 0b1000000000) > 0) { alloc9.Checked = true; } else { alloc9.Checked = false; }
+                            if ((channelFlags & 0b10000000000) > 0) { alloc10.Checked = true; } else { alloc10.Checked = false; }
+                            if ((channelFlags & 0b100000000000) > 0) { alloc11.Checked = true; } else { alloc11.Checked = false; }
+                            if ((channelFlags & 0b1000000000000) > 0) { alloc12.Checked = true; } else { alloc12.Checked = false; }
+                            if ((channelFlags & 0b10000000000000) > 0) { alloc13.Checked = true; } else { alloc13.Checked = false; }
+                            if ((channelFlags & 0b100000000000000) > 0) { alloc14.Checked = true; } else { alloc14.Checked = false; }
+                            if ((channelFlags & 0b1000000000000000) > 0) { alloc15.Checked = true; } else { alloc15.Checked = false; }
+
+                        }
 
                     }
                     else
@@ -1150,8 +1202,24 @@ namespace NitroStudio
 
                         //Update player viewer.
                         sequenceMaxBox.Value = 0;
-                        channelFlagBox.Value = 0;
                         heapSizeBox.Value = 0;
+
+                        alloc0.Checked = false;
+                        alloc1.Checked = false;
+                        alloc2.Checked = false;
+                        alloc3.Checked = false;
+                        alloc4.Checked = false;
+                        alloc5.Checked = false;
+                        alloc6.Checked = false;
+                        alloc7.Checked = false;
+                        alloc8.Checked = false;
+                        alloc9.Checked = false;
+                        alloc10.Checked = false;
+                        alloc11.Checked = false;
+                        alloc12.Checked = false;
+                        alloc13.Checked = false;
+                        alloc14.Checked = false;
+                        alloc15.Checked = false;
 
                     }
 
@@ -1267,7 +1335,14 @@ namespace NitroStudio
                         {
                             fileIdBox.Items.Add(fatFiles[i]);
                         }
-                        fileIdBox.SelectedIndex = (int)sdat.infoFile.strmData[tree.SelectedNode.Index].fileId;
+
+                        //Get real file ID.
+                        int fileID = (int)(sdat.infoFile.strmData[tree.SelectedNode.Index].fileId & 0x00FFFFFF);
+                        bool toStereo = false;
+                        if ((sdat.infoFile.strmData[tree.SelectedNode.Index].fileId & 0xFF000000) == 0x01000000) { toStereo = true; }
+                        monoToStereoBox.Checked = toStereo;
+
+                        fileIdBox.SelectedIndex = fileID;
                         fileIdBox.Show();
                         
                         //Show the stuff.
@@ -1283,6 +1358,7 @@ namespace NitroStudio
                         fileIdBox.Items.Add("Null");
                         fileIdBox.SelectedIndex = 0;
                         fileIdBox.Show();
+                        monoToStereoBox.Checked = false;
 
                         //Show the stuff.
                         volumeBoxMushrooms.Value = 0;
@@ -1339,7 +1415,27 @@ namespace NitroStudio
             nEntryBox.Items.Clear();
             player2Group.Hide();
             strmGroup.Hide();
+            swarPanel.Hide();
 
+        }
+
+        //Load individually box changed.
+        private void loadIndividuallyBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null) {
+                sdat.infoFile.waveData[tree.SelectedNode.Index].fileId = (UInt32)fileIdBox.SelectedIndex;
+                if (loadIndividuallyBox.Checked) { sdat.infoFile.waveData[tree.SelectedNode.Index].fileId += 0x01000000; }
+            }
+        }
+
+        //Mono to stereo box changed.
+        private void monoToStereoBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (tree.SelectedNode.Parent != null)
+            {
+                sdat.infoFile.strmData[tree.SelectedNode.Index].fileId = (UInt32)fileIdBox.SelectedIndex;
+                if (monoToStereoBox.Checked) { sdat.infoFile.strmData[tree.SelectedNode.Index].fileId += 0x01000000; }
+            }
         }
 
         //Toggle placeholders.
@@ -1705,6 +1801,7 @@ namespace NitroStudio
             }
         }
 
+        /*
         public void onChannelFlagChanged(object sender, EventArgs e)
         {
 
@@ -1715,6 +1812,38 @@ namespace NitroStudio
                     sdat.infoFile.playerData[tree.SelectedNode.Index].channelFlag = (UInt16)channelFlagBox.Value;
                 }
             }
+        }*/
+
+        public void onAllocChanged(object sender, EventArgs e) {
+
+            if (tree.SelectedNode.Parent != null)
+            {
+                if (alloc0.Checked && alloc1.Checked && alloc2.Checked && alloc3.Checked && alloc4.Checked && alloc5.Checked && alloc6.Checked && alloc7.Checked && alloc8.Checked && alloc9.Checked && alloc10.Checked && alloc11.Checked && alloc12.Checked && alloc13.Checked && alloc14.Checked && alloc15.Checked)
+                {
+                    sdat.infoFile.playerData[tree.SelectedNode.Index].channelFlag = 0;
+                }
+                else {
+                    int newFlag = 0;
+                    if (alloc0.Checked) { newFlag += 0b1; }
+                    if (alloc1.Checked) { newFlag += 0b10; }
+                    if (alloc2.Checked) { newFlag += 0b100; }
+                    if (alloc3.Checked) { newFlag += 0b1000; }
+                    if (alloc4.Checked) { newFlag += 0b10000; }
+                    if (alloc5.Checked) { newFlag += 0b100000; }
+                    if (alloc6.Checked) { newFlag += 0b1000000; }
+                    if (alloc7.Checked) { newFlag += 0b10000000; }
+                    if (alloc8.Checked) { newFlag += 0b100000000; }
+                    if (alloc9.Checked) { newFlag += 0b1000000000; }
+                    if (alloc10.Checked) { newFlag += 0b10000000000; }
+                    if (alloc11.Checked) { newFlag += 0b100000000000; }
+                    if (alloc12.Checked) { newFlag += 0b1000000000000; }
+                    if (alloc13.Checked) { newFlag += 0b10000000000000; }
+                    if (alloc14.Checked) { newFlag += 0b100000000000000; }
+                    if (alloc15.Checked) { newFlag += 0b1000000000000000; }
+                    sdat.infoFile.playerData[tree.SelectedNode.Index].channelFlag = (UInt16)newFlag;
+                }
+            }
+
         }
 
         public void onheapSizeChanged(object sender, EventArgs e)
@@ -1894,12 +2023,14 @@ namespace NitroStudio
             else if (tree.SelectedNode.Parent.Index == 3)
             {
                 sdat.infoFile.waveData[tree.SelectedNode.Index].fileId = (UInt32)fileIdBox.SelectedIndex;
+                if (loadIndividuallyBox.Checked) { sdat.infoFile.waveData[tree.SelectedNode.Index].fileId += 0x01000000; }
             }
 
             //Stream
             else if (tree.SelectedNode.Parent.Index == 7)
             {
                 sdat.infoFile.strmData[tree.SelectedNode.Index].fileId = (UInt32)fileIdBox.SelectedIndex;
+                if (monoToStereoBox.Checked) { sdat.infoFile.strmData[tree.SelectedNode.Index].fileId += 0x01000000; }
             }
 
         }
@@ -2300,7 +2431,8 @@ namespace NitroStudio
 
                 for (int j = 0; j < sdat.infoFile.waveData.Count; j++)
                 {
-                    if ((int)sdat.infoFile.waveData[j].fileId == i + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count + sdat.files.bankFiles.Count)
+                    int trueFileId = (int)(sdat.infoFile.waveData[j].fileId) & 0x00FFFFFF;
+                    if (trueFileId == i + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count + sdat.files.bankFiles.Count)
                     {
                         tree.Nodes[8].Nodes[3].Nodes[i].Text = "[" + fileId + "] " + sdat.symbFile.waveStrings[j].name + ".swar";
                         files[fileId] = "[" + fileId + "] " + sdat.symbFile.waveStrings[j].name + ".swar";
@@ -2318,7 +2450,8 @@ namespace NitroStudio
 
                 for (int j = 0; j < sdat.infoFile.strmData.Count; j++)
                 {
-                    if ((int)sdat.infoFile.strmData[j].fileId == i + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count + sdat.files.bankFiles.Count + sdat.files.waveFiles.Count)
+                    int trueFileId = (int)(sdat.infoFile.strmData[j].fileId) & 0x00FFFFFF;
+                    if (trueFileId == i + sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count + sdat.files.bankFiles.Count + sdat.files.waveFiles.Count)
                     {
                         tree.Nodes[8].Nodes[4].Nodes[i].Text = "[" + fileId + "] " + sdat.symbFile.strmStrings[j].name + ".strm";
                         files[fileId] = "[" + fileId + "] " + sdat.symbFile.strmStrings[j].name + ".strm";
@@ -2629,7 +2762,7 @@ namespace NitroStudio
 
                         }
 
-                        else if (tree.SelectedNode.Parent.Text == "Wave")
+                        else if (tree.SelectedNode.Parent.Text == "Wave Archive")
                         {
 
                             TreeNode n = tree.Nodes[8].Nodes[3].Nodes[(int)sdat.infoFile.waveData[tree.SelectedNode.Index].fileId - (sdat.files.sseqFiles.Count() + sdat.files.seqArcFiles.Count() + sdat.files.bankFiles.Count())];
@@ -2833,7 +2966,7 @@ namespace NitroStudio
             }
 
 
-            if (name == "Wave")
+            if (name == "Wave Archive")
             {
 
                 //Fix bank.
@@ -2860,7 +2993,7 @@ namespace NitroStudio
 
             }
 
-            if (name == "Player")
+            if (name == "Sequence Player")
             {
 
                 //Fix sseq.
@@ -3049,7 +3182,7 @@ namespace NitroStudio
             }
 
 
-            if (name == "Wave")
+            if (name == "Wave Archive")
             {
 
                 //Fix bank.
@@ -3076,7 +3209,7 @@ namespace NitroStudio
 
             }
 
-            if (name == "Player")
+            if (name == "Sequence Player")
             {
 
                 //Fix sseq.
@@ -3254,11 +3387,11 @@ namespace NitroStudio
                 {
                     sdat.symbFile.bankStrings[tree.SelectedNode.Index].name = newName;
                 }
-                if (tree.SelectedNode.Parent.Text == "Wave")
+                if (tree.SelectedNode.Parent.Text == "Wave Archive")
                 {
                     sdat.symbFile.waveStrings[tree.SelectedNode.Index].name = newName;
                 }
-                if (tree.SelectedNode.Parent.Text == "Player")
+                if (tree.SelectedNode.Parent.Text == "Sequence Player")
                 {
                     sdat.symbFile.playerStrings[tree.SelectedNode.Index].name = newName;
                 }
@@ -3318,7 +3451,7 @@ namespace NitroStudio
 
             }
 
-            if (name == "Wave")
+            if (name == "Wave Archive")
             {
 
                 //Decrement the wave entries.
@@ -3336,7 +3469,7 @@ namespace NitroStudio
 
             }
 
-            if (name == "Player")
+            if (name == "Sequence Player")
             {
 
                 //Decrement the player entries.
@@ -3458,7 +3591,7 @@ namespace NitroStudio
             }
 
 
-            if (name == "Wave")
+            if (name == "Wave Archive")
             {
 
                 //Add entry.
@@ -3474,7 +3607,7 @@ namespace NitroStudio
 
             }
 
-            if (name == "Player")
+            if (name == "Sequence Player")
             {
 
                 //Add entry.
@@ -4942,8 +5075,8 @@ namespace NitroStudio
 
 
 
+
         #endregion
 
-        
     }
 }
