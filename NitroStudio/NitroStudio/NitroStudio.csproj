@@ -89,6 +89,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AboutWindow.Designer.cs" />
+    <Compile Include="BankGenerator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BankGenerator.Designer.cs">
+      <DependentUpon>BankGenerator.cs</DependentUpon>
+    </Compile>
     <Compile Include="ByteViewerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     <EmbeddedResource Include="AboutWindow.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AboutWindow1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BankGenerator.resx">
+      <DependentUpon>BankGenerator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

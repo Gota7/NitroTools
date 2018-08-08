@@ -65,6 +65,8 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bankGeneratorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,29 +78,19 @@
             this.nodeSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.parentNodeSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.playerGroup = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.alloc11 = new System.Windows.Forms.CheckBox();
-            this.alloc10 = new System.Windows.Forms.CheckBox();
-            this.alloc9 = new System.Windows.Forms.CheckBox();
-            this.alloc14 = new System.Windows.Forms.CheckBox();
-            this.alloc13 = new System.Windows.Forms.CheckBox();
-            this.alloc15 = new System.Windows.Forms.CheckBox();
-            this.alloc12 = new System.Windows.Forms.CheckBox();
-            this.alloc8 = new System.Windows.Forms.CheckBox();
-            this.alloc7 = new System.Windows.Forms.CheckBox();
-            this.alloc6 = new System.Windows.Forms.CheckBox();
-            this.alloc5 = new System.Windows.Forms.CheckBox();
-            this.alloc4 = new System.Windows.Forms.CheckBox();
-            this.alloc3 = new System.Windows.Forms.CheckBox();
-            this.alloc2 = new System.Windows.Forms.CheckBox();
-            this.alloc1 = new System.Windows.Forms.CheckBox();
-            this.alloc0 = new System.Windows.Forms.CheckBox();
-            this.sequenceMaxLabel = new System.Windows.Forms.Label();
-            this.heapSizeBox = new System.Windows.Forms.NumericUpDown();
-            this.heapSizeLabel = new System.Windows.Forms.Label();
-            this.channelFlagLabel = new System.Windows.Forms.Label();
-            this.sequenceMaxBox = new System.Windows.Forms.NumericUpDown();
+            this.strmGroup = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.playerBoxMagic = new System.Windows.Forms.NumericUpDown();
+            this.playerLabelFrog = new System.Windows.Forms.Label();
+            this.priorityBoxBlack = new System.Windows.Forms.NumericUpDown();
+            this.volumeBoxMushrooms = new System.Windows.Forms.NumericUpDown();
+            this.priorityLabelPig = new System.Windows.Forms.Label();
+            this.volumeLabelFuckRocks = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.monoToStereoBox = new System.Windows.Forms.CheckBox();
+            this.swarPanel = new System.Windows.Forms.Panel();
+            this.loadIndividuallyBox = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupSubPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ssarBoxLoad = new System.Windows.Forms.CheckBox();
@@ -121,7 +113,6 @@
             this.placeHolderLayout = new System.Windows.Forms.TableLayoutPanel();
             this.placeholderBox = new System.Windows.Forms.CheckBox();
             this.togglePlaceholderButton = new System.Windows.Forms.Button();
-            this.strmGroup = new System.Windows.Forms.Panel();
             this.sseqGroup = new System.Windows.Forms.Panel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.gericomLabel = new System.Windows.Forms.Label();
@@ -151,6 +142,29 @@
             this.wave1Label = new System.Windows.Forms.Label();
             this.wave0Label = new System.Windows.Forms.Label();
             this.noSelectLabel = new System.Windows.Forms.Label();
+            this.playerGroup = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.alloc11 = new System.Windows.Forms.CheckBox();
+            this.alloc10 = new System.Windows.Forms.CheckBox();
+            this.alloc9 = new System.Windows.Forms.CheckBox();
+            this.alloc14 = new System.Windows.Forms.CheckBox();
+            this.alloc13 = new System.Windows.Forms.CheckBox();
+            this.alloc15 = new System.Windows.Forms.CheckBox();
+            this.alloc12 = new System.Windows.Forms.CheckBox();
+            this.alloc8 = new System.Windows.Forms.CheckBox();
+            this.alloc7 = new System.Windows.Forms.CheckBox();
+            this.alloc6 = new System.Windows.Forms.CheckBox();
+            this.alloc5 = new System.Windows.Forms.CheckBox();
+            this.alloc4 = new System.Windows.Forms.CheckBox();
+            this.alloc3 = new System.Windows.Forms.CheckBox();
+            this.alloc2 = new System.Windows.Forms.CheckBox();
+            this.alloc1 = new System.Windows.Forms.CheckBox();
+            this.alloc0 = new System.Windows.Forms.CheckBox();
+            this.sequenceMaxLabel = new System.Windows.Forms.Label();
+            this.heapSizeBox = new System.Windows.Forms.NumericUpDown();
+            this.heapSizeLabel = new System.Windows.Forms.Label();
+            this.channelFlagLabel = new System.Windows.Forms.Label();
+            this.sequenceMaxBox = new System.Windows.Forms.NumericUpDown();
             this.tree = new System.Windows.Forms.TreeView();
             this.nodeImages = new System.Windows.Forms.ImageList(this.components);
             this.filesMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -185,18 +199,6 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
-            this.volumeLabelFuckRocks = new System.Windows.Forms.Label();
-            this.priorityLabelPig = new System.Windows.Forms.Label();
-            this.volumeBoxMushrooms = new System.Windows.Forms.NumericUpDown();
-            this.priorityBoxBlack = new System.Windows.Forms.NumericUpDown();
-            this.playerLabelFrog = new System.Windows.Forms.Label();
-            this.playerBoxMagic = new System.Windows.Forms.NumericUpDown();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.monoToStereoBox = new System.Windows.Forms.CheckBox();
-            this.swarPanel = new System.Windows.Forms.Panel();
-            this.loadIndividuallyBox = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.bigFolderMenu.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -204,10 +206,12 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.playerGroup.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.heapSizeBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sequenceMaxBox)).BeginInit();
+            this.strmGroup.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).BeginInit();
+            this.swarPanel.SuspendLayout();
             this.groupSubPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.player2Group.SuspendLayout();
@@ -215,7 +219,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.channel0Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.channel1Box)).BeginInit();
             this.placeHolderLayout.SuspendLayout();
-            this.strmGroup.SuspendLayout();
             this.sseqGroup.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -224,17 +227,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.channelPrioritySseqBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSseqBox)).BeginInit();
             this.bankGroup.SuspendLayout();
+            this.playerGroup.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.heapSizeBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sequenceMaxBox)).BeginInit();
             this.filesMenu.SuspendLayout();
             this.foldersMenu.SuspendLayout();
             this.nodeMenu.SuspendLayout();
             this.entryMenu.SuspendLayout();
             this.bigNodeMenu.SuspendLayout();
             this.subNodeMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.swarPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // bigFolderMenu
@@ -267,6 +269,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -374,6 +377,22 @@
             this.importToolStripMenuItem.Text = "Import From Folder";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bankGeneratorToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // bankGeneratorToolStripMenuItem
+            // 
+            this.bankGeneratorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bankGeneratorToolStripMenuItem.Image")));
+            this.bankGeneratorToolStripMenuItem.Name = "bankGeneratorToolStripMenuItem";
+            this.bankGeneratorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bankGeneratorToolStripMenuItem.Text = "Bank Generator";
+            this.bankGeneratorToolStripMenuItem.Click += new System.EventHandler(this.bankGeneratorToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -388,7 +407,7 @@
             // 
             this.viewHelpToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("viewHelpToolStripMenuItem.Image")));
             this.viewHelpToolStripMenuItem.Name = "viewHelpToolStripMenuItem";
-            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.viewHelpToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewHelpToolStripMenuItem.Text = "View Help";
             this.viewHelpToolStripMenuItem.Click += new System.EventHandler(this.viewHelpToolStripMenuItem_Click);
             // 
@@ -483,313 +502,178 @@
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 2;
             // 
-            // playerGroup
+            // strmGroup
             // 
-            this.playerGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.strmGroup.Controls.Add(this.tableLayoutPanel1);
+            this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.strmGroup.Location = new System.Drawing.Point(0, 23);
+            this.strmGroup.Name = "strmGroup";
+            this.strmGroup.Size = new System.Drawing.Size(234, 396);
+            this.strmGroup.TabIndex = 15;
+            this.strmGroup.Visible = false;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.playerBoxMagic, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.playerLabelFrog, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.priorityBoxBlack, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.volumeBoxMushrooms, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.priorityLabelPig, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.volumeLabelFuckRocks, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.monoToStereoBox, 0, 9);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(234, 396);
+            this.tableLayoutPanel1.TabIndex = 6;
+            // 
+            // playerBoxMagic
+            // 
+            this.playerBoxMagic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerGroup.Controls.Add(this.tableLayoutPanel4);
-            this.playerGroup.Controls.Add(this.sequenceMaxLabel);
-            this.playerGroup.Controls.Add(this.heapSizeBox);
-            this.playerGroup.Controls.Add(this.heapSizeLabel);
-            this.playerGroup.Controls.Add(this.channelFlagLabel);
-            this.playerGroup.Controls.Add(this.sequenceMaxBox);
-            this.playerGroup.Location = new System.Drawing.Point(0, 0);
-            this.playerGroup.Name = "playerGroup";
-            this.playerGroup.Size = new System.Drawing.Size(235, 419);
-            this.playerGroup.TabIndex = 11;
-            this.playerGroup.Visible = false;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.ColumnCount = 4;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00063F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00063F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
-            this.tableLayoutPanel4.Controls.Add(this.alloc11, 3, 2);
-            this.tableLayoutPanel4.Controls.Add(this.alloc10, 2, 2);
-            this.tableLayoutPanel4.Controls.Add(this.alloc9, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.alloc14, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.alloc13, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.alloc15, 3, 3);
-            this.tableLayoutPanel4.Controls.Add(this.alloc12, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.alloc8, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.alloc7, 3, 1);
-            this.tableLayoutPanel4.Controls.Add(this.alloc6, 2, 1);
-            this.tableLayoutPanel4.Controls.Add(this.alloc5, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.alloc4, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.alloc3, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.alloc2, 2, 0);
-            this.tableLayoutPanel4.Controls.Add(this.alloc1, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.alloc0, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(6, 126);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 4;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00063F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(226, 94);
-            this.tableLayoutPanel4.TabIndex = 6;
-            // 
-            // alloc11
-            // 
-            this.alloc11.AutoSize = true;
-            this.alloc11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc11.Location = new System.Drawing.Point(171, 49);
-            this.alloc11.Name = "alloc11";
-            this.alloc11.Size = new System.Drawing.Size(52, 17);
-            this.alloc11.TabIndex = 15;
-            this.alloc11.Text = "11";
-            this.alloc11.UseVisualStyleBackColor = true;
-            this.alloc11.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc10
-            // 
-            this.alloc10.AutoSize = true;
-            this.alloc10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc10.Location = new System.Drawing.Point(115, 49);
-            this.alloc10.Name = "alloc10";
-            this.alloc10.Size = new System.Drawing.Size(50, 17);
-            this.alloc10.TabIndex = 14;
-            this.alloc10.Text = "10";
-            this.alloc10.UseVisualStyleBackColor = true;
-            this.alloc10.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc9
-            // 
-            this.alloc9.AutoSize = true;
-            this.alloc9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc9.Location = new System.Drawing.Point(59, 49);
-            this.alloc9.Name = "alloc9";
-            this.alloc9.Size = new System.Drawing.Size(50, 17);
-            this.alloc9.TabIndex = 13;
-            this.alloc9.Text = "9";
-            this.alloc9.UseVisualStyleBackColor = true;
-            this.alloc9.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc14
-            // 
-            this.alloc14.AutoSize = true;
-            this.alloc14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc14.Location = new System.Drawing.Point(115, 72);
-            this.alloc14.Name = "alloc14";
-            this.alloc14.Size = new System.Drawing.Size(50, 19);
-            this.alloc14.TabIndex = 12;
-            this.alloc14.Text = "14";
-            this.alloc14.UseVisualStyleBackColor = true;
-            this.alloc14.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc13
-            // 
-            this.alloc13.AutoSize = true;
-            this.alloc13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc13.Location = new System.Drawing.Point(59, 72);
-            this.alloc13.Name = "alloc13";
-            this.alloc13.Size = new System.Drawing.Size(50, 19);
-            this.alloc13.TabIndex = 11;
-            this.alloc13.Text = "13";
-            this.alloc13.UseVisualStyleBackColor = true;
-            this.alloc13.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc15
-            // 
-            this.alloc15.AutoSize = true;
-            this.alloc15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc15.Location = new System.Drawing.Point(171, 72);
-            this.alloc15.Name = "alloc15";
-            this.alloc15.Size = new System.Drawing.Size(52, 19);
-            this.alloc15.TabIndex = 10;
-            this.alloc15.Text = "15";
-            this.alloc15.UseVisualStyleBackColor = true;
-            this.alloc15.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc12
-            // 
-            this.alloc12.AutoSize = true;
-            this.alloc12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc12.Location = new System.Drawing.Point(3, 72);
-            this.alloc12.Name = "alloc12";
-            this.alloc12.Size = new System.Drawing.Size(50, 19);
-            this.alloc12.TabIndex = 9;
-            this.alloc12.Text = "12";
-            this.alloc12.UseVisualStyleBackColor = true;
-            this.alloc12.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc8
-            // 
-            this.alloc8.AutoSize = true;
-            this.alloc8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc8.Location = new System.Drawing.Point(3, 49);
-            this.alloc8.Name = "alloc8";
-            this.alloc8.Size = new System.Drawing.Size(50, 17);
-            this.alloc8.TabIndex = 8;
-            this.alloc8.Text = "8";
-            this.alloc8.UseVisualStyleBackColor = true;
-            this.alloc8.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc7
-            // 
-            this.alloc7.AutoSize = true;
-            this.alloc7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc7.Location = new System.Drawing.Point(171, 26);
-            this.alloc7.Name = "alloc7";
-            this.alloc7.Size = new System.Drawing.Size(52, 17);
-            this.alloc7.TabIndex = 7;
-            this.alloc7.Text = "7";
-            this.alloc7.UseVisualStyleBackColor = true;
-            this.alloc7.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc6
-            // 
-            this.alloc6.AutoSize = true;
-            this.alloc6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc6.Location = new System.Drawing.Point(115, 26);
-            this.alloc6.Name = "alloc6";
-            this.alloc6.Size = new System.Drawing.Size(50, 17);
-            this.alloc6.TabIndex = 6;
-            this.alloc6.Text = "6";
-            this.alloc6.UseVisualStyleBackColor = true;
-            this.alloc6.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc5
-            // 
-            this.alloc5.AutoSize = true;
-            this.alloc5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc5.Location = new System.Drawing.Point(59, 26);
-            this.alloc5.Name = "alloc5";
-            this.alloc5.Size = new System.Drawing.Size(50, 17);
-            this.alloc5.TabIndex = 5;
-            this.alloc5.Text = "5";
-            this.alloc5.UseVisualStyleBackColor = true;
-            this.alloc5.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc4
-            // 
-            this.alloc4.AutoSize = true;
-            this.alloc4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc4.Location = new System.Drawing.Point(3, 26);
-            this.alloc4.Name = "alloc4";
-            this.alloc4.Size = new System.Drawing.Size(50, 17);
-            this.alloc4.TabIndex = 4;
-            this.alloc4.Text = "4";
-            this.alloc4.UseVisualStyleBackColor = true;
-            this.alloc4.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc3
-            // 
-            this.alloc3.AutoSize = true;
-            this.alloc3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc3.Location = new System.Drawing.Point(171, 3);
-            this.alloc3.Name = "alloc3";
-            this.alloc3.Size = new System.Drawing.Size(52, 17);
-            this.alloc3.TabIndex = 3;
-            this.alloc3.Text = "3";
-            this.alloc3.UseVisualStyleBackColor = true;
-            this.alloc3.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc2
-            // 
-            this.alloc2.AutoSize = true;
-            this.alloc2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc2.Location = new System.Drawing.Point(115, 3);
-            this.alloc2.Name = "alloc2";
-            this.alloc2.Size = new System.Drawing.Size(50, 17);
-            this.alloc2.TabIndex = 2;
-            this.alloc2.Text = "2";
-            this.alloc2.UseVisualStyleBackColor = true;
-            this.alloc2.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc1
-            // 
-            this.alloc1.AutoSize = true;
-            this.alloc1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc1.Location = new System.Drawing.Point(59, 3);
-            this.alloc1.Name = "alloc1";
-            this.alloc1.Size = new System.Drawing.Size(50, 17);
-            this.alloc1.TabIndex = 1;
-            this.alloc1.Text = "1";
-            this.alloc1.UseVisualStyleBackColor = true;
-            this.alloc1.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // alloc0
-            // 
-            this.alloc0.AutoSize = true;
-            this.alloc0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.alloc0.Location = new System.Drawing.Point(3, 3);
-            this.alloc0.Name = "alloc0";
-            this.alloc0.Size = new System.Drawing.Size(50, 17);
-            this.alloc0.TabIndex = 0;
-            this.alloc0.Text = "0";
-            this.alloc0.UseVisualStyleBackColor = true;
-            this.alloc0.CheckedChanged += new System.EventHandler(this.onAllocChanged);
-            // 
-            // sequenceMaxLabel
-            // 
-            this.sequenceMaxLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sequenceMaxLabel.Location = new System.Drawing.Point(0, 1);
-            this.sequenceMaxLabel.Name = "sequenceMaxLabel";
-            this.sequenceMaxLabel.Size = new System.Drawing.Size(235, 23);
-            this.sequenceMaxLabel.TabIndex = 0;
-            this.sequenceMaxLabel.Text = "Sequence Max:";
-            this.sequenceMaxLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // heapSizeBox
-            // 
-            this.heapSizeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.heapSizeBox.Location = new System.Drawing.Point(5, 79);
-            this.heapSizeBox.Maximum = new decimal(new int[] {
-            -1,
+            this.playerBoxMagic.Location = new System.Drawing.Point(3, 168);
+            this.playerBoxMagic.Maximum = new decimal(new int[] {
+            255,
             0,
             0,
             0});
-            this.heapSizeBox.Name = "heapSizeBox";
-            this.heapSizeBox.Size = new System.Drawing.Size(227, 20);
-            this.heapSizeBox.TabIndex = 5;
-            this.heapSizeBox.ValueChanged += new System.EventHandler(this.onheapSizeChanged);
+            this.playerBoxMagic.Name = "playerBoxMagic";
+            this.playerBoxMagic.Size = new System.Drawing.Size(228, 20);
+            this.playerBoxMagic.TabIndex = 5;
             // 
-            // heapSizeLabel
+            // playerLabelFrog
             // 
-            this.heapSizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.playerLabelFrog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playerLabelFrog.Location = new System.Drawing.Point(3, 140);
+            this.playerLabelFrog.Name = "playerLabelFrog";
+            this.playerLabelFrog.Size = new System.Drawing.Size(228, 25);
+            this.playerLabelFrog.TabIndex = 4;
+            this.playerLabelFrog.Text = "Player:";
+            this.playerLabelFrog.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // priorityBoxBlack
+            // 
+            this.priorityBoxBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.heapSizeLabel.Location = new System.Drawing.Point(0, 53);
-            this.heapSizeLabel.Name = "heapSizeLabel";
-            this.heapSizeLabel.Size = new System.Drawing.Size(235, 23);
-            this.heapSizeLabel.TabIndex = 4;
-            this.heapSizeLabel.Text = "Heap Size (Bytes):";
-            this.heapSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // channelFlagLabel
-            // 
-            this.channelFlagLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.channelFlagLabel.Location = new System.Drawing.Point(1, 103);
-            this.channelFlagLabel.Name = "channelFlagLabel";
-            this.channelFlagLabel.Size = new System.Drawing.Size(235, 23);
-            this.channelFlagLabel.TabIndex = 2;
-            this.channelFlagLabel.Text = "Allocatable Channel Flags:";
-            this.channelFlagLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // sequenceMaxBox
-            // 
-            this.sequenceMaxBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sequenceMaxBox.Location = new System.Drawing.Point(5, 27);
-            this.sequenceMaxBox.Maximum = new decimal(new int[] {
-            65535,
+            this.priorityBoxBlack.Location = new System.Drawing.Point(3, 118);
+            this.priorityBoxBlack.Maximum = new decimal(new int[] {
+            255,
             0,
             0,
             0});
-            this.sequenceMaxBox.Name = "sequenceMaxBox";
-            this.sequenceMaxBox.Size = new System.Drawing.Size(227, 20);
-            this.sequenceMaxBox.TabIndex = 1;
-            this.sequenceMaxBox.ValueChanged += new System.EventHandler(this.onSequenceMaxChanged);
+            this.priorityBoxBlack.Name = "priorityBoxBlack";
+            this.priorityBoxBlack.Size = new System.Drawing.Size(228, 20);
+            this.priorityBoxBlack.TabIndex = 3;
+            // 
+            // volumeBoxMushrooms
+            // 
+            this.volumeBoxMushrooms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volumeBoxMushrooms.Location = new System.Drawing.Point(3, 68);
+            this.volumeBoxMushrooms.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.volumeBoxMushrooms.Name = "volumeBoxMushrooms";
+            this.volumeBoxMushrooms.Size = new System.Drawing.Size(228, 20);
+            this.volumeBoxMushrooms.TabIndex = 1;
+            // 
+            // priorityLabelPig
+            // 
+            this.priorityLabelPig.AutoSize = true;
+            this.priorityLabelPig.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.priorityLabelPig.Location = new System.Drawing.Point(3, 90);
+            this.priorityLabelPig.Name = "priorityLabelPig";
+            this.priorityLabelPig.Size = new System.Drawing.Size(228, 25);
+            this.priorityLabelPig.TabIndex = 2;
+            this.priorityLabelPig.Text = "Priority:";
+            this.priorityLabelPig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.priorityLabelPig.Click += new System.EventHandler(this.priorityLabelPig_Click);
+            // 
+            // volumeLabelFuckRocks
+            // 
+            this.volumeLabelFuckRocks.AutoSize = true;
+            this.volumeLabelFuckRocks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.volumeLabelFuckRocks.Location = new System.Drawing.Point(3, 40);
+            this.volumeLabelFuckRocks.Name = "volumeLabelFuckRocks";
+            this.volumeLabelFuckRocks.Size = new System.Drawing.Size(228, 25);
+            this.volumeLabelFuckRocks.TabIndex = 0;
+            this.volumeLabelFuckRocks.Text = "Volume:";
+            this.volumeLabelFuckRocks.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Location = new System.Drawing.Point(3, 190);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(228, 23);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Mono To Stereo:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // monoToStereoBox
+            // 
+            this.monoToStereoBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.monoToStereoBox.Location = new System.Drawing.Point(3, 218);
+            this.monoToStereoBox.Name = "monoToStereoBox";
+            this.monoToStereoBox.Size = new System.Drawing.Size(228, 17);
+            this.monoToStereoBox.TabIndex = 7;
+            this.monoToStereoBox.UseVisualStyleBackColor = true;
+            this.monoToStereoBox.CheckedChanged += new System.EventHandler(this.monoToStereoBox_CheckedChanged);
+            // 
+            // swarPanel
+            // 
+            this.swarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.swarPanel.Controls.Add(this.loadIndividuallyBox);
+            this.swarPanel.Controls.Add(this.label3);
+            this.swarPanel.Location = new System.Drawing.Point(-1, 49);
+            this.swarPanel.Name = "swarPanel";
+            this.swarPanel.Size = new System.Drawing.Size(236, 357);
+            this.swarPanel.TabIndex = 18;
+            this.swarPanel.Visible = false;
+            // 
+            // loadIndividuallyBox
+            // 
+            this.loadIndividuallyBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.loadIndividuallyBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.loadIndividuallyBox.Location = new System.Drawing.Point(1, 20);
+            this.loadIndividuallyBox.Name = "loadIndividuallyBox";
+            this.loadIndividuallyBox.Size = new System.Drawing.Size(234, 24);
+            this.loadIndividuallyBox.TabIndex = 1;
+            this.loadIndividuallyBox.UseVisualStyleBackColor = true;
+            this.loadIndividuallyBox.CheckedChanged += new System.EventHandler(this.loadIndividuallyBox_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Location = new System.Drawing.Point(1, 1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(233, 16);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Load Individually:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // groupSubPanel
             // 
@@ -1091,16 +975,6 @@
             this.togglePlaceholderButton.Text = "Toggle Placeholder";
             this.togglePlaceholderButton.UseVisualStyleBackColor = true;
             this.togglePlaceholderButton.Click += new System.EventHandler(this.togglePlaceholderButton_Click);
-            // 
-            // strmGroup
-            // 
-            this.strmGroup.Controls.Add(this.tableLayoutPanel1);
-            this.strmGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.strmGroup.Location = new System.Drawing.Point(0, 23);
-            this.strmGroup.Name = "strmGroup";
-            this.strmGroup.Size = new System.Drawing.Size(234, 396);
-            this.strmGroup.TabIndex = 15;
-            this.strmGroup.Visible = false;
             // 
             // sseqGroup
             // 
@@ -1472,6 +1346,314 @@
             this.noSelectLabel.TabIndex = 0;
             this.noSelectLabel.Text = "No Valid Info Selected!";
             this.noSelectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // playerGroup
+            // 
+            this.playerGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.playerGroup.Controls.Add(this.tableLayoutPanel4);
+            this.playerGroup.Controls.Add(this.sequenceMaxLabel);
+            this.playerGroup.Controls.Add(this.heapSizeBox);
+            this.playerGroup.Controls.Add(this.heapSizeLabel);
+            this.playerGroup.Controls.Add(this.channelFlagLabel);
+            this.playerGroup.Controls.Add(this.sequenceMaxBox);
+            this.playerGroup.Location = new System.Drawing.Point(0, 0);
+            this.playerGroup.Name = "playerGroup";
+            this.playerGroup.Size = new System.Drawing.Size(235, 419);
+            this.playerGroup.TabIndex = 11;
+            this.playerGroup.Visible = false;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel4.ColumnCount = 4;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00063F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.00063F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
+            this.tableLayoutPanel4.Controls.Add(this.alloc11, 3, 2);
+            this.tableLayoutPanel4.Controls.Add(this.alloc10, 2, 2);
+            this.tableLayoutPanel4.Controls.Add(this.alloc9, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.alloc14, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.alloc13, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.alloc15, 3, 3);
+            this.tableLayoutPanel4.Controls.Add(this.alloc12, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.alloc8, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.alloc7, 3, 1);
+            this.tableLayoutPanel4.Controls.Add(this.alloc6, 2, 1);
+            this.tableLayoutPanel4.Controls.Add(this.alloc5, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.alloc4, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.alloc3, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.alloc2, 2, 0);
+            this.tableLayoutPanel4.Controls.Add(this.alloc1, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.alloc0, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(6, 126);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 4;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00063F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00062F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(226, 94);
+            this.tableLayoutPanel4.TabIndex = 6;
+            // 
+            // alloc11
+            // 
+            this.alloc11.AutoSize = true;
+            this.alloc11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc11.Location = new System.Drawing.Point(171, 49);
+            this.alloc11.Name = "alloc11";
+            this.alloc11.Size = new System.Drawing.Size(52, 17);
+            this.alloc11.TabIndex = 15;
+            this.alloc11.Text = "11";
+            this.alloc11.UseVisualStyleBackColor = true;
+            this.alloc11.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc10
+            // 
+            this.alloc10.AutoSize = true;
+            this.alloc10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc10.Location = new System.Drawing.Point(115, 49);
+            this.alloc10.Name = "alloc10";
+            this.alloc10.Size = new System.Drawing.Size(50, 17);
+            this.alloc10.TabIndex = 14;
+            this.alloc10.Text = "10";
+            this.alloc10.UseVisualStyleBackColor = true;
+            this.alloc10.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc9
+            // 
+            this.alloc9.AutoSize = true;
+            this.alloc9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc9.Location = new System.Drawing.Point(59, 49);
+            this.alloc9.Name = "alloc9";
+            this.alloc9.Size = new System.Drawing.Size(50, 17);
+            this.alloc9.TabIndex = 13;
+            this.alloc9.Text = "9";
+            this.alloc9.UseVisualStyleBackColor = true;
+            this.alloc9.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc14
+            // 
+            this.alloc14.AutoSize = true;
+            this.alloc14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc14.Location = new System.Drawing.Point(115, 72);
+            this.alloc14.Name = "alloc14";
+            this.alloc14.Size = new System.Drawing.Size(50, 19);
+            this.alloc14.TabIndex = 12;
+            this.alloc14.Text = "14";
+            this.alloc14.UseVisualStyleBackColor = true;
+            this.alloc14.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc13
+            // 
+            this.alloc13.AutoSize = true;
+            this.alloc13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc13.Location = new System.Drawing.Point(59, 72);
+            this.alloc13.Name = "alloc13";
+            this.alloc13.Size = new System.Drawing.Size(50, 19);
+            this.alloc13.TabIndex = 11;
+            this.alloc13.Text = "13";
+            this.alloc13.UseVisualStyleBackColor = true;
+            this.alloc13.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc15
+            // 
+            this.alloc15.AutoSize = true;
+            this.alloc15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc15.Location = new System.Drawing.Point(171, 72);
+            this.alloc15.Name = "alloc15";
+            this.alloc15.Size = new System.Drawing.Size(52, 19);
+            this.alloc15.TabIndex = 10;
+            this.alloc15.Text = "15";
+            this.alloc15.UseVisualStyleBackColor = true;
+            this.alloc15.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc12
+            // 
+            this.alloc12.AutoSize = true;
+            this.alloc12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc12.Location = new System.Drawing.Point(3, 72);
+            this.alloc12.Name = "alloc12";
+            this.alloc12.Size = new System.Drawing.Size(50, 19);
+            this.alloc12.TabIndex = 9;
+            this.alloc12.Text = "12";
+            this.alloc12.UseVisualStyleBackColor = true;
+            this.alloc12.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc8
+            // 
+            this.alloc8.AutoSize = true;
+            this.alloc8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc8.Location = new System.Drawing.Point(3, 49);
+            this.alloc8.Name = "alloc8";
+            this.alloc8.Size = new System.Drawing.Size(50, 17);
+            this.alloc8.TabIndex = 8;
+            this.alloc8.Text = "8";
+            this.alloc8.UseVisualStyleBackColor = true;
+            this.alloc8.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc7
+            // 
+            this.alloc7.AutoSize = true;
+            this.alloc7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc7.Location = new System.Drawing.Point(171, 26);
+            this.alloc7.Name = "alloc7";
+            this.alloc7.Size = new System.Drawing.Size(52, 17);
+            this.alloc7.TabIndex = 7;
+            this.alloc7.Text = "7";
+            this.alloc7.UseVisualStyleBackColor = true;
+            this.alloc7.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc6
+            // 
+            this.alloc6.AutoSize = true;
+            this.alloc6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc6.Location = new System.Drawing.Point(115, 26);
+            this.alloc6.Name = "alloc6";
+            this.alloc6.Size = new System.Drawing.Size(50, 17);
+            this.alloc6.TabIndex = 6;
+            this.alloc6.Text = "6";
+            this.alloc6.UseVisualStyleBackColor = true;
+            this.alloc6.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc5
+            // 
+            this.alloc5.AutoSize = true;
+            this.alloc5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc5.Location = new System.Drawing.Point(59, 26);
+            this.alloc5.Name = "alloc5";
+            this.alloc5.Size = new System.Drawing.Size(50, 17);
+            this.alloc5.TabIndex = 5;
+            this.alloc5.Text = "5";
+            this.alloc5.UseVisualStyleBackColor = true;
+            this.alloc5.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc4
+            // 
+            this.alloc4.AutoSize = true;
+            this.alloc4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc4.Location = new System.Drawing.Point(3, 26);
+            this.alloc4.Name = "alloc4";
+            this.alloc4.Size = new System.Drawing.Size(50, 17);
+            this.alloc4.TabIndex = 4;
+            this.alloc4.Text = "4";
+            this.alloc4.UseVisualStyleBackColor = true;
+            this.alloc4.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc3
+            // 
+            this.alloc3.AutoSize = true;
+            this.alloc3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc3.Location = new System.Drawing.Point(171, 3);
+            this.alloc3.Name = "alloc3";
+            this.alloc3.Size = new System.Drawing.Size(52, 17);
+            this.alloc3.TabIndex = 3;
+            this.alloc3.Text = "3";
+            this.alloc3.UseVisualStyleBackColor = true;
+            this.alloc3.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc2
+            // 
+            this.alloc2.AutoSize = true;
+            this.alloc2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc2.Location = new System.Drawing.Point(115, 3);
+            this.alloc2.Name = "alloc2";
+            this.alloc2.Size = new System.Drawing.Size(50, 17);
+            this.alloc2.TabIndex = 2;
+            this.alloc2.Text = "2";
+            this.alloc2.UseVisualStyleBackColor = true;
+            this.alloc2.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc1
+            // 
+            this.alloc1.AutoSize = true;
+            this.alloc1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc1.Location = new System.Drawing.Point(59, 3);
+            this.alloc1.Name = "alloc1";
+            this.alloc1.Size = new System.Drawing.Size(50, 17);
+            this.alloc1.TabIndex = 1;
+            this.alloc1.Text = "1";
+            this.alloc1.UseVisualStyleBackColor = true;
+            this.alloc1.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // alloc0
+            // 
+            this.alloc0.AutoSize = true;
+            this.alloc0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.alloc0.Location = new System.Drawing.Point(3, 3);
+            this.alloc0.Name = "alloc0";
+            this.alloc0.Size = new System.Drawing.Size(50, 17);
+            this.alloc0.TabIndex = 0;
+            this.alloc0.Text = "0";
+            this.alloc0.UseVisualStyleBackColor = true;
+            this.alloc0.CheckedChanged += new System.EventHandler(this.onAllocChanged);
+            // 
+            // sequenceMaxLabel
+            // 
+            this.sequenceMaxLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sequenceMaxLabel.Location = new System.Drawing.Point(0, 1);
+            this.sequenceMaxLabel.Name = "sequenceMaxLabel";
+            this.sequenceMaxLabel.Size = new System.Drawing.Size(235, 23);
+            this.sequenceMaxLabel.TabIndex = 0;
+            this.sequenceMaxLabel.Text = "Sequence Max:";
+            this.sequenceMaxLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // heapSizeBox
+            // 
+            this.heapSizeBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.heapSizeBox.Location = new System.Drawing.Point(5, 79);
+            this.heapSizeBox.Maximum = new decimal(new int[] {
+            -1,
+            0,
+            0,
+            0});
+            this.heapSizeBox.Name = "heapSizeBox";
+            this.heapSizeBox.Size = new System.Drawing.Size(227, 20);
+            this.heapSizeBox.TabIndex = 5;
+            this.heapSizeBox.ValueChanged += new System.EventHandler(this.onheapSizeChanged);
+            // 
+            // heapSizeLabel
+            // 
+            this.heapSizeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.heapSizeLabel.Location = new System.Drawing.Point(0, 53);
+            this.heapSizeLabel.Name = "heapSizeLabel";
+            this.heapSizeLabel.Size = new System.Drawing.Size(235, 23);
+            this.heapSizeLabel.TabIndex = 4;
+            this.heapSizeLabel.Text = "Heap Size (Bytes):";
+            this.heapSizeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // channelFlagLabel
+            // 
+            this.channelFlagLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.channelFlagLabel.Location = new System.Drawing.Point(1, 103);
+            this.channelFlagLabel.Name = "channelFlagLabel";
+            this.channelFlagLabel.Size = new System.Drawing.Size(235, 23);
+            this.channelFlagLabel.TabIndex = 2;
+            this.channelFlagLabel.Text = "Allocatable Channel Flags:";
+            this.channelFlagLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // sequenceMaxBox
+            // 
+            this.sequenceMaxBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sequenceMaxBox.Location = new System.Drawing.Point(5, 27);
+            this.sequenceMaxBox.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.sequenceMaxBox.Name = "sequenceMaxBox";
+            this.sequenceMaxBox.Size = new System.Drawing.Size(227, 20);
+            this.sequenceMaxBox.TabIndex = 1;
+            this.sequenceMaxBox.ValueChanged += new System.EventHandler(this.onSequenceMaxChanged);
             // 
             // tree
             // 
@@ -1850,169 +2032,6 @@
             this.toolStripMenuItem12.Text = "Delete";
             this.toolStripMenuItem12.Click += new System.EventHandler(this.toolStripMenuItem12_Click);
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(3, 190);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(228, 23);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Mono To Stereo:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // volumeLabelFuckRocks
-            // 
-            this.volumeLabelFuckRocks.AutoSize = true;
-            this.volumeLabelFuckRocks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.volumeLabelFuckRocks.Location = new System.Drawing.Point(3, 40);
-            this.volumeLabelFuckRocks.Name = "volumeLabelFuckRocks";
-            this.volumeLabelFuckRocks.Size = new System.Drawing.Size(228, 25);
-            this.volumeLabelFuckRocks.TabIndex = 0;
-            this.volumeLabelFuckRocks.Text = "Volume:";
-            this.volumeLabelFuckRocks.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // priorityLabelPig
-            // 
-            this.priorityLabelPig.AutoSize = true;
-            this.priorityLabelPig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.priorityLabelPig.Location = new System.Drawing.Point(3, 90);
-            this.priorityLabelPig.Name = "priorityLabelPig";
-            this.priorityLabelPig.Size = new System.Drawing.Size(228, 25);
-            this.priorityLabelPig.TabIndex = 2;
-            this.priorityLabelPig.Text = "Priority:";
-            this.priorityLabelPig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.priorityLabelPig.Click += new System.EventHandler(this.priorityLabelPig_Click);
-            // 
-            // volumeBoxMushrooms
-            // 
-            this.volumeBoxMushrooms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.volumeBoxMushrooms.Location = new System.Drawing.Point(3, 68);
-            this.volumeBoxMushrooms.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.volumeBoxMushrooms.Name = "volumeBoxMushrooms";
-            this.volumeBoxMushrooms.Size = new System.Drawing.Size(228, 20);
-            this.volumeBoxMushrooms.TabIndex = 1;
-            // 
-            // priorityBoxBlack
-            // 
-            this.priorityBoxBlack.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.priorityBoxBlack.Location = new System.Drawing.Point(3, 118);
-            this.priorityBoxBlack.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.priorityBoxBlack.Name = "priorityBoxBlack";
-            this.priorityBoxBlack.Size = new System.Drawing.Size(228, 20);
-            this.priorityBoxBlack.TabIndex = 3;
-            // 
-            // playerLabelFrog
-            // 
-            this.playerLabelFrog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playerLabelFrog.Location = new System.Drawing.Point(3, 140);
-            this.playerLabelFrog.Name = "playerLabelFrog";
-            this.playerLabelFrog.Size = new System.Drawing.Size(228, 25);
-            this.playerLabelFrog.TabIndex = 4;
-            this.playerLabelFrog.Text = "Player:";
-            this.playerLabelFrog.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // playerBoxMagic
-            // 
-            this.playerBoxMagic.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.playerBoxMagic.Location = new System.Drawing.Point(3, 168);
-            this.playerBoxMagic.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.playerBoxMagic.Name = "playerBoxMagic";
-            this.playerBoxMagic.Size = new System.Drawing.Size(228, 20);
-            this.playerBoxMagic.TabIndex = 5;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.playerBoxMagic, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.playerLabelFrog, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.priorityBoxBlack, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.volumeBoxMushrooms, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.priorityLabelPig, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.volumeLabelFuckRocks, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.monoToStereoBox, 0, 9);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(234, 396);
-            this.tableLayoutPanel1.TabIndex = 6;
-            // 
-            // monoToStereoBox
-            // 
-            this.monoToStereoBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.monoToStereoBox.Location = new System.Drawing.Point(3, 218);
-            this.monoToStereoBox.Name = "monoToStereoBox";
-            this.monoToStereoBox.Size = new System.Drawing.Size(228, 17);
-            this.monoToStereoBox.TabIndex = 7;
-            this.monoToStereoBox.UseVisualStyleBackColor = true;
-            this.monoToStereoBox.CheckedChanged += new System.EventHandler(this.monoToStereoBox_CheckedChanged);
-            // 
-            // swarPanel
-            // 
-            this.swarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.swarPanel.Controls.Add(this.loadIndividuallyBox);
-            this.swarPanel.Controls.Add(this.label3);
-            this.swarPanel.Location = new System.Drawing.Point(-1, 49);
-            this.swarPanel.Name = "swarPanel";
-            this.swarPanel.Size = new System.Drawing.Size(236, 357);
-            this.swarPanel.TabIndex = 18;
-            this.swarPanel.Visible = false;
-            // 
-            // loadIndividuallyBox
-            // 
-            this.loadIndividuallyBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.loadIndividuallyBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.loadIndividuallyBox.Location = new System.Drawing.Point(1, 20);
-            this.loadIndividuallyBox.Name = "loadIndividuallyBox";
-            this.loadIndividuallyBox.Size = new System.Drawing.Size(234, 24);
-            this.loadIndividuallyBox.TabIndex = 1;
-            this.loadIndividuallyBox.UseVisualStyleBackColor = true;
-            this.loadIndividuallyBox.CheckedChanged += new System.EventHandler(this.loadIndividuallyBox_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(1, 1);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(233, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Load Individually:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2037,11 +2056,13 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.playerGroup.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.heapSizeBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sequenceMaxBox)).EndInit();
+            this.strmGroup.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).EndInit();
+            this.swarPanel.ResumeLayout(false);
             this.groupSubPanel.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.player2Group.ResumeLayout(false);
@@ -2049,7 +2070,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.channel0Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.channel1Box)).EndInit();
             this.placeHolderLayout.ResumeLayout(false);
-            this.strmGroup.ResumeLayout(false);
             this.sseqGroup.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -2058,18 +2078,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.channelPrioritySseqBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.volumeSseqBox)).EndInit();
             this.bankGroup.ResumeLayout(false);
+            this.playerGroup.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.heapSizeBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sequenceMaxBox)).EndInit();
             this.filesMenu.ResumeLayout(false);
             this.foldersMenu.ResumeLayout(false);
             this.nodeMenu.ResumeLayout(false);
             this.entryMenu.ResumeLayout(false);
             this.bigNodeMenu.ResumeLayout(false);
             this.subNodeMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.volumeBoxMushrooms)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priorityBoxBlack)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerBoxMagic)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.swarPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2223,6 +2242,8 @@
         private System.Windows.Forms.Panel swarPanel;
         private System.Windows.Forms.CheckBox loadIndividuallyBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bankGeneratorToolStripMenuItem;
     }
 }
 

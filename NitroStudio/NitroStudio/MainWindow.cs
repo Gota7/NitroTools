@@ -667,6 +667,38 @@ namespace NitroStudio
 
             doInfoPanelStuff();
 
+            //See if file is selected, if so, show byte length.
+            if (tree.SelectedNode != null)
+            {
+
+                if (tree.SelectedNode.Parent != null)
+                {
+
+                    if (tree.SelectedNode.Parent.Parent != null)
+                    {
+
+                        if (tree.SelectedNode.Parent.Parent.Index == 8)
+                        {
+
+                            if (tree.SelectedNode.Parent.Index == 0) { byteSelect.Text = sdat.files.sseqFiles[tree.SelectedNode.Index].Length + " bytes."; }
+                            else if (tree.SelectedNode.Parent.Index == 1) { byteSelect.Text = sdat.files.seqArcFiles[tree.SelectedNode.Index].Length + " bytes."; }
+                            else if (tree.SelectedNode.Parent.Index == 2) { byteSelect.Text = sdat.files.bankFiles[tree.SelectedNode.Index].Length + " bytes."; }
+                            else if (tree.SelectedNode.Parent.Index == 3) { byteSelect.Text = sdat.files.waveFiles[tree.SelectedNode.Index].Length + " bytes."; }
+                            else if (tree.SelectedNode.Parent.Index == 4) { byteSelect.Text = sdat.files.strmFiles[tree.SelectedNode.Index].Length + " bytes."; }
+                            else { byteSelect.Text = "No bytes selected!"; }
+
+                        }
+                        else { byteSelect.Text = "No bytes selected!"; }
+
+                    }
+                    else { byteSelect.Text = "No bytes selected!"; }
+
+                }
+                else { byteSelect.Text = "No bytes selected!"; }
+
+            }
+            else { byteSelect.Text = "No bytes selected!"; }
+
         }
 
         #endregion
@@ -2957,10 +2989,10 @@ namespace NitroStudio
                 BankData i = new BankData();
                 i.fileId = 0;
                 i.isPlaceHolder = false;
-                i.wave0 = 0;
-                i.wave1 = 0;
-                i.wave2 = 0;
-                i.wave3 = 0;
+                i.wave0 = 0xFFFF;
+                i.wave1 = 0xFFFF;
+                i.wave2 = 0xFFFF;
+                i.wave3 = 0xFFFF;
                 sdat.infoFile.bankData.Insert(index, i);
 
             }
@@ -3173,10 +3205,10 @@ namespace NitroStudio
                 BankData i = new BankData();
                 i.fileId = 0;
                 i.isPlaceHolder = false;
-                i.wave0 = 0;
-                i.wave1 = 0;
-                i.wave2 = 0;
-                i.wave3 = 0;
+                i.wave0 = 0xFFFF;
+                i.wave1 = 0xFFFF;
+                i.wave2 = 0xFFFF;
+                i.wave3 = 0xFFFF;
                 sdat.infoFile.bankData.Insert(index, i);
 
             }
@@ -3582,10 +3614,10 @@ namespace NitroStudio
                 BankData i = new BankData();
                 i.fileId = 0;
                 i.isPlaceHolder = false;
-                i.wave0 = 0;
-                i.wave1 = 0;
-                i.wave2 = 0;
-                i.wave3 = 0;
+                i.wave0 = 0xFFFF;
+                i.wave1 = 0xFFFF;
+                i.wave2 = 0xFFFF;
+                i.wave3 = 0xFFFF;
                 sdat.infoFile.bankData.Add(i);
 
             }
@@ -5077,6 +5109,20 @@ namespace NitroStudio
 
 
         #endregion
+
+
+        
+        //Bank generator.
+        private void bankGeneratorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (fileOpen)
+            {
+                sdat.fixOffsets();
+                BankGenerator bg = new BankGenerator(this);
+                bg.Show();
+            }
+        }
+
 
     }
 }

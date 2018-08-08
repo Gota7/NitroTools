@@ -80,3 +80,43 @@ C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroStudio\
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csproj.CopyComplete
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroStudio\NitroStudio\obj\Debug\NitroStudio.exe
 C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroStudio\NitroStudio\obj\Debug\NitroStudio.pdb
+C:\Users\samsp\Documents\Visual Studio 2017\Projects\GIT\NitroTools\NitroStudio\NitroStudio\obj\Debug\NitroStudio.BankGenerator.resources
+E:\NitroStudio\NitroStudio\bin\Debug\Data\Tools\libstdc++-6.dll
+E:\NitroStudio\NitroStudio\bin\Debug\Data\Tools\midi2sseq.exe
+E:\NitroStudio\NitroStudio\bin\Debug\Data\Tools\sseq2midi.exe
+E:\NitroStudio\NitroStudio\bin\Debug\NitroStudio.exe.config
+E:\NitroStudio\NitroStudio\bin\Debug\NitroStudio.exe
+E:\NitroStudio\NitroStudio\bin\Debug\NitroStudio.pdb
+E:\NitroStudio\NitroStudio\bin\Debug\aa\NitroStudio.resources.dll
+E:\NitroStudio\NitroStudio\bin\Debug\InfoStructures.dll
+E:\NitroStudio\NitroStudio\bin\Debug\InfoTools.dll
+E:\NitroStudio\NitroStudio\bin\Debug\LibEndianBinaryIO.dll
+E:\NitroStudio\NitroStudio\bin\Debug\LibMKToolbox.dll
+E:\NitroStudio\NitroStudio\bin\Debug\LibNitro.dll
+E:\NitroStudio\NitroStudio\bin\Debug\NAudio.dll
+E:\NitroStudio\NitroStudio\bin\Debug\Syroot.BinaryData.dll
+E:\NitroStudio\NitroStudio\bin\Debug\Tao.DevIl.dll
+E:\NitroStudio\NitroStudio\bin\Debug\Interop.WMPLib.dll
+E:\NitroStudio\NitroStudio\bin\Debug\AxInterop.WMPLib.dll
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csprojAssemblyReference.cache
+E:\NitroStudio\NitroStudio\obj\Debug\Interop.WMPLib.dll
+E:\NitroStudio\NitroStudio\obj\Debug\AxInterop.WMPLib.dll
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csproj.ResolveComReference.cache
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.AboutWindow.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.BankGenerator.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.MainWindow.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.NumberSelectionDialog.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.Properties.Resources.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.SaveCloseDialog.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.SaveQuitDialog.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.SbnkEditor.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.SsarEditor.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.StrmPlayer.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.SwarEditor.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.AboutWindow.aa.resources
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csproj.GenerateResource.cache
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csproj.CoreCompileInputs.cache
+E:\NitroStudio\NitroStudio\obj\Debug\aa\NitroStudio.resources.dll
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.csproj.CopyComplete
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.exe
+E:\NitroStudio\NitroStudio\obj\Debug\NitroStudio.pdb
