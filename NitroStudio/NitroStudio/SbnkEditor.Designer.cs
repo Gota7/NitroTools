@@ -131,6 +131,8 @@
             this.tree = new System.Windows.Forms.TreeView();
             this.icons = new System.Windows.Forms.ImageList(this.components);
             this.intrumentPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.volume = new System.Windows.Forms.TrackBar();
             this.stopButton = new System.Windows.Forms.Button();
             this.originalButton = new System.Windows.Forms.Button();
             this.soundPlayerLabel = new System.Windows.Forms.Label();
@@ -165,8 +167,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.nodeSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.nodeParent = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.volume = new System.Windows.Forms.TrackBar();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -174,7 +174,6 @@
             this.splitContainer1.SuspendLayout();
             this.universalPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onClose);
             ((System.ComponentModel.ISupportInitialize)(this.panBoxUniversal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noteNumberBoxUniversal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.releaseRateBoxUniversal)).BeginInit();
@@ -227,13 +226,13 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.intrumentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volume)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.noInstrumentPanel.SuspendLayout();
             this.bigMenu.SuspendLayout();
             this.blockMenu.SuspendLayout();
             this.recordMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volume)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
@@ -1561,6 +1560,29 @@
             this.intrumentPanel.TabIndex = 2;
             this.intrumentPanel.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(6, 236);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(156, 19);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Volume:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // volume
+            // 
+            this.volume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.volume.Location = new System.Drawing.Point(3, 258);
+            this.volume.Maximum = 100;
+            this.volume.Name = "volume";
+            this.volume.Size = new System.Drawing.Size(159, 45);
+            this.volume.TabIndex = 22;
+            this.volume.TickFrequency = 10;
+            this.volume.Value = 50;
+            // 
             // stopButton
             // 
             this.stopButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -1890,29 +1912,6 @@
             this.nodeParent.Size = new System.Drawing.Size(118, 17);
             this.nodeParent.Text = "Node\'s parent is null!";
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(6, 236);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 19);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Volume:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // volume
-            // 
-            this.volume.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.volume.Location = new System.Drawing.Point(3, 258);
-            this.volume.Maximum = 100;
-            this.volume.Name = "volume";
-            this.volume.Size = new System.Drawing.Size(159, 45);
-            this.volume.TabIndex = 22;
-            this.volume.TickFrequency = 10;
-            this.volume.Value = 50;
-            // 
             // SbnkEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1925,6 +1924,7 @@
             this.Name = "SbnkEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Bank Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onClose);
             this.Load += new System.EventHandler(this.SbnkEditor_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -1990,6 +1990,7 @@
             this.splitContainer2.ResumeLayout(false);
             this.intrumentPanel.ResumeLayout(false);
             this.intrumentPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.volume)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.noInstrumentPanel.ResumeLayout(false);
             this.bigMenu.ResumeLayout(false);
@@ -1997,7 +1998,6 @@
             this.recordMenu.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.volume)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

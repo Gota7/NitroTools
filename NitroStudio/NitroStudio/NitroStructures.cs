@@ -2404,8 +2404,67 @@ namespace NitroFileLoader
 			infoD.load (info);
 			infoFile = infoD;
 
-			//Get symb file.
-			br.Position = (int)symbOffset;
+            //Get FAT.
+            br.Position = (int)fatOffset;
+            fat.magic = br.ReadChars(4);
+            fat.size = br.ReadUInt32();
+            fat.nCount = br.ReadUInt32();
+
+            //Get records.
+            fat.records = new List<fatRecords>();
+            for (int i = 0; i < (int)fat.nCount; i++)
+            {
+
+                fatRecords f = new fatRecords();
+                f.offset = br.ReadUInt32();
+                f.nSize = br.ReadUInt32();
+                f.reserved = br.ReadUInt32s(2);
+                fat.records.Add(f);
+
+            }
+
+            //Get files.
+            br.Position = (int)filesOffset;
+            files.magic = br.ReadChars(4);
+            files.nSize = br.ReadUInt32();
+            files.nCount = br.ReadUInt32();
+            files.reserved = br.ReadUInt32();
+
+            files.files = new List<byte[]>();
+            files.sseqFiles = new List<byte[]>();
+            files.seqArcFiles = new List<byte[]>();
+            files.bankFiles = new List<byte[]>();
+            files.waveFiles = new List<byte[]>();
+            files.strmFiles = new List<byte[]>();
+            foreach (fatRecords f in fat.records)
+            {
+
+                br.Position = f.offset;
+                files.files.Add(br.ReadBytes((int)f.nSize));
+
+            }
+
+            //Now sort the files.
+            foreach (byte[] f in files.files)
+            {
+
+                //Make new reader.
+                MemoryStream src2 = new MemoryStream(f);
+                BinaryDataReader br2 = new BinaryDataReader(src2);
+
+                //See what file it is.
+                UInt32 magic2 = br2.ReadUInt32();
+
+                if (magic2 == (UInt32)0x51455353) { files.sseqFiles.Add(f); }
+                if (magic2 == (UInt32)0x52415353) { files.seqArcFiles.Add(f); }
+                if (magic2 == (UInt32)0x4b4e4253) { files.bankFiles.Add(f); }
+                if (magic2 == (UInt32)0x52415753) { files.waveFiles.Add(f); }
+                if (magic2 == (UInt32)0x4d525453) { files.strmFiles.Add(f); }
+
+            }
+
+            //Get symb file.
+            br.Position = (int)symbOffset;
 			if (symbOffset != (UInt32)0) {
 				NitroStructures.symbFile symb = NitroFileLoader.loadSymbFile (br.ReadBytes ((int)symbSize));
 				symbData symbD = new symbData ();
@@ -2416,131 +2475,96 @@ namespace NitroFileLoader
 				//Make new file if blank.
 				symbFile = new symbData();
 				symbFile.sseqStrings = new List<symbStringName> ();
+                int count = 0;
 				foreach (SseqData s in infoFile.sseqData) {
 					symbStringName t = new symbStringName ();
-					t.name = "NO_NAME";
+					t.name = "SEQ_NO_NAME" + count.ToString("D4");
 					t.isPlaceHolder = s.isPlaceHolder;
 					symbFile.sseqStrings.Add (t);
+                    count++;
 				}
 				symbFile.seqArcStrings = new List<symbStringName> ();
 				symbFile.seqArcSubStrings = new List<List<symbStringName>> ();
+                count = 0;
 				foreach (SeqArcData s in infoFile.seqArcData) {
 					symbStringName t = new symbStringName ();
-					t.name = "NO_NAME";
+					t.name = "SEQARC_NO_NAME" + count.ToString("D4");
 					t.isPlaceHolder = s.isPlaceHolder;
                     symbFile.seqArcStrings.Add (t);
 
 					//Seq Arc subs.
 					List<symbStringName> p = new List<symbStringName> ();
-					symbStringName q = new symbStringName ();
-					q.name = "UNKNOWN_FILES";
-					q.isPlaceHolder = false;
-					p.Add (q);
+
+                    ssarFile f = new ssarFile();
+                    f.load(files.files[(int)infoFile.seqArcData[count].fileId]);
+                    for (int i = 0; i < f.data[0].records.Length; i++) {
+
+                        symbStringName q = new symbStringName();
+                        q.name = "SUBSEQ_NO_NAME" + i.ToString("D4");
+                        q.isPlaceHolder = f.data[0].records[i].isPlaceholder;
+                        p.Add(q);
+
+                    }
+
 					symbFile.seqArcSubStrings.Add (p);
+                    count++;
 
 				}
 				symbFile.bankStrings = new List<symbStringName> ();
+                count = 0;
 				foreach (BankData s in infoFile.bankData) {
 					symbStringName t = new symbStringName ();
-					t.name = "NO_NAME";
+					t.name = "BANK_NO_NAME" + count.ToString("D4");
 					t.isPlaceHolder = s.isPlaceHolder;
                     symbFile.bankStrings.Add (t);
+                    count++;
 				}
 				symbFile.waveStrings = new List<symbStringName> ();
+                count = 0;
 				foreach (WaveData s in infoFile.waveData) {
 					symbStringName t = new symbStringName ();
-					t.name = "NO_NAME";
+					t.name = "WAVE_NO_NAME" + count.ToString("D4");
 					t.isPlaceHolder = s.isPlaceHolder;
                     symbFile.waveStrings.Add (t);
+                    count++;
 				}
 				symbFile.playerStrings = new List<symbStringName> ();
+                count = 0;
 				foreach (PlayerData s in infoFile.playerData) {
 					symbStringName t = new symbStringName ();
-					t.name = "NO_NAME";
-					t.isPlaceHolder = s.isPlaceHolder;
+					t.name = "PLYR_NO_NAME" + count.ToString("D4");
+                    t.isPlaceHolder = s.isPlaceHolder;
                     symbFile.playerStrings.Add (t);
+                    count++;
 				}
 				symbFile.groupStrings = new List<symbStringName> ();
+                count = 0;
 				foreach (GroupData s in infoFile.groupData) {
 					symbStringName t = new symbStringName ();
-					t.name = "NO_NAME";
-					t.isPlaceHolder = s.isPlaceHolder;
+					t.name = "GRP_NO_NAME" + count.ToString("D4");
+                    t.isPlaceHolder = s.isPlaceHolder;
                     symbFile.groupStrings.Add (t);
+                    count++;
 				}
 				symbFile.player2Strings = new List<symbStringName> ();
+                count = 0;
 				foreach (Player2Data s in infoFile.player2Data) {
 					symbStringName t = new symbStringName ();
-					t.name = "NO_NAME";
-					t.isPlaceHolder = s.isPlaceHolder;
+					t.name = "STRM_PLYR_NO_NAME" + count.ToString("D4");
+                    t.isPlaceHolder = s.isPlaceHolder;
                     symbFile.player2Strings.Add (t);
+                    count++;
 				}
 				symbFile.strmStrings = new List<symbStringName> ();
+                count = 0;
 				foreach (StrmData s in infoFile.strmData) {
 					symbStringName t = new symbStringName ();
-					t.name = "NO_NAME";
-					t.isPlaceHolder = s.isPlaceHolder;
+					t.name = "STRM_NO_NAME" + count.ToString("D4");
+                    t.isPlaceHolder = s.isPlaceHolder;
                     symbFile.strmStrings.Add (t);
+                    count++;
 				}
 			
-			}
-
-
-			//Get FAT.
-			br.Position = (int)fatOffset;
-			fat.magic = br.ReadChars (4);
-			fat.size = br.ReadUInt32 ();
-			fat.nCount = br.ReadUInt32 ();
-
-			//Get records.
-			fat.records = new List<fatRecords>();
-			for (int i = 0; i < (int)fat.nCount; i++) {
-
-				fatRecords f = new fatRecords ();
-				f.offset= br.ReadUInt32 ();
-				f.nSize= br.ReadUInt32 ();
-				f.reserved = br.ReadUInt32s (2);
-				fat.records.Add (f);
-
-			}
-
-
-
-			//Get files.
-			br.Position = (int)filesOffset;
-			files.magic = br.ReadChars (4);
-			files.nSize = br.ReadUInt32 ();
-			files.nCount = br.ReadUInt32 ();
-			files.reserved = br.ReadUInt32 ();
-
-			files.files = new List<byte[]>();
-			files.sseqFiles = new List<byte[]> ();
-			files.seqArcFiles = new List<byte[]> ();
-			files.bankFiles = new List<byte[]> ();
-			files.waveFiles = new List<byte[]> ();
-			files.strmFiles = new List<byte[]> ();
-			foreach (fatRecords f in fat.records) {
-			
-				br.Position = f.offset;
-				files.files.Add(br.ReadBytes((int)f.nSize));
-			
-			}
-
-			//Now sort the files.
-			foreach (byte[] f in files.files) {
-
-				//Make new reader.
-				MemoryStream src2 = new MemoryStream(f);
-				BinaryDataReader br2 = new BinaryDataReader (src2);
-
-				//See what file it is.
-				UInt32 magic2 = br2.ReadUInt32();
-
-				if (magic2 == (UInt32)0x51455353) {files.sseqFiles.Add (f);}
-				if (magic2 == (UInt32)0x52415353) {files.seqArcFiles.Add (f);}
-				if (magic2 == (UInt32)0x4b4e4253) {files.bankFiles.Add (f);}
-				if (magic2 == (UInt32)0x52415753) {files.waveFiles.Add (f);}
-				if (magic2 == (UInt32)0x4d525453) {files.strmFiles.Add (f);}
-
 			}
 
 		}

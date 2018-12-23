@@ -133,6 +133,7 @@
     <Compile Include="SbnkEditor.Designer.cs">
       <DependentUpon>SbnkEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="SMFT.cs" />
     <Compile Include="Sound%27NStream.cs" />
     <Compile Include="SsarEditor.cs">
       <SubType>Form</SubType>

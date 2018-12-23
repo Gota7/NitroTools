@@ -417,6 +417,7 @@ namespace NitroStudio
                     s2.isPlaceHolder = false;
                     s2.name = "New File";
                     sdat.symbFile.seqArcStrings.Add(s2);
+                    sdat.symbFile.seqArcSubStrings.Add(new List<symbStringName>());
 
                     SeqArcData q = new SeqArcData();
                     q.fileId = (UInt16)(sdat.files.sseqFiles.Count + sdat.files.seqArcFiles.Count - 1);
@@ -5099,15 +5100,6 @@ namespace NitroStudio
 
         }
 
-
-
-
-
-
-
-
-
-
         #endregion
 
 
@@ -5123,6 +5115,1021 @@ namespace NitroStudio
             }
         }
 
+        //Dump SWAR contents.
+        private void DumpSwars(string pathToExtract)
+        {
+
+            if (pathToExtract != "") {
+
+                Directory.SetCurrentDirectory(pathToExtract);
+                sdat.fixOffsets();
+
+                int countE = 0;
+                foreach (var s in sdat.symbFile.waveStrings) {
+
+                    bool alreadyThere = false;
+                    for (int i = 0; i < countE; i++) {
+                        if (sdat.infoFile.waveData[countE].fileId == sdat.infoFile.waveData[i].fileId) {
+                            alreadyThere = true;
+                            break;
+                        }
+                    }
+
+                    if (!s.isPlaceHolder) {
+                        Directory.CreateDirectory(s.name);
+                    }
+
+                    countE++;
+
+                }
+
+                int count = 0;
+                foreach (var s in sdat.infoFile.waveData) {
+
+                    if (!s.isPlaceHolder)
+                    {
+
+                        swarFile w = new swarFile();
+                        w.load(sdat.files.files[(int)s.fileId & 0x00FFFFFF]);
+                        string p = sdat.symbFile.waveStrings[count].name;
+                        int count2 = 0;
+                        List<string> swls = new List<string>();
+                        foreach (byte[] file in w.data[0].files) {
+                            swav v = new swav();
+                            v.load(file);
+                            bool includeLoop = false;
+                            if (v.data.info.loopFlag == 1) { includeLoop = true; }
+                            File.WriteAllBytes(p + "/" + count2.ToString("D4") + ".wav", v.toRIFF().toBytes(true, includeLoop));
+                            File.WriteAllBytes(p + "/" + count2.ToString("D4") + ".adpcm.swav", file);
+                            swls.Add(p + "/" + count2.ToString("D4") + ".adpcm.swav");
+                            count2++;
+                        }
+                        File.WriteAllLines(p + ".swls", swls);
+
+                    }
+
+                    count++;
+
+                }
+
+                Directory.SetCurrentDirectory(nitroPath);
+
+            }
+
+        }
+
+        //Dump SARC.
+        private void DumpSarc(string pathToExtract, string projectName)
+        {
+
+            sdat.fixOffsets();
+
+            if (pathToExtract != "")
+            {
+
+                //Project.
+                List<string> sarc = new List<string>();
+
+                //Dump players.
+                sarc.Add("@PLAYER");
+                for (int i = 0; i < sdat.symbFile.playerStrings.Count; i++) {
+
+                    var h = sdat.infoFile.playerData[i];
+                    if (!h.isPlaceHolder) {              
+                        sarc.Add(sdat.symbFile.playerStrings[i].name + "\t= " + i + "\t: " + h.seqMax + ", " + h.heapSize + ", 0x" + h.channelFlag.ToString("X"));
+                    }
+
+                }
+
+                //Dump wave archives.
+                sarc.Add("@WAVEARC\n\n @PATH \"SWAR\"");
+                for (int i = 0; i < sdat.symbFile.waveStrings.Count; i++) {
+
+                    var h = sdat.infoFile.waveData[i];
+
+                    string sharedName = sdat.symbFile.waveStrings[i].name;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (h.fileId == sdat.infoFile.waveData[j].fileId) { sharedName = sdat.symbFile.waveStrings[j].name; break; }
+                    }
+
+                    if (!h.isPlaceHolder) {
+                        sarc.Add(sdat.symbFile.waveStrings[i].name + "\t= " + i + "\t: TEXT, \"" + sharedName + ".swls\"" + (h.fileId >= 0x01000000 ? ", s" : ""));
+                    }
+
+                }
+                
+                //Dump stream players.
+                sarc.Add("@STRM_PLAYER");
+                for (int i = 0; i < sdat.symbFile.player2Strings.Count; i++) {
+
+                    var h = sdat.infoFile.player2Data[i];
+                    if (!h.isPlaceHolder) {              
+                        sarc.Add(sdat.symbFile.player2Strings[i].name + "\t= " + i + "\t: " + (h.count > 1 ? "STEREO" : "MONO") + ", " + h.v0 + (h.count > 1 ? ", " + h.v1 : ""));
+                    }
+
+                }
+
+                //Dump streams.
+                sarc.Add("@STRM\n\n @PATH \"STRM\"");
+                for (int i = 0; i < sdat.symbFile.strmStrings.Count; i++) {
+
+                    var h = sdat.infoFile.strmData[i];
+
+                    string sharedName = sdat.symbFile.strmStrings[i].name;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (h.fileId == sdat.infoFile.strmData[j].fileId) { sharedName = sdat.symbFile.strmStrings[j].name; break; }
+                    }
+
+                    if (!h.isPlaceHolder) {
+                        string format = "ADPCM";
+                        sarc.Add(sdat.symbFile.strmStrings[i].name + "\t= " + i + "\t: " + format + ", \"" + sharedName + ".wav\", " + h.volume + ", " + h.priority + ", " + sdat.symbFile.player2Strings[h.player].name);
+                    }
+
+                }
+
+                //Dump banks.
+                sarc.Add("@BANK\n\n @PATH \"SBNK\"");
+                for (int i = 0; i < sdat.symbFile.bankStrings.Count; i++) {
+
+                    var h = sdat.infoFile.bankData[i];
+
+                    string sharedName = sdat.symbFile.bankStrings[i].name;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (h.fileId == sdat.infoFile.bankData[j].fileId) { sharedName = sdat.symbFile.bankStrings[j].name; break; }
+                    }
+
+                    if (!h.isPlaceHolder) {
+
+                        string stuff = sdat.symbFile.bankStrings[i].name + "\t= " + i + "\t: BIN, \"" + sharedName + ".sbnk\"" + ", ";
+
+                        if (h.wave0 != 0xFFFF) {
+                            stuff += sdat.symbFile.waveStrings[h.wave0].name;
+                        }
+                        if (h.wave1 != 0xFFFF || h.wave2 != 0xFFFF || h.wave3 != 0xFFFF) {
+                            stuff += ", ";
+                        }
+
+                        if (h.wave1 != 0xFFFF)
+                        {
+                            stuff += sdat.symbFile.waveStrings[h.wave1].name;
+                        }
+                        if (h.wave2 != 0xFFFF || h.wave3 != 0xFFFF)
+                        {
+                            stuff += ", ";
+                        }
+
+                        if (h.wave2 != 0xFFFF)
+                        {
+                            stuff += sdat.symbFile.waveStrings[h.wave2].name;
+                        }
+                        if (h.wave3 != 0xFFFF)
+                        {
+                            stuff += ", ";
+                        }
+
+                        if (h.wave3 != 0xFFFF)
+                        {
+                            stuff += sdat.symbFile.waveStrings[h.wave3].name;
+                        }
+
+                        sarc.Add(stuff);
+
+                    }
+
+                }
+
+                //Dump sequences.
+                sarc.Add("@SEQ\n\n @PATH \"SSEQ\"");
+                for (int i = 0; i < sdat.symbFile.sseqStrings.Count; i++)
+                {
+
+                    var h = sdat.infoFile.sseqData[i];
+
+                    string sharedName = sdat.symbFile.sseqStrings[i].name;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (h.fileId == sdat.infoFile.sseqData[j].fileId) { sharedName = sdat.symbFile.sseqStrings[j].name; break; }
+                    }
+
+                    if (!h.isPlaceHolder)
+                    {
+                        sarc.Add(sdat.symbFile.sseqStrings[i].name + "\t= " + i + "\t: TEXT, \"" + sharedName + ".smft\", " + sdat.symbFile.bankStrings[h.bank].name + ", " + h.volume + ", " + h.channelPriority + ", " + h.playerPriority + ", " + sdat.symbFile.playerStrings[h.playerNumber].name);
+                    }
+
+                }
+
+                //Dump sequence archives.
+                sarc.Add("@SEQARC\n\n @PATH \"SSAR\"");
+                for (int i = 0; i < sdat.symbFile.seqArcStrings.Count; i++)
+                {
+
+                    var h = sdat.infoFile.seqArcData[i];
+
+                    string sharedName = sdat.symbFile.seqArcStrings[i].name;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (h.fileId == sdat.infoFile.seqArcData[j].fileId) { sharedName = sdat.symbFile.seqArcStrings[j].name; break; }
+                    }
+
+                    if (!h.isPlaceHolder)
+                    {
+                        sarc.Add(sdat.symbFile.seqArcStrings[i].name + "\t= " + i + "\t: TEXT, \"" + sharedName + ".mus\"");
+                    }
+
+                }
+
+                //Dump the groups.
+                sarc.Add("@GROUP");
+                for (int i = 0; i < sdat.symbFile.groupStrings.Count; i++) {
+
+                    var h = sdat.infoFile.groupData[i];
+                    if (!h.isPlaceHolder)
+                    {
+
+                        sarc.Add(sdat.symbFile.groupStrings[i].name + "\t:");
+
+                        foreach (var u in h.subInfo) {
+
+                            string stuff = " ";
+                            switch (u.type) {
+
+                                case 0:
+                                    stuff += sdat.symbFile.sseqStrings[(int)u.nEntry].name;
+                                    break;
+
+                                case 1:
+                                    stuff += sdat.symbFile.bankStrings[(int)u.nEntry].name;
+                                    break;
+
+                                case 2:
+                                    stuff += sdat.symbFile.waveStrings[(int)u.nEntry].name;
+                                    break;
+
+                                case 3:
+                                    stuff += sdat.symbFile.seqArcStrings[(int)u.nEntry].name;
+                                    break;
+
+                            }
+
+                            int loadFlag = u.loadFlag;
+                            bool sseq = false, sbnk = false, swar = false, ssar = false;
+                            if ((loadFlag & 0b1) == 0b1) { sseq = true; }
+                            if ((loadFlag & 0b10) == 0b10) { sbnk = true; }
+                            if ((loadFlag & 0b100) == 0b100) { swar = true; }
+                            if ((loadFlag & 0b1000) == 0b1000) { ssar = true; }
+
+                            switch (u.type) {
+
+                                case 0:
+                                    if (sseq && sbnk && swar) {
+                                        
+                                    } else if (sbnk && swar) {
+                                        stuff += ", bw";
+                                    } else if (sseq && swar) {
+                                        stuff += ", sw";
+                                    } else if (swar) {
+                                        stuff += ", w";
+                                    } else if (sbnk) {
+                                        stuff += ", b";
+                                    } else if (sseq) {
+                                        stuff += ", s";
+                                    }
+                                    break;
+
+                                case 1:
+                                    if (sbnk && swar) {
+                                        stuff += ", bw";
+                                    } else if (swar) {
+                                        stuff += ", w";
+                                    } else if (sbnk) {
+                                        stuff += ", b";
+                                    }
+                                    break;
+
+                            }
+
+                            sarc.Add(stuff);
+
+                        }
+
+                    }
+
+                }
+
+                //Write the SARC.
+                File.WriteAllLines(pathToExtract + "/" + projectName + ".sarc", sarc);
+
+            }
+
+        }
+
+        //Dump SSEQ contents.
+        private void DumpSequences(string pathToExtract)
+        {
+
+            if (pathToExtract != "")
+            {
+
+                Directory.SetCurrentDirectory(pathToExtract);
+                sdat.fixOffsets();
+
+                for (int i = 0; i < sdat.symbFile.sseqStrings.Count; i++)
+                {
+
+                    bool alreadyThere = false;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (sdat.infoFile.sseqData[j].fileId == sdat.infoFile.sseqData[i].fileId)
+                        {
+                            alreadyThere = true;
+                            break;
+                        }
+                    }
+
+                    if (!sdat.infoFile.sseqData[i].isPlaceHolder && !alreadyThere)
+                    {
+
+                        string m = LibNitro.SND.SMFT.ToSMFT(new LibNitro.SND.SSEQ(sdat.files.files[(int)sdat.infoFile.sseqData[i].fileId]));
+                        File.WriteAllText(sdat.symbFile.sseqStrings[i].name + ".smft", m);
+
+                    }
+
+                }
+
+                Directory.SetCurrentDirectory(nitroPath);
+
+            }
+
+        }
+
+        //Dump SBNK contents.
+        private void DumpBanks(string pathToExtract)
+        {
+
+            if (pathToExtract != "")
+            {
+
+                Directory.SetCurrentDirectory(pathToExtract);
+                sdat.fixOffsets();
+
+                for (int i = 0; i < sdat.symbFile.bankStrings.Count; i++)
+                {
+
+                    var h = sdat.infoFile.bankData[i];
+                    List<int> fileIds = new List<int>();
+                    if (!h.isPlaceHolder)
+                    {
+
+                        //Bank file.
+                        List<string> bnk = new List<string>();
+
+                        //Sbnk file.
+                        sbnkFile s = new sbnkFile();
+                        s.load(sdat.files.files[(int)h.fileId]);
+
+                        //Intrument list.
+                        bnk.Add("@PATH \"../SWAR\"\n\n@INSTLIST");
+
+                        int instNum = 0;
+                        foreach (var n in s.data[0].records)
+                        {
+
+                            string head = "\t";
+                            bool add = true;
+                            bool addGroup = false;
+
+                            /*
+                             0 - Placeholder (NULL)
+                             1 - Universal (PCM)
+                             2 - 8-Bit (PSG)
+                             3 - White Noise (NOISE)
+                             4 - Direct PCM
+                             5 - Blank (NULL)
+                             16 - Ranged (DRUM SET)
+                             17 - Regional (KEY SPLIT)
+                             */
+
+                            switch (n.fRecord)
+                            {
+
+                                case 1:
+                                    try { GetInstrumentName(n.instrumentA.swarNumber, n.instrumentA.swavNumber, i); }
+                                    catch { add = false; }
+                                    if (add) head += instNum + " : ADPCM, \"" + GetInstrumentName(n.instrumentA.swarNumber, n.instrumentA.swavNumber, i) + "\", " + ToNote(n.instrumentA.noteNumber) + ", " + n.instrumentA.attackRate + ", " + n.instrumentA.decayRate + ", " + n.instrumentA.sustainLevel + ", " + n.instrumentA.releaseRate + ", " + n.instrumentA.pan;
+                                    if (add) addGroup = true;
+                                    break;
+
+                                case 2:
+                                    head += instNum + " : PSG, DUTY_" + (n.instrumentA.swavNumber + 1) + "_8, " + ToNote(n.instrumentA.noteNumber) + ", " + n.instrumentA.attackRate + ", " + n.instrumentA.decayRate + ", " + n.instrumentA.sustainLevel + ", " + n.instrumentA.releaseRate + ", " + n.instrumentA.pan;
+                                    break;
+
+                                case 3:
+                                    head += instNum + " : NOISE, " + ToNote(n.instrumentA.noteNumber) + ", " + n.instrumentA.attackRate + ", " + n.instrumentA.decayRate + ", " + n.instrumentA.sustainLevel + ", " + n.instrumentA.releaseRate + ", " + n.instrumentA.pan;
+                                    break;
+
+                                case 5:
+                                case 6:
+                                    head += instNum + " : NULL";
+                                    break;
+
+                                case 16:
+                                    head += instNum + " : DRUM_SET, " + "_DRUM" + instNum.ToString("D3");
+                                    break;
+
+                                case 17:
+                                    head += instNum + " : KEY_SPLIT, " + "_KEY" + instNum.ToString("D3");
+                                    break;
+
+                                default:
+                                    add = false;
+                                    break;
+
+                            }
+
+                            if (addGroup && add) bnk.Add("@WGROUP " + n.instrumentA.swarNumber);
+                            if (add) bnk.Add(head);
+
+                            instNum++;
+
+                        }
+
+                        instNum = 0;
+                        bnk.Add("\n@DRUM_SET");
+                        foreach (var n in s.data[0].records){
+
+                            if (n.fRecord == 16) {
+
+                                bnk.Add("\n_DRUM" + instNum.ToString("D3") + " =");
+
+                                //Write stuff.
+                                for (int j = 0; j <= n.instrumentB.upperNote - n.instrumentB.lowerNote; j++)
+                                {
+
+                                    string head = ToNote((byte)(j + n.instrumentB.lowerNote)) + " : ";
+                                    bool add = true;
+                                    bool addGroup = false;
+
+                                    switch (n.instrumentB.stuff[j].unknown)
+                                    {
+
+                                        case 1:
+                                            try { GetInstrumentName(n.instrumentB.stuff[j].swarNumber, n.instrumentB.stuff[j].swavNumber, i); }
+                                            catch { add = false; }
+                                            if (add) head += "ADPCM, \"" + GetInstrumentName(n.instrumentB.stuff[j].swarNumber, n.instrumentB.stuff[j].swavNumber, i) + "\", " + ToNote(n.instrumentB.stuff[j].noteNumber) + ", " + n.instrumentB.stuff[j].attackRate + ", " + n.instrumentB.stuff[j].decayRate + ", " + n.instrumentB.stuff[j].sustainLevel + ", " + n.instrumentB.stuff[j].releaseRate + ", " + n.instrumentB.stuff[j].pan;
+                                            if (add) addGroup = true;
+                                            break;
+
+                                        case 2:
+                                            head += "PSG, DUTY_" + (n.instrumentB.stuff[j].swavNumber + 1) + "_8, " + ToNote(n.instrumentB.stuff[j].noteNumber) + ", " + n.instrumentB.stuff[j].attackRate + ", " + n.instrumentB.stuff[j].decayRate + ", " + n.instrumentB.stuff[j].sustainLevel + ", " + n.instrumentB.stuff[j].releaseRate + ", " + n.instrumentB.stuff[j].pan;
+                                            break;
+
+                                        case 3:
+                                            head += "NOISE, " + ToNote(n.instrumentB.stuff[j].noteNumber) + ", " + n.instrumentB.stuff[j].attackRate + ", " + n.instrumentB.stuff[j].decayRate + ", " + n.instrumentB.stuff[j].sustainLevel + ", " + n.instrumentB.stuff[j].releaseRate + ", " + n.instrumentB.stuff[j].pan;
+                                            break;
+
+                                        case 5:
+                                        case 6:
+                                            head += "NULL";
+                                            break;
+
+                                        default:
+                                            add = false;
+                                            break;
+
+                                    }
+
+                                    if (addGroup && add) bnk.Add("@WGROUP " + n.instrumentB.stuff[j].swarNumber);
+                                    if (add) { bnk.Add(head); }
+
+                                }
+
+                            }
+
+                            instNum++;
+
+                        }
+
+                        instNum = 0;
+                        bnk.Add("\n@KEY_SPLIT");
+                        foreach (var n in s.data[0].records) {
+
+                            if (n.fRecord == 17) {
+
+                                bnk.Add("\n_KEY" + instNum.ToString("D3") + " =");
+
+                                //Get count.
+                                int count = 0;
+                                if (n.instrumentC.region0 == 0)
+                                {
+                                    count = 0;
+                                }
+                                else
+                                {
+                                    if (n.instrumentC.region1 == 0)
+                                    {
+                                        count = 1;
+                                    }
+                                    else
+                                    {
+                                        if (n.instrumentC.region2 == 0)
+                                        {
+                                            count = 2;
+                                        }
+                                        else
+                                        {
+                                            if (n.instrumentC.region3 == 0)
+                                            {
+                                                count = 3;
+                                            }
+                                            else
+                                            {
+                                                if (n.instrumentC.region4 == 0)
+                                                {
+                                                    count = 4;
+                                                }
+                                                else
+                                                {
+                                                    if (n.instrumentC.region5 == 0)
+                                                    {
+                                                        count = 5;
+                                                    }
+                                                    else
+                                                    {
+                                                        if (n.instrumentC.region6 == 0)
+                                                        {
+                                                            count = 6;
+                                                        }
+                                                        else
+                                                        {
+                                                            if (n.instrumentC.region7 == 0)
+                                                            {
+                                                                count = 7;
+                                                            }
+                                                            else
+                                                            {
+                                                                count = 8;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                //Write stuff.
+                                for (int j = 0; j < count; j++) {
+
+                                    string head = "";
+                                    bool add = true;
+                                    bool addGroup = false;
+                                    switch (j) {
+
+                                        case 0:
+                                            head += ToNote(n.instrumentC.region0) + " : ";
+                                            break;
+
+                                        case 1:
+                                            head += ToNote(n.instrumentC.region1) + " : ";
+                                            break;
+
+                                        case 2:
+                                            head += ToNote(n.instrumentC.region2) + " : ";
+                                            break;
+
+                                        case 3:
+                                            head += ToNote(n.instrumentC.region3) + " : ";
+                                            break;
+
+                                        case 4:
+                                            head += ToNote(n.instrumentC.region4) + " : ";
+                                            break;
+
+                                        case 5:
+                                            head += ToNote(n.instrumentC.region5) + " : ";
+                                            break;
+
+                                        case 6:
+                                            head += ToNote(n.instrumentC.region6) + " : ";
+                                            break;
+
+                                        case 7:
+                                            head += ToNote(n.instrumentC.region7) + " : ";
+                                            break;
+
+                                    }
+
+                                    switch (n.instrumentC.stuff[j].unknown)
+                                    {
+
+                                        case 1:
+                                            try { GetInstrumentName(n.instrumentC.stuff[j].swarNumber, n.instrumentC.stuff[j].swavNumber, i); }
+                                            catch { add = false; }
+                                            if (add) head += "ADPCM, \"" + GetInstrumentName(n.instrumentC.stuff[j].swarNumber, n.instrumentC.stuff[j].swavNumber, i) + "\", " + ToNote(n.instrumentC.stuff[j].noteNumber) + ", " + n.instrumentC.stuff[j].attackRate + ", " + n.instrumentC.stuff[j].decayRate + ", " + n.instrumentC.stuff[j].sustainLevel + ", " + n.instrumentC.stuff[j].releaseRate + ", " + n.instrumentC.stuff[j].pan;
+                                            if (add) addGroup = true;
+                                            break;
+
+                                        case 2:
+                                            head += "PSG, DUTY_" + (n.instrumentC.stuff[j].swavNumber + 1) + "_8, " + ToNote(n.instrumentC.stuff[j].noteNumber) + ", " + n.instrumentC.stuff[j].attackRate + ", " + n.instrumentC.stuff[j].decayRate + ", " + n.instrumentC.stuff[j].sustainLevel + ", " + n.instrumentC.stuff[j].releaseRate + ", " + n.instrumentC.stuff[j].pan;
+                                            break;
+
+                                        case 3:
+                                            head += "NOISE, " + ToNote(n.instrumentC.stuff[j].noteNumber) + ", " + n.instrumentC.stuff[j].attackRate + ", " + n.instrumentC.stuff[j].decayRate + ", " + n.instrumentC.stuff[j].sustainLevel + ", " + n.instrumentC.stuff[j].releaseRate + ", " + n.instrumentC.stuff[j].pan;
+                                            break;
+
+                                        case 5:
+                                        case 6:
+                                            head += "NULL";
+                                            break;
+
+                                        default:
+                                            add = false;
+                                            break;
+
+                                    }
+
+
+
+                                    if (addGroup && add) bnk.Add("@WGROUP " + n.instrumentC.stuff[j].swarNumber);
+                                    if (add) { bnk.Add(head); }
+
+                                }
+
+                            }
+
+                            instNum++;
+
+                        }
+
+                        if (!fileIds.Contains((int)sdat.infoFile.bankData[i].fileId))
+                        {
+                            File.WriteAllBytes(sdat.symbFile.bankStrings[i].name + ".sbnk", sdat.files.files[(int)sdat.infoFile.bankData[i].fileId]);
+                            fileIds.Add((int)sdat.infoFile.bankData[i].fileId);
+                        }
+                        File.WriteAllLines(sdat.symbFile.bankStrings[i].name + ".bnk", bnk);
+
+                    }
+
+                }
+
+                Directory.SetCurrentDirectory(nitroPath);
+
+            }
+
+        }
+
+        //Dump SSAR contents.
+        private void DumpSequenceArchives(string pathToExtract, string projectName) {
+
+            if (pathToExtract != "")
+            {
+
+                Directory.SetCurrentDirectory(pathToExtract);
+                sdat.fixOffsets();
+
+                for (int i = 0; i < sdat.symbFile.seqArcStrings.Count; i++)
+                {
+
+                    bool alreadyThere = false;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (sdat.infoFile.seqArcData[j].fileId == sdat.infoFile.seqArcData[i].fileId)
+                        {
+                            alreadyThere = true;
+                            break;
+                        }
+                    }
+
+                    if (!sdat.infoFile.seqArcData[i].isPlaceHolder && !alreadyThere)
+                    {
+
+                        //Load the file.
+                        ssarFile s = new ssarFile();
+                        s.load(sdat.files.files[(int)sdat.infoFile.seqArcData[i].fileId]);
+
+                        //Start the file.
+                        List<string> mus = new List<string>();
+                        mus.Add("#include \"../" + projectName + ".sbdl\"\n\n@SEQ_TABLE\n");
+
+                        //Sequence labels.
+                        for (int j = 0; j < s.data[0].records.Length; j++) {
+
+                            if (!s.data[0].records[j].isPlaceholder) {
+
+                                var h = s.data[0].records[j];
+                                string line = sdat.symbFile.seqArcSubStrings[i][j].name + " = " + j + ":\tLabel_0x" + s.data[0].records[j].offset.ToString("X8") + ",\t";
+
+                                string bankName = "";
+                                if (sdat.symbFile.bankStrings[h.bank].isPlaceHolder) {
+                                    int cout = 0;
+                                    while (bankName == "") {
+                                        if (!sdat.symbFile.bankStrings[cout].isPlaceHolder) {
+                                            bankName = sdat.symbFile.bankStrings[cout].name;
+                                        }
+                                        cout++;
+                                    }
+                                } else {
+                                    bankName = sdat.symbFile.bankStrings[h.bank].name;
+                                }
+
+                                line += bankName + ",\t";
+                                line += h.volume + ",\t";
+                                line += h.cpr + ",\t";
+                                line += h.ppr + ",\t";
+                                line += sdat.symbFile.playerStrings[h.player].name;
+                                mus.Add(line + "\n");
+
+                            }
+
+                        }
+
+                        //Sequence data.
+                        mus.Add("\n@SEQ_DATA");
+
+                        MemoryStream src = new MemoryStream(sdat.files.files[(int)sdat.infoFile.seqArcData[i].fileId]);
+                        BinaryReader br = new BinaryReader(src);
+
+                        int offset = (int)(s.data[0].offset);
+                        src.Position = offset;
+                        byte[] seqBytes = br.ReadBytes((int)(s.fileSize - offset));
+                        LibNitro.SND.SSEQ seq = new LibNitro.SND.SSEQ(GenerateSeqWithHeader(seqBytes));
+
+                        //Get labels.
+                        List<int> labels = new List<int>();
+                        foreach (var h in s.data[0].records) {
+
+                            if (!h.isPlaceholder) {
+                                labels.Add((int)h.offset);
+                            }
+
+                        }
+
+                        //Write SEQ.
+                        mus.Add(NitroStudio.SMFT.ToSMFT(seq, labels));
+
+                        //Hack the MUS to fix the transpose_r glitch.
+                        mus = string.Join("", mus).Split('\n').ToList();
+                        for (int z = 0; z < mus.Count; z++) {
+                            if (mus[z].Contains("transpose_r")) {
+                                if (mus[z].EndsWith("65535")) {
+                                    mus[z] = mus[z].Substring(0, mus[z].Length - 5) + "-1";
+                                }
+                            }
+                        }
+
+                        File.WriteAllLines(sdat.symbFile.seqArcStrings[i].name + ".mus", mus);
+
+                    }
+
+                }
+
+                Directory.SetCurrentDirectory(nitroPath);
+
+            }
+
+        }
+
+        //Dump STRM contents.
+        private void DumpStreams(string pathToExtract) {
+
+            if (pathToExtract != "")
+            {
+
+                Directory.SetCurrentDirectory(pathToExtract);
+                sdat.fixOffsets();
+
+                for (int i = 0; i < sdat.symbFile.strmStrings.Count; i++)
+                {
+
+                    bool alreadyThere = false;
+                    for (int j = 0; j < i; j++)
+                    {
+                        if (sdat.infoFile.strmData[j].fileId == sdat.infoFile.strmData[i].fileId)
+                        {
+                            alreadyThere = true;
+                            break;
+                        }
+                    }
+
+                    if (!sdat.infoFile.strmData[i].isPlaceHolder && !alreadyThere)
+                    {
+
+                        strm s = new strm();
+                        s.load(sdat.files.files[(int)sdat.infoFile.strmData[i].fileId]);
+                        bool includeLoop = false;
+                        if (s.head.loop == 1) { includeLoop = true; }
+                        File.WriteAllBytes(sdat.symbFile.strmStrings[i].name + ".wav", s.toRIFF().toBytes(true, includeLoop));
+
+                    }
+
+                }
+
+                Directory.SetCurrentDirectory(nitroPath);
+
+            }
+
+        }
+
+        //Notes.
+        private static readonly string[] Notes = new string[12] {
+
+            "cn",
+            "cs",
+            "dn",
+            "ds",
+            "en",
+            "fn",
+            "fs",
+            "gn",
+            "gs",
+            "an",
+            "as",
+            "bn"
+
+        };
+
+        /// <summary>
+        /// Convert a number to a note.
+        /// </summary>
+        public string ToNote(byte note) {
+
+            string start = Notes[note % 12];
+            return start + (note/12 - 1 < 0 ? "m1" : (note / 12 - 1) + "");
+
+        }
+
+        /// <summary>
+        /// Get instrument name.
+        /// </summary>
+        public string GetInstrumentName(ushort swar, ushort swav, int sbnkEntry) {
+
+            //Get the wave entries.
+            int wave0 = sdat.infoFile.bankData[sbnkEntry].wave0;
+            int wave1 = sdat.infoFile.bankData[sbnkEntry].wave1;
+            int wave2 = sdat.infoFile.bankData[sbnkEntry].wave2;
+            int wave3 = sdat.infoFile.bankData[sbnkEntry].wave3;
+
+            //Update wave entries if other info uses the same file id.
+            for (int i = 0; i < sdat.infoFile.bankData.Count; i++) {
+
+                if (sdat.infoFile.bankData[i].fileId == sdat.infoFile.bankData[swar].fileId) {
+
+                    if (wave0 == 0xFFFF) {
+                        wave0 = sdat.infoFile.bankData[i].wave0;
+                    }
+
+                    if (wave1 == 0xFFFF) {
+                        wave1 = sdat.infoFile.bankData[i].wave1;
+                    }
+
+                    if (wave2 == 0xFFFF) {
+                        wave2 = sdat.infoFile.bankData[i].wave2;
+                    }
+
+                    if (wave3 == 0xFFFF) {
+                        wave3 = sdat.infoFile.bankData[i].wave3;
+                    }
+
+                }
+
+            }
+
+            switch (swar) {
+
+                case 0:
+                    return sdat.symbFile.waveStrings[wave0].name + "/" + swav.ToString("D4") + ".wav";
+
+                case 1:
+                    return sdat.symbFile.waveStrings[wave1].name + "/" + swav.ToString("D4") + ".wav";
+
+                case 2:
+                    return sdat.symbFile.waveStrings[wave2].name + "/" + swav.ToString("D4") + ".wav";
+
+                case 3:
+                    return sdat.symbFile.waveStrings[wave3].name + "/" + swav.ToString("D4") + ".wav";
+
+            }
+
+            return "";
+
+        }
+
+        /// <summary>
+        /// Get the size of an SSEQ in an SSAR.
+        /// </summary>
+        public int GetSizeOfEmbeddedSeq(ssarFile s, int currSeq) {
+
+            bool found = false;
+            int size = 0;
+            int nextSeq = currSeq + 1;
+            while (!found)
+            {
+
+                int currOffset = (int)(s.data[0].offset + s.data[0].records[currSeq].offset);
+                if (nextSeq == s.data[0].records.Length) { return (int)(s.fileSize - currOffset); }
+
+                if (!s.data[0].records[nextSeq].isPlaceholder) {
+
+                    int nextOffset = (int)(s.data[0].offset + s.data[0].records[nextSeq].offset);
+                    if (nextOffset > currOffset) {
+                        return nextOffset - currOffset;
+                    }
+
+                }
+
+                nextSeq++;
+
+            }
+
+            return size;
+
+        }
+
+        /// <summary>
+        /// Generate a header for the SSEQ.
+        /// </summary>
+        public byte[] GenerateSeqWithHeader(byte[] sseq) {
+
+            MemoryStream o = new MemoryStream();
+            BinaryWriter bw = new BinaryWriter(o);
+
+            bw.Write("SSEQ".ToCharArray());
+            bw.Write((UInt32)0x0100feff);
+            bw.Write((UInt32)(sseq.Length + 0x1C));
+            bw.Write((UInt16)0x10);
+            bw.Write((UInt16)1);
+
+            bw.Write("DATA".ToCharArray());
+            bw.Write((UInt32)(sseq.Length + 0xC));
+            bw.Write((UInt32)0x1C);
+            bw.Write(sseq);
+
+            return o.ToArray();
+
+        }
+
+        /// <summary>
+        /// Convert to an SDK project.
+        /// </summary>
+        private void convertToSDKProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (fileOpen)
+            {
+
+                SaveFileDialog o = new SaveFileDialog();
+                o.Filter = "SDK Project|*.sprj";
+                o.RestoreDirectory = true;
+                o.ShowDialog();
+
+                if (o.FileName != "")
+                {
+
+                    //Project information.
+                    string projectName = Path.GetFileNameWithoutExtension(o.FileName);
+                    string projectPath = Path.GetDirectoryName(o.FileName);
+
+                    //Project XML.
+                    List<string> sprj = new List<string>();
+                    sprj.Add("<?xml version=\"1.0\"?>");
+                    sprj.Add("<NitroSoundMakerProject version=\"1.0.0\">");
+                    sprj.Add("  <head>");
+                    sprj.Add("    <create user=\"NitroStudioUser\" host=\"NitroStudio\" date=\"2018 - 12 - 21T12: 37:41\" />");
+                    sprj.Add("    <title>Nitro Studio Export</title>");
+                    sprj.Add("    <generator name=\"cc\" version=\"1.2.0.0\" />");
+                    sprj.Add("  </head>");
+                    sprj.Add("  <body>");
+                    sprj.Add("    <SoundArchiveFiles>");
+                    sprj.Add("      <File name=\"" + projectName + "\" path=\"" + projectName + ".sarc\" />");
+                    sprj.Add("    </SoundArchiveFiles>");
+                    sprj.Add("  </body>");
+                    sprj.Add("</NitroSoundMakerProject>");
+                    File.WriteAllLines(o.FileName, sprj);
+
+                    //Make directories.
+                    Directory.CreateDirectory(projectPath + "/" + "SSEQ");
+                    Directory.CreateDirectory(projectPath + "/" + "SBNK");
+                    Directory.CreateDirectory(projectPath + "/" + "SWAR");
+                    Directory.CreateDirectory(projectPath + "/" + "SSAR");
+                    Directory.CreateDirectory(projectPath + "/" + "STRM");
+
+                    //Write project data.
+                    DumpSarc(projectPath, projectName);
+                    DumpSequences(projectPath + "/" + "SSEQ");
+                    DumpSequenceArchives(projectPath + "/" + "SSAR", projectName);
+                    DumpBanks(projectPath + "/" + "SBNK");
+                    DumpSwars(projectPath + "/" + "SWAR");
+                    DumpStreams(projectPath + "/" + "STRM");
+
+                }
+
+            }
+
+        }
 
     }
+
 }
